@@ -16,7 +16,7 @@ kombu==5.4.2
 pyodbc==5.2.0
 pymssql==2.3.2
 sqlalchemy-pytds==0.3.0
-pytz==2024.2
+pytz==2026.1.post1
 openai==1.58.1
 pandas==2.2.3
 openpyxl==3.1.5
