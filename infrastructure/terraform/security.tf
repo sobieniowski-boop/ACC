@@ -8,7 +8,7 @@
 
 # ── Redis Firewall — Allow only ACI subnet ───────────────────────
 resource "azurerm_redis_firewall_rule" "aci_access" {
-  name                = "allow-aci-subnet"
+  name                = "allow_aci_subnet"
   redis_cache_name    = azurerm_redis_cache.acc.name
   resource_group_name = azurerm_resource_group.acc.name
   # ACI subnet range (e.g. 10.10.1.0 - 10.10.1.255)
