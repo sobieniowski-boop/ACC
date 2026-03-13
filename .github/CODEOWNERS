@@ -1,0 +1,10 @@
+# Default owner
+* @msobieniowski
+
+# Critical paths — always require owner review
+apps/api/app/services/profit_engine.py    @msobieniowski
+apps/api/app/core/db_connection.py        @msobieniowski
+apps/api/app/core/config.py               @msobieniowski
+apps/api/app/connectors/                  @msobieniowski
+infrastructure/                           @msobieniowski
+.github/workflows/                        @msobieniowski
