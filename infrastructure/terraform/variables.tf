@@ -112,6 +112,19 @@ variable "redis_sku" {
   default     = "Basic"
 }
 
+# ── Monitoring ────────────────────────────────────────────────────
+variable "log_retention_days" {
+  description = "Log Analytics retention in days (30-730)"
+  type        = number
+  default     = 30
+}
+
+variable "alert_email" {
+  description = "Email address for critical alert notifications"
+  type        = string
+  default     = "msobieniowski@users.noreply.github.com"
+}
+
 # ── Tags ──────────────────────────────────────────────────────────
 variable "extra_tags" {
   description = "Additional tags to apply to all resources"

@@ -1,0 +1,62 @@
+# Promtail Configuration — Ship Docker container logs to Loki
+
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  # ── Docker Container Logs ────────────────────────────────────────
+  - job_name: docker
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: acc-containers
+          __path__: /var/lib/docker/containers/*/*.log
+
+    pipeline_stages:
+      # Parse Docker JSON log format
+      - docker: {}
+
+      # Extract container name from label
+      - labels:
+          container_name:
+
+      # Only keep ACC containers
+      - match:
+          selector: '{job="acc-containers"}'
+          stages:
+            - regex:
+                expression: '"container_name":"(?P<container>/acc_[^"]+)"'
+            - labels:
+                container:
+
+      # Parse structlog JSON from API containers
+      - match:
+          selector: '{container=~"acc_api|acc_worker"}'
+          stages:
+            - json:
+                expressions:
+                  level: level
+                  event: event
+                  timestamp: timestamp
+            - labels:
+                level:
+            - timestamp:
+                source: timestamp
+                format: "2006-01-02T15:04:05.999999999Z"
+
+  # ── System Logs ──────────────────────────────────────────────────
+  - job_name: system
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: system-logs
+          __path__: /var/log/syslog

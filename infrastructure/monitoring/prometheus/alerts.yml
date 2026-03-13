@@ -1,0 +1,142 @@
+# Prometheus Alert Rules — ACC
+# These fire when thresholds are breached and notify via Grafana/Alertmanager.
+
+groups:
+  # ═══════════════════════════════════════════════════════════════
+  # Application Health
+  # ═══════════════════════════════════════════════════════════════
+  - name: acc_application
+    rules:
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[5m]))
+            /
+            sum(rate(http_requests_total[5m]))
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+          service: acc-api
+        annotations:
+          summary: "High HTTP 5xx error rate (>5%)"
+          description: "{{ $value | humanizePercentage }} of requests are returning 5xx errors over the last 5 minutes."
+
+      - alert: HighLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 2.0
+        for: 10m
+        labels:
+          severity: warning
+          service: acc-api
+        annotations:
+          summary: "P95 latency exceeds 2 seconds"
+          description: "95th percentile latency is {{ $value }}s over the last 10 minutes."
+
+      - alert: HighLatencyP99
+        expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 5.0
+        for: 5m
+        labels:
+          severity: critical
+          service: acc-api
+        annotations:
+          summary: "P99 latency exceeds 5 seconds"
+          description: "99th percentile latency is {{ $value }}s — investigate slow queries or external API calls."
+
+      - alert: APIDown
+        expr: up{job="acc-api"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: acc-api
+        annotations:
+          summary: "ACC API is down"
+          description: "Prometheus cannot scrape the ACC API /metrics endpoint for 2+ minutes."
+
+      - alert: HighRequestVolume
+        expr: sum(rate(http_requests_total[5m])) > 100
+        for: 10m
+        labels:
+          severity: warning
+          service: acc-api
+        annotations:
+          summary: "Unusually high request volume (>100 rps)"
+          description: "Current rate: {{ $value }} req/s — possible abuse or load spike."
+
+      - alert: TooManyInFlightRequests
+        expr: sum(http_requests_in_progress) > 50
+        for: 5m
+        labels:
+          severity: warning
+          service: acc-api
+        annotations:
+          summary: "Over 50 requests in-flight"
+          description: "{{ $value }} concurrent requests — may indicate thread starvation."
+
+  # ═══════════════════════════════════════════════════════════════
+  # Business Metrics
+  # ═══════════════════════════════════════════════════════════════
+  - name: acc_business
+    rules:
+      - alert: SchedulerJobFailing
+        expr: increase(scheduler_jobs_total{status="error"}[1h]) > 3
+        for: 5m
+        labels:
+          severity: warning
+          service: acc-scheduler
+        annotations:
+          summary: "Scheduler job {{ $labels.job_name }} failing repeatedly"
+          description: "{{ $value }} failures in the last hour for job {{ $labels.job_name }}."
+
+      - alert: SchedulerJobSlow
+        expr: scheduler_job_duration_seconds{quantile="0.95"} > 600
+        for: 15m
+        labels:
+          severity: warning
+          service: acc-scheduler
+        annotations:
+          summary: "Scheduler job running >10 minutes"
+          description: "Job {{ $labels.job_name }} P95 duration is {{ $value }}s."
+
+      - alert: OrderSyncStalled
+        expr: increase(order_sync_total[2h]) == 0
+        for: 30m
+        labels:
+          severity: warning
+          service: acc-orders
+        annotations:
+          summary: "No orders synced in 2+ hours"
+          description: "Order sync appears stalled — check SP-API connectivity."
+
+      - alert: ProfitCalcSlow
+        expr: histogram_quantile(0.95, rate(profit_calculation_duration_seconds_bucket[15m])) > 10
+        for: 10m
+        labels:
+          severity: warning
+          service: acc-profit
+        annotations:
+          summary: "Profit calculation P95 exceeds 10 seconds"
+          description: "Current P95: {{ $value }}s — check DB indexes and query performance."
+
+  # ═══════════════════════════════════════════════════════════════
+  # Infrastructure
+  # ═══════════════════════════════════════════════════════════════
+  - name: acc_infrastructure
+    rules:
+      - alert: PrometheusTargetDown
+        expr: up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus target {{ $labels.job }} is down"
+          description: "Target {{ $labels.instance }} has been unreachable for 5+ minutes."
+
+      - alert: HighDBConnectionCount
+        expr: db_connections_active > 20
+        for: 10m
+        labels:
+          severity: warning
+          service: acc-database
+        annotations:
+          summary: "High database connection count (>20)"
+          description: "{{ $value }} active DB connections — possible connection leak."

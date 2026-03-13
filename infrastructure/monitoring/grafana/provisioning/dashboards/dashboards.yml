@@ -1,0 +1,13 @@
+# Grafana Dashboard Provisioning — Load dashboards from filesystem
+apiVersion: 1
+
+providers:
+  - name: ACC Dashboards
+    orgId: 1
+    folder: ACC
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

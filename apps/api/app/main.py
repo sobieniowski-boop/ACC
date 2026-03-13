@@ -272,6 +272,10 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
+# ── Prometheus Metrics ──
+from app.core.metrics import setup_metrics  # noqa: E402
+setup_metrics(app)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.CORS_ORIGINS,
@@ -297,6 +301,10 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 from app.platform.middleware import CorrelationIdMiddleware  # noqa: E402
 app.add_middleware(CorrelationIdMiddleware)
+
+# ── Security Hardening ──
+from app.core.security_hardening import setup_security  # noqa: E402
+setup_security(app)
 
 
 @app.exception_handler(Exception)

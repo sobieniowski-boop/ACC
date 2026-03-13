@@ -34,3 +34,18 @@ output "redis_hostname" {
 output "redis_ssl_port" {
   value = azurerm_redis_cache.acc.ssl_port
 }
+
+# ── Monitoring ────────────────────────────────────────────────────
+output "log_analytics_workspace_id" {
+  value = azurerm_log_analytics_workspace.acc.id
+}
+
+output "appinsights_instrumentation_key" {
+  value     = azurerm_application_insights.acc.instrumentation_key
+  sensitive = true
+}
+
+output "appinsights_connection_string" {
+  value     = azurerm_application_insights.acc.connection_string
+  sensitive = true
+}
