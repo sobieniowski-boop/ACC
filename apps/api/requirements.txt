@@ -26,7 +26,7 @@ structlog==24.4.0
 opentelemetry-api==1.29.0
 opentelemetry-sdk==1.29.0
 opentelemetry-exporter-otlp-proto-grpc==1.29.0
-azure-monitor-opentelemetry-exporter==1.0.0b33
+azure-monitor-opentelemetry-exporter==1.0.0b48
 sentry-sdk[fastapi]==2.19.2
 websockets==14.1
 zeep==4.3.2
