@@ -215,7 +215,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY && format('{0}/{1}', env.REGISTRY, env.API_IMAGE) || env.API_IMAGE }}
           tags: |
@@ -267,7 +267,7 @@ jobs:
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY && format('{0}/{1}', env.REGISTRY, env.WEB_IMAGE) || env.WEB_IMAGE }}
           tags: |
