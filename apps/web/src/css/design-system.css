@@ -219,3 +219,41 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ────────────────────────────────────────────
+   5. SMOOTH THEME TRANSITION
+   ──────────────────────────────────────────── */
+
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: background-color 200ms ease,
+              color 200ms ease,
+              border-color 200ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-transitioning *,
+  .theme-transitioning *::before,
+  .theme-transitioning *::after {
+    transition: none !important;
+  }
+}
+
+/* ────────────────────────────────────────────
+   6. RESPONSIVE TYPOGRAPHY
+   ──────────────────────────────────────────── */
+
+@media (min-width: 1536px) {
+  :root {
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.8125rem;  /* 13px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 1.875rem;  /* 30px */
+    --text-4xl: 2.25rem;   /* 36px */
+    --text-5xl: 2.75rem;   /* 44px */
+  }
+}

@@ -13,5 +13,6 @@ export { Spinner } from "./spinner";
 export { Switch } from "./switch";
 export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from "./table";
 export { Textarea } from "./textarea";
+export { ThemeSwitcher } from "./theme-switcher";
 export { ThemeToggle } from "./theme-toggle";
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./tooltip";

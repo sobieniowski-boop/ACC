@@ -18,11 +18,13 @@ function getSystemTheme(): "light" | "dark" {
 
 function applyTheme(resolved: "light" | "dark") {
   const root = document.documentElement;
+  root.classList.add("theme-transitioning");
   if (resolved === "dark") {
     root.classList.add("dark");
   } else {
     root.classList.remove("dark");
   }
+  setTimeout(() => root.classList.remove("theme-transitioning"), 250);
 }
 
 function resolve(theme: Theme): "light" | "dark" {

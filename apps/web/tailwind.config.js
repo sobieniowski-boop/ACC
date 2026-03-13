@@ -39,11 +39,52 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Amazon orange
+        // Amazon brand scale
         amazon: {
           DEFAULT: "#FF9900",
           dark: "#E88900",
+          50: "#FFF8EB",
+          100: "#FFECC8",
+          200: "#FFDA8A",
+          300: "#FFC44D",
+          400: "#FFAE1A",
+          500: "#FF9900",
+          600: "#E88900",
+          700: "#C27200",
+          800: "#9A5A00",
+          900: "#7A4700",
         },
+        // Semantic colors from design-system tokens
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          foreground: "hsl(var(--info-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        "border-strong": "hsl(var(--border-strong))",
+        // Chart palette
+        "chart-1": "hsl(var(--chart-1))",
+        "chart-2": "hsl(var(--chart-2))",
+        "chart-3": "hsl(var(--chart-3))",
+        "chart-4": "hsl(var(--chart-4))",
+        "chart-5": "hsl(var(--chart-5))",
+        "chart-6": "hsl(var(--chart-6))",
+        "chart-7": "hsl(var(--chart-7))",
+        "chart-8": "hsl(var(--chart-8))",
+      },
+      fontFamily: {
+        sans: ["var(--font-primary)"],
+        mono: ["var(--font-mono)"],
       },
       borderRadius: {
         lg: "var(--radius)",
