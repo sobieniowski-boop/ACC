@@ -3,6 +3,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getAlerts } from "@/lib/api";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function TopBar() {
   const logout = useAuthStore((s) => s.logout);
@@ -40,6 +41,9 @@ export default function TopBar() {
             </span>
           )}
         </button>
+
+        {/* Theme toggle */}
+        <ThemeToggle />
 
         {/* User */}
         <span className="text-sm text-muted-foreground">

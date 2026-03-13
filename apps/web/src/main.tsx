@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider, MutationCache } from "@tanstack/react-query";
 import type { AxiosError } from "axios";
 import App from "./App";
+import { ThemeProvider } from "./components/layout/ThemeProvider";
 import "./index.css";
 import "./css/design-system.css";
 import "./css/layout.css";
@@ -61,7 +62,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       )}
     >
       <QueryClientProvider client={queryClient}>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
   </React.StrictMode>
