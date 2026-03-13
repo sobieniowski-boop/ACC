@@ -103,7 +103,8 @@ async def get_kpi_summary(
             ISNULL(SUM(r.total_units), 0)          AS units,
             ISNULL(SUM(r.cm1_pln), 0)              AS cm1_pln,
             ISNULL(SUM(r.cm2_pln), 0)              AS cm2_pln,
-            ISNULL(SUM(r.overhead_pln), 0)         AS overhead_pln,
+            ISNULL(SUM(r.cm2_pln), 0)
+              - ISNULL(SUM(r.profit_pln), 0)       AS overhead_pln,
             ISNULL(SUM(r.profit_pln), 0)           AS net_profit_pln,
             ISNULL(SUM(r.ad_spend_pln), 0)         AS ads_spend_pln,
             ISNULL(SUM(r.logistics_pln), 0)        AS courier_cost_pln,
@@ -649,9 +650,22 @@ async def top_profit_drivers(
         order_logistics_expr = profit_logistics_value_sqla(order_model=AccOrder, fact_model=True)
         line_logistics = order_logistics_expr * line_share
 
-        # acc_import_products carries the canonical Polish product name (nazwa_pelna)
-        # sourced from the official price-list / cennik.  Join via internal_sku.
+        # Polish product name sources (profitability context → always Polish):
+        # 1. acc_amazon_listing_registry.product_name — canonical PL name (81 % hit)
+        # 2. acc_import_products.nazwa_pelna           — cennik PL name   ( 9 % hit)
+        # 3. acc_product.title                         — PIM (PL or marketplace lang)
+        # 4. acc_order_line.title                      — marketplace-language fallback
+        # Registry ASIN is not unique (multi-SKU per ASIN) → scalar subquery.
+        _lr = sa_table("acc_amazon_listing_registry", sa_column("asin"), sa_column("product_name"))
         _ip = sa_table("acc_import_products", sa_column("sku"), sa_column("nazwa_pelna"))
+
+        _lr_name_sq = (
+            select(_lr.c.product_name)
+            .where(_lr.c.asin == OrderLine.asin)
+            .correlate(OrderLine)
+            .limit(1)
+            .scalar_subquery()
+        )
 
         if has_product_table:
             q = (
@@ -660,6 +674,7 @@ async def top_profit_drivers(
                     AccOrder.marketplace_id,
                     func.max(OrderLine.sku).label("sample_sku"),
                     func.coalesce(
+                        func.max(_lr_name_sq),         # Polish name from listing registry
                         func.max(_ip.c.nazwa_pelna),   # Polish name from cennik
                         func.max(Product.title),       # PIM title (may be PL or marketplace lang)
                         func.max(OrderLine.title),     # marketplace-language fallback
@@ -691,7 +706,10 @@ async def top_profit_drivers(
                     OrderLine.asin,
                     AccOrder.marketplace_id,
                     func.max(OrderLine.sku).label("sample_sku"),
-                    func.max(OrderLine.title).label("title"),
+                    func.coalesce(
+                        func.max(_lr_name_sq),
+                        func.max(OrderLine.title),
+                    ).label("title"),
                     cast(None, String(20)).label("internal_sku"),
                     func.sum(OrderLine.quantity_shipped).label("units"),
                     func.sum(line_revenue).label("revenue_pln"),
