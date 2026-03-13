@@ -1,0 +1,8 @@
+
+Unmapped EANs: 125
+EANs found in ERP (HistoriaTowaru): 0/125
+
+=== Group 2: Fix product_id by ASIN ===
+  Lines fixable: 344, Distinct SKUs: 172
+  SKUs not in acc_product: 172
+  SKUs already in acc_product but not linked: 0

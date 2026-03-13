@@ -1,0 +1,42 @@
+﻿2026-03-10 22:34:27 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== ORDERS by month (Jan-Mar 2026) ===
+  2026-01:  44,825 orders | shipped= 42,877 | has_rev= 42,844
+  2026-02:  51,079 orders | shipped= 48,896 | has_rev= 48,896
+  2026-03:  23,535 orders | shipped= 22,603 | has_rev= 22,628
+
+=== ORDER LINES quality (Shipped, Jan-Mar 2026) ===
+  2026-01:  44,921 lines | cogs=44,790 (99%) | fba=12,542 (27%) | ref=44,839 (99%)
+  2026-02:  51,872 lines | cogs=51,777 (99%) | fba=18,714 (36%) | ref=49,399 (95%)
+  2026-03:  24,195 lines | cogs=23,838 (98%) | fba= 6,458 (26%) | ref=20,773 (85%)
+
+=== FINANCE TRANSACTIONS (Jan-Mar 2026) ===
+  2026-02:   55,952 txns
+  2026-03:  106,077 txns
+
+=== ADS CAMPAIGN DAY (Jan-Mar 2026) ===
+  Error: (207, b"Invalid column name 'cost_pln'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+=== ADS PRODUCT DAY (Jan-Mar 2026) ===
+  Error/no table: (207, b"Invalid column name 'cost_pln'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+=== LOGISTICS / COURIER COST (Jan-Mar 2026) ===
+  Error/no table: (207, b"Invalid column name 'order_id'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+=== EXECUTIVE DAILY METRICS (Jan-Mar 2026) ===
+  2026-01: 278 days | rev=   4,792,995 | cm1= 1,059,495 | cm2=   875,475 | np=   875,475
+  2026-02: 252 days | rev=   5,392,094 | cm1= 1,886,834 | cm2= 1,600,834 | np= 1,600,834
+  2026-03:  89 days | rev=   2,671,737 | cm1= 1,266,235 | cm2= 1,072,930 | np= 1,072,930
+
+=== MARCH 2026 day-by-day orders ===
+  2026-03-01: 3,013 orders
+  2026-03-02: 2,460 orders
+  2026-03-03: 2,353 orders
+  2026-03-04: 2,317 orders
+  2026-03-05: 2,256 orders
+  2026-03-06: 2,072 orders
+  2026-03-07: 2,111 orders
+  2026-03-08: 2,535 orders
+  2026-03-09: 2,172 orders
+  2026-03-10: 1,314 orders
+
+DONE

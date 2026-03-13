@@ -1,0 +1,4190 @@
+from __future__ import annotations
+
+import asyncio
+import json
+import math
+import time
+import uuid
+from datetime import date, datetime, timedelta, timezone
+from statistics import median
+from typing import Any
+
+import pyodbc
+import structlog
+
+from app.connectors.amazon_sp_api.inbound import InboundClient
+from app.connectors.amazon_sp_api.inventory import InventoryClient
+from app.connectors.amazon_sp_api.reports import ReportsClient, ReportType, parse_tsv_report
+from app.core.config import MARKETPLACE_REGISTRY
+from app.core.db_connection import connect_acc, connect_netfox
+from app.services.amazon_listing_registry import lookup_listing_registry_context
+
+log = structlog.get_logger(__name__)
+
+# Simple in-memory cache for FBA overview
+_FBA_CACHE: dict[str, tuple[float, Any]] = {}
+
+def _fba_cache_get(key: str) -> Any | None:
+    entry = _FBA_CACHE.get(key)
+    if entry is None:
+        return None
+    exp, val = entry
+    if time.monotonic() > exp:
+        _FBA_CACHE.pop(key, None)
+        return None
+    return val
+
+def _fba_cache_set(key: str, value: Any, ttl: int = 600) -> None:
+    _FBA_CACHE[key] = (time.monotonic() + ttl, value)
+
+# Marketplaces where GET_FBA_INVENTORY_PLANNING_DATA consistently returns FATAL/CANCELLED.
+# Skip new report requests for these → fall back to Inventory Summaries API immediately.
+PLANNING_REPORT_PROBLEM_MARKETPLACES = {
+    "A28R8C7NBKEWEA",   # IE
+    "A2NODRKZP88ZB9",   # SE
+    "A1805IZSGTT6HS",   # NL
+    "A1C3SOZRARQ6R3",   # PL
+    "AMEN7PMS3EDWL",    # BE
+}
+PLANNING_REPORT_FATAL_THRESHOLD = 3
+PLANNING_REPORT_FATAL_WINDOW_HOURS = 12
+
+
+def _connect() -> pyodbc.Connection:
+    return connect_acc(autocommit=False, timeout=120)
+
+
+def _fetchall_dict(cur: pyodbc.Cursor) -> list[dict[str, Any]]:
+    cols = [c[0] for c in cur.description] if cur.description else []
+    return [{cols[i]: row[i] for i in range(len(cols))} for row in cur.fetchall()]
+
+
+def _fetchone_dict(cur: pyodbc.Cursor) -> dict[str, Any] | None:
+    row = cur.fetchone()
+    if not row or not cur.description:
+        return None
+    cols = [c[0] for c in cur.description]
+    return {cols[i]: row[i] for i in range(len(cols))}
+
+
+def _marketplace_code(marketplace_id: str | None) -> str:
+    if not marketplace_id:
+        return ""
+    info = MARKETPLACE_REGISTRY.get(str(marketplace_id))
+    return str(info.get("code")) if info else str(marketplace_id)
+
+
+def _is_amzn_grade_sku(sku: Any) -> bool:
+    return str(sku or "").strip().lower().startswith("amzn.gr.")
+
+
+def _to_float(value: Any, default: float = 0.0) -> float:
+    try:
+        if value is None:
+            return default
+        return float(value)
+    except Exception:
+        return default
+
+
+def _to_int(value: Any, default: int = 0) -> int:
+    try:
+        if value is None:
+            return default
+        return int(float(value))
+    except Exception:
+        return default
+
+
+def _clamp(value: float, low: float, high: float) -> float:
+    return max(low, min(high, value))
+
+
+def _parse_quarter(quarter: str) -> tuple[date, date]:
+    try:
+        year_raw, quarter_raw = quarter.upper().split("-Q", 1)
+        year = int(year_raw)
+        quarter_no = int(quarter_raw)
+        if quarter_no < 1 or quarter_no > 4:
+            raise ValueError
+    except Exception as exc:
+        raise ValueError(f"invalid quarter format: {quarter}") from exc
+    start_month = (quarter_no - 1) * 3 + 1
+    start_date = date(year, start_month, 1)
+    if quarter_no == 4:
+        end_date = date(year, 12, 31)
+    else:
+        end_date = date(year, start_month + 3, 1) - timedelta(days=1)
+    return start_date, end_date
+
+
+def _quarter_day_count(start_date: date, end_date: date) -> int:
+    return (end_date - start_date).days + 1
+
+
+def _factor_lower_is_better(actual: float | None, alarm: float | None, target: float | None, good: float | None) -> float:
+    if actual is None or alarm is None or target is None or good is None:
+        return 0.0
+    if actual <= target:
+        if target <= good:
+            return 1.0
+        span = max(target - good, 0.0001)
+        return _clamp(1.0 + ((target - actual) / span) * 0.20, 0.0, 1.20)
+    span = max(alarm - target, 0.0001)
+    return _clamp(1.0 - ((actual - target) / span), 0.0, 1.0)
+
+
+def _factor_higher_is_better(actual: float | None, alarm: float | None, target: float | None, good: float | None) -> float:
+    if actual is None or alarm is None or target is None or good is None:
+        return 0.0
+    if actual >= target:
+        span = max(good - target, 0.0001)
+        return _clamp(1.0 + ((actual - target) / span) * 0.20, 0.0, 1.20)
+    span = max(target - alarm, 0.0001)
+    return _clamp((actual - alarm) / span, 0.0, 1.0)
+
+
+def _business_day_diff(start_dt: date | None, end_dt: date | None) -> int | None:
+    if not start_dt or not end_dt:
+        return None
+    if end_dt < start_dt:
+        return -_business_day_diff(end_dt, start_dt)  # type: ignore[arg-type]
+    current = start_dt
+    days = 0
+    while current <= end_dt:
+        if current.weekday() < 5:
+            days += 1
+        current += timedelta(days=1)
+    return days - 1
+
+
+def _parse_json(value: Any, default: dict[str, Any] | list[Any] | None = None) -> Any:
+    if value in (None, ""):
+        return {} if default is None else default
+    if isinstance(value, (dict, list)):
+        return value
+    try:
+        return json.loads(str(value))
+    except Exception:
+        return {} if default is None else default
+
+
+def _normalize_text(value: Any) -> str:
+    return str(value or "").strip()
+
+
+def _normalize_key(value: Any) -> str:
+    text = _normalize_text(value).lower()
+    return "".join(ch if ch.isalnum() else "_" for ch in text).strip("_")
+
+
+def _iso_now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _first_value(row: dict[str, Any], *keys: str) -> str:
+    for key in keys:
+        if key in row and str(row[key]).strip():
+            return str(row[key]).strip()
+    return ""
+
+
+def _first_int(row: dict[str, Any], *keys: str) -> int:
+    for key in keys:
+        if key in row and str(row[key]).strip():
+            return _to_int(row[key])
+    return 0
+
+
+def _latest_inventory_snapshot_date(cur: pyodbc.Cursor) -> date | None:
+    cur.execute("SELECT MAX(snapshot_date) FROM dbo.acc_fba_inventory_snapshot WITH (NOLOCK)")
+    row = cur.fetchone()
+    return row[0] if row and row[0] else None
+
+
+def _latest_raw_inventory_snapshot_date(cur: pyodbc.Cursor) -> date | None:
+    cur.execute("SELECT MAX(snapshot_date) FROM dbo.acc_inventory_snapshot WITH (NOLOCK)")
+    row = cur.fetchone()
+    return row[0] if row and row[0] else None
+
+
+def _recent_report_failures(
+    marketplace_id: str,
+    report_type: str,
+    *,
+    lookback_hours: int,
+    request_status: str = "FATAL",
+) -> dict[str, Any]:
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT COUNT(*) AS failure_count, MAX(created_at) AS last_failure_at
+            FROM dbo.acc_fba_report_diagnostic WITH (NOLOCK)
+            WHERE sync_scope = 'inventory'
+              AND marketplace_id = ?
+              AND report_type = ?
+              AND UPPER(ISNULL(request_status, '')) = ?
+              AND created_at >= DATEADD(HOUR, ?, SYSUTCDATETIME())
+            """,
+            (marketplace_id, report_type, request_status.upper(), -abs(int(lookback_hours))),
+        )
+        row = cur.fetchone()
+        return {
+            "failure_count": _to_int(row[0]) if row else 0,
+            "last_failure_at": row[1] if row else None,
+        }
+    finally:
+        conn.close()
+
+
+def _planning_report_cooldown_state(marketplace_id: str) -> dict[str, Any]:
+    recent = _recent_report_failures(
+        marketplace_id,
+        ReportType.FBA_INVENTORY_PLANNING,
+        lookback_hours=PLANNING_REPORT_FATAL_WINDOW_HOURS,
+    )
+    failure_count = _to_int(recent.get("failure_count"))
+    last_failure_at = recent.get("last_failure_at")
+    if marketplace_id in PLANNING_REPORT_PROBLEM_MARKETPLACES and last_failure_at:
+        return {
+            "active": True,
+            "reason": "known_marketplace_recent_fatal",
+            "failure_count": failure_count,
+            "last_failure_at": last_failure_at,
+        }
+    if failure_count >= PLANNING_REPORT_FATAL_THRESHOLD:
+        return {
+            "active": True,
+            "reason": "persistent_recent_fatal",
+            "failure_count": failure_count,
+            "last_failure_at": last_failure_at,
+        }
+    return {
+        "active": False,
+        "reason": None,
+        "failure_count": failure_count,
+        "last_failure_at": last_failure_at,
+    }
+
+
+def ensure_fba_schema() -> None:
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+IF OBJECT_ID('dbo.acc_fba_inventory_snapshot', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_inventory_snapshot (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        marketplace_id NVARCHAR(20) NOT NULL,
+        sku NVARCHAR(120) NOT NULL,
+        asin NVARCHAR(40) NULL,
+        on_hand INT NOT NULL DEFAULT 0,
+        inbound INT NOT NULL DEFAULT 0,
+        reserved INT NOT NULL DEFAULT 0,
+        stranded_units INT NOT NULL DEFAULT 0,
+        aged_0_30 INT NOT NULL DEFAULT 0,
+        aged_31_60 INT NOT NULL DEFAULT 0,
+        aged_61_90 INT NOT NULL DEFAULT 0,
+        aged_90_plus INT NOT NULL DEFAULT 0,
+        excess_units INT NOT NULL DEFAULT 0,
+        snapshot_date DATE NOT NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+        CONSTRAINT UQ_acc_fba_inventory_snapshot UNIQUE (marketplace_id, sku, snapshot_date)
+    );
+    CREATE INDEX IX_acc_fba_inventory_snapshot_market_date ON dbo.acc_fba_inventory_snapshot(marketplace_id, snapshot_date);
+    CREATE INDEX IX_acc_fba_inventory_snapshot_sku_date ON dbo.acc_fba_inventory_snapshot(sku, snapshot_date);
+END
+
+IF COL_LENGTH('dbo.acc_fba_inventory_snapshot', 'excess_units') IS NULL
+BEGIN
+    ALTER TABLE dbo.acc_fba_inventory_snapshot
+    ADD excess_units INT NOT NULL CONSTRAINT DF_acc_fba_inventory_snapshot_excess_units DEFAULT 0;
+END
+
+IF OBJECT_ID('dbo.acc_fba_inbound_shipment', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_inbound_shipment (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        marketplace_id NVARCHAR(20) NULL,
+        shipment_id NVARCHAR(120) NOT NULL,
+        shipment_name NVARCHAR(200) NULL,
+        status NVARCHAR(40) NOT NULL,
+        created_at DATETIME2 NULL,
+        last_update_at DATETIME2 NULL,
+        from_warehouse NVARCHAR(120) NULL,
+        units_planned INT NOT NULL DEFAULT 0,
+        units_received INT NOT NULL DEFAULT 0,
+        first_receive_at DATETIME2 NULL,
+        closed_at DATETIME2 NULL,
+        owner NVARCHAR(120) NULL,
+        payload_json NVARCHAR(MAX) NULL,
+        CONSTRAINT UQ_acc_fba_inbound_shipment UNIQUE (shipment_id)
+    );
+    CREATE INDEX IX_acc_fba_inbound_shipment_market_status ON dbo.acc_fba_inbound_shipment(marketplace_id, status);
+END
+
+IF OBJECT_ID('dbo.acc_fba_inbound_shipment_line', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_inbound_shipment_line (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        shipment_id NVARCHAR(120) NOT NULL,
+        sku NVARCHAR(120) NOT NULL,
+        asin NVARCHAR(40) NULL,
+        qty_planned INT NOT NULL DEFAULT 0,
+        qty_received INT NOT NULL DEFAULT 0,
+        payload_json NVARCHAR(MAX) NULL
+    );
+    CREATE INDEX IX_acc_fba_inbound_shipment_line_shipment ON dbo.acc_fba_inbound_shipment_line(shipment_id);
+    CREATE INDEX IX_acc_fba_inbound_shipment_line_sku ON dbo.acc_fba_inbound_shipment_line(sku);
+END
+
+IF OBJECT_ID('dbo.acc_fba_bundle', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_bundle (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        bundle_sku NVARCHAR(120) NOT NULL,
+        name NVARCHAR(240) NOT NULL,
+        status_stage NVARCHAR(40) NOT NULL DEFAULT 'idea',
+        marketplaces_json NVARCHAR(MAX) NULL,
+        bom_json NVARCHAR(MAX) NULL,
+        expected_cm1 DECIMAL(18,4) NULL,
+        expected_np DECIMAL(18,4) NULL,
+        owner NVARCHAR(120) NULL,
+        due_date DATE NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+END
+
+IF OBJECT_ID('dbo.acc_fba_bundle_event', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_bundle_event (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        bundle_id UNIQUEIDENTIFIER NOT NULL,
+        event_type NVARCHAR(60) NOT NULL,
+        at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+        payload_json NVARCHAR(MAX) NULL
+    );
+    CREATE INDEX IX_acc_fba_bundle_event_bundle ON dbo.acc_fba_bundle_event(bundle_id, at DESC);
+END
+
+IF OBJECT_ID('dbo.acc_fba_kpi_snapshot', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_kpi_snapshot (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        quarter NVARCHAR(16) NOT NULL,
+        marketplace_id NVARCHAR(20) NULL,
+        ipi DECIMAL(18,4) NULL,
+        oos_top100 DECIMAL(18,4) NULL,
+        aged_90plus_value_pct DECIMAL(18,4) NULL,
+        stranded_value DECIMAL(18,4) NULL,
+        bundles_created INT NOT NULL DEFAULT 0,
+        bundles_breakeven_90d_pct DECIMAL(18,4) NULL,
+        score_json NVARCHAR(MAX) NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_kpi_snapshot_quarter ON dbo.acc_fba_kpi_snapshot(quarter, marketplace_id);
+END
+
+IF OBJECT_ID('dbo.acc_fba_sku_status', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_sku_status (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        marketplace_id NVARCHAR(20) NULL,
+        sku NVARCHAR(120) NOT NULL,
+        is_excluded BIT NOT NULL DEFAULT 0,
+        is_retired BIT NOT NULL DEFAULT 0,
+        notes NVARCHAR(500) NULL,
+        effective_from DATE NULL,
+        effective_to DATE NULL,
+        updated_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_sku_status_sku_market ON dbo.acc_fba_sku_status(sku, marketplace_id, effective_from, effective_to);
+END
+
+IF OBJECT_ID('dbo.acc_fba_shipment_plan', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_shipment_plan (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        quarter NVARCHAR(16) NOT NULL,
+        marketplace_id NVARCHAR(20) NULL,
+        shipment_id NVARCHAR(120) NULL,
+        plan_week_start DATE NOT NULL,
+        planned_ship_date DATE NULL,
+        planned_units INT NOT NULL DEFAULT 0,
+        actual_ship_date DATE NULL,
+        actual_units INT NULL,
+        tolerance_pct DECIMAL(18,4) NOT NULL DEFAULT 0.10,
+        status NVARCHAR(40) NOT NULL DEFAULT 'planned',
+        owner NVARCHAR(120) NULL,
+        notes_json NVARCHAR(MAX) NULL,
+        updated_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_shipment_plan_quarter ON dbo.acc_fba_shipment_plan(quarter, marketplace_id, status);
+END
+
+IF OBJECT_ID('dbo.acc_fba_case', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_case (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        case_type NVARCHAR(60) NOT NULL,
+        marketplace_id NVARCHAR(20) NULL,
+        entity_type NVARCHAR(40) NULL,
+        entity_id NVARCHAR(120) NULL,
+        sku NVARCHAR(120) NULL,
+        detected_date DATE NOT NULL,
+        close_date DATE NULL,
+        owner NVARCHAR(120) NULL,
+        status NVARCHAR(40) NOT NULL DEFAULT 'open',
+        root_cause NVARCHAR(240) NULL,
+        payload_json NVARCHAR(MAX) NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+        updated_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_case_status ON dbo.acc_fba_case(status, detected_date, close_date);
+END
+
+IF OBJECT_ID('dbo.acc_fba_case_event', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_case_event (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        case_id UNIQUEIDENTIFIER NOT NULL,
+        event_type NVARCHAR(60) NOT NULL,
+        event_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+        actor NVARCHAR(120) NULL,
+        payload_json NVARCHAR(MAX) NULL
+    );
+    CREATE INDEX IX_acc_fba_case_event_case ON dbo.acc_fba_case_event(case_id, event_at DESC);
+END
+
+IF OBJECT_ID('dbo.acc_fba_report_diagnostic', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_report_diagnostic (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        sync_scope NVARCHAR(40) NOT NULL,
+        marketplace_id NVARCHAR(20) NULL,
+        report_type NVARCHAR(120) NOT NULL,
+        fetch_mode NVARCHAR(60) NOT NULL,
+        request_report_id NVARCHAR(80) NULL,
+        request_status NVARCHAR(40) NULL,
+        selected_report_id NVARCHAR(80) NULL,
+        selected_status NVARCHAR(40) NULL,
+        selected_document_id NVARCHAR(200) NULL,
+        fallback_source NVARCHAR(80) NULL,
+        detail_json NVARCHAR(MAX) NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_report_diagnostic_scope ON dbo.acc_fba_report_diagnostic(sync_scope, created_at DESC);
+    CREATE INDEX IX_acc_fba_report_diagnostic_market_report ON dbo.acc_fba_report_diagnostic(marketplace_id, report_type, created_at DESC);
+END
+
+IF OBJECT_ID('dbo.acc_fba_receiving_reconciliation', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_receiving_reconciliation (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        shipment_id NVARCHAR(120) NULL,
+        marketplace_id NVARCHAR(20) NULL,
+        sku NVARCHAR(120) NULL,
+        event_date DATE NOT NULL,
+        shipped_units INT NOT NULL DEFAULT 0,
+        shortage_units INT NOT NULL DEFAULT 0,
+        damage_units INT NOT NULL DEFAULT 0,
+        reimbursement_units INT NOT NULL DEFAULT 0,
+        notes_json NVARCHAR(MAX) NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_receiving_reconciliation_date ON dbo.acc_fba_receiving_reconciliation(event_date, marketplace_id);
+END
+
+IF OBJECT_ID('dbo.acc_fba_launch', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_launch (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        quarter NVARCHAR(16) NOT NULL,
+        launch_type NVARCHAR(40) NOT NULL DEFAULT 'new_sku',
+        sku NVARCHAR(120) NULL,
+        bundle_id UNIQUEIDENTIFIER NULL,
+        marketplace_id NVARCHAR(20) NULL,
+        planned_go_live_date DATE NULL,
+        actual_go_live_date DATE NULL,
+        live_stable_at DATE NULL,
+        incident_free BIT NOT NULL DEFAULT 1,
+        vine_eligible BIT NOT NULL DEFAULT 0,
+        vine_eligible_at DATE NULL,
+        vine_submitted_at DATE NULL,
+        owner NVARCHAR(120) NULL,
+        status NVARCHAR(40) NOT NULL DEFAULT 'planned',
+        payload_json NVARCHAR(MAX) NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+        updated_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_launch_quarter ON dbo.acc_fba_launch(quarter, marketplace_id, status);
+END
+
+IF OBJECT_ID('dbo.acc_fba_initiative', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_initiative (
+        id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+        quarter NVARCHAR(16) NOT NULL,
+        initiative_type NVARCHAR(40) NOT NULL,
+        title NVARCHAR(240) NOT NULL,
+        sku NVARCHAR(120) NULL,
+        bundle_id UNIQUEIDENTIFIER NULL,
+        owner NVARCHAR(120) NULL,
+        status NVARCHAR(40) NOT NULL DEFAULT 'planned',
+        planned BIT NOT NULL DEFAULT 1,
+        approved BIT NOT NULL DEFAULT 1,
+        live_stable_at DATE NULL,
+        created_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+        updated_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+    CREATE INDEX IX_acc_fba_initiative_quarter ON dbo.acc_fba_initiative(quarter, status, planned, approved);
+END
+
+IF OBJECT_ID('dbo.acc_fba_config', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.acc_fba_config (
+        [key] NVARCHAR(100) NOT NULL PRIMARY KEY,
+        value_json NVARCHAR(MAX) NOT NULL,
+        updated_at DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+    );
+END
+
+IF NOT EXISTS (SELECT 1 FROM dbo.acc_fba_config WHERE [key] = 'defaults')
+BEGIN
+    INSERT INTO dbo.acc_fba_config ([key], value_json)
+    VALUES ('defaults', '{"target_days":45,"safety_stock_days":14,"lead_time_days":21,"inbound_stuck_days":7}');
+END
+
+IF NOT EXISTS (SELECT 1 FROM dbo.acc_fba_config WHERE [key] = 'scorecard_defaults')
+BEGIN
+    INSERT INTO dbo.acc_fba_config ([key], value_json)
+    VALUES (
+        'scorecard_defaults',
+        '{
+            "top100_availability":{"label":"Top 100 Availability","unit":"%","direction":"higher","weight":0.22,"alarm":70.0,"target":90.0,"good":98.0},
+            "shipment_plan_adherence":{"label":"Shipment Plan Adherence","unit":"%","direction":"higher","weight":0.14,"alarm":70.0,"target":90.0,"good":97.0},
+            "stranded_inventory_value_pct":{"label":"Stranded Inventory Value","unit":"%","direction":"lower","weight":0.10,"alarm":5.0,"target":2.0,"good":1.0},
+            "median_resolve_days":{"label":"Median Resolve Days","unit":"days","direction":"lower","weight":0.10,"alarm":14.0,"target":5.0,"good":2.0},
+            "aging_excess_share":{"label":"Aging / Excess Share","unit":"%","direction":"lower","weight":0.12,"alarm":20.0,"target":10.0,"good":5.0},
+            "fc_discrepancy_rate":{"label":"FC Discrepancy Rate","unit":"%","direction":"lower","weight":0.08,"alarm":3.0,"target":1.0,"good":0.3},
+            "on_time_launch_rate":{"label":"On-time Launch Rate","unit":"%","direction":"higher","weight":0.08,"alarm":70.0,"target":90.0,"good":100.0},
+            "vine_coverage_rate":{"label":"Vine Coverage Rate","unit":"%","direction":"higher","weight":0.06,"alarm":50.0,"target":85.0,"good":100.0},
+            "initiatives_completion_rate":{"label":"Initiatives Completion Rate","unit":"%","direction":"higher","weight":0.10,"alarm":60.0,"target":100.0,"good":120.0}
+        }'
+    );
+END
+"""
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def _get_defaults(cur: pyodbc.Cursor) -> dict[str, Any]:
+    cur.execute("SELECT value_json FROM dbo.acc_fba_config WITH (NOLOCK) WHERE [key] = 'defaults'")
+    row = cur.fetchone()
+    if not row or not row[0]:
+        return {"target_days": 45, "safety_stock_days": 14, "lead_time_days": 21, "inbound_stuck_days": 7}
+    try:
+        return json.loads(row[0])
+    except Exception:
+        return {"target_days": 45, "safety_stock_days": 14, "lead_time_days": 21, "inbound_stuck_days": 7}
+
+
+def _get_json_config(cur: pyodbc.Cursor, key: str, fallback: dict[str, Any]) -> dict[str, Any]:
+    cur.execute("SELECT value_json FROM dbo.acc_fba_config WITH (NOLOCK) WHERE [key] = ?", (key,))
+    row = cur.fetchone()
+    if not row or not row[0]:
+        return fallback
+    try:
+        parsed = json.loads(row[0])
+        return parsed if isinstance(parsed, dict) else fallback
+    except Exception:
+        return fallback
+
+
+def _load_inventory_rows(
+    *,
+    marketplace_id: str | None = None,
+    sku_search: str | None = None,
+    risk_type: str | None = None,
+    days_cover_max: int | None = None,
+) -> tuple[date | None, list[dict[str, Any]]]:
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        latest = _latest_inventory_snapshot_date(cur)
+        if not latest:
+            return None, []
+        defaults = _get_defaults(cur)
+        where = ["inv.snapshot_date = ?"]
+        params: list[Any] = [latest]
+        if marketplace_id:
+            where.append("inv.marketplace_id = ?")
+            params.append(marketplace_id)
+        if sku_search:
+            where.append("(inv.sku LIKE ? OR inv.asin LIKE ?)")
+            params.extend([f"%{sku_search}%", f"%{sku_search}%"])
+
+        # ── Step 1: base inventory + velocity (no OUTER APPLYs) ──
+        sql = f"""
+            WITH velocity AS (
+                SELECT
+                    o.marketplace_id,
+                    ISNULL(ol.sku, p.sku) AS sku,
+                    SUM(CASE
+                        WHEN CAST(o.purchase_date AS DATE) >= DATEADD(day, -7, CAST(GETUTCDATE() AS DATE))
+                        THEN CASE WHEN ISNULL(ol.quantity_shipped, 0) > 0 THEN ISNULL(ol.quantity_shipped, 0) ELSE ISNULL(ol.quantity_ordered, 0) END
+                        ELSE 0
+                    END) / 7.0 AS velocity_7d,
+                    SUM(CASE
+                        WHEN CAST(o.purchase_date AS DATE) >= DATEADD(day, -30, CAST(GETUTCDATE() AS DATE))
+                        THEN CASE WHEN ISNULL(ol.quantity_shipped, 0) > 0 THEN ISNULL(ol.quantity_shipped, 0) ELSE ISNULL(ol.quantity_ordered, 0) END
+                        ELSE 0
+                    END) / 30.0 AS velocity_30d,
+                    SUM(CASE
+                        WHEN CAST(o.purchase_date AS DATE) >= DATEADD(day, -90, CAST(GETUTCDATE() AS DATE))
+                        THEN ISNULL(ol.item_price, 0) * CASE WHEN ISNULL(ol.quantity_ordered, 0) > 0 THEN ISNULL(ol.quantity_ordered, 0) ELSE 1 END
+                        ELSE 0
+                    END) AS revenue_90d
+                FROM dbo.acc_order_line ol WITH (NOLOCK)
+                JOIN dbo.acc_order o WITH (NOLOCK) ON o.id = ol.order_id
+                LEFT JOIN dbo.acc_product p WITH (NOLOCK) ON p.id = ol.product_id
+                WHERE o.status = 'Shipped'
+                  AND CAST(o.purchase_date AS DATE) >= DATEADD(day, -90, CAST(GETUTCDATE() AS DATE))
+                GROUP BY o.marketplace_id, ISNULL(ol.sku, p.sku)
+            )
+            SELECT
+                inv.marketplace_id,
+                inv.sku,
+                inv.asin,
+                ISNULL(inv.on_hand, 0) AS on_hand,
+                ISNULL(inv.inbound, 0) AS inbound,
+                ISNULL(inv.reserved, 0) AS reserved,
+                ISNULL(v.velocity_7d, 0) AS velocity_7d,
+                ISNULL(v.velocity_30d, 0) AS velocity_30d,
+                ISNULL(v.revenue_90d, 0) AS revenue_90d
+            FROM dbo.acc_fba_inventory_snapshot inv WITH (NOLOCK)
+            LEFT JOIN velocity v
+                ON v.marketplace_id = inv.marketplace_id
+               AND v.sku = inv.sku
+            WHERE {" AND ".join(where)}
+        """
+        cur.execute(sql, params)
+        base_rows = _fetchall_dict(cur)
+        if not base_rows:
+            return latest, []
+
+        # ── Step 2: collect unique SKUs / ASINs for batch lookups ──
+        all_skus = {r["sku"] for r in base_rows if r.get("sku")}
+        all_asins = {r["asin"] for r in base_rows if r.get("asin")}
+
+        def _in_placeholders(items: set[str]) -> tuple[str, list[str]]:
+            lst = list(items)
+            return ", ".join("?" for _ in lst), lst
+
+        # ── Step 3: product lookup ──
+        prod_by_sku: dict[str, dict[str, Any]] = {}
+        prod_by_asin: dict[str, dict[str, Any]] = {}
+        if all_skus or all_asins:
+            clauses, p_params = [], []  # type: ignore[var-annotated]
+            if all_skus:
+                ph, vals = _in_placeholders(all_skus)
+                clauses.append(f"sku IN ({ph})")
+                p_params.extend(vals)
+            if all_asins:
+                ph, vals = _in_placeholders(all_asins)
+                clauses.append(f"asin IN ({ph})")
+                p_params.extend(vals)
+            cur.execute(
+                f"SELECT sku, asin, title, brand, category, internal_sku, ean, parent_asin "
+                f"FROM dbo.acc_product WITH (NOLOCK) WHERE {' OR '.join(clauses)}",
+                p_params,
+            )
+            for pr in _fetchall_dict(cur):
+                if pr.get("sku"):
+                    prod_by_sku.setdefault(pr["sku"], pr)
+                if pr.get("asin"):
+                    prod_by_asin.setdefault(pr["asin"], pr)
+
+        # ── Step 4: registry lookup ──
+        reg_by_sku: dict[str, dict[str, Any]] = {}
+        reg_by_asin: dict[str, dict[str, Any]] = {}
+        if all_skus or all_asins:
+            clauses, r_params = [], []  # type: ignore[var-annotated]
+            if all_skus:
+                ph, vals = _in_placeholders(all_skus)
+                clauses.append(f"merchant_sku IN ({ph})")
+                r_params.extend(vals)
+                clauses.append(f"merchant_sku_alt IN ({ph})")
+                r_params.extend(vals)
+            if all_asins:
+                ph, vals = _in_placeholders(all_asins)
+                clauses.append(f"asin IN ({ph})")
+                r_params.extend(vals)
+            cur.execute(
+                f"SELECT merchant_sku, merchant_sku_alt, asin, internal_sku, ean, parent_asin, "
+                f"brand, product_name, category_1, category_2 "
+                f"FROM dbo.acc_amazon_listing_registry WITH (NOLOCK) WHERE {' OR '.join(clauses)}",
+                r_params,
+            )
+            for rr in _fetchall_dict(cur):
+                if rr.get("merchant_sku"):
+                    reg_by_sku.setdefault(rr["merchant_sku"], rr)
+                if rr.get("merchant_sku_alt"):
+                    reg_by_sku.setdefault(rr["merchant_sku_alt"], rr)
+                if rr.get("asin"):
+                    reg_by_asin.setdefault(rr["asin"], rr)
+
+        # ── Step 5: import_products title lookup ──
+        ipm_by_sku: dict[str, str] = {}
+        lookup_skus = set()
+        for r in base_rows:
+            sku = r.get("sku") or ""
+            p_info = prod_by_sku.get(sku) or prod_by_asin.get(r.get("asin") or "")
+            rg_info = reg_by_sku.get(sku) or reg_by_asin.get(r.get("asin") or "")
+            int_sku = (p_info or {}).get("internal_sku") or (rg_info or {}).get("internal_sku") or ""
+            candidate = int_sku.strip() if int_sku else ""
+            if not candidate:
+                candidate = sku
+            if candidate:
+                lookup_skus.add(candidate)
+            if sku.startswith("FBA_") and len(sku) > 4:
+                lookup_skus.add(sku[4:])
+        if lookup_skus:
+            ph, vals = _in_placeholders(lookup_skus)
+            cur.execute(
+                f"SELECT sku, nazwa_pelna FROM dbo.acc_import_products WITH (NOLOCK) WHERE sku IN ({ph})",
+                vals,
+            )
+            for ir in _fetchall_dict(cur):
+                if ir.get("sku") and ir.get("nazwa_pelna"):
+                    ipm_by_sku[ir["sku"]] = ir["nazwa_pelna"]
+
+        # ── Step 6: order_line title fallback ──
+        title_by_sku: dict[str, str] = {}
+        if all_skus:
+            ph, vals = _in_placeholders(all_skus)
+            cur.execute(
+                f"SELECT sku, MAX(title) AS title FROM dbo.acc_order_line WITH (NOLOCK) "
+                f"WHERE sku IN ({ph}) AND title IS NOT NULL AND LTRIM(RTRIM(title)) <> '' "
+                f"GROUP BY sku",
+                vals,
+            )
+            for tr in _fetchall_dict(cur):
+                if tr.get("sku") and tr.get("title"):
+                    title_by_sku[tr["sku"]] = tr["title"]
+
+        # ── Step 7: assemble items ──
+        items: list[dict[str, Any]] = []
+        for row in base_rows:
+            sku = row.get("sku") or ""
+            asin = row.get("asin") or ""
+            p_info = prod_by_sku.get(sku) or prod_by_asin.get(asin) or {}
+            rg_info = reg_by_sku.get(sku) or reg_by_asin.get(asin) or {}
+
+            int_sku_resolved = (p_info.get("internal_sku") or "").strip() or (rg_info.get("internal_sku") or "").strip() or sku
+            fba_alt = sku[4:] if sku.startswith("FBA_") and len(sku) > 4 else ""
+            title_preferred = (
+                ipm_by_sku.get(int_sku_resolved)
+                or ipm_by_sku.get(fba_alt)
+                or rg_info.get("product_name")
+                or p_info.get("title")
+                or title_by_sku.get(sku)
+            )
+            brand = (p_info.get("brand") or "").strip() or rg_info.get("brand") or ""
+            category = (p_info.get("category") or "").strip() or rg_info.get("category_1") or rg_info.get("category_2") or ""
+            internal_sku = (p_info.get("internal_sku") or "").strip() or rg_info.get("internal_sku") or None
+            ean = (p_info.get("ean") or "").strip() or rg_info.get("ean") or None
+            parent_asin = (p_info.get("parent_asin") or "").strip() or rg_info.get("parent_asin") or None
+
+            on_hand = _to_int(row.get("on_hand"))
+            inbound = _to_int(row.get("inbound"))
+            reserved = _to_int(row.get("reserved"))
+            velocity_7d = round(_to_float(row.get("velocity_7d")), 2)
+            velocity_30d = round(_to_float(row.get("velocity_30d")), 2)
+            units_available = max(on_hand - reserved, 0)
+            days_cover = round(units_available / velocity_30d, 1) if velocity_30d > 0 else None
+            target_days = _to_int(defaults.get("target_days"), 45)
+            stockout_risk = "critical" if days_cover is not None and days_cover < 7 else ("warning" if days_cover is not None and days_cover < 14 else "ok")
+            overstock_risk = "high" if days_cover is not None and days_cover > 120 else ("warning" if days_cover is not None and days_cover > 90 else "ok")
+            if risk_type == "stockout" and stockout_risk == "ok":
+                continue
+            if risk_type == "overstock" and overstock_risk == "ok":
+                continue
+            if days_cover_max is not None and days_cover is not None and days_cover > days_cover_max:
+                continue
+            items.append(
+                {
+                    "sku": sku,
+                    "asin": row.get("asin"),
+                    "title_preferred": title_preferred or None,
+                    "marketplace_id": row.get("marketplace_id") or "",
+                    "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+                    "brand": brand or None,
+                    "category": category or None,
+                    "internal_sku": internal_sku,
+                    "ean": ean,
+                    "parent_asin": parent_asin,
+                    "on_hand": on_hand,
+                    "inbound": inbound,
+                    "reserved": reserved,
+                    "units_available": units_available,
+                    "velocity_7d": velocity_7d,
+                    "velocity_30d": velocity_30d,
+                    "days_cover": days_cover,
+                    "target_days": target_days,
+                    "stockout_risk": stockout_risk,
+                    "overstock_risk": overstock_risk,
+                    "aged_90_plus_units": 0,
+                    "aged_90_plus_value_pln": 0.0,
+                    "stranded_units": 0,
+                    "stranded_value_pln": 0.0,
+                    "last_restock_date": None,
+                    "next_inbound_eta": None,
+                    "revenue_90d": round(_to_float(row.get("revenue_90d")), 2),
+                }
+            )
+        return latest, items
+    finally:
+        conn.close()
+
+
+def get_overview() -> dict[str, Any]:
+    cached = _fba_cache_get("fba_overview")
+    if cached is not None:
+        return cached
+    ensure_fba_schema()
+    snapshot_date, inventory = _load_inventory_rows()
+    inventory_for_stockout = [item for item in inventory if not _is_amzn_grade_sku(item.get("sku"))]
+    inbound = get_inbound_shipments()
+    aged = get_aged_items()
+    stranded = get_stranded_items()
+    top100 = sorted(inventory_for_stockout, key=lambda item: item.get("revenue_90d", 0), reverse=True)[:100]
+    oos_top100 = round(sum(1 for item in top100 if item.get("days_cover") is not None and item["days_cover"] < 7) / max(len(top100), 1) * 100, 1) if top100 else 0.0
+    metrics = [
+        {"label": "OOS% Top100", "value": oos_top100, "unit": "%", "status": "warning" if oos_top100 >= 5 else "ok"},
+        {"label": "Stockout Risk <7d", "value": sum(1 for item in inventory_for_stockout if item.get("days_cover") is not None and item["days_cover"] < 7), "status": "critical"},
+        {"label": "Stockout Risk <14d", "value": sum(1 for item in inventory_for_stockout if item.get("days_cover") is not None and item["days_cover"] < 14), "status": "warning"},
+        {"label": "Aged 90+ Value", "value": round(sum(item["aged_90_plus_value_pln"] for item in aged), 2), "unit": "PLN"},
+        {"label": "Stranded Value", "value": round(sum(item["stranded_value_pln"] for item in stranded), 2), "unit": "PLN"},
+        {"label": "Inbound Open", "value": sum(inbound.get("by_status", {}).values()), "status": "ok"},
+    ]
+    top_stockout = sorted(
+        [item for item in inventory_for_stockout if item["stockout_risk"] != "ok"],
+        key=lambda item: (item.get("days_cover") if item.get("days_cover") is not None else 9999, -item.get("revenue_90d", 0)),
+    )[:20]
+    top_aged = sorted(aged, key=lambda item: item.get("aged_90_plus_value_pln", 0), reverse=True)[:20]
+    inbound_delays = [item for item in inbound.get("items", []) if item.get("days_in_status", 0) >= 7][:20]
+    result = {
+        "metrics": metrics,
+        "top_stockout_risks": top_stockout,
+        "top_aged_value_skus": top_aged,
+        "inbound_delays": inbound_delays,
+        "snapshot_date": snapshot_date,
+    }
+    _fba_cache_set("fba_overview", result, ttl=600)
+    return result
+
+
+def get_inventory(*, marketplace_id: str | None = None, sku_search: str | None = None, risk_type: str | None = None, days_cover_max: int | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    snapshot_date, items = _load_inventory_rows(
+        marketplace_id=marketplace_id,
+        sku_search=sku_search,
+        risk_type=risk_type,
+        days_cover_max=days_cover_max,
+    )
+    items.sort(key=lambda item: (item.get("days_cover") if item.get("days_cover") is not None else 9999, -item.get("revenue_90d", 0)))
+    return {"items": items, "total": len(items), "snapshot_date": snapshot_date}
+
+
+def get_inventory_detail(*, sku: str, marketplace_id: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    _, items = _load_inventory_rows(marketplace_id=marketplace_id, sku_search=sku)
+    item = next((entry for entry in items if entry["sku"] == sku and (not marketplace_id or entry["marketplace_id"] == marketplace_id)), None)
+    if not item:
+        raise ValueError("inventory sku not found")
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT TOP 30
+                inv.snapshot_date AS [date],
+                SUM(ISNULL(inv.qty_fulfillable, 0)) AS on_hand,
+                SUM(ISNULL(inv.qty_inbound, 0)) AS inbound,
+                SUM(ISNULL(inv.qty_reserved, 0)) AS reserved
+            FROM dbo.acc_inventory_snapshot inv WITH (NOLOCK)
+            WHERE inv.sku = ?
+              AND (? IS NULL OR inv.marketplace_id = ?)
+            GROUP BY inv.snapshot_date
+            ORDER BY inv.snapshot_date DESC
+            """,
+            (sku, marketplace_id, marketplace_id),
+        )
+        inventory_timeline = _fetchall_dict(cur)
+        cur.execute(
+            """
+            SELECT TOP 30
+                CAST(o.purchase_date AS DATE) AS [date],
+                SUM(CASE WHEN ISNULL(ol.quantity_shipped, 0) > 0 THEN ISNULL(ol.quantity_shipped, 0) ELSE ISNULL(ol.quantity_ordered, 0) END) AS units_sold
+            FROM dbo.acc_order_line ol WITH (NOLOCK)
+            JOIN dbo.acc_order o WITH (NOLOCK) ON o.id = ol.order_id
+            WHERE ol.sku = ?
+              AND o.status = 'Shipped'
+              AND (? IS NULL OR o.marketplace_id = ?)
+            GROUP BY CAST(o.purchase_date AS DATE)
+            ORDER BY [date] DESC
+            """,
+            (sku, marketplace_id, marketplace_id),
+        )
+        sales_rows = _fetchall_dict(cur)
+    finally:
+        conn.close()
+    sales_map = {row["date"]: _to_int(row["units_sold"]) for row in sales_rows}
+    return {
+        "item": item,
+        "inventory_timeline": [
+            {
+                "date": row["date"],
+                "on_hand": _to_int(row["on_hand"]),
+                "inbound": _to_int(row["inbound"]),
+                "reserved": _to_int(row["reserved"]),
+                "units_sold": sales_map.get(row["date"], 0),
+            }
+            for row in reversed(inventory_timeline)
+        ],
+        "sales_timeline": [
+            {"date": row["date"], "on_hand": 0, "inbound": 0, "reserved": 0, "units_sold": _to_int(row["units_sold"])}
+            for row in reversed(sales_rows)
+        ],
+        "notes": [
+            {
+                "at": datetime.now(timezone.utc),
+                "type": "info",
+                "message": "Detailed inbound / aged / stranded data available from latest FBA inventory snapshot.",
+            }
+        ],
+    }
+
+
+def get_replenishment_suggestions(*, marketplace_id: str | None = None, sku_search: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    _, items = _load_inventory_rows(marketplace_id=marketplace_id, sku_search=sku_search)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        defaults = _get_defaults(cur)
+        target_days = _to_int(defaults.get("target_days"), 45)
+        safety_stock_days = _to_int(defaults.get("safety_stock_days"), 14)
+        lead_time_days = _to_int(defaults.get("lead_time_days"), 21)
+    finally:
+        conn.close()
+    suggestions: list[dict[str, Any]] = []
+    for item in items:
+        sku = str(item.get("sku") or "").strip()
+        if _is_amzn_grade_sku(sku):
+            continue
+        velocity_30d = _to_float(item.get("velocity_30d"))
+        days_cover = item.get("days_cover")
+        if velocity_30d <= 0 or days_cover is None or days_cover >= target_days:
+            continue
+        suggested_qty = max(0, math.ceil((target_days + safety_stock_days - days_cover) * velocity_30d))
+        if suggested_qty <= 0:
+            continue
+        exceptions: list[str] = []
+        if item["brand"] is None:
+            exceptions.append("missing_brand")
+        if velocity_30d < 0.5:
+            exceptions.append("low_velocity_confidence")
+        urgency = "critical" if days_cover < 7 else ("high" if days_cover < 14 else "medium")
+        suggestions.append(
+            {
+                "sku": sku,
+                "asin": item.get("asin"),
+                "title_preferred": item.get("title_preferred"),
+                "marketplace_id": item["marketplace_id"],
+                "marketplace_code": item["marketplace_code"],
+                "brand": item.get("brand"),
+                "category": item.get("category"),
+                "current_days_cover": days_cover,
+                "target_days_cover": target_days,
+                "lead_time_days": lead_time_days,
+                "safety_stock_days": safety_stock_days,
+                "suggested_qty": suggested_qty,
+                "suggested_ship_week": date.today() + timedelta(days=max(0, int(days_cover) - lead_time_days)),
+                "urgency": urgency,
+                "exceptions": exceptions,
+            }
+        )
+    suggestions.sort(key=lambda item: ({"critical": 0, "high": 1, "medium": 2}.get(item["urgency"], 9), item["current_days_cover"]))
+    return {"items": suggestions, "total": len(suggestions)}
+
+
+def get_inbound_shipments(*, marketplace_id: str | None = None, status: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        where = ["1=1"]
+        params: list[Any] = []
+        if marketplace_id:
+            where.append("marketplace_id = ?")
+            params.append(marketplace_id)
+        if status:
+            where.append("status = ?")
+            params.append(status)
+        cur.execute(
+            f"""
+            SELECT
+                shipment_id, shipment_name, marketplace_id, status, created_at, last_update_at,
+                from_warehouse, units_planned, units_received, first_receive_at, closed_at,
+                DATEDIFF(day, ISNULL(last_update_at, created_at), SYSUTCDATETIME()) AS days_in_status,
+                payload_json
+            FROM dbo.acc_fba_inbound_shipment WITH (NOLOCK)
+            WHERE {" AND ".join(where)}
+            ORDER BY ISNULL(last_update_at, created_at) DESC
+            """,
+            params,
+        )
+        rows = _fetchall_dict(cur)
+        cur.execute("SELECT status, COUNT(*) FROM dbo.acc_fba_inbound_shipment WITH (NOLOCK) GROUP BY status")
+        by_status = {str(row[0]): _to_int(row[1]) for row in cur.fetchall()}
+    finally:
+        conn.close()
+    items = []
+    for row in rows:
+        payload = {}
+        if row.get("payload_json"):
+            try:
+                payload = json.loads(row["payload_json"])
+            except Exception:
+                payload = {}
+        items.append(
+            {
+                "shipment_id": row["shipment_id"],
+                "shipment_name": row.get("shipment_name"),
+                "marketplace_id": row.get("marketplace_id"),
+                "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+                "from_warehouse": row.get("from_warehouse"),
+                "status": row.get("status") or "UNKNOWN",
+                "created_at": row.get("created_at"),
+                "last_update_at": row.get("last_update_at"),
+                "units_planned": _to_int(row.get("units_planned")),
+                "units_received": _to_int(row.get("units_received")),
+                "variance_units": _to_int(row.get("units_received")) - _to_int(row.get("units_planned")),
+                "first_receive_at": row.get("first_receive_at"),
+                "closed_at": row.get("closed_at"),
+                "days_in_status": _to_int(row.get("days_in_status")),
+                "problems": payload.get("problems", []) if isinstance(payload, dict) else [],
+            }
+        )
+    return {"items": items, "total": len(items), "by_status": by_status}
+
+
+def get_inbound_shipment_detail(*, shipment_id: str) -> dict[str, Any]:
+    shipments = get_inbound_shipments()
+    shipment = next((item for item in shipments["items"] if item["shipment_id"] == shipment_id), None)
+    if not shipment:
+        raise ValueError("shipment not found")
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT sku, asin, qty_planned, qty_received, payload_json
+            FROM dbo.acc_fba_inbound_shipment_line WITH (NOLOCK)
+            WHERE shipment_id = ?
+            ORDER BY sku
+            """,
+            (shipment_id,),
+        )
+        lines = _fetchall_dict(cur)
+        product_context_cache: dict[tuple[str | None, str | None], dict[str, Any]] = {}
+
+        def _line_context(sku: str | None, asin: str | None) -> dict[str, Any]:
+            key = (sku or None, asin or None)
+            cached = product_context_cache.get(key)
+            if cached is not None:
+                return cached
+            context = _lookup_product_context(cur, sku=sku, asin=asin)
+            product_context_cache[key] = context
+            return context
+
+        line_items = [
+            {
+                "sku": row.get("sku") or "",
+                "asin": row.get("asin"),
+                "internal_sku": _line_context(row.get("sku"), row.get("asin")).get("internal_sku"),
+                "ean": _line_context(row.get("sku"), row.get("asin")).get("ean"),
+                "parent_asin": _line_context(row.get("sku"), row.get("asin")).get("parent_asin"),
+                "title_preferred": _line_context(row.get("sku"), row.get("asin")).get("title_preferred"),
+                "qty_planned": _to_int(row.get("qty_planned")),
+                "qty_received": _to_int(row.get("qty_received")),
+                "variance_units": _to_int(row.get("qty_received")) - _to_int(row.get("qty_planned")),
+                "payload_json": _parse_json(row.get("payload_json"), {}),
+            }
+            for row in lines
+        ]
+    finally:
+        conn.close()
+    return {
+        "shipment": shipment,
+        "lines": line_items,
+    }
+
+
+def get_aged_items() -> list[dict[str, Any]]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT inv.marketplace_id, inv.sku, inv.asin,
+                   inv.aged_90_plus,
+                   CAST(ISNULL(aged_90_plus, 0) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4)) AS aged_value,
+                   p.title AS p_title
+            FROM dbo.acc_fba_inventory_snapshot inv WITH (NOLOCK)
+            LEFT JOIN dbo.acc_product p WITH (NOLOCK) ON p.sku = inv.sku
+            WHERE snapshot_date = (SELECT MAX(snapshot_date) FROM dbo.acc_fba_inventory_snapshot WITH (NOLOCK))
+              AND ISNULL(aged_90_plus, 0) > 0
+            ORDER BY aged_value DESC
+            """
+        )
+        rows = _fetchall_dict(cur)
+    finally:
+        conn.close()
+    return [
+        {
+            "sku": row["sku"],
+            "asin": row.get("asin"),
+            "internal_sku": None,
+            "ean": None,
+            "title_preferred": row.get("p_title") or None,
+            "marketplace_id": row["marketplace_id"],
+            "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+            "aged_90_plus_units": _to_int(row.get("aged_90_plus")),
+            "aged_90_plus_value_pln": round(_to_float(row.get("aged_value")), 2),
+            "storage_fee_impact_estimate_pln": round(_to_float(row.get("aged_value")) * 0.08, 2),
+            "recommended_action": "Create removal order or run promotion to liquidate aged inventory.",
+        }
+        for row in rows
+    ]
+
+
+def get_stranded_items() -> list[dict[str, Any]]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT inv.marketplace_id, inv.sku, inv.asin,
+                   inv.stranded_units,
+                   CAST(ISNULL(stranded_units, 0) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4)) AS stranded_value,
+                   p.title AS p_title
+            FROM dbo.acc_fba_inventory_snapshot inv WITH (NOLOCK)
+            LEFT JOIN dbo.acc_product p WITH (NOLOCK) ON p.sku = inv.sku
+            WHERE snapshot_date = (SELECT MAX(snapshot_date) FROM dbo.acc_fba_inventory_snapshot WITH (NOLOCK))
+              AND ISNULL(stranded_units, 0) > 0
+            ORDER BY stranded_value DESC
+            """
+        )
+        rows = _fetchall_dict(cur)
+    finally:
+        conn.close()
+    return [
+        {
+            "sku": row["sku"],
+            "asin": row.get("asin"),
+            "internal_sku": None,
+            "ean": None,
+            "title_preferred": row.get("p_title") or None,
+            "marketplace_id": row["marketplace_id"],
+            "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+            "stranded_units": _to_int(row.get("stranded_units")),
+            "stranded_value_pln": round(_to_float(row.get("stranded_value")), 2),
+            "reason": None,
+            "recommended_action": "Review listing status and fix compliance issues in Seller Central.",
+        }
+        for row in rows
+    ]
+
+
+def list_shipment_plans(*, quarter: str | None = None, marketplace_id: str | None = None, status: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        where = ["1=1"]
+        params: list[Any] = []
+        if quarter:
+            where.append("quarter = ?")
+            params.append(quarter)
+        if marketplace_id:
+            where.append("marketplace_id = ?")
+            params.append(marketplace_id)
+        if status:
+            where.append("status = ?")
+            params.append(status)
+        cur.execute(
+            f"""
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                quarter, marketplace_id, shipment_id, plan_week_start, planned_ship_date,
+                planned_units, actual_ship_date, actual_units, tolerance_pct, status, owner, notes_json, updated_at
+            FROM dbo.acc_fba_shipment_plan WITH (NOLOCK)
+            WHERE {" AND ".join(where)}
+            ORDER BY quarter DESC, plan_week_start ASC, shipment_id ASC
+            """,
+            params,
+        )
+        rows = _fetchall_dict(cur)
+        items = [
+            {
+                **row,
+                "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+                "tolerance_pct": _to_float(row.get("tolerance_pct"), 0.10),
+                "planned_units": _to_int(row.get("planned_units")),
+                "actual_units": _to_int(row.get("actual_units")) if row.get("actual_units") is not None else None,
+                "notes_json": _parse_json(row.get("notes_json"), {}),
+            }
+            for row in rows
+        ]
+        return {"total": len(items), "items": items}
+    finally:
+        conn.close()
+
+
+def create_shipment_plan(payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    record_id = str(uuid.uuid4())
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            INSERT INTO dbo.acc_fba_shipment_plan
+            (id, quarter, marketplace_id, shipment_id, plan_week_start, planned_ship_date, planned_units,
+             actual_ship_date, actual_units, tolerance_pct, status, owner, notes_json, updated_at)
+            VALUES
+            (CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME())
+            """,
+            (
+                record_id,
+                payload.get("quarter"),
+                payload.get("marketplace_id"),
+                payload.get("shipment_id"),
+                payload.get("plan_week_start"),
+                payload.get("planned_ship_date"),
+                _to_int(payload.get("planned_units")),
+                payload.get("actual_ship_date"),
+                _to_int(payload.get("actual_units")) if payload.get("actual_units") is not None else None,
+                _to_float(payload.get("tolerance_pct"), 0.10),
+                payload.get("status") or "planned",
+                payload.get("owner"),
+                json.dumps(payload.get("notes_json") or {}, ensure_ascii=True),
+            ),
+        )
+        conn.commit()
+        return get_shipment_plan(record_id)
+    finally:
+        conn.close()
+
+
+def get_shipment_plan(record_id: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                quarter, marketplace_id, shipment_id, plan_week_start, planned_ship_date,
+                planned_units, actual_ship_date, actual_units, tolerance_pct, status, owner, notes_json, updated_at
+            FROM dbo.acc_fba_shipment_plan WITH (NOLOCK)
+            WHERE id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (record_id,),
+        )
+        row = _fetchone_dict(cur)
+        if not row:
+            raise ValueError("shipment plan not found")
+        return {
+            **row,
+            "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+            "notes_json": _parse_json(row.get("notes_json"), {}),
+        }
+    finally:
+        conn.close()
+
+
+def update_shipment_plan(record_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    if not payload:
+        return get_shipment_plan(record_id)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        set_parts: list[str] = []
+        params: list[Any] = []
+        mapping = [
+            ("shipment_id", "shipment_id"),
+            ("plan_week_start", "plan_week_start"),
+            ("planned_ship_date", "planned_ship_date"),
+            ("planned_units", "planned_units"),
+            ("actual_ship_date", "actual_ship_date"),
+            ("actual_units", "actual_units"),
+            ("tolerance_pct", "tolerance_pct"),
+            ("status", "status"),
+            ("owner", "owner"),
+        ]
+        for field, column in mapping:
+            if field in payload:
+                set_parts.append(f"{column} = ?")
+                if field in {"planned_units", "actual_units"} and payload[field] is not None:
+                    params.append(_to_int(payload[field]))
+                elif field == "tolerance_pct" and payload[field] is not None:
+                    params.append(_to_float(payload[field]))
+                else:
+                    params.append(payload[field])
+        if "notes_json" in payload:
+            set_parts.append("notes_json = ?")
+            params.append(json.dumps(payload.get("notes_json") or {}, ensure_ascii=True))
+        set_parts.append("updated_at = SYSUTCDATETIME()")
+        params.append(record_id)
+        cur.execute(
+            "UPDATE dbo.acc_fba_shipment_plan SET " + ", ".join(set_parts) + " WHERE id = CAST(? AS UNIQUEIDENTIFIER)",
+            params,
+        )
+        if _to_int(cur.rowcount) <= 0:
+            raise ValueError("shipment plan not found")
+        conn.commit()
+        return get_shipment_plan(record_id)
+    finally:
+        conn.close()
+
+
+def delete_shipment_plan(record_id: str) -> bool:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM dbo.acc_fba_shipment_plan WHERE id = CAST(? AS UNIQUEIDENTIFIER)", (record_id,))
+        deleted = _to_int(cur.rowcount) > 0
+        conn.commit()
+        return deleted
+    finally:
+        conn.close()
+
+
+def list_cases(*, status: str | None = None, case_type: str | None = None, owner: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        where = ["1=1"]
+        params: list[Any] = []
+        if status:
+            where.append("status = ?")
+            params.append(status)
+        if case_type:
+            where.append("case_type = ?")
+            params.append(case_type)
+        if owner:
+            where.append("owner = ?")
+            params.append(owner)
+        cur.execute(
+            f"""
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                case_type, marketplace_id, entity_type, entity_id, sku, detected_date, close_date,
+                owner, status, root_cause, payload_json, created_at, updated_at
+            FROM dbo.acc_fba_case WITH (NOLOCK)
+            WHERE {" AND ".join(where)}
+            ORDER BY detected_date DESC, created_at DESC
+            """,
+            params,
+        )
+        rows = _fetchall_dict(cur)
+        items = [{**row, "marketplace_code": _marketplace_code(row.get("marketplace_id")), "payload_json": _parse_json(row.get("payload_json"), {})} for row in rows]
+        return {"total": len(items), "items": items}
+    finally:
+        conn.close()
+
+
+def _insert_case_event(
+    cur: pyodbc.Cursor,
+    *,
+    case_id: str,
+    event_type: str,
+    actor: str | None = None,
+    payload: dict[str, Any] | None = None,
+) -> None:
+    cur.execute(
+        """
+        INSERT INTO dbo.acc_fba_case_event
+        (id, case_id, event_type, event_at, actor, payload_json)
+        VALUES
+        (CAST(? AS UNIQUEIDENTIFIER), CAST(? AS UNIQUEIDENTIFIER), ?, SYSUTCDATETIME(), ?, ?)
+        """,
+        (
+            str(uuid.uuid4()),
+            case_id,
+            event_type,
+            actor,
+            json.dumps(payload or {}, ensure_ascii=True),
+        ),
+    )
+
+
+def _get_case_comment_event(record_id: str, event_id: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                CAST(case_id AS NVARCHAR(40)) AS case_id,
+                event_type,
+                event_at,
+                actor,
+                payload_json
+            FROM dbo.acc_fba_case_event WITH (NOLOCK)
+            WHERE case_id = CAST(? AS UNIQUEIDENTIFIER)
+              AND id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (record_id, event_id),
+        )
+        row = _fetchone_dict(cur)
+        if not row:
+            raise ValueError("comment event not found")
+        if row.get("event_type") != "comment":
+            raise ValueError("event is not a comment")
+        row["payload_json"] = _parse_json(row.get("payload_json"), {})
+        return row
+    finally:
+        conn.close()
+
+
+def _persist_report_diagnostics(cur: pyodbc.Cursor, diagnostics: list[dict[str, Any]], *, sync_scope: str) -> None:
+    for item in diagnostics:
+        cur.execute(
+            """
+            INSERT INTO dbo.acc_fba_report_diagnostic
+            (
+                id, sync_scope, marketplace_id, report_type, fetch_mode,
+                request_report_id, request_status, selected_report_id, selected_status,
+                selected_document_id, fallback_source, detail_json, created_at
+            )
+            VALUES
+            (
+                CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME()
+            )
+            """,
+            (
+                str(uuid.uuid4()),
+                sync_scope,
+                item.get("marketplace_id"),
+                item.get("report_type"),
+                item.get("fetch_mode") or "unknown",
+                item.get("request_report_id"),
+                item.get("request_status"),
+                item.get("selected_report_id"),
+                item.get("selected_status"),
+                item.get("selected_document_id"),
+                item.get("fallback_source"),
+                json.dumps(item, ensure_ascii=True),
+            ),
+        )
+
+
+def _report_diagnostics_summary(diagnostics: list[dict[str, Any]]) -> str:
+    if not diagnostics:
+        return "reports=n/a"
+    parts: list[str] = []
+    for item in diagnostics:
+        marketplace = _marketplace_code(item.get("marketplace_id")) or str(item.get("marketplace_id") or "-")
+        if item.get("report_type") == ReportType.STRANDED_INVENTORY:
+            report_name = "stranded"
+        elif item.get("report_type") == "FBA_INVENTORY_API_SUMMARIES":
+            report_name = "inventory_api"
+        else:
+            report_name = "planning"
+        mode = str(item.get("fetch_mode") or "unknown")
+        status = str(item.get("request_status") or item.get("selected_status") or "-")
+        fallback = str(item.get("fallback_source") or "")
+        parts.append(f"{marketplace}:{report_name}={mode}:{status}{('/' + fallback) if fallback else ''}")
+    return "; ".join(parts)
+
+
+def get_report_diagnostics(*, lookback_hours: int = 48) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            WITH ranked AS (
+                SELECT
+                    marketplace_id,
+                    report_type,
+                    fetch_mode,
+                    request_status,
+                    selected_status,
+                    fallback_source,
+                    detail_json,
+                    created_at,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY marketplace_id, report_type
+                        ORDER BY created_at DESC
+                    ) AS rn
+                FROM dbo.acc_fba_report_diagnostic WITH (NOLOCK)
+                WHERE sync_scope = 'inventory'
+                  AND created_at >= DATEADD(HOUR, ?, SYSUTCDATETIME())
+            )
+            SELECT marketplace_id, report_type, fetch_mode, request_status, selected_status,
+                   fallback_source, detail_json, created_at
+            FROM ranked
+            WHERE rn = 1
+            ORDER BY marketplace_id, report_type
+            """,
+            (-abs(int(lookback_hours)),),
+        )
+        rows = _fetchall_dict(cur)
+        by_marketplace: dict[str, dict[str, Any]] = {}
+        bucket_map = {
+            ReportType.FBA_INVENTORY_PLANNING: "planning",
+            ReportType.STRANDED_INVENTORY: "stranded",
+            "FBA_INVENTORY_API_SUMMARIES": "inventory_api",
+        }
+        for row in rows:
+            marketplace_id = str(row.get("marketplace_id") or "")
+            if not marketplace_id:
+                continue
+            bucket = bucket_map.get(str(row.get("report_type") or ""))
+            if not bucket:
+                continue
+            item = by_marketplace.setdefault(
+                marketplace_id,
+                {
+                    "marketplace_id": marketplace_id,
+                    "marketplace_code": _marketplace_code(marketplace_id),
+                    "planning": None,
+                    "stranded": None,
+                    "inventory_api": None,
+                },
+            )
+            item[bucket] = {
+                "report_type": row.get("report_type"),
+                "fetch_mode": row.get("fetch_mode") or "unknown",
+                "request_status": row.get("request_status"),
+                "selected_status": row.get("selected_status"),
+                "fallback_source": row.get("fallback_source"),
+                "detail_json": _parse_json(row.get("detail_json"), {}),
+                "created_at": row.get("created_at"),
+            }
+        return {
+            "generated_at": datetime.now(timezone.utc),
+            "items": sorted(by_marketplace.values(), key=lambda item: item["marketplace_code"] or item["marketplace_id"]),
+        }
+    finally:
+        conn.close()
+
+
+def create_case(payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    record_id = str(uuid.uuid4())
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            INSERT INTO dbo.acc_fba_case
+            (id, case_type, marketplace_id, entity_type, entity_id, sku, detected_date, close_date, owner, status, root_cause, payload_json, created_at, updated_at)
+            VALUES
+            (CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME(), SYSUTCDATETIME())
+            """,
+            (
+                record_id,
+                payload.get("case_type"),
+                payload.get("marketplace_id"),
+                payload.get("entity_type"),
+                payload.get("entity_id"),
+                payload.get("sku"),
+                payload.get("detected_date"),
+                payload.get("close_date"),
+                payload.get("owner"),
+                payload.get("status") or "open",
+                payload.get("root_cause"),
+                json.dumps(payload.get("payload_json") or {}, ensure_ascii=True),
+            ),
+        )
+        _insert_case_event(
+            cur,
+            case_id=record_id,
+            event_type="created",
+            actor=payload.get("owner"),
+            payload={"status": payload.get("status") or "open", "root_cause": payload.get("root_cause")},
+        )
+        conn.commit()
+        return get_case(record_id)
+    finally:
+        conn.close()
+
+
+def get_case(record_id: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                case_type, marketplace_id, entity_type, entity_id, sku, detected_date, close_date,
+                owner, status, root_cause, payload_json, created_at, updated_at
+            FROM dbo.acc_fba_case WITH (NOLOCK)
+            WHERE id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (record_id,),
+        )
+        row = _fetchone_dict(cur)
+        if not row:
+            raise ValueError("case not found")
+        return {
+            **row,
+            "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+            "payload_json": _parse_json(row.get("payload_json"), {}),
+        }
+    finally:
+        conn.close()
+
+
+def update_case(record_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    if not payload:
+        return get_case(record_id)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        before = get_case(record_id)
+        set_parts: list[str] = []
+        params: list[Any] = []
+        for field in ("close_date", "owner", "status", "root_cause"):
+            if field in payload:
+                set_parts.append(f"{field} = ?")
+                params.append(payload[field])
+        if "payload_json" in payload:
+            set_parts.append("payload_json = ?")
+            params.append(json.dumps(payload.get("payload_json") or {}, ensure_ascii=True))
+        set_parts.append("updated_at = SYSUTCDATETIME()")
+        params.append(record_id)
+        cur.execute("UPDATE dbo.acc_fba_case SET " + ", ".join(set_parts) + " WHERE id = CAST(? AS UNIQUEIDENTIFIER)", params)
+        if _to_int(cur.rowcount) <= 0:
+            raise ValueError("case not found")
+        changed_fields = {
+            key: {"before": before.get(key), "after": payload.get(key)}
+            for key in ("close_date", "owner", "status", "root_cause")
+            if key in payload and before.get(key) != payload.get(key)
+        }
+        if "payload_json" in payload:
+            changed_fields["payload_json"] = {"before": before.get("payload_json"), "after": payload.get("payload_json")}
+        if changed_fields:
+            _insert_case_event(
+                cur,
+                case_id=record_id,
+                event_type="updated",
+                actor=payload.get("owner") or before.get("owner"),
+                payload=changed_fields,
+            )
+        conn.commit()
+        return get_case(record_id)
+    finally:
+        conn.close()
+
+
+def delete_case(record_id: str) -> bool:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM dbo.acc_fba_case WHERE id = CAST(? AS UNIQUEIDENTIFIER)", (record_id,))
+        deleted = _to_int(cur.rowcount) > 0
+        conn.commit()
+        return deleted
+    finally:
+        conn.close()
+
+
+def get_case_timeline(record_id: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    case_item = get_case(record_id)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                CAST(case_id AS NVARCHAR(40)) AS case_id,
+                event_type,
+                event_at,
+                actor,
+                payload_json
+            FROM dbo.acc_fba_case_event WITH (NOLOCK)
+            WHERE case_id = CAST(? AS UNIQUEIDENTIFIER)
+            ORDER BY event_at ASC
+            """,
+            (record_id,),
+        )
+        events = _fetchall_dict(cur)
+    finally:
+        conn.close()
+    return {
+        "case": case_item,
+        "events": [
+            {
+                **row,
+                "payload_json": _parse_json(row.get("payload_json"), {}),
+            }
+            for row in events
+        ],
+    }
+
+
+def add_case_comment(record_id: str, comment: str, author: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    text = str(comment or "").strip()
+    if not text:
+        raise ValueError("comment is required")
+    case_item = get_case(record_id)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        _insert_case_event(
+            cur,
+            case_id=record_id,
+            event_type="comment",
+            actor=author or case_item.get("owner"),
+            payload={"comment": text},
+        )
+        conn.commit()
+        return get_case_timeline(record_id)
+    finally:
+        conn.close()
+
+
+def update_case_comment(record_id: str, event_id: str, comment: str, author: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    text = str(comment or "").strip()
+    if not text:
+        raise ValueError("comment is required")
+    event = _get_case_comment_event(record_id, event_id)
+    payload = dict(event.get("payload_json") or {})
+    if payload.get("deleted"):
+        raise ValueError("comment was deleted")
+    previous_comment = str(payload.get("comment") or "")
+    payload["comment"] = text
+    payload["edited_at"] = _iso_now()
+    payload["edited_by"] = author or event.get("actor")
+    if previous_comment and previous_comment != text and "original_comment" not in payload:
+        payload["original_comment"] = previous_comment
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            UPDATE dbo.acc_fba_case_event
+            SET actor = ?, payload_json = ?
+            WHERE case_id = CAST(? AS UNIQUEIDENTIFIER)
+              AND id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (
+                author or event.get("actor"),
+                json.dumps(payload, ensure_ascii=True),
+                record_id,
+                event_id,
+            ),
+        )
+        if _to_int(cur.rowcount) <= 0:
+            raise ValueError("comment event not found")
+        conn.commit()
+        return get_case_timeline(record_id)
+    finally:
+        conn.close()
+
+
+def delete_case_comment(record_id: str, event_id: str, author: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    event = _get_case_comment_event(record_id, event_id)
+    payload = dict(event.get("payload_json") or {})
+    if payload.get("deleted"):
+        return get_case_timeline(record_id)
+    payload["deleted"] = True
+    payload["deleted_at"] = _iso_now()
+    payload["deleted_by"] = author or event.get("actor")
+    payload["comment"] = ""
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            UPDATE dbo.acc_fba_case_event
+            SET actor = ?, payload_json = ?
+            WHERE case_id = CAST(? AS UNIQUEIDENTIFIER)
+              AND id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (
+                author or event.get("actor"),
+                json.dumps(payload, ensure_ascii=True),
+                record_id,
+                event_id,
+            ),
+        )
+        if _to_int(cur.rowcount) <= 0:
+            raise ValueError("comment event not found")
+        conn.commit()
+        return get_case_timeline(record_id)
+    finally:
+        conn.close()
+
+
+def list_launches(*, quarter: str | None = None, status: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        where = ["1=1"]
+        params: list[Any] = []
+        if quarter:
+            where.append("quarter = ?")
+            params.append(quarter)
+        if status:
+            where.append("status = ?")
+            params.append(status)
+        cur.execute(
+            f"""
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                quarter, launch_type, sku, CAST(bundle_id AS NVARCHAR(40)) AS bundle_id, marketplace_id,
+                planned_go_live_date, actual_go_live_date, live_stable_at, incident_free, vine_eligible,
+                vine_eligible_at, vine_submitted_at, owner, status, payload_json, created_at, updated_at
+            FROM dbo.acc_fba_launch WITH (NOLOCK)
+            WHERE {" AND ".join(where)}
+            ORDER BY quarter DESC, planned_go_live_date ASC, created_at DESC
+            """,
+            params,
+        )
+        rows = _fetchall_dict(cur)
+        items = [
+            {
+                **row,
+                "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+                "incident_free": bool(row.get("incident_free")),
+                "vine_eligible": bool(row.get("vine_eligible")),
+                "payload_json": _parse_json(row.get("payload_json"), {}),
+            }
+            for row in rows
+        ]
+        return {"total": len(items), "items": items}
+    finally:
+        conn.close()
+
+
+def create_launch(payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    record_id = str(uuid.uuid4())
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        bundle_id = payload.get("bundle_id")
+        cur.execute(
+            """
+            INSERT INTO dbo.acc_fba_launch
+            (id, quarter, launch_type, sku, bundle_id, marketplace_id, planned_go_live_date, actual_go_live_date,
+             live_stable_at, incident_free, vine_eligible, vine_eligible_at, vine_submitted_at, owner, status,
+             payload_json, created_at, updated_at)
+            VALUES
+            (CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME(), SYSUTCDATETIME())
+            """,
+            (
+                record_id,
+                payload.get("quarter"),
+                payload.get("launch_type") or "new_sku",
+                payload.get("sku"),
+                bundle_id,
+                payload.get("marketplace_id"),
+                payload.get("planned_go_live_date"),
+                payload.get("actual_go_live_date"),
+                payload.get("live_stable_at"),
+                1 if payload.get("incident_free", True) else 0,
+                1 if payload.get("vine_eligible", False) else 0,
+                payload.get("vine_eligible_at"),
+                payload.get("vine_submitted_at"),
+                payload.get("owner"),
+                payload.get("status") or "planned",
+                json.dumps(payload.get("payload_json") or {}, ensure_ascii=True),
+            ),
+        )
+        conn.commit()
+        return get_launch(record_id)
+    finally:
+        conn.close()
+
+
+def get_launch(record_id: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                quarter, launch_type, CAST(bundle_id AS NVARCHAR(40)) AS bundle_id, sku, marketplace_id,
+                planned_go_live_date, actual_go_live_date, live_stable_at, incident_free, vine_eligible,
+                vine_eligible_at, vine_submitted_at, owner, status, payload_json, created_at, updated_at
+            FROM dbo.acc_fba_launch WITH (NOLOCK)
+            WHERE id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (record_id,),
+        )
+        row = _fetchone_dict(cur)
+        if not row:
+            raise ValueError("launch not found")
+        return {
+            **row,
+            "marketplace_code": _marketplace_code(row.get("marketplace_id")),
+            "payload_json": _parse_json(row.get("payload_json"), {}),
+            "incident_free": bool(row.get("incident_free")),
+            "vine_eligible": bool(row.get("vine_eligible")),
+        }
+    finally:
+        conn.close()
+
+
+def update_launch(record_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    if not payload:
+        return get_launch(record_id)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        set_parts: list[str] = []
+        params: list[Any] = []
+        for field in ("actual_go_live_date", "live_stable_at", "vine_eligible_at", "vine_submitted_at", "owner", "status"):
+            if field in payload:
+                set_parts.append(f"{field} = ?")
+                params.append(payload[field])
+        if "incident_free" in payload:
+            set_parts.append("incident_free = ?")
+            params.append(1 if payload.get("incident_free") else 0)
+        if "vine_eligible" in payload:
+            set_parts.append("vine_eligible = ?")
+            params.append(1 if payload.get("vine_eligible") else 0)
+        if "payload_json" in payload:
+            set_parts.append("payload_json = ?")
+            params.append(json.dumps(payload.get("payload_json") or {}, ensure_ascii=True))
+        set_parts.append("updated_at = SYSUTCDATETIME()")
+        params.append(record_id)
+        cur.execute("UPDATE dbo.acc_fba_launch SET " + ", ".join(set_parts) + " WHERE id = CAST(? AS UNIQUEIDENTIFIER)", params)
+        if _to_int(cur.rowcount) <= 0:
+            raise ValueError("launch not found")
+        conn.commit()
+        return get_launch(record_id)
+    finally:
+        conn.close()
+
+
+def delete_launch(record_id: str) -> bool:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM dbo.acc_fba_launch WHERE id = CAST(? AS UNIQUEIDENTIFIER)", (record_id,))
+        deleted = _to_int(cur.rowcount) > 0
+        conn.commit()
+        return deleted
+    finally:
+        conn.close()
+
+
+def list_initiatives(*, quarter: str | None = None, status: str | None = None) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        where = ["1=1"]
+        params: list[Any] = []
+        if quarter:
+            where.append("quarter = ?")
+            params.append(quarter)
+        if status:
+            where.append("status = ?")
+            params.append(status)
+        cur.execute(
+            f"""
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                quarter, initiative_type, title, sku, CAST(bundle_id AS NVARCHAR(40)) AS bundle_id,
+                owner, status, planned, approved, live_stable_at, created_at, updated_at
+            FROM dbo.acc_fba_initiative WITH (NOLOCK)
+            WHERE {" AND ".join(where)}
+            ORDER BY quarter DESC, created_at DESC
+            """,
+            params,
+        )
+        rows = _fetchall_dict(cur)
+        items = [{**row, "planned": bool(row.get("planned")), "approved": bool(row.get("approved"))} for row in rows]
+        return {"total": len(items), "items": items}
+    finally:
+        conn.close()
+
+
+def create_initiative(payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    record_id = str(uuid.uuid4())
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            INSERT INTO dbo.acc_fba_initiative
+            (id, quarter, initiative_type, title, sku, bundle_id, owner, status, planned, approved, live_stable_at, created_at, updated_at)
+            VALUES
+            (CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, ?, SYSUTCDATETIME(), SYSUTCDATETIME())
+            """,
+            (
+                record_id,
+                payload.get("quarter"),
+                payload.get("initiative_type"),
+                payload.get("title"),
+                payload.get("sku"),
+                payload.get("bundle_id"),
+                payload.get("owner"),
+                payload.get("status") or "planned",
+                1 if payload.get("planned", True) else 0,
+                1 if payload.get("approved", True) else 0,
+                payload.get("live_stable_at"),
+            ),
+        )
+        conn.commit()
+        return get_initiative(record_id)
+    finally:
+        conn.close()
+
+
+def get_initiative(record_id: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                CAST(id AS NVARCHAR(40)) AS id,
+                quarter, initiative_type, title, sku, CAST(bundle_id AS NVARCHAR(40)) AS bundle_id,
+                owner, status, planned, approved, live_stable_at, created_at, updated_at
+            FROM dbo.acc_fba_initiative WITH (NOLOCK)
+            WHERE id = CAST(? AS UNIQUEIDENTIFIER)
+            """,
+            (record_id,),
+        )
+        row = _fetchone_dict(cur)
+        if not row:
+            raise ValueError("initiative not found")
+        return {
+            **row,
+            "planned": bool(row.get("planned")),
+            "approved": bool(row.get("approved")),
+        }
+    finally:
+        conn.close()
+
+
+def update_initiative(record_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+    ensure_fba_schema()
+    if not payload:
+        return get_initiative(record_id)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        set_parts: list[str] = []
+        params: list[Any] = []
+        for field in ("title", "owner", "status", "live_stable_at"):
+            if field in payload:
+                set_parts.append(f"{field} = ?")
+                params.append(payload[field])
+        for field in ("planned", "approved"):
+            if field in payload:
+                set_parts.append(f"{field} = ?")
+                params.append(1 if payload.get(field) else 0)
+        set_parts.append("updated_at = SYSUTCDATETIME()")
+        params.append(record_id)
+        cur.execute("UPDATE dbo.acc_fba_initiative SET " + ", ".join(set_parts) + " WHERE id = CAST(? AS UNIQUEIDENTIFIER)", params)
+        if _to_int(cur.rowcount) <= 0:
+            raise ValueError("initiative not found")
+        conn.commit()
+        return get_initiative(record_id)
+    finally:
+        conn.close()
+
+
+def delete_initiative(record_id: str) -> bool:
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM dbo.acc_fba_initiative WHERE id = CAST(? AS UNIQUEIDENTIFIER)", (record_id,))
+        deleted = _to_int(cur.rowcount) > 0
+        conn.commit()
+        return deleted
+    finally:
+        conn.close()
+
+
+def _build_component(
+    *,
+    key: str,
+    actual: float | None,
+    data_ready: bool,
+    note: str | None,
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    direction = str(config.get("direction") or "lower")
+    alarm = _to_float(config.get("alarm")) if config.get("alarm") is not None else None
+    target = _to_float(config.get("target")) if config.get("target") is not None else None
+    good = _to_float(config.get("good")) if config.get("good") is not None else None
+    if direction == "higher":
+        factor = _factor_higher_is_better(actual, alarm, target, good) if data_ready else 0.0
+    else:
+        factor = _factor_lower_is_better(actual, alarm, target, good) if data_ready else 0.0
+    weight = _to_float(config.get("weight"))
+    return {
+        "key": key,
+        "label": str(config.get("label") or key),
+        "unit": str(config.get("unit") or ""),
+        "direction": direction,
+        "weight": weight,
+        "actual": round(actual, 4) if actual is not None else None,
+        "alarm": round(alarm, 4) if alarm is not None else None,
+        "target": round(target, 4) if target is not None else None,
+        "good": round(good, 4) if good is not None else None,
+        "factor": round(factor, 4),
+        "score_contribution": round(weight * factor, 4),
+        "data_ready": data_ready,
+        "note": note,
+    }
+
+
+def _compute_kpi_top100_availability(cur: pyodbc.Cursor) -> tuple[float | None, bool, str | None]:
+    """Average FBA availability (%) of the Top 100 best-selling FBA children over last 30 days.
+
+    1. Only FBA orders (SKU LIKE 'FBA_%') — revenue sum across ALL marketplaces, 90 d.
+    2. Top 100 FBA children by revenue.
+    3. For each (SKU, snapshot day) in last 30 d: available = on_hand > 0.
+    4. Result = (available observations / total observations) * 100.
+    """
+    cur.execute(
+        """
+        WITH revenue AS (
+            SELECT
+                ISNULL(ol.sku, p.sku) AS sku,
+                SUM(ISNULL(ol.item_price, 0) * CASE
+                    WHEN ISNULL(ol.quantity_shipped, 0) > 0 THEN ISNULL(ol.quantity_shipped, 0)
+                    WHEN ISNULL(ol.quantity_ordered, 0) > 0 THEN ISNULL(ol.quantity_ordered, 0)
+                    ELSE 1
+                END) AS revenue_90d
+            FROM dbo.acc_order_line ol WITH (NOLOCK)
+            JOIN dbo.acc_order o WITH (NOLOCK) ON o.id = ol.order_id
+            LEFT JOIN dbo.acc_product p WITH (NOLOCK) ON p.id = ol.product_id
+            WHERE o.status = 'Shipped'
+              AND CAST(o.purchase_date AS DATE) >= DATEADD(day, -90, CAST(GETUTCDATE() AS DATE))
+              AND ISNULL(ol.sku, p.sku) LIKE 'FBA[_]%'
+            GROUP BY ISNULL(ol.sku, p.sku)
+        ),
+        top_skus AS (
+            SELECT TOP 100 sku, revenue_90d
+            FROM revenue
+            ORDER BY revenue_90d DESC
+        ),
+        snapshot_days AS (
+            SELECT DISTINCT snapshot_date
+            FROM dbo.acc_fba_inventory_snapshot WITH (NOLOCK)
+            WHERE snapshot_date >= DATEADD(day, -30, CAST(GETUTCDATE() AS DATE))
+        ),
+        agg_inv AS (
+            SELECT sku, snapshot_date, SUM(ISNULL(on_hand, 0)) AS total_on_hand
+            FROM dbo.acc_fba_inventory_snapshot WITH (NOLOCK)
+            WHERE snapshot_date >= DATEADD(day, -30, CAST(GETUTCDATE() AS DATE))
+              AND sku LIKE 'FBA[_]%'
+            GROUP BY sku, snapshot_date
+        ),
+        observations AS (
+            SELECT
+                ts.sku,
+                sd.snapshot_date,
+                CASE WHEN ISNULL(inv.total_on_hand, 0) > 0 THEN 1.0 ELSE 0.0 END AS is_available
+            FROM top_skus ts
+            CROSS JOIN snapshot_days sd
+            LEFT JOIN agg_inv inv
+              ON inv.sku = ts.sku AND inv.snapshot_date = sd.snapshot_date
+        )
+        SELECT
+            (SELECT COUNT(*) FROM top_skus) AS sku_count,
+            (SELECT COUNT(*) FROM snapshot_days) AS snap_days,
+            COUNT(*) AS total_obs,
+            SUM(is_available) AS available_obs
+        FROM observations
+        """,
+    )
+    row = cur.fetchone()
+    if not row:
+        return None, False, "No FBA revenue data found."
+    sku_count = _to_int(row[0])
+    snap_days = _to_int(row[1])
+    total_obs = _to_int(row[2])
+    available_obs = _to_int(row[3])
+    if sku_count == 0:
+        return None, False, "No shipped FBA orders in the last 90 days."
+    if snap_days == 0:
+        return None, False, "No FBA inventory snapshots in the last 30 days."
+    value = round(available_obs / total_obs * 100, 2) if total_obs else 0.0
+    note = (
+        f"Top {sku_count} FBA children by revenue (90 d). "
+        f"Avg availability across {snap_days} snapshot days."
+    )
+    return value, snap_days >= 3, note
+
+
+def _compute_kpi_shipment_adherence(cur: pyodbc.Cursor, quarter: str) -> tuple[float | None, bool, str | None]:
+    cur.execute(
+        """
+        SELECT plan_week_start, planned_ship_date, planned_units, actual_ship_date, actual_units, tolerance_pct
+        FROM dbo.acc_fba_shipment_plan WITH (NOLOCK)
+        WHERE quarter = ?
+          AND status NOT IN ('cancelled', 'draft')
+        """,
+        (quarter,),
+    )
+    rows = _fetchall_dict(cur)
+    if not rows:
+        return None, False, "Shipment plan register is empty for this quarter."
+    compliant = 0
+    for row in rows:
+        plan_week_start = row.get("plan_week_start")
+        planned_ship_date = row.get("planned_ship_date") or plan_week_start
+        actual_ship_date = row.get("actual_ship_date")
+        planned_units = max(_to_int(row.get("planned_units")), 0)
+        actual_units = max(_to_int(row.get("actual_units")), 0)
+        tolerance_pct = _to_float(row.get("tolerance_pct"), 0.10)
+        within_volume = planned_units > 0 and actual_units >= math.floor(planned_units * 0.90) and actual_units <= math.ceil(planned_units * (1 + tolerance_pct))
+        if not planned_ship_date or not actual_ship_date:
+            continue
+        latest_ok_date = plan_week_start + timedelta(days=8) if plan_week_start else planned_ship_date + timedelta(days=1)
+        within_date = actual_ship_date >= (plan_week_start or planned_ship_date) and actual_ship_date <= latest_ok_date
+        if within_date and within_volume:
+            compliant += 1
+    return round(compliant / len(rows) * 100, 4), True, f"Based on {len(rows)} shipment plan rows with +/-10% volume tolerance."
+
+
+def _compute_kpi_inventory_value_share(cur: pyodbc.Cursor, *, mode: str) -> tuple[float | None, bool, str | None]:
+    latest_snapshot = None
+    cur.execute("SELECT MAX(snapshot_date) FROM dbo.acc_fba_inventory_snapshot WITH (NOLOCK)")
+    row = cur.fetchone()
+    latest_snapshot = row[0] if row and row[0] else None
+    if not latest_snapshot:
+        return None, False, "No FBA inventory snapshot cached yet."
+    extra_expr = "ISNULL(inv.stranded_units, 0)" if mode == "stranded" else "(ISNULL(inv.aged_90_plus, 0) + ISNULL(inv.excess_units, 0))"
+    cur.execute(
+        f"""
+        SELECT
+            SUM(CAST((ISNULL(inv.on_hand, 0) + ISNULL(inv.inbound, 0)) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS total_value,
+            SUM(CAST({extra_expr} * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS focus_value
+        FROM dbo.acc_fba_inventory_snapshot inv WITH (NOLOCK)
+        LEFT JOIN dbo.acc_product p WITH (NOLOCK)
+          ON p.sku = inv.sku OR (p.asin = inv.asin AND inv.asin IS NOT NULL)
+        WHERE inv.snapshot_date = ?
+        """,
+        (latest_snapshot,),
+    )
+    row = cur.fetchone()
+    total_value = _to_float(row[0]) if row else 0.0
+    focus_value = _to_float(row[1]) if row else 0.0
+    if total_value <= 0:
+        return None, False, "Inventory value base is missing or zero."
+    note = f"Computed on latest cached FBA snapshot {latest_snapshot.isoformat()} using product COGS cache."
+    return round(focus_value / total_value * 100, 4), True, note
+
+
+def _compute_kpi_median_resolve_days(cur: pyodbc.Cursor, start_date: date, end_date: date) -> tuple[float | None, bool, str | None]:
+    cur.execute(
+        """
+        SELECT detected_date, close_date
+        FROM dbo.acc_fba_case WITH (NOLOCK)
+        WHERE close_date BETWEEN ? AND ?
+          AND status IN ('closed', 'resolved')
+          AND case_type IN ('stranded', 'fc_issue', 'operations')
+        """,
+        (start_date, end_date),
+    )
+    rows = _fetchall_dict(cur)
+    if not rows:
+        return None, False, "Case register has no closed stranded / FC / operations items in this quarter."
+    durations = [
+        (row.get("close_date") - row.get("detected_date")).days
+        for row in rows
+        if row.get("close_date") and row.get("detected_date") and row.get("close_date") >= row.get("detected_date")
+    ]
+    if not durations:
+        return None, False, "Case register rows are incomplete."
+    return round(float(median(durations)), 4), True, f"Median from {len(durations)} resolved cases."
+
+
+def _compute_kpi_fc_discrepancy(cur: pyodbc.Cursor, start_date: date, end_date: date) -> tuple[float | None, bool, str | None]:
+    cur.execute(
+        """
+        SELECT
+            SUM(CAST((ISNULL(r.shortage_units, 0) + ISNULL(r.damage_units, 0)) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS discrepancy_value,
+            SUM(CAST(ISNULL(r.shipped_units, 0) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS shipped_value
+        FROM dbo.acc_fba_receiving_reconciliation r WITH (NOLOCK)
+        LEFT JOIN dbo.acc_product p WITH (NOLOCK) ON p.sku = r.sku
+        WHERE r.event_date BETWEEN ? AND ?
+        """,
+        (start_date, end_date),
+    )
+    row = cur.fetchone()
+    shipped_value = _to_float(row[1]) if row else 0.0
+    discrepancy_value = _to_float(row[0]) if row else 0.0
+    if shipped_value <= 0:
+        return None, False, "Receiving reconciliation register is empty for this quarter."
+    return round(discrepancy_value / shipped_value * 100, 4), True, "Raw KPI without reimbursements offset."
+
+
+def _compute_kpi_on_time_launch(cur: pyodbc.Cursor, quarter: str) -> tuple[float | None, bool, str | None]:
+    cur.execute(
+        """
+        SELECT planned_go_live_date, actual_go_live_date, incident_free
+        FROM dbo.acc_fba_launch WITH (NOLOCK)
+        WHERE quarter = ?
+          AND status NOT IN ('cancelled', 'draft')
+        """,
+        (quarter,),
+    )
+    rows = _fetchall_dict(cur)
+    if not rows:
+        return None, False, "Launch register is empty for this quarter."
+    compliant = 0
+    for row in rows:
+        planned = row.get("planned_go_live_date")
+        actual = row.get("actual_go_live_date")
+        incident_free = bool(row.get("incident_free"))
+        if planned and actual and actual <= planned and incident_free:
+            compliant += 1
+    return round(compliant / len(rows) * 100, 4), True, f"Based on {len(rows)} launch records."
+
+
+def _compute_kpi_vine_coverage(cur: pyodbc.Cursor, quarter: str) -> tuple[float | None, bool, str | None]:
+    cur.execute(
+        """
+        SELECT actual_go_live_date, vine_eligible_at, vine_submitted_at
+        FROM dbo.acc_fba_launch WITH (NOLOCK)
+        WHERE quarter = ?
+          AND vine_eligible = 1
+          AND status NOT IN ('cancelled', 'draft')
+        """,
+        (quarter,),
+    )
+    rows = _fetchall_dict(cur)
+    if not rows:
+        return None, False, "No Vine-eligible launches in the register for this quarter."
+    covered = 0
+    for row in rows:
+        eligible_at = row.get("vine_eligible_at") or row.get("actual_go_live_date")
+        submitted_at = row.get("vine_submitted_at")
+        if eligible_at and submitted_at and submitted_at <= eligible_at + timedelta(days=14):
+            covered += 1
+    return round(covered / len(rows) * 100, 4), True, f"Based on {len(rows)} Vine-eligible launches with 14-day SLA."
+
+
+def _compute_kpi_initiatives_completion(cur: pyodbc.Cursor, quarter: str) -> tuple[float | None, bool, str | None]:
+    cur.execute(
+        """
+        SELECT planned, approved, status, live_stable_at
+        FROM dbo.acc_fba_initiative WITH (NOLOCK)
+        WHERE quarter = ?
+        """,
+        (quarter,),
+    )
+    rows = _fetchall_dict(cur)
+    planned_rows = [row for row in rows if bool(row.get("planned")) and bool(row.get("approved"))]
+    if not planned_rows:
+        return None, False, "Initiative register is empty for this quarter."
+    done = sum(1 for row in planned_rows if row.get("live_stable_at") is not None or str(row.get("status") or "").lower() in {"live_stable", "done", "completed"})
+    return round(done / len(planned_rows) * 100, 4), True, f"{done} of {len(planned_rows)} approved initiatives reached Live & stable."
+
+
+def get_scorecard(*, quarter: str) -> dict[str, Any]:
+    ensure_fba_schema()
+    start_date, end_date = _parse_quarter(quarter)
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        configs = _get_json_config(cur, "scorecard_defaults", {})
+        calculators = {
+            "top100_availability": lambda: _compute_kpi_top100_availability(cur),
+            "shipment_plan_adherence": lambda: _compute_kpi_shipment_adherence(cur, quarter),
+            "stranded_inventory_value_pct": lambda: _compute_kpi_inventory_value_share(cur, mode="stranded"),
+            "median_resolve_days": lambda: _compute_kpi_median_resolve_days(cur, start_date, end_date),
+            "aging_excess_share": lambda: _compute_kpi_inventory_value_share(cur, mode="aging_excess"),
+            "fc_discrepancy_rate": lambda: _compute_kpi_fc_discrepancy(cur, start_date, end_date),
+            "on_time_launch_rate": lambda: _compute_kpi_on_time_launch(cur, quarter),
+            "vine_coverage_rate": lambda: _compute_kpi_vine_coverage(cur, quarter),
+            "initiatives_completion_rate": lambda: _compute_kpi_initiatives_completion(cur, quarter),
+        }
+        components: list[dict[str, Any]] = []
+        missing_inputs: list[str] = []
+        for key, calculate in calculators.items():
+            config = configs.get(key, {})
+            actual, data_ready, note = calculate()
+            component = _build_component(key=key, actual=actual, data_ready=data_ready, note=note, config=config)
+            components.append(component)
+            if not data_ready:
+                missing_inputs.append(f"{component['label']}: {note or 'missing source'}")
+        score = round(sum(component["score_contribution"] for component in components), 4)
+        data_ready = all(component["data_ready"] for component in components)
+        explanation = (
+            "Quarterly score is now driven by 9 KPI components. Some components still depend on manual FBA registers "
+            "for shipment plan, cases, launches, Vine and initiatives; missing registers reduce data readiness and zero out that component."
+        )
+        return {
+            "quarter": quarter,
+            "data_ready": data_ready,
+            "score": score,
+            "score_pct_of_target": round(score * 100, 1),
+            "safety_gate_passed": True,
+            "explanation": explanation,
+            "kpis": {component["key"]: component["actual"] or 0.0 for component in components},
+            "factors": {component["key"]: component["factor"] for component in components},
+            "weights": {component["key"]: component["weight"] for component in components},
+            "components": components,
+            "missing_inputs": missing_inputs,
+        }
+    finally:
+        conn.close()
+
+
+def _report_rows_to_normalized(content: str) -> list[dict[str, Any]]:
+    rows = parse_tsv_report(content)
+    normalized: list[dict[str, Any]] = []
+    for row in rows:
+        normalized.append({_normalize_key(k): v for k, v in row.items()})
+    return normalized
+
+
+def _inventory_api_rows_to_normalized(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    for item in items:
+        details = item.get("inventoryDetails") or {}
+        reserved = details.get("reservedQuantity") or {}
+        normalized.append(
+            {
+                "sku": item.get("sellerSku") or "",
+                "asin": item.get("asin") or "",
+                "available": details.get("fulfillableQuantity", item.get("totalQuantity", 0)),
+                "inbound_working": details.get("inboundWorkingQuantity", 0),
+                "inbound_shipped": details.get("inboundShippedQuantity", 0),
+                "inbound_received": details.get("inboundReceivingQuantity", 0),
+                "inbound_quantity": details.get("futureSupplyQuantity", 0),
+                "total_reserved_quantity": reserved.get("totalReservedQuantity", 0),
+                "unfulfillable_quantity": details.get("unfulfillableQuantity", 0),
+                "researching_quantity": details.get("researchingQuantity", 0),
+                "product_name": item.get("productName") or "",
+                "source": "inventory_api_summaries",
+            }
+        )
+    return normalized
+
+
+async def _fetch_inventory_api_rows_with_diagnostics(marketplace_id: str) -> dict[str, Any]:
+    try:
+        client = InventoryClient(marketplace_id=marketplace_id)
+        items = await client.get_inventory_summaries()
+        return {
+            "rows": _inventory_api_rows_to_normalized(items),
+            "diagnostic": {
+                "marketplace_id": marketplace_id,
+                "report_type": "FBA_INVENTORY_API_SUMMARIES",
+                "fetch_mode": "fallback_inventory_api",
+                "request_report_id": None,
+                "request_status": "DONE",
+                "selected_report_id": None,
+                "selected_status": "DONE",
+                "selected_document_id": None,
+                "fallback_source": "inventory_api",
+                "detail": {
+                    "item_count": len(items),
+                    "coverage": "inventory_levels_only",
+                    "aged_excess_available": False,
+                },
+            },
+            "error": None,
+        }
+    except Exception as exc:
+        return {
+            "rows": [],
+            "diagnostic": {
+                "marketplace_id": marketplace_id,
+                "report_type": "FBA_INVENTORY_API_SUMMARIES",
+                "fetch_mode": "failed_inventory_api",
+                "request_report_id": None,
+                "request_status": "FAILED",
+                "selected_report_id": None,
+                "selected_status": None,
+                "selected_document_id": None,
+                "fallback_source": "inventory_api",
+                "error": str(exc),
+            },
+            "error": str(exc),
+        }
+
+
+def _merge_inventory_report_data(
+    inventory_map: dict[tuple[str, str], dict[str, Any]],
+    marketplace_id: str,
+    planning_rows: list[dict[str, Any]],
+    stranded_rows: list[dict[str, Any]],
+) -> None:
+    for row in planning_rows:
+        sku = _first_value(row, "msku", "sku", "merchant_sku", "seller_sku")
+        asin = _first_value(row, "asin", "fnsku_asin")
+        if not sku:
+            continue
+        key = (marketplace_id, sku)
+        entry = inventory_map.setdefault(
+            key,
+            {
+                "marketplace_id": marketplace_id,
+                "sku": sku,
+                "asin": asin or None,
+                "on_hand": 0,
+                "inbound": 0,
+                "reserved": 0,
+                "stranded_units": 0,
+                "aged_0_30": 0,
+                "aged_31_60": 0,
+                "aged_61_90": 0,
+                "aged_90_plus": 0,
+                "excess_units": 0,
+            },
+        )
+        if asin and not entry.get("asin"):
+            entry["asin"] = asin
+        entry["on_hand"] = max(entry["on_hand"], _first_int(row, "available"))
+        age_0_30 = _first_int(row, "inv_age_0_to_30_days")
+        age_31_60 = _first_int(row, "inv_age_31_to_60_days")
+        age_61_90 = _first_int(row, "inv_age_61_to_90_days")
+        age_91_180 = _first_int(row, "inv_age_91_to_180_days", "inventory_age_91_to_180_days")
+        age_181_270 = _first_int(row, "inv_age_181_to_270_days", "inventory_age_181_to_270_days")
+        age_271_365 = _first_int(row, "inv_age_271_to_365_days", "inventory_age_271_to_365_days")
+        age_366_455 = _first_int(row, "inv_age_366_to_455_days")
+        age_456 = _first_int(row, "inv_age_456_plus_days")
+        age_365 = _first_int(row, "inv_age_365_plus_days", "inventory_age_365_plus_days")
+        entry["aged_0_30"] = max(entry["aged_0_30"], age_0_30)
+        entry["aged_31_60"] = max(entry["aged_31_60"], age_31_60)
+        entry["aged_61_90"] = max(entry["aged_61_90"], age_61_90)
+        entry["aged_90_plus"] = max(entry["aged_90_plus"], age_91_180 + age_181_270 + age_271_365 + age_366_455 + age_456 + age_365)
+        entry["excess_units"] = max(
+            entry["excess_units"],
+            _first_int(row, "estimated_excess_quantity", "excess_units", "qty_to_be_charged_ltsf_12_mo"),
+        )
+        entry["inbound"] = max(entry["inbound"], _first_int(row, "inbound_quantity", "inbound_working") + _first_int(row, "inbound_shipped") + _first_int(row, "inbound_received"))
+        entry["reserved"] = max(entry["reserved"], _first_int(row, "total_reserved_quantity"))
+
+    for row in stranded_rows:
+        sku = _first_value(row, "sku", "merchant_sku", "msku")
+        asin = _first_value(row, "asin")
+        if not sku:
+            continue
+        key = (marketplace_id, sku)
+        entry = inventory_map.setdefault(
+            key,
+            {
+                "marketplace_id": marketplace_id,
+                "sku": sku,
+                "asin": asin or None,
+                "on_hand": 0,
+                "inbound": 0,
+                "reserved": 0,
+                "stranded_units": 0,
+                "aged_0_30": 0,
+                "aged_31_60": 0,
+                "aged_61_90": 0,
+                "aged_90_plus": 0,
+                "excess_units": 0,
+            },
+        )
+        if asin and not entry.get("asin"):
+            entry["asin"] = asin
+        stranded_units = _first_int(
+            row,
+            "total_quantity",
+            "quantity",
+            "stranded_quantity",
+            "fulfillable_qty",
+            "unfulfillable_qty",
+        )
+        if stranded_units <= 0:
+            stranded_units = _first_int(row, "fulfillable_qty") + _first_int(row, "unfulfillable_qty")
+        entry["stranded_units"] = max(entry["stranded_units"], stranded_units)
+
+
+async def _fetch_report_content_with_diagnostics(
+    *,
+    client: ReportsClient,
+    marketplace_id: str,
+    report_type: str,
+    max_age_minutes: int,
+    poll_interval: float,
+    allow_last_done_fallback: bool = False,
+    skip_new_request: bool = False,
+    skip_reason: str | None = None,
+    skip_context: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    recent_reports_error: str | None = None
+    try:
+        reports = await client.get_existing_reports(
+            report_types=[report_type],
+            processing_statuses=["DONE"],
+            page_size=10,
+        )
+    except Exception as exc:
+        reports = []
+        recent_reports_error = str(exc)
+    now = datetime.now(timezone.utc)
+    for report in reports:
+        created_raw = report.get("createdTime")
+        document_id = report.get("reportDocumentId")
+        if not created_raw or not document_id:
+            continue
+        try:
+            created_at = datetime.fromisoformat(str(created_raw).replace("Z", "+00:00"))
+        except Exception:
+            continue
+        age_minutes = (now - created_at).total_seconds() / 60.0
+        if age_minutes <= max_age_minutes:
+            content = await client.download_report_content(document_id)
+            return {
+                "content": content,
+                "diagnostic": {
+                    "marketplace_id": marketplace_id,
+                    "report_type": report_type,
+                    "fetch_mode": "reuse_recent_done",
+                    "request_report_id": report.get("reportId"),
+                    "request_status": "DONE",
+                    "selected_report_id": report.get("reportId"),
+                    "selected_status": "DONE",
+                    "selected_document_id": document_id,
+                    "fallback_source": None,
+                    "created_time": created_raw,
+                    "age_minutes": round(age_minutes, 1),
+                },
+                "error": None,
+            }
+
+    if skip_new_request:
+        return {
+            "content": None,
+            "diagnostic": {
+                "marketplace_id": marketplace_id,
+                "report_type": report_type,
+                "fetch_mode": "skip_recent_fatal_cooldown",
+                "request_report_id": None,
+                "request_status": "COOLDOWN",
+                "selected_report_id": None,
+                "selected_status": None,
+                "selected_document_id": None,
+                "fallback_source": skip_reason or "cooldown",
+                "detail": skip_context or {},
+                "error": recent_reports_error,
+            },
+            "error": f"Skipped new {report_type} request due to cooldown",
+        }
+
+    request_report_id: str | None = None
+    request_status: str | None = None
+    try:
+        request_report_id = await client.create_report(
+            report_type=report_type,
+            marketplace_ids=[marketplace_id],
+        )
+        report = await client.wait_for_report(request_report_id, poll_interval=poll_interval)
+        request_status = str(report.get("processingStatus") or "DONE")
+        document_id = report.get("reportDocumentId")
+        if not document_id:
+            raise RuntimeError(f"Report {request_report_id} DONE but no reportDocumentId")
+        content = await client.download_report_content(document_id)
+        return {
+            "content": content,
+            "diagnostic": {
+                "marketplace_id": marketplace_id,
+                "report_type": report_type,
+                "fetch_mode": "requested_new",
+                "request_report_id": request_report_id,
+                "request_status": request_status,
+                "selected_report_id": request_report_id,
+                "selected_status": request_status,
+                "selected_document_id": document_id,
+                "fallback_source": None,
+            },
+            "error": None,
+        }
+    except Exception as exc:
+        if request_report_id:
+            try:
+                failed_report = await client.get_report(request_report_id)
+                request_status = str(failed_report.get("processingStatus") or request_status or "UNKNOWN")
+            except Exception:
+                pass
+        if allow_last_done_fallback:
+            try:
+                done_reports = await client.get_existing_reports(
+                    report_types=[report_type],
+                    processing_statuses=["DONE"],
+                    page_size=20,
+                )
+                for report in done_reports:
+                    document_id = report.get("reportDocumentId")
+                    if not document_id:
+                        continue
+                    content = await client.download_report_content(document_id)
+                    return {
+                        "content": content,
+                        "diagnostic": {
+                            "marketplace_id": marketplace_id,
+                            "report_type": report_type,
+                            "fetch_mode": "fallback_last_done",
+                            "request_report_id": request_report_id,
+                            "request_status": request_status or "UNKNOWN",
+                            "selected_report_id": report.get("reportId"),
+                            "selected_status": "DONE",
+                            "selected_document_id": document_id,
+                            "fallback_source": "last_done",
+                            "error": str(exc),
+                        },
+                        "error": None,
+                    }
+            except Exception as fallback_exc:
+                return {
+                    "content": None,
+                    "diagnostic": {
+                        "marketplace_id": marketplace_id,
+                        "report_type": report_type,
+                        "fetch_mode": "failed",
+                        "request_report_id": request_report_id,
+                        "request_status": request_status or "UNKNOWN",
+                        "selected_report_id": None,
+                        "selected_status": None,
+                        "selected_document_id": None,
+                        "fallback_source": "last_done_lookup_failed",
+                        "error": f"{exc}; fallback lookup failed: {fallback_exc}",
+                    },
+                    "error": str(exc),
+                }
+        return {
+            "content": None,
+            "diagnostic": {
+                "marketplace_id": marketplace_id,
+                "report_type": report_type,
+                "fetch_mode": "failed",
+                "request_report_id": request_report_id,
+                "request_status": request_status or "UNKNOWN",
+                "selected_report_id": None,
+                "selected_status": None,
+                "selected_document_id": None,
+                "fallback_source": None,
+                "error": str(exc),
+            },
+            "error": str(exc),
+        }
+
+
+async def _fetch_inventory_enrichment_for_marketplace(
+    marketplace_id: str,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    client = ReportsClient(marketplace_id=marketplace_id)
+    diagnostics: list[dict[str, Any]] = []
+    cooldown = _planning_report_cooldown_state(marketplace_id)
+
+    planning_result = await _fetch_report_content_with_diagnostics(
+        client=client,
+        marketplace_id=marketplace_id,
+        report_type=ReportType.FBA_INVENTORY_PLANNING,
+        max_age_minutes=180,
+        poll_interval=15.0,
+        skip_new_request=bool(cooldown.get("active")),
+        skip_reason=str(cooldown.get("reason") or "cooldown"),
+        skip_context={
+            "failure_count": _to_int(cooldown.get("failure_count")),
+            "last_failure_at": str(cooldown.get("last_failure_at") or ""),
+        },
+    )
+    diagnostics.append(planning_result["diagnostic"])
+    planning_rows: list[dict[str, Any]] = []
+    planning_source = "planning_report"
+    if planning_result.get("content"):
+        planning_rows = _report_rows_to_normalized(planning_result["content"])
+    else:
+        inventory_api_result = await _fetch_inventory_api_rows_with_diagnostics(marketplace_id)
+        diagnostics.append(inventory_api_result["diagnostic"])
+        planning_rows = inventory_api_result.get("rows") or []
+        if planning_rows:
+            planning_source = "inventory_api"
+
+    stranded_result = await _fetch_report_content_with_diagnostics(
+        client=client,
+        marketplace_id=marketplace_id,
+        report_type=ReportType.STRANDED_INVENTORY,
+        max_age_minutes=360,
+        poll_interval=15.0,
+        allow_last_done_fallback=True,
+    )
+    diagnostics.append(stranded_result["diagnostic"])
+    if stranded_result.get("content"):
+        stranded_rows = _report_rows_to_normalized(stranded_result["content"])
+    else:
+        stranded_rows = []
+        for row in planning_rows:
+            if _first_int(row, "unfulfillable_quantity") > 0:
+                stranded_rows.append(
+                    {
+                        "sku": _first_value(row, "sku"),
+                        "asin": _first_value(row, "asin"),
+                        "unfulfillable_qty": _first_int(row, "unfulfillable_quantity"),
+                        "source": "planning_report_unfulfillable_proxy" if planning_source == "planning_report" else "inventory_api_unfulfillable_proxy",
+                    }
+                )
+        diagnostics[-1]["fetch_mode"] = (
+            "fallback_planning_unfulfillable"
+            if planning_source == "planning_report"
+            else "fallback_inventory_api_unfulfillable"
+        )
+        diagnostics[-1]["fallback_source"] = (
+            "planning_unfulfillable_proxy"
+            if planning_source == "planning_report"
+            else "inventory_api_unfulfillable_proxy"
+        )
+    return planning_rows, stranded_rows, diagnostics
+
+
+async def _sync_inventory_cache_async(*, return_meta: bool = False) -> int | dict[str, Any]:
+    ensure_fba_schema()
+    inventory_map: dict[tuple[str, str], dict[str, Any]] = {}
+    diagnostics: list[dict[str, Any]] = []
+    # Always snapshot as today — preserves historical days for KPI lookback
+    latest: date = date.today()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        acc_latest = _latest_raw_inventory_snapshot_date(cur)
+        if acc_latest:
+            cur.execute(
+                """
+                SELECT marketplace_id, sku, asin,
+                       ISNULL(qty_fulfillable, 0) AS on_hand,
+                       ISNULL(qty_inbound, 0) AS inbound,
+                       ISNULL(qty_reserved, 0) AS reserved
+                FROM dbo.acc_inventory_snapshot WITH (NOLOCK)
+                WHERE snapshot_date = ?
+                """,
+                (acc_latest,),
+            )
+            for row in _fetchall_dict(cur):
+                inventory_map[(row["marketplace_id"], row["sku"])] = {
+                    "marketplace_id": row["marketplace_id"],
+                    "sku": row["sku"],
+                    "asin": row.get("asin"),
+                    "on_hand": _to_int(row.get("on_hand")),
+                    "inbound": _to_int(row.get("inbound")),
+                    "reserved": _to_int(row.get("reserved")),
+                    "stranded_units": 0,
+                    "aged_0_30": 0,
+                    "aged_31_60": 0,
+                    "aged_61_90": 0,
+                    "aged_90_plus": 0,
+                    "excess_units": 0,
+                }
+    finally:
+        conn.close()
+
+    # Always iterate ALL registered marketplaces — ensures full coverage
+    marketplaces = sorted(MARKETPLACE_REGISTRY.keys())
+    for marketplace_id in marketplaces:
+        try:
+            planning_rows, stranded_rows, marketplace_diagnostics = await _fetch_inventory_enrichment_for_marketplace(marketplace_id)
+            diagnostics.extend(marketplace_diagnostics)
+            _merge_inventory_report_data(inventory_map, marketplace_id, planning_rows, stranded_rows)
+        except Exception:
+            continue
+
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        rows = list(inventory_map.values())
+        if diagnostics:
+            _persist_report_diagnostics(cur, diagnostics, sync_scope="inventory")
+        if not rows:
+            conn.commit()
+            result = {"rows": 0, "report_diagnostics": diagnostics, "report_diagnostics_summary": _report_diagnostics_summary(diagnostics)}
+            return result if return_meta else 0
+        # MERGE upsert — preserves historical snapshot days for KPI lookback
+        for item in rows:
+            cur.execute(
+                """
+                MERGE dbo.acc_fba_inventory_snapshot AS target
+                USING (
+                    SELECT ? AS marketplace_id, ? AS sku, ? AS asin,
+                           ? AS on_hand, ? AS inbound, ? AS reserved,
+                           ? AS stranded_units, ? AS aged_0_30, ? AS aged_31_60,
+                           ? AS aged_61_90, ? AS aged_90_plus, ? AS excess_units,
+                           ? AS snapshot_date
+                ) AS source
+                ON target.marketplace_id = source.marketplace_id
+                   AND target.sku = source.sku
+                   AND target.snapshot_date = source.snapshot_date
+                WHEN MATCHED THEN
+                    UPDATE SET asin = source.asin,
+                               on_hand = source.on_hand, inbound = source.inbound,
+                               reserved = source.reserved, stranded_units = source.stranded_units,
+                               aged_0_30 = source.aged_0_30, aged_31_60 = source.aged_31_60,
+                               aged_61_90 = source.aged_61_90, aged_90_plus = source.aged_90_plus,
+                               excess_units = source.excess_units,
+                               created_at = SYSUTCDATETIME()
+                WHEN NOT MATCHED THEN
+                    INSERT (id, marketplace_id, sku, asin, on_hand, inbound, reserved,
+                            stranded_units, aged_0_30, aged_31_60, aged_61_90, aged_90_plus,
+                            excess_units, snapshot_date, created_at)
+                    VALUES (NEWID(), source.marketplace_id, source.sku, source.asin,
+                            source.on_hand, source.inbound, source.reserved,
+                            source.stranded_units, source.aged_0_30, source.aged_31_60,
+                            source.aged_61_90, source.aged_90_plus,
+                            source.excess_units, source.snapshot_date, SYSUTCDATETIME());
+                """,
+                (
+                    item["marketplace_id"],
+                    item["sku"],
+                    item.get("asin"),
+                    _to_int(item.get("on_hand")),
+                    _to_int(item.get("inbound")),
+                    _to_int(item.get("reserved")),
+                    _to_int(item.get("stranded_units")),
+                    _to_int(item.get("aged_0_30")),
+                    _to_int(item.get("aged_31_60")),
+                    _to_int(item.get("aged_61_90")),
+                    _to_int(item.get("aged_90_plus")),
+                    _to_int(item.get("excess_units")),
+                    latest,
+                ),
+            )
+        conn.commit()
+        log.info("fba_ops.sync_inventory_cache.saved", rows=len(rows), snapshot_date=str(latest))
+        result = {
+            "rows": len(rows),
+            "report_diagnostics": diagnostics,
+            "report_diagnostics_summary": _report_diagnostics_summary(diagnostics),
+        }
+        return result if return_meta else len(rows)
+    finally:
+        conn.close()
+
+
+async def _sync_inbound_async() -> int:
+    ensure_fba_schema()
+    statuses = ["WORKING", "SHIPPED", "IN_TRANSIT", "DELIVERED", "CHECKED_IN", "RECEIVING", "CLOSED"]
+    shipments_buffer: list[dict[str, Any]] = []
+    lines_buffer: list[dict[str, Any]] = []
+    updated_after = datetime.now(timezone.utc) - timedelta(days=120)
+    updated_before = datetime.now(timezone.utc)
+
+    for marketplace_id in MARKETPLACE_REGISTRY.keys():
+        try:
+            client = InboundClient(marketplace_id=marketplace_id)
+            shipments = await client.get_shipments(
+                statuses=statuses,
+                last_updated_after=updated_after,
+                last_updated_before=updated_before,
+            )
+            for shipment in shipments:
+                shipment_id = _first_value(shipment, "ShipmentId", "shipmentId")
+                if not shipment_id:
+                    continue
+                shipment_name = _first_value(shipment, "ShipmentName", "shipmentName")
+                status = _first_value(shipment, "ShipmentStatus", "shipmentStatus") or "UNKNOWN"
+                item = {
+                    "marketplace_id": marketplace_id,
+                    "shipment_id": shipment_id,
+                    "shipment_name": shipment_name or None,
+                    "status": status,
+                    "created_at": None,
+                    "last_update_at": updated_before,
+                    "from_warehouse": _first_value(shipment, "DestinationFulfillmentCenterId", "destinationFulfillmentCenterId"),
+                    "units_planned": _to_int(shipment.get("QuantityShipped")),
+                    "units_received": 0,
+                    "first_receive_at": None,
+                    "closed_at": updated_before if status == "CLOSED" else None,
+                    "payload_json": shipment,
+                }
+                try:
+                    line_items = await client.get_shipment_items(shipment_id)
+                except Exception:
+                    line_items = []
+                units_planned = 0
+                units_received = 0
+                first_receive_at = None
+                for line in line_items:
+                    qty_planned = _to_int(line.get("QuantityShipped"))
+                    qty_received = _to_int(line.get("QuantityReceived"))
+                    units_planned += qty_planned
+                    units_received += qty_received
+                    lines_buffer.append(
+                        {
+                            "shipment_id": shipment_id,
+                            "sku": _first_value(line, "SellerSKU", "sellerSku"),
+                            "asin": _first_value(line, "ASIN", "asin") or None,
+                            "qty_planned": qty_planned,
+                            "qty_received": qty_received,
+                            "payload_json": line,
+                        }
+                    )
+                item["units_planned"] = units_planned
+                item["units_received"] = units_received
+                item["first_receive_at"] = first_receive_at
+                shipments_buffer.append(item)
+        except Exception:
+            continue
+
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        seen_shipments = {row["shipment_id"] for row in shipments_buffer}
+        if seen_shipments:
+            placeholders = ",".join("?" for _ in seen_shipments)
+            cur.execute(f"DELETE FROM dbo.acc_fba_inbound_shipment_line WHERE shipment_id IN ({placeholders})", tuple(seen_shipments))
+        for shipment in shipments_buffer:
+            cur.execute(
+                """
+                MERGE dbo.acc_fba_inbound_shipment AS target
+                USING (
+                    SELECT
+                        ? AS marketplace_id, ? AS shipment_id, ? AS shipment_name, ? AS status, ? AS created_at,
+                        ? AS last_update_at, ? AS from_warehouse, ? AS units_planned, ? AS units_received,
+                        ? AS first_receive_at, ? AS closed_at, ? AS payload_json
+                ) AS source
+                ON target.shipment_id = source.shipment_id
+                WHEN MATCHED THEN
+                    UPDATE SET marketplace_id = source.marketplace_id, shipment_name = source.shipment_name,
+                               status = source.status,
+                               last_update_at = CASE WHEN ISNULL(target.status, '') = ISNULL(source.status, '') THEN ISNULL(target.last_update_at, source.last_update_at) ELSE source.last_update_at END,
+                               from_warehouse = source.from_warehouse,
+                               units_planned = source.units_planned, units_received = source.units_received,
+                               first_receive_at = source.first_receive_at, closed_at = source.closed_at, payload_json = source.payload_json
+                WHEN NOT MATCHED THEN
+                    INSERT (id, marketplace_id, shipment_id, shipment_name, status, created_at, last_update_at, from_warehouse,
+                            units_planned, units_received, first_receive_at, closed_at, payload_json)
+                    VALUES (NEWID(), source.marketplace_id, source.shipment_id, source.shipment_name, source.status, source.created_at,
+                            source.last_update_at, source.from_warehouse, source.units_planned, source.units_received,
+                            source.first_receive_at, source.closed_at, source.payload_json);
+                """,
+                (
+                    shipment["marketplace_id"],
+                    shipment["shipment_id"],
+                    shipment.get("shipment_name"),
+                    shipment["status"],
+                    shipment.get("created_at"),
+                    shipment.get("last_update_at"),
+                    shipment.get("from_warehouse"),
+                    shipment.get("units_planned"),
+                    shipment.get("units_received"),
+                    shipment.get("first_receive_at"),
+                    shipment.get("closed_at"),
+                    json.dumps(shipment.get("payload_json") or {}, ensure_ascii=True),
+                ),
+            )
+        for line in lines_buffer:
+            cur.execute(
+                """
+                INSERT INTO dbo.acc_fba_inbound_shipment_line
+                (id, shipment_id, sku, asin, qty_planned, qty_received, payload_json)
+                VALUES
+                (NEWID(), ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    line["shipment_id"],
+                    line["sku"],
+                    line.get("asin"),
+                    _to_int(line.get("qty_planned")),
+                    _to_int(line.get("qty_received")),
+                    json.dumps(line.get("payload_json") or {}, ensure_ascii=True),
+                ),
+            )
+        conn.commit()
+        return len(shipments_buffer)
+    finally:
+        conn.close()
+
+
+def sync_inventory_cache(*, return_meta: bool = False) -> int | dict[str, Any]:
+    return asyncio.run(_sync_inventory_cache_async(return_meta=return_meta))
+
+
+def sync_inbound_stub() -> int:
+    return asyncio.run(_sync_inbound_async())
+
+
+# ──────────── FC Receiving Reconciliation Sync ────────────
+
+
+def sync_receiving_reconciliation() -> int:
+    """
+    Populate acc_fba_receiving_reconciliation from inbound shipment lines.
+
+    For each CLOSED or RECEIVING shipment, computes:
+      shortage_units = max(0, qty_planned - qty_received)
+    MERGE-upserts per (shipment_id, sku) to avoid duplicates.
+    """
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT
+                s.marketplace_id,
+                s.shipment_id,
+                sl.sku,
+                ISNULL(sl.qty_planned, 0) AS qty_planned,
+                ISNULL(sl.qty_received, 0) AS qty_received,
+                COALESCE(s.closed_at, s.last_update_at, SYSUTCDATETIME()) AS event_dt
+            FROM dbo.acc_fba_inbound_shipment s WITH (NOLOCK)
+            JOIN dbo.acc_fba_inbound_shipment_line sl WITH (NOLOCK)
+              ON sl.shipment_id = s.shipment_id
+            WHERE s.status IN ('CLOSED', 'RECEIVING', 'CHECKED_IN')
+              AND sl.sku IS NOT NULL
+              AND ISNULL(sl.qty_planned, 0) > 0
+            """
+        )
+        rows = _fetchall_dict(cur)
+        if not rows:
+            return 0
+        upserted = 0
+        for row in rows:
+            shortage = max(0, _to_int(row.get("qty_planned")) - _to_int(row.get("qty_received")))
+            event_date = row.get("event_dt")
+            if hasattr(event_date, "date"):
+                event_date = event_date.date()
+            elif not isinstance(event_date, date):
+                event_date = date.today()
+            cur.execute(
+                """
+                MERGE dbo.acc_fba_receiving_reconciliation AS target
+                USING (
+                    SELECT ? AS shipment_id, ? AS marketplace_id, ? AS sku,
+                           ? AS event_date, ? AS shipped_units, ? AS shortage_units
+                ) AS source
+                ON target.shipment_id = source.shipment_id
+                   AND target.sku = source.sku
+                WHEN MATCHED THEN
+                    UPDATE SET marketplace_id = source.marketplace_id,
+                               event_date = source.event_date,
+                               shipped_units = source.shipped_units,
+                               shortage_units = source.shortage_units,
+                               created_at = SYSUTCDATETIME()
+                WHEN NOT MATCHED THEN
+                    INSERT (id, shipment_id, marketplace_id, sku, event_date,
+                            shipped_units, shortage_units, damage_units, reimbursement_units, created_at)
+                    VALUES (NEWID(), source.shipment_id, source.marketplace_id, source.sku,
+                            source.event_date, source.shipped_units, source.shortage_units, 0, 0, SYSUTCDATETIME());
+                """,
+                (
+                    row.get("shipment_id"),
+                    row.get("marketplace_id"),
+                    row.get("sku"),
+                    event_date,
+                    _to_int(row.get("qty_planned")),
+                    shortage,
+                ),
+            )
+            upserted += 1
+        conn.commit()
+        log.info("fba_ops.sync_receiving_reconciliation.done", upserted=upserted)
+        return upserted
+    finally:
+        conn.close()
+
+
+# ──────────── Auto-fill Shipment Plan Actuals ────────────
+
+
+def auto_fill_shipment_plan_actuals(*, quarter: str | None = None) -> int:
+    """
+    Auto-fill actual_ship_date and actual_units on shipment plans
+    by matching `shipment_id` to inbound shipment data.
+
+    Only updates plans that already have a shipment_id linked
+    and where actual_units is still NULL.
+    """
+    ensure_fba_schema()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        where_quarter = "AND sp.quarter = ?" if quarter else ""
+        params = (quarter,) if quarter else ()
+        cur.execute(
+            f"""
+            UPDATE sp
+            SET
+                sp.actual_units = s.units_planned,
+                sp.actual_ship_date = CAST(COALESCE(s.closed_at, s.last_update_at) AS DATE),
+                sp.status = CASE
+                    WHEN s.status = 'CLOSED' THEN 'completed'
+                    WHEN s.status IN ('RECEIVING', 'CHECKED_IN', 'DELIVERED') THEN 'receiving'
+                    WHEN s.status IN ('SHIPPED', 'IN_TRANSIT') THEN 'shipped'
+                    ELSE sp.status
+                END,
+                sp.updated_at = SYSUTCDATETIME()
+            FROM dbo.acc_fba_shipment_plan sp
+            JOIN dbo.acc_fba_inbound_shipment s
+              ON s.shipment_id = sp.shipment_id
+            WHERE sp.shipment_id IS NOT NULL
+              AND sp.actual_units IS NULL
+              {where_quarter}
+            """,
+            params,
+        )
+        updated = cur.rowcount or 0
+        conn.commit()
+        log.info("fba_ops.auto_fill_shipment_plan_actuals.done", updated=updated, quarter=quarter)
+        return updated
+    finally:
+        conn.close()
+
+
+# ──────────── Excel/CSV import for manual registers ────────────
+
+
+def import_register_from_rows(
+    *,
+    register_type: str,
+    rows: list[dict[str, Any]],
+    quarter: str | None = None,
+) -> dict[str, Any]:
+    """
+    Bulk-import rows into a manual register (shipment_plan, case, launch, initiative).
+
+    Returns {'imported': N, 'skipped': M, 'errors': [...]}.
+    """
+    ensure_fba_schema()
+    _importers = {
+        "shipment_plan": _import_shipment_plans,
+        "case": _import_cases,
+        "launch": _import_launches,
+        "initiative": _import_initiatives,
+    }
+    importer = _importers.get(register_type)
+    if not importer:
+        raise ValueError(f"Unknown register_type: {register_type}. Use: {', '.join(_importers.keys())}")
+    return importer(rows=rows, quarter=quarter)
+
+
+def _import_shipment_plans(*, rows: list[dict[str, Any]], quarter: str | None) -> dict[str, Any]:
+    conn = _connect()
+    imported, skipped, errors = 0, 0, []
+    try:
+        cur = conn.cursor()
+        for i, row in enumerate(rows, 1):
+            try:
+                q = str(row.get("quarter") or quarter or "").strip()
+                plan_week_start = row.get("plan_week_start")
+                planned_units = _to_int(row.get("planned_units"))
+                if not q or not plan_week_start:
+                    skipped += 1
+                    continue
+                cur.execute(
+                    """
+                    INSERT INTO dbo.acc_fba_shipment_plan
+                    (id, quarter, marketplace_id, shipment_id, plan_week_start, planned_ship_date,
+                     planned_units, actual_ship_date, actual_units, tolerance_pct, status, owner, updated_at)
+                    VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME())
+                    """,
+                    (
+                        q,
+                        row.get("marketplace_id"),
+                        row.get("shipment_id"),
+                        plan_week_start,
+                        row.get("planned_ship_date"),
+                        planned_units,
+                        row.get("actual_ship_date"),
+                        _to_int(row.get("actual_units")) if row.get("actual_units") is not None else None,
+                        _to_float(row.get("tolerance_pct"), 0.10),
+                        str(row.get("status") or "planned").strip(),
+                        row.get("owner"),
+                    ),
+                )
+                imported += 1
+            except Exception as exc:
+                errors.append(f"Row {i}: {exc}")
+        conn.commit()
+    finally:
+        conn.close()
+    return {"imported": imported, "skipped": skipped, "errors": errors}
+
+
+def _import_cases(*, rows: list[dict[str, Any]], quarter: str | None) -> dict[str, Any]:
+    conn = _connect()
+    imported, skipped, errors = 0, 0, []
+    try:
+        cur = conn.cursor()
+        for i, row in enumerate(rows, 1):
+            try:
+                case_type = str(row.get("case_type") or "operations").strip()
+                detected_date = row.get("detected_date")
+                if not detected_date:
+                    skipped += 1
+                    continue
+                cur.execute(
+                    """
+                    INSERT INTO dbo.acc_fba_case
+                    (id, case_type, marketplace_id, entity_type, entity_id, sku,
+                     detected_date, close_date, owner, status, root_cause, created_at, updated_at)
+                    VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME(), SYSUTCDATETIME())
+                    """,
+                    (
+                        case_type,
+                        row.get("marketplace_id"),
+                        row.get("entity_type"),
+                        row.get("entity_id"),
+                        row.get("sku"),
+                        detected_date,
+                        row.get("close_date"),
+                        row.get("owner"),
+                        str(row.get("status") or "open").strip(),
+                        row.get("root_cause"),
+                    ),
+                )
+                imported += 1
+            except Exception as exc:
+                errors.append(f"Row {i}: {exc}")
+        conn.commit()
+    finally:
+        conn.close()
+    return {"imported": imported, "skipped": skipped, "errors": errors}
+
+
+def _import_launches(*, rows: list[dict[str, Any]], quarter: str | None) -> dict[str, Any]:
+    conn = _connect()
+    imported, skipped, errors = 0, 0, []
+    try:
+        cur = conn.cursor()
+        for i, row in enumerate(rows, 1):
+            try:
+                q = str(row.get("quarter") or quarter or "").strip()
+                if not q:
+                    skipped += 1
+                    continue
+                cur.execute(
+                    """
+                    INSERT INTO dbo.acc_fba_launch
+                    (id, quarter, launch_type, sku, marketplace_id, planned_go_live_date,
+                     actual_go_live_date, live_stable_at, incident_free, vine_eligible,
+                     vine_eligible_at, vine_submitted_at, owner, status, created_at, updated_at)
+                    VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME(), SYSUTCDATETIME())
+                    """,
+                    (
+                        q,
+                        str(row.get("launch_type") or "new_sku").strip(),
+                        row.get("sku"),
+                        row.get("marketplace_id"),
+                        row.get("planned_go_live_date"),
+                        row.get("actual_go_live_date"),
+                        row.get("live_stable_at"),
+                        1 if str(row.get("incident_free", "1")).strip() in ("1", "true", "True", "yes") else 0,
+                        1 if str(row.get("vine_eligible", "0")).strip() in ("1", "true", "True", "yes") else 0,
+                        row.get("vine_eligible_at"),
+                        row.get("vine_submitted_at"),
+                        row.get("owner"),
+                        str(row.get("status") or "planned").strip(),
+                    ),
+                )
+                imported += 1
+            except Exception as exc:
+                errors.append(f"Row {i}: {exc}")
+        conn.commit()
+    finally:
+        conn.close()
+    return {"imported": imported, "skipped": skipped, "errors": errors}
+
+
+def _import_initiatives(*, rows: list[dict[str, Any]], quarter: str | None) -> dict[str, Any]:
+    conn = _connect()
+    imported, skipped, errors = 0, 0, []
+    try:
+        cur = conn.cursor()
+        for i, row in enumerate(rows, 1):
+            try:
+                q = str(row.get("quarter") or quarter or "").strip()
+                title = str(row.get("title") or "").strip()
+                if not q or not title:
+                    skipped += 1
+                    continue
+                cur.execute(
+                    """
+                    INSERT INTO dbo.acc_fba_initiative
+                    (id, quarter, initiative_type, title, sku, owner, status,
+                     planned, approved, live_stable_at, created_at, updated_at)
+                    VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSUTCDATETIME(), SYSUTCDATETIME())
+                    """,
+                    (
+                        q,
+                        str(row.get("initiative_type") or "operational").strip(),
+                        title,
+                        row.get("sku"),
+                        row.get("owner"),
+                        str(row.get("status") or "planned").strip(),
+                        1 if str(row.get("planned", "1")).strip() in ("1", "true", "True", "yes") else 0,
+                        1 if str(row.get("approved", "1")).strip() in ("1", "true", "True", "yes") else 0,
+                        row.get("live_stable_at"),
+                    ),
+                )
+                imported += 1
+            except Exception as exc:
+                errors.append(f"Row {i}: {exc}")
+        conn.commit()
+    finally:
+        conn.close()
+    return {"imported": imported, "skipped": skipped, "errors": errors}
+
+
+def _resolve_fba_task_owner(cur: pyodbc.Cursor, sku: str, marketplace_id: str | None) -> str | None:
+    cur.execute("SELECT TOP 1 brand FROM dbo.acc_product WITH (NOLOCK) WHERE sku = ? AND brand IS NOT NULL", (sku,))
+    brand_row = cur.fetchone()
+    brand = str(brand_row[0]).strip() if brand_row and brand_row[0] else None
+    cur.execute(
+        """
+        SELECT TOP 1 owner
+        FROM dbo.acc_al_task_owner_rules WITH (NOLOCK)
+        WHERE is_active = 1
+          AND (task_type IS NULL OR task_type = 'fba_replenishment')
+          AND (marketplace_id IS NULL OR marketplace_id = ?)
+          AND (brand IS NULL OR brand = ?)
+        ORDER BY priority ASC,
+                 CASE WHEN brand IS NOT NULL THEN 0 ELSE 1 END,
+                 CASE WHEN marketplace_id IS NOT NULL THEN 0 ELSE 1 END
+        """,
+        (marketplace_id, brand),
+    )
+    owner = cur.fetchone()
+    return str(owner[0]).strip() if owner and owner[0] else None
+
+
+def _ensure_alert_rule(cur: pyodbc.Cursor, *, rule_type: str, name: str, description: str, severity: str) -> str:
+    cur.execute(
+        """
+        IF NOT EXISTS (
+            SELECT 1 FROM dbo.acc_al_alert_rules WITH (NOLOCK)
+            WHERE rule_type = ?
+        )
+        INSERT INTO dbo.acc_al_alert_rules
+        (id, name, description, rule_type, severity, is_active, created_by, created_at)
+        VALUES
+        (NEWID(), ?, ?, ?, ?, 1, 'system', SYSUTCDATETIME())
+        """,
+        (rule_type, name, description, rule_type, severity),
+    )
+    cur.execute("SELECT TOP 1 CAST(id AS NVARCHAR(40)) FROM dbo.acc_al_alert_rules WITH (NOLOCK) WHERE rule_type = ?", (rule_type,))
+    row = cur.fetchone()
+    if not row or not row[0]:
+        raise RuntimeError(f"alert rule not available: {rule_type}")
+    return str(row[0])
+
+
+def _alert_exists_recent(cur: pyodbc.Cursor, *, rule_id: str, sku: str | None, marketplace_id: str | None, title: str) -> bool:
+    cur.execute(
+        """
+        SELECT COUNT(*)
+        FROM dbo.acc_al_alerts WITH (NOLOCK)
+        WHERE rule_id = CAST(? AS UNIQUEIDENTIFIER)
+          AND ISNULL(sku, '') = ISNULL(?, '')
+          AND ISNULL(marketplace_id, '') = ISNULL(?, '')
+          AND title = ?
+          AND is_resolved = 0
+          AND triggered_at >= DATEADD(hour, -24, SYSUTCDATETIME())
+        """,
+        (rule_id, sku, marketplace_id, title),
+    )
+    return _to_int(cur.fetchone()[0]) > 0
+
+
+def _insert_fba_alert(
+    cur: pyodbc.Cursor,
+    *,
+    rule_id: str,
+    marketplace_id: str | None,
+    sku: str | None,
+    title: str,
+    detail: str,
+    detail_json: dict[str, Any] | None,
+    context_json: dict[str, Any] | None,
+    severity: str,
+    current_value: float | int | None,
+) -> None:
+    cur.execute(
+        """
+        INSERT INTO dbo.acc_al_alerts
+        (id, rule_id, marketplace_id, sku, title, detail, detail_json, context_json, severity, current_value, is_read, is_resolved, triggered_at)
+        VALUES
+        (NEWID(), CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, SYSUTCDATETIME())
+        """,
+        (
+            rule_id,
+            marketplace_id,
+            sku,
+            title,
+            detail,
+            json.dumps(detail_json or {}, ensure_ascii=True),
+            json.dumps(context_json or {}, ensure_ascii=True),
+            severity,
+            current_value,
+        ),
+    )
+
+
+def _truncate_text(value: str | None, max_len: int = 80) -> str:
+    text = str(value or "").strip()
+    if len(text) <= max_len:
+        return text
+    return text[: max_len - 1].rstrip() + "…"
+
+
+def _sku_candidate_ean(sku: str | None) -> str | None:
+    text = str(sku or "").strip()
+    if text.upper().startswith("FBA_"):
+        candidate = text[4:]
+        if candidate.isdigit():
+            return candidate
+    return None
+
+
+def _lookup_netfox_product_context(*, sku: str | None, ean: str | None = None) -> dict[str, Any]:
+    if not sku and not ean:
+        return {}
+    conn = None
+    try:
+        conn = connect_netfox(autocommit=True, timeout=10)
+        cur = conn.cursor()
+        where_parts: list[str] = []
+        params: list[Any] = []
+        if sku:
+            where_parts.append("k.Symbol = ?")
+            params.append(sku)
+        if ean:
+            where_parts.append("k.EAN = ?")
+            params.append(ean)
+        cur.execute(
+            f"""
+            SELECT TOP 1
+                k.Symbol AS sku,
+                k.EAN AS ean,
+                k.Nazwa AS product_name
+            FROM dbo.Kartoteki k
+            WHERE {' OR '.join(where_parts)}
+            """,
+            tuple(params),
+        )
+        row = cur.fetchone()
+        if not row:
+            return {}
+        return {
+            "netfox_sku": str(row[0]).strip() if row[0] else None,
+            "ean": str(row[1]).strip() if row[1] else None,
+            "title_preferred": str(row[2]).strip() if row[2] else None,
+            "title_netfox": str(row[2]).strip() if row[2] else None,
+        }
+    except Exception:
+        return {}
+    finally:
+        if conn is not None:
+            conn.close()
+
+
+def _lookup_product_context(cur: pyodbc.Cursor, *, sku: str | None, asin: str | None = None) -> dict[str, Any]:
+    if not sku and not asin:
+        return {}
+    candidate_ean = _sku_candidate_ean(sku)
+    registry = lookup_listing_registry_context(cur, sku=sku, asin=asin, ean=candidate_ean)
+    cur.execute(
+        """
+        SELECT TOP 1
+            p.ean,
+            p.sku,
+            p.asin,
+            p.brand,
+            p.category,
+            p.title,
+            p.internal_sku,
+            p.k_number,
+            ip.nazwa_pelna AS title_pl
+        FROM dbo.acc_product p WITH (NOLOCK)
+        OUTER APPLY (
+            SELECT TOP 1 ip.nazwa_pelna
+            FROM dbo.acc_import_products ip WITH (NOLOCK)
+            WHERE (p.internal_sku IS NOT NULL AND ip.sku = p.internal_sku)
+               OR (p.sku IS NOT NULL AND ip.sku = p.sku)
+               OR (p.ean IS NOT NULL AND ip.sku = p.ean)
+               OR (p.k_number IS NOT NULL AND ip.kod_k = p.k_number)
+            ORDER BY
+                CASE
+                    WHEN p.internal_sku IS NOT NULL AND ip.sku = p.internal_sku THEN 0
+                    WHEN p.sku IS NOT NULL AND ip.sku = p.sku THEN 1
+                    WHEN p.ean IS NOT NULL AND ip.sku = p.ean THEN 2
+                    WHEN p.k_number IS NOT NULL AND ip.kod_k = p.k_number THEN 3
+                    ELSE 4
+                END,
+                ip.id DESC
+        ) ip
+        WHERE (? IS NOT NULL AND p.sku = ?)
+           OR (? IS NOT NULL AND p.asin = ?)
+           OR (? IS NOT NULL AND p.ean = ?)
+        """,
+        (sku, sku, asin, asin, candidate_ean, candidate_ean),
+    )
+    row = _fetchone_dict(cur) or {}
+    if not row and sku:
+        cur.execute(
+            """
+            SELECT TOP 1 title
+            FROM dbo.acc_order_line WITH (NOLOCK)
+            WHERE sku = ?
+              AND title IS NOT NULL
+              AND LTRIM(RTRIM(title)) <> ''
+            """,
+            (sku,),
+        )
+        fallback = cur.fetchone()
+        if fallback and fallback[0]:
+            result = {"title_preferred": str(fallback[0]).strip(), "title": str(fallback[0]).strip()}
+            if registry:
+                result.update(
+                    {
+                        "internal_sku": registry.get("internal_sku"),
+                        "ean": registry.get("ean"),
+                        "parent_asin": registry.get("parent_asin"),
+                    }
+                )
+            return result
+        netfox = _lookup_netfox_product_context(sku=sku, ean=candidate_ean)
+        result = dict(netfox)
+        if registry:
+            result.setdefault("title_preferred", registry.get("product_name"))
+            result.setdefault("title", registry.get("product_name"))
+            result["internal_sku"] = result.get("internal_sku") or registry.get("internal_sku")
+            result["ean"] = result.get("ean") or registry.get("ean")
+            result["parent_asin"] = result.get("parent_asin") or registry.get("parent_asin")
+            result["brand"] = result.get("brand") or registry.get("brand")
+            result["category"] = result.get("category") or registry.get("category_1") or registry.get("category_2")
+        return result
+    preferred_title = str(row.get("title_pl") or registry.get("product_name") or row.get("title") or "").strip()
+    result = {
+        "title_preferred": preferred_title or None,
+        "title_pl": str(row.get("title_pl") or "").strip() or None,
+        "title": str(row.get("title") or registry.get("product_name") or "").strip() or None,
+        "brand": str(row.get("brand") or registry.get("brand") or "").strip() or None,
+        "category": str(row.get("category") or registry.get("category_1") or registry.get("category_2") or "").strip() or None,
+        "internal_sku": str(row.get("internal_sku") or registry.get("internal_sku") or "").strip() or None,
+        "ean": str(row.get("ean") or registry.get("ean") or "").strip() or None,
+        "parent_asin": str(registry.get("parent_asin") or "").strip() or None,
+        "k_number": str(row.get("k_number") or "").strip() or None,
+    }
+    if not result.get("title_preferred"):
+        netfox = _lookup_netfox_product_context(sku=sku, ean=candidate_ean)
+        if netfox.get("title_preferred"):
+            result.update({k: v for k, v in netfox.items() if v and not result.get(k)})
+            result["title_preferred"] = netfox["title_preferred"]
+    return result
+
+
+def _shipment_top_variance_lines(cur: pyodbc.Cursor, shipment_id: str, *, limit: int = 3) -> list[dict[str, Any]]:
+    cur.execute(
+        """
+        SELECT TOP (?)
+            l.sku,
+            l.asin,
+            SUM(ISNULL(l.qty_planned, 0)) AS qty_planned,
+            SUM(ISNULL(l.qty_received, 0)) AS qty_received,
+            SUM(ISNULL(l.qty_planned, 0) - ISNULL(l.qty_received, 0)) AS variance_units
+        FROM dbo.acc_fba_inbound_shipment_line l WITH (NOLOCK)
+        WHERE l.shipment_id = ?
+        GROUP BY l.sku, l.asin
+        HAVING SUM(ISNULL(l.qty_planned, 0) - ISNULL(l.qty_received, 0)) > 0
+        ORDER BY SUM(ISNULL(l.qty_planned, 0) - ISNULL(l.qty_received, 0)) DESC, l.sku ASC
+        """,
+        (limit, shipment_id),
+    )
+    rows = _fetchall_dict(cur)
+    enriched: list[dict[str, Any]] = []
+    for row in rows:
+        product = _lookup_product_context(cur, sku=row.get("sku"), asin=row.get("asin"))
+        enriched.append(
+            {
+                **row,
+                "title_preferred": product.get("title_preferred"),
+                "brand": product.get("brand"),
+            }
+        )
+    return enriched
+
+
+def _format_variance_lines(lines: list[dict[str, Any]]) -> str:
+    parts: list[str] = []
+    for line in lines:
+        label = _truncate_text(line.get("title_preferred") or line.get("sku") or "-", 48)
+        variance_units = _to_int(line.get("variance_units"))
+        parts.append(f"{line.get('sku')}: {label} (-{variance_units})")
+    return "; ".join(parts)
+
+
+def _top_inventory_issue_skus(cur: pyodbc.Cursor, *, snapshot_date: date | None, mode: str, limit: int = 3) -> list[str]:
+    if not snapshot_date:
+        return []
+    if mode == "stranded":
+        metric_sql = "CAST(ISNULL(inv.stranded_units, 0) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))"
+        where_sql = "ISNULL(inv.stranded_units, 0) > 0"
+    else:
+        metric_sql = "CAST((ISNULL(inv.aged_90_plus, 0) + ISNULL(inv.excess_units, 0)) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))"
+        where_sql = "(ISNULL(inv.aged_90_plus, 0) + ISNULL(inv.excess_units, 0)) > 0"
+    cur.execute(
+        f"""
+        SELECT TOP ({limit})
+            inv.sku,
+            inv.asin,
+            {metric_sql} AS metric_value
+        FROM dbo.acc_fba_inventory_snapshot inv WITH (NOLOCK)
+        LEFT JOIN dbo.acc_product p WITH (NOLOCK)
+          ON p.sku = inv.sku OR (p.asin = inv.asin AND inv.asin IS NOT NULL)
+        WHERE inv.snapshot_date = ?
+          AND {where_sql}
+        ORDER BY metric_value DESC, inv.sku ASC
+        """,
+        (snapshot_date,),
+    )
+    rows = _fetchall_dict(cur)
+    labels: list[str] = []
+    for row in rows:
+        product = _lookup_product_context(cur, sku=row.get("sku"), asin=row.get("asin"))
+        title = _truncate_text(product.get("title_preferred") or row.get("sku") or "-", 42)
+        labels.append(f"{row.get('sku')}: {title}")
+    return labels
+
+
+def _ensure_fba_task(
+    cur: pyodbc.Cursor,
+    *,
+    task_type: str,
+    title: str,
+    note: str,
+    source_page: str,
+    sku: str | None = None,
+    marketplace_id: str | None = None,
+    owner: str | None = None,
+    payload: dict[str, Any] | None = None,
+) -> None:
+    cur.execute(
+        """
+        SELECT COUNT(*)
+        FROM dbo.acc_al_product_tasks WITH (NOLOCK)
+        WHERE task_type = ?
+          AND ISNULL(sku, '') = ISNULL(?, '')
+          AND ISNULL(marketplace_id, '') = ISNULL(?, '')
+          AND title = ?
+          AND status IN ('open', 'investigating')
+        """,
+        (task_type, sku, marketplace_id, title),
+    )
+    if _to_int(cur.fetchone()[0]) > 0:
+        return
+    task_sku = sku or f"__{task_type}__"
+    cur.execute(
+        """
+        INSERT INTO dbo.acc_al_product_tasks
+        (id, task_type, sku, marketplace_id, status, title, note, owner, source_page, payload_json, created_by, created_at, updated_at)
+        VALUES
+        (CAST(? AS UNIQUEIDENTIFIER), ?, ?, ?, 'open', ?, ?, ?, ?, ?, 'system', SYSUTCDATETIME(), SYSUTCDATETIME())
+        """,
+        (
+            str(uuid.uuid4()),
+            task_type,
+            task_sku,
+            marketplace_id,
+            title,
+            note,
+            owner,
+            source_page,
+            json.dumps(payload or {}, ensure_ascii=True),
+        ),
+    )
+
+
+def run_alert_scan() -> int:
+    ensure_fba_schema()
+    snapshot_date, inventory = _load_inventory_rows()
+    conn = _connect()
+    try:
+        cur = conn.cursor()
+        created = 0
+        if snapshot_date:
+            stockout_inventory = [item for item in inventory if not _is_amzn_grade_sku(item.get("sku"))]
+            top100 = sorted(stockout_inventory, key=lambda item: item.get("revenue_90d", 0), reverse=True)[:100]
+            risky = [item for item in top100 if item.get("days_cover") is not None and item["days_cover"] < 7 and item["inbound"] == 0]
+            rule_id = _ensure_alert_rule(
+                cur,
+                rule_type="fba_stockout_top_sku",
+                name="FBA Top SKU Stockout Risk",
+                description="Generated by FBA Ops alert scan",
+                severity="critical",
+            )
+            for item in risky:
+                product = _lookup_product_context(cur, sku=item["sku"], asin=item.get("asin"))
+                product_label = _truncate_text(product.get("title_preferred") or item["sku"], 70)
+                title = f"P1 Stockout Top SKU: {item['sku']} | {product_label}"
+                if _alert_exists_recent(cur, rule_id=rule_id, sku=item["sku"], marketplace_id=item["marketplace_id"], title=title):
+                    continue
+                detail_parts = [
+                    f"Produkt: {product_label}",
+                    f"Marketplace: {_marketplace_code(item['marketplace_id'])} | SKU: {item['sku']}",
+                    f"Why: days cover {item['days_cover']}, on hand {item['on_hand']}, inbound {item['inbound']}, vel.30d {item['velocity_30d']}",
+                ]
+                if product.get("brand") or product.get("category"):
+                    detail_parts.append(f"Kontekst: brand {product.get('brand') or '-'} | category {product.get('category') or '-'}")
+                detail_parts.append("Next step: sprawdz replenishment plan, lead time i czy da sie uruchomic inbound dzis.")
+                detail = "\n".join(detail_parts)
+                _insert_fba_alert(
+                    cur,
+                    rule_id=rule_id,
+                    marketplace_id=item["marketplace_id"],
+                    sku=item["sku"],
+                    title=title,
+                    detail=detail,
+                    detail_json={
+                        "product": product,
+                        "marketplace_code": _marketplace_code(item["marketplace_id"]),
+                        "metrics": {
+                            "days_cover": item["days_cover"],
+                            "on_hand": item["on_hand"],
+                            "inbound": item["inbound"],
+                            "velocity_30d": item["velocity_30d"],
+                            "revenue_90d": item.get("revenue_90d"),
+                        },
+                    },
+                    context_json={
+                        "module": "fba_ops",
+                        "entity_type": "sku",
+                        "sku": item["sku"],
+                        "marketplace_id": item["marketplace_id"],
+                        "route": "/fba/inventory",
+                        "query": {"sku_search": item["sku"], "marketplace_id": item["marketplace_id"]},
+                        "source_page": "fba_overview",
+                    },
+                    severity="critical",
+                    current_value=item["days_cover"] or 0,
+                )
+                _ensure_fba_task(
+                    cur,
+                    task_type="fba_replenishment",
+                    title=title,
+                    note=detail,
+                    source_page="fba_overview",
+                    sku=item["sku"],
+                    marketplace_id=item["marketplace_id"],
+                    owner=_resolve_fba_task_owner(cur, item["sku"], item["marketplace_id"]),
+                    payload={"days_cover": item["days_cover"], "velocity_30d": item["velocity_30d"], "snapshot_date": snapshot_date.isoformat()},
+                )
+                created += 1
+
+        cur.execute("SELECT value_json FROM dbo.acc_fba_config WITH (NOLOCK) WHERE [key] = 'defaults'")
+        defaults = _get_defaults(cur)
+        inbound_stuck_days = _to_int(defaults.get("inbound_stuck_days"), 7)
+        cur.execute(
+            """
+            SELECT shipment_id, marketplace_id, status, DATEDIFF(day, ISNULL(last_update_at, created_at), SYSUTCDATETIME()) AS days_in_status,
+                   units_planned, units_received, owner
+            FROM dbo.acc_fba_inbound_shipment WITH (NOLOCK)
+            WHERE status IN ('WORKING','SHIPPED','IN_TRANSIT','DELIVERED','CHECKED_IN','RECEIVING')
+            """
+        )
+        inbound_rule_id = _ensure_alert_rule(
+            cur,
+            rule_type="fba_inbound_stuck",
+            name="FBA Inbound Stuck",
+            description="Shipment stuck in the same status above threshold",
+            severity="warning",
+        )
+        for row in _fetchall_dict(cur):
+            days_in_status = _to_int(row.get("days_in_status"))
+            if days_in_status < inbound_stuck_days:
+                continue
+            title = f"P2 Inbound Stuck: {row['shipment_id']}"
+            if _alert_exists_recent(cur, rule_id=inbound_rule_id, sku=None, marketplace_id=row.get("marketplace_id"), title=title):
+                continue
+            top_lines = _shipment_top_variance_lines(cur, row["shipment_id"])
+            detail_parts = [
+                f"Shipment: {row['shipment_id']} | MP: {_marketplace_code(row.get('marketplace_id'))}",
+                f"Why: status {row['status']}, days in status {days_in_status}, planned {_to_int(row.get('units_planned'))}, received {_to_int(row.get('units_received'))}",
+            ]
+            if top_lines:
+                detail_parts.append(f"Najbardziej opoznione linie: {_format_variance_lines(top_lines)}")
+            detail_parts.append("Next step: sprawdz appointment / receiving block / case log i eskaluj do Amazon jesli brak ruchu.")
+            detail = "\n".join(detail_parts)
+            _insert_fba_alert(
+                cur,
+                rule_id=inbound_rule_id,
+                marketplace_id=row.get("marketplace_id"),
+                sku=None,
+                title=title,
+                detail=detail,
+                detail_json={
+                    "shipment_id": row["shipment_id"],
+                    "status": row["status"],
+                    "days_in_status": days_in_status,
+                    "units_planned": _to_int(row.get("units_planned")),
+                    "units_received": _to_int(row.get("units_received")),
+                    "top_lines": top_lines,
+                },
+                context_json={
+                    "module": "fba_ops",
+                    "entity_type": "shipment",
+                    "shipment_id": row["shipment_id"],
+                    "marketplace_id": row.get("marketplace_id"),
+                    "route": "/fba/inbound",
+                    "query": {"shipment_id": row["shipment_id"]},
+                    "source_page": "fba_inbound",
+                },
+                severity="warning",
+                current_value=days_in_status,
+            )
+            _ensure_fba_task(
+                cur,
+                task_type="fba_inbound",
+                title=title,
+                note=detail,
+                source_page="fba_inbound",
+                sku=None,
+                marketplace_id=row.get("marketplace_id"),
+                owner=row.get("owner"),
+                payload={"shipment_id": row["shipment_id"], "status": row["status"], "days_in_status": days_in_status},
+            )
+            created += 1
+
+        cur.execute(
+            """
+            SELECT shipment_id, marketplace_id, units_planned, units_received
+            FROM dbo.acc_fba_inbound_shipment WITH (NOLOCK)
+            WHERE status = 'CLOSED'
+              AND units_planned > 0
+              AND (CAST(units_received AS FLOAT) / NULLIF(CAST(units_planned AS FLOAT), 0)) < 0.95
+            """
+        )
+        variance_rule_id = _ensure_alert_rule(
+            cur,
+            rule_type="fba_receiving_variance",
+            name="FBA Receiving Variance",
+            description="Closed shipment received below 95% of plan",
+            severity="warning",
+        )
+        for row in _fetchall_dict(cur):
+            top_lines = _shipment_top_variance_lines(cur, row["shipment_id"])
+            shipment_label = row["shipment_id"]
+            if top_lines:
+                shipment_label = f"{shipment_label} | {_truncate_text(top_lines[0].get('title_preferred') or top_lines[0].get('sku'), 48)}"
+            title = f"P2 Receiving Variance: {shipment_label}"
+            if _alert_exists_recent(cur, rule_id=variance_rule_id, sku=None, marketplace_id=row.get("marketplace_id"), title=title):
+                continue
+            ratio = round(_to_int(row.get("units_received")) / max(_to_int(row.get("units_planned")), 1) * 100, 1)
+            detail_parts = [
+                f"Shipment: {row['shipment_id']} | MP: {_marketplace_code(row.get('marketplace_id'))}",
+                f"Why: received {ratio}% | planned {_to_int(row.get('units_planned'))} | received {_to_int(row.get('units_received'))}",
+            ]
+            if top_lines:
+                detail_parts.append(f"Top missing lines: {_format_variance_lines(top_lines)}")
+            detail_parts.append("Next step: porownaj line items z shipment planem i otworz case reimbursement / discrepancy jesli shipment jest domkniety.")
+            detail = "\n".join(detail_parts)
+            _insert_fba_alert(
+                cur,
+                rule_id=variance_rule_id,
+                marketplace_id=row.get("marketplace_id"),
+                sku=None,
+                title=title,
+                detail=detail,
+                detail_json={
+                    "shipment_id": row["shipment_id"],
+                    "received_pct": ratio,
+                    "units_planned": _to_int(row.get("units_planned")),
+                    "units_received": _to_int(row.get("units_received")),
+                    "top_lines": top_lines,
+                },
+                context_json={
+                    "module": "fba_ops",
+                    "entity_type": "shipment",
+                    "shipment_id": row["shipment_id"],
+                    "marketplace_id": row.get("marketplace_id"),
+                    "route": "/fba/inbound",
+                    "query": {"shipment_id": row["shipment_id"]},
+                    "source_page": "fba_inbound",
+                },
+                severity="warning",
+                current_value=ratio,
+            )
+            _ensure_fba_task(
+                cur,
+                task_type="fba_inbound_variance",
+                title=title,
+                note=detail,
+                source_page="fba_inbound",
+                marketplace_id=row.get("marketplace_id"),
+                payload={"shipment_id": row["shipment_id"], "received_pct": ratio},
+            )
+            created += 1
+
+        cur.execute(
+            """
+            WITH snapshots AS (
+                SELECT snapshot_date,
+                       SUM(CAST(ISNULL(stranded_units, 0) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS stranded_value,
+                       SUM(CAST((ISNULL(on_hand, 0) + ISNULL(inbound, 0)) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS total_value,
+                       SUM(CAST((ISNULL(aged_90_plus, 0) + ISNULL(excess_units, 0)) * ISNULL(p.netto_purchase_price_pln, 0) AS DECIMAL(18,4))) AS aging_value
+                FROM dbo.acc_fba_inventory_snapshot inv WITH (NOLOCK)
+                LEFT JOIN dbo.acc_product p WITH (NOLOCK)
+                  ON p.sku = inv.sku OR (p.asin = inv.asin AND inv.asin IS NOT NULL)
+                GROUP BY snapshot_date
+            )
+            SELECT TOP 2 snapshot_date, stranded_value, total_value, aging_value
+            FROM snapshots
+            ORDER BY snapshot_date DESC
+            """
+        )
+        snapshot_rows = _fetchall_dict(cur)
+        if snapshot_rows:
+            latest = snapshot_rows[0]
+            previous = snapshot_rows[1] if len(snapshot_rows) > 1 else None
+            latest_total_value = max(_to_float(latest.get("total_value")), 0.0)
+            latest_stranded_value = _to_float(latest.get("stranded_value"))
+            latest_aging_value = _to_float(latest.get("aging_value"))
+            latest_aging_pct = round(latest_aging_value / latest_total_value * 100, 2) if latest_total_value > 0 else 0.0
+            prev_total_value = max(_to_float(previous.get("total_value")) if previous else 0.0, 0.0)
+            prev_stranded_value = _to_float(previous.get("stranded_value")) if previous else 0.0
+            prev_aging_value = _to_float(previous.get("aging_value")) if previous else 0.0
+            prev_aging_pct = round(prev_aging_value / prev_total_value * 100, 2) if prev_total_value > 0 else 0.0
+
+            stranded_rule_id = _ensure_alert_rule(
+                cur,
+                rule_type="fba_stranded_spike",
+                name="FBA Stranded Spike",
+                description="Stranded value threshold or week-over-week spike exceeded",
+                severity="critical",
+            )
+            stranded_threshold = 10000.0
+            stranded_wow = ((latest_stranded_value - prev_stranded_value) / prev_stranded_value * 100) if prev_stranded_value > 0 else 0.0
+            if latest_stranded_value > stranded_threshold or stranded_wow >= 30.0:
+                title = "P1 Stranded Value Spike"
+                if not _alert_exists_recent(cur, rule_id=stranded_rule_id, sku=None, marketplace_id=None, title=title):
+                    top_stranded = _top_inventory_issue_skus(cur, snapshot_date=latest.get("snapshot_date"), mode="stranded")
+                    detail_parts = [
+                        f"Snapshot: {latest.get('snapshot_date')}",
+                        f"Why: stranded value {round(latest_stranded_value, 2)} PLN | WoW {round(stranded_wow, 1)}%",
+                    ]
+                    if top_stranded:
+                        detail_parts.append(f"Top SKU: {'; '.join(top_stranded)}")
+                    detail_parts.append("Next step: sprawdz reason codes, listing/compliance issues i zdecyduj fix vs removal.")
+                    detail = "\n".join(detail_parts)
+                    _insert_fba_alert(
+                        cur,
+                        rule_id=stranded_rule_id,
+                        marketplace_id=None,
+                        sku=None,
+                        title=title,
+                        detail=detail,
+                        detail_json={
+                            "snapshot_date": str(latest.get("snapshot_date")),
+                            "stranded_value": round(latest_stranded_value, 2),
+                            "wow_change_pct": round(stranded_wow, 1),
+                            "top_skus": top_stranded,
+                        },
+                        context_json={
+                            "module": "fba_ops",
+                            "entity_type": "snapshot",
+                            "route": "/fba/aged-stranded",
+                            "source_page": "fba_aged_stranded",
+                            "query": {"tab": "stranded"},
+                        },
+                        severity="critical",
+                        current_value=latest_stranded_value,
+                    )
+                    _ensure_fba_task(cur, task_type="fba_stranded", title=title, note=detail, source_page="fba_aged_stranded", payload={"snapshot_date": str(latest.get("snapshot_date")), "stranded_value": latest_stranded_value, "wow_change_pct": round(stranded_wow, 1)})
+                    created += 1
+
+            aging_rule_id = _ensure_alert_rule(
+                cur,
+                rule_type="fba_aging_spike",
+                name="FBA Aging Spike",
+                description="Aging/excess share threshold or month-over-month spike exceeded",
+                severity="warning",
+            )
+            if latest_aging_pct > 25.0 or (latest_aging_pct - prev_aging_pct) >= 5.0:
+                title = "P2 Aged Spike"
+                if not _alert_exists_recent(cur, rule_id=aging_rule_id, sku=None, marketplace_id=None, title=title):
+                    top_aged = _top_inventory_issue_skus(cur, snapshot_date=latest.get("snapshot_date"), mode="aging")
+                    detail_parts = [
+                        f"Snapshot: {latest.get('snapshot_date')}",
+                        f"Why: aging/excess {latest_aging_pct}% | previous {prev_aging_pct}%",
+                    ]
+                    if top_aged:
+                        detail_parts.append(f"Top SKU: {'; '.join(top_aged)}")
+                    detail_parts.append("Next step: sprawdz promo / bundle / removal dla najdrozszych pozycji 90+ dni.")
+                    detail = "\n".join(detail_parts)
+                    _insert_fba_alert(
+                        cur,
+                        rule_id=aging_rule_id,
+                        marketplace_id=None,
+                        sku=None,
+                        title=title,
+                        detail=detail,
+                        detail_json={
+                            "snapshot_date": str(latest.get("snapshot_date")),
+                            "aging_excess_pct": latest_aging_pct,
+                            "prev_pct": prev_aging_pct,
+                            "top_skus": top_aged,
+                        },
+                        context_json={
+                            "module": "fba_ops",
+                            "entity_type": "snapshot",
+                            "route": "/fba/aged-stranded",
+                            "source_page": "fba_aged_stranded",
+                            "query": {"tab": "aged"},
+                        },
+                        severity="warning",
+                        current_value=latest_aging_pct,
+                    )
+                    _ensure_fba_task(cur, task_type="fba_aging", title=title, note=detail, source_page="fba_aged_stranded", payload={"snapshot_date": str(latest.get("snapshot_date")), "aging_excess_pct": latest_aging_pct, "prev_pct": prev_aging_pct})
+                    created += 1
+        conn.commit()
+        return created
+    finally:
+        conn.close()

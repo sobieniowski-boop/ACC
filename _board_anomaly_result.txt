@@ -1,0 +1,98 @@
+﻿2026-03-10 22:42:17 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== ORDER LINE FEE BREAKDOWN (Jan-Mar 2026, Shipped) ===
+  2026-01: lines=44,921 | fba_fee=     291,941 | referral_fee=   1,051,116 | total_fees=   1,343,057
+  2026-02: lines=51,872 | fba_fee=     423,681 | referral_fee=   1,084,097 | total_fees=   1,507,778
+  2026-03: lines=24,224 | fba_fee=     142,405 | referral_fee=     495,403 | total_fees=     637,808
+
+=== LOGISTICS PER ORDER AVERAGE ===
+  2026-01: matched=29,715/42,877 | logi_actual=   953,701 | avg/order=  32.1 | est_full= 1,376,135
+  2026-02: matched=14,298/48,896 | logi_actual=   385,011 | avg/order=  26.9 | est_full= 1,316,652
+  2026-03: matched=     0/22,631 | logi_actual=         0 | avg/order=   0.0 | est_full=         0
+
+=== FBA vs MFN ORDERS ===
+  2026-01: total=42,877 | FBA=12,377 (28%) | MFN=30,500 (71%)
+  2026-02: total=48,896 | FBA=18,713 (38%) | MFN=30,183 (61%)
+  2026-03: total=22,631 | FBA= 6,869 (30%) | MFN=15,762 (69%)
+
+=== MARKETPLACE REVENUE DISTRIBUTION ===
+  2026-01 | mkt=A13V1IB3VIYZZH | rev=   771,408 | cm1=   158,952 (20.6%) | cm2=   158,952 | ads=       0
+  2026-01 | mkt=A1805IZSGTT6HS | rev=   104,811 | cm1=    20,437 (19.5%) | cm2=    20,437 | ads=       0
+  2026-01 | mkt=A1C3SOZRARQ6R3 | rev=    28,005 | cm1=     6,096 (21.8%) | cm2=     6,096 | ads=       0
+  2026-01 | mkt=A1PA6795UKMFR9 | rev= 2,947,657 | cm1=   730,313 (24.8%) | cm2=   554,643 | ads= 175,670
+  2026-01 | mkt=A1RKKUPIHCS9HS | rev=   155,950 | cm1=    15,439 (9.9%) | cm2=    15,439 | ads=       0
+  2026-01 | mkt=A28R8C7NBKEWEA | rev=    15,298 | cm1=       728 (4.8%) | cm2=       728 | ads=       0
+  2026-01 | mkt=A2NODRKZP88ZB9 | rev=    47,912 | cm1=     3,599 (7.5%) | cm2=     3,339 | ads=     260
+  2026-01 | mkt=AMEN7PMS3EDWL | rev=   114,167 | cm1=    19,267 (16.9%) | cm2=    19,267 | ads=       0
+  2026-01 | mkt=APJ6JRA9NG5V4 | rev=   607,787 | cm1=   104,664 (17.2%) | cm2=    96,574 | ads=   8,090
+  2026-02 | mkt=A13V1IB3VIYZZH | rev=   995,512 | cm1=   390,387 (39.2%) | cm2=   390,387 | ads=       0
+  2026-02 | mkt=A1805IZSGTT6HS | rev=    97,554 | cm1=    30,964 (31.7%) | cm2=    30,964 | ads=       0
+  2026-02 | mkt=A1C3SOZRARQ6R3 | rev=    26,232 | cm1=     9,560 (36.4%) | cm2=     9,560 | ads=       0
+  2026-02 | mkt=A1PA6795UKMFR9 | rev= 3,268,352 | cm1= 1,135,897 (34.8%) | cm2=   861,535 | ads= 274,362
+  2026-02 | mkt=A1RKKUPIHCS9HS | rev=   167,297 | cm1=    49,686 (29.7%) | cm2=    49,686 | ads=       0
+  2026-02 | mkt=A28R8C7NBKEWEA | rev=    18,648 | cm1=     6,156 (33.0%) | cm2=     6,156 | ads=       0
+  2026-02 | mkt=A2NODRKZP88ZB9 | rev=    47,057 | cm1=    15,084 (32.1%) | cm2=    15,025 | ads=      60
+  2026-02 | mkt=AMEN7PMS3EDWL | rev=   130,319 | cm1=    54,022 (41.5%) | cm2=    54,022 | ads=       0
+  2026-02 | mkt=APJ6JRA9NG5V4 | rev=   641,124 | cm1=   195,078 (30.4%) | cm2=   183,500 | ads=  11,578
+  2026-03 | mkt=A13V1IB3VIYZZH | rev=   412,082 | cm1=   192,798 (46.8%) | cm2=   185,310 | ads=   3,277
+  2026-03 | mkt=A1805IZSGTT6HS | rev=    50,348 | cm1=    33,588 (66.7%) | cm2=    33,544 | ads=      44
+  2026-03 | mkt=A1C3SOZRARQ6R3 | rev=    16,110 | cm1=     7,781 (48.3%) | cm2=     7,771 | ads=       7
+  2026-03 | mkt=A1PA6795UKMFR9 | rev= 1,733,656 | cm1=   813,518 (46.9%) | cm2=   638,841 | ads= 113,884
+  2026-03 | mkt=A1RKKUPIHCS9HS | rev=    62,228 | cm1=    25,729 (41.3%) | cm2=    22,780 | ads=       3
+  2026-03 | mkt=A28R8C7NBKEWEA | rev=     8,473 | cm1=     4,286 (50.6%) | cm2=     4,286 | ads=       0
+  2026-03 | mkt=A2NODRKZP88ZB9 | rev=    20,631 | cm1=    14,097 (68.3%) | cm2=    14,069 | ads=      21
+  2026-03 | mkt=AMEN7PMS3EDWL | rev=    77,895 | cm1=    51,232 (65.8%) | cm2=    51,184 | ads=      47
+  2026-03 | mkt=APJ6JRA9NG5V4 | rev=   290,314 | cm1=   123,205 (42.4%) | cm2=   115,145 | ads=   3,962
+
+=== ACC_ORDER fee-related columns ===
+  revenue_pln
+  vat_pln
+  cogs_pln
+  amazon_fees_pln
+  ads_cost_pln
+  logistics_pln
+  contribution_margin_pln
+  refund_amount_pln
+  shipping_surcharge_pln
+  promo_order_fee_pln
+  refund_commission_pln
+
+=== ACC_ORDER fee totals per month ===
+python : Traceback (most recent call last):
+At line:1 char:1
++ python c:\ACC\_board_anomaly.py 2>&1 | Out-File -Encoding utf8 c:\ACC ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execu
+te
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection
+.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_an
+d_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLData
+baseException
+pymssql._mssql.MSSQLDatabaseException: (207, b"Invalid column name 'logistics_c
+ost_pln'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Ch
+eck messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\ACC\_board_anomaly.py", line 103, in <module>
+    for r in q("""
+             ^^^^^
+  File "c:\ACC\_board_anomaly.py", line 13, in q
+    cur.execute(sql)
+  File "c:\ACC\apps\api\app\core\pymssql_compat.py", line 91, in execute
+    self._cursor.execute(converted.replace("%%", "%"))
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execu
+te
+pymssql.exceptions.ProgrammingError: (207, b"Invalid column name 'logistics_cos
+t_pln'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Chec
+k messages from the SQL Server\n")

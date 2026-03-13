@@ -1,0 +1,53 @@
+﻿PASS | ProfitOverview: KPI returned
+PASS | ProfitOverview: ad_spend_share_pct exists Ś value=5.3
+PASS | ProfitOverview: best_skus array Ś count=20
+PASS | ProfitOverview: worst_skus array Ś count=20
+PASS | ProfitOverview: loss_orders array Ś count=50
+PASS | ExecMarketplaces: data returned Ś count=9
+PASS | ExecMarketplaces: no ad_spend_pln phantom Ś keys=['marketplace_id', 'marketplace_code', 'revenue_pln', 'profit_pln', 'margin_pct', 'orders', 'units', 'sessions']
+PASS | ExecMarketplaces: no active_skus phantom
+PASS | ProductDrilldown: empty for test SKU (expected) Ś no items for TEST sku
+PASS | StrategyOverview: kpi present
+PASS | StrategyOverview: by_type present
+PASS | StrategyOpportunities: items array Ś count=5
+PASS | StrategyOpportunities: pages field Ś pages=1693
+PASS | StrategyOpportunities: total field Ś total=8465
+PASS | StrategyOpp: source_signals_json field
+PASS | StrategyOpp: blocker_json field
+PASS | StrategyOpp: no 'source_signals' phantom
+PASS | StrategyPlaybooks: playbooks array Ś count=7
+PASS | StrategyPlaybooks: steps present
+PASS | StrategyPlaybooks: step has owner_role
+PASS | StrategyBundles: bundles array Ś count=0
+PASS | StrategyBundles: variant_gaps array Ś count=0
+PASS | MarketExpansion: items array Ś count=2744
+PASS | MarketExpansion: confidence field (not confidence_score)
+PASS | MarketExpansion: no 'id' field
+PASS | MarketExpansion: missing_components is list
+PASS | StrategyExperiments: items array Ś count=0
+PASS | SeasonalityOpps: items array Ś count=5
+PASS | SeasonalityOpps: page_size in response Ś page_size=5
+PASS | SeasonalityOpps: marketplace field (not marketplace_id)
+PASS | api.ts: exactly 1 LossOrderItem interface Ś found 1
+PASS | api.ts: exactly 1 ProfitabilityLossOrderItem interface Ś found 1
+
+============================================================
+TOTAL: 32 passed, 3 failed out of 35 checks
+
+Failed checks:
+.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:1 char:1
++ .venv\Scripts\python.exe _smoke_test.py 2>&1 | Out-File -FilePath c:\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\ACC\_smoke_test.py", line 198, in <module>
+    print(f"  \u2717 {r}")
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\enco
+dings\cp1250.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2717' in position
+ 2: character maps to <undefined>

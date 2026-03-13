@@ -1,0 +1,73 @@
+﻿2026-03-09 16:05:03 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== G01 DEEP DIVE: Revenue stamps ===
+  NULL revenue: 451
+  Zero revenue: 123
+  Positive revenue: 110741
+  Total: 111315
+
+=== G11 DEEP DIVE: Stored CM vs Inline CM ===
+  NULL CM: 415
+  CM exists but no revenue: 36
+  CM consistent with inline (tol 5 PLN): 69018
+  CM divergent from inline (> 5 PLN): 41846
+  Total: 111315
+
+=== Divergent orders: is CM from V1 GROSS or just stale? ===
+  order_id | mkt | rev | cogs | fees | logistics | stored_cm | inline_cm | delta
+  408-6416267-4578720 | A1805IZSGTT6HS | rev=3800.36 | cogs=1718.92 | fees=745.21 | log=None | cm=537.80 | inline=1336.23 | d=-798.43
+  405-6471143-9835519 | APJ6JRA9NG5V4 | rev=2629.72 | cogs=1385.58 | fees=591.94 | log=None | cm=73.51 | inline=652.20 | d=-578.69
+  304-8769325-5140320 | A1PA6795UKMFR9 | rev=3005.83 | cogs=1072.75 | fees=658.17 | log=26.06 | cm=678.02 | inline=1248.85 | d=-570.83
+.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:1 char:1
++ .venv\Scripts\python.exe _audit_g11_deep.py 2>&1 | Out-File -Encoding ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  405-0558366-0976367 | A1805IZSGTT6HS | rev=2647.04 | cogs=1055.83 | fees=510.70 | log=None | cm=524.97 | inline=1080.51 | d=-555.54
+  403-8582440-2968345 | APJ6JRA9NG5V4 | rev=2358.11 | cogs=720.72 | fees=530.87 | log=None | cm=587.72 | inline=1106.52 | d=-518.80
+  406-3915096-2473911 | A1RKKUPIHCS9HS | rev=2434.89 | cogs=1810.00 | fees=544.14 | log=None | cm=-430.31 | inline=80.75 | d=-511.06
+  171-8876160-3051569 | A13V1IB3VIYZZH | rev=2374.57 | cogs=967.82 | fees=456.01 | log=62.99 | cm=412.79 | inline=887.75 | d=-474.96
+  408-2960619-5872344 | APJ6JRA9NG5V4 | rev=2047.10 | cogs=1070.16 | fees=459.15 | log=None | cm=67.31 | inline=517.79 | d=-450.48
+  408-2108157-6196365 | A13V1IB3VIYZZH | rev=2242.14 | cogs=1105.00 | fees=430.32 | log=56.43 | cm=201.89 | inline=650.39 | d=-448.50
+  406-1634959-2713911 | AMEN7PMS3EDWL | rev=2090.70 | cogs=1042.00 | fees=465.32 | log=None | cm=144.25 | inline=583.38 | d=-439.13
+
+=== V1 GROSS revenue pattern check ===
+  303-8870996-6880311 | EUR | order_total=15.95 | fx=4.2127 | gross=67.19 | netto=56.45 | cm=6.02
+  304-7331126-7198713 | EUR | order_total=42.95 | fx=4.2116 | gross=180.89 | netto=150.41 | cm=14.12
+  404-1154089-0598700 | EUR | order_total=27.61 | fx=4.211 | gross=116.27 | netto=96.91 | cm=-10.94
+  302-2543817-3467567 | EUR | order_total=26.95 | fx=4.2192 | gross=113.71 | netto=95.56 | cm=36.0
+  302-5100649-3812313 | EUR | order_total=26.95 | fx=4.2097 | gross=113.45 | netto=95.42 | cm=33.39
+
+=== Revenue=0 but CM<>0 pattern ===
+  Orders with revenue=0/NULL but CM<>0: 62
+  Orders with revenue_pln IS NULL: 451
+
+=== Last V2 recalc timestamp ===
+  File "src/pymssql/_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src/pymssql/_mssql.pyx", line 1145, in pymssql._mssql.MSSQLConnection.e
+xecute_query
+  File "src/pymssql/_mssql.pyx", line 1176, in pymssql._mssql.MSSQLConnection.e
+xecute_query
+  File "src/pymssql/_mssql.pyx", line 1309, in pymssql._mssql.MSSQLConnection.f
+ormat_and_run_query
+  File "src/pymssql/_mssql.pyx", line 1886, in pymssql._mssql.check_cancel_and_
+raise
+  File "src/pymssql/_mssql.pyx", line 1932, in pymssql._mssql.raise_MSSQLDataba
+seException
+pymssql._mssql.MSSQLDatabaseException: (207, b"Invalid column name 'updated_at'
+.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check mess
+ages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ACC\_audit_g11_deep.py", line 157, in <module>
+    cur.execute("""
+  File "C:\ACC\apps\api\app\core\pymssql_compat.py", line 91, in execute
+    self._cursor.execute(converted.replace("%%", "%"))
+  File "src/pymssql/_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.ProgrammingError: (207, b"Invalid column name 'updated_at'.D
+B-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messag
+es from the SQL Server\n")

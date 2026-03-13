@@ -1,0 +1,64 @@
+﻿........................................................................ [  8%]
+........................................................................ [ 16%]
+...........F.2026-03-11 22:56:46 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:56:47 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 22:57:09 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 22:57:19 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:34 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 22:57:43 [info     ] report.ready                   elapsed=30.0 report_id=4050491020523
+...2026-03-11 22:57:53 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:53 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:54 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 22:57:55 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:56 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:57 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-11 22:57:58 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 22:57:59 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..........................2026-03-11 22:58:11 [info     ] ai_matcher.calling_gpt         candidate_total=192 model=gpt-5.2 ref_count=8355 unmapped_count=8
+........... [ 25%]
+.....................F.................................................. [ 33%]
+........................................................................ [ 42%]
+........................................................................ [ 50%]
+........................................................................ [ 59%]
+........................................................................ [ 67%]
+........................................................................ [ 76%]
+............................FF.......................................... [ 84%]
+........................................................................ [ 93%]
+....................................................2026-03-11 22:58:36 [error    ] return_tracker.backfill_chunk_error chunk=3 error=Client error '403 ' for url 'https://sellingpartnerapi-eu.amazon.com/reports/2021-06-30/reports'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403 mkt=DE
+2026-03-11 22:58:36 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.......              [100%]
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_event_backbone_unit.py::TestIsCircuitOpen::test_naive_datetime_treated_as_utc
+  C:\ACC\apps\api\tests\test_event_backbone_unit.py:98: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    future_naive = datetime.utcnow() + timedelta(minutes=10)
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+tests/test_profit_integration.py::TestIT02_RecomputeRollups::test_result_shape
+tests/test_profit_integration.py::TestIT02_RecomputeRollups::test_sku_merge_includes_cm1_cm2
+tests/test_profit_integration.py::TestIT06_WaterfallIntegrity::test_sku_rollup_sql_computes_cm1_before_cm2
+  C:\ACC\apps\api\app\intelligence\profit\rollup.py:1597: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_ads_sync_enqueues
+FAILED tests/test_catalog_health.py::TestScoreFieldsJson::test_none_input - A...
+FAILED tests/test_p2_financial_fixes.py::TestSF06SchedulerDependencyChain::test_rollup_calls_ads_sync_before_rollup
+FAILED tests/test_p2_financial_fixes.py::TestSF06SchedulerDependencyChain::test_rollup_skipped_on_ads_sync_failure
+4 failed, 847 passed, 36 warnings in 233.14s (0:03:53)
+2026-03-11 22:58:43 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 22:58:44 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 22:58:45 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 22:58:45 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net

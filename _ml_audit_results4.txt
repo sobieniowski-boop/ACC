@@ -1,0 +1,8 @@
+PK columns: ['amazon_order_id', 'calc_version']
+IX_acc_order_logistics_fact_order columns: ['acc_order_id', 'calculated_at']
+Columns: ['amazon_order_id', 'acc_order_id', 'shipments_count', 'delivered_shipments_count', 'total_logistics_pln', 'last_delivery_at', 'calc_version', 'source_system', 'calculated_at', 'actual_shipments_count', 'estimated_shipments_count']
+  {'amazon_order_id': '028-0400778-4486722', 'acc_order_id': UUID('2f6bc7da-bfbe-493b-9e41-bb1d499970f0'), 'shipments_count': 1, 'delivered_shipments_count': 1, 'total_logistics_pln': Decimal('51.0400'), 'last_delivery_at': datetime.datetime(2025, 12, 29, 0, 0), 'calc_version': 'dhl_v1', 'source_system': 'shipment_aggregate', 'calculated_at': datetime.datetime(2026, 3, 9, 11, 59, 39, 674613), 'actual_shipments_count': 1, 'estimated_shipments_count': 0}
+  {'amazon_order_id': '028-0400778-4486722', 'acc_order_id': UUID('2f6bc7da-bfbe-493b-9e41-bb1d499970f0'), 'shipments_count': 1, 'delivered_shipments_count': 2, 'total_logistics_pln': Decimal('73.5130'), 'last_delivery_at': datetime.datetime(2026, 1, 12, 0, 0), 'calc_version': 'gls_v1', 'source_system': 'shipment_aggregate_gls', 'calculated_at': datetime.datetime(2026, 3, 9, 12, 19, 49, 898509), 'actual_shipments_count': 2, 'estimated_shipments_count': 0}
+Impact of logistics dups: 48 orders, rev_raw=2287.24, cogs=3376.7200, total_lines=57
+These orders have ALL line values doubled due to row multiplication
+Multi-line + logistics-dup overlap: 6 orders

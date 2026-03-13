@@ -1,0 +1,68 @@
+﻿2026-03-10 22:36:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== ACC_ORDER_LINE columns ===
+  ['id', 'order_id', 'product_id', 'amazon_order_item_id', 'sku', 'asin', 'title', 'quantity_ordered', 'quantity_shipped', 'item_price', 'item_tax', 'promotion_discount', 'currency', 'cogs_pln', 'fba_fee_pln', 'referral_fee_pln', 'purchase_price_pln', 'price_source']
+
+  Revenue candidates: ['item_price']
+
+=== ADS SPEND (Jan-Mar 2026) ===
+  2026-01: 53,398 rows |  29 days | spend_pln=  324,867.63
+  2026-02: 50,685 rows |  28 days | spend_pln=  511,498.09
+  2026-03: 15,439 rows |   9 days | spend_pln=  251,431.47
+
+=== LOGISTICS (Jan-Mar 2026) ===
+  2026-01: 29,749 orders | logistics_pln=  953,701.12
+  2026-02: 14,298 orders | logistics_pln=  385,010.77
+
+=== FINANCE TRANSACTIONS by type (Feb 2026) ===
+                    ShipmentEventList: 52,694 txns | 1,279,593.97 PLN
+                      RefundEventList:  3,900 txns |   -72,492.57 PLN
+                  AdjustmentEventList:    408 txns |    62,010.58 PLN
+
+=== FINANCE TRANSACTIONS by type (Mar 1-10 2026) ===
+                    ShipmentEventList: 98,171 txns | 2,439,769.13 PLN
+                  ServiceFeeEventList:  1,136 txns |  -123,539.29 PLN
+                      RefundEventList:  6,154 txns |  -116,634.36 PLN
+                  AdjustmentEventList:    653 txns |    -6,413.03 PLN
+
+=== DIRECT ORDER LINE P&L (using actual columns) ===
+  Columns: ['id', 'order_id', 'product_id', 'amazon_order_item_id', 'sku', 'asin', 'title', 'quantity_ordered', 'quantity_shipped', 'item_price', 'item_tax', 'promotion_discount', 'currency', 'cogs_pln', 'fba_fee_pln', 'referral_fee_pln', 'purchase_price_pln', 'price_source']
+  Jan item_price:   1,504,211.62
+python : Traceback (most recent call last):
+At line:1 char:1
++ python c:\ACC\_board_final.py 2>&1 | Out-File -Encoding utf8 c:\ACC\_ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execu
+te
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection
+.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_an
+d_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLData
+baseException
+pymssql._mssql.MSSQLDatabaseException: (209, b"Ambiguous column name 'cogs_pln'
+.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check mess
+ages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\ACC\_board_final.py", line 90, in <module>
+    val = q(f"""
+          ^^^^^^
+  File "c:\ACC\_board_final.py", line 13, in q
+    cur.execute(sql)
+  File "c:\ACC\apps\api\app\core\pymssql_compat.py", line 91, in execute
+    self._cursor.execute(converted.replace("%%", "%"))
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execu
+te
+pymssql.exceptions.OperationalError: (209, b"Ambiguous column name 'cogs_pln'.D
+B-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messag
+es from the SQL Server\n")

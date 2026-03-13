@@ -1,0 +1,18 @@
+============================================================
+[1] Reading Stant GRN for ASIN→SKU mapping...
+  GRN ASIN→SKU entries: 90
+2026-03-02 18:17:30 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+  Products without internal_sku and no price: 3982
+
+[2] Matching via GRN ASIN→SKU...
+  Matched via GRN: 0
+
+[3] ERP Holding lookup via internal_sku...
+  Products with internal_sku but no price: 285
+2026-03-02 18:17:30 [debug    ] db.connect_netfox              database=default
+  ERP Holding unique articles w/ price: 9072
+Traceback (most recent call last):
+  File "C:\ACC\tmp_fill_prices.py", line 117, in <module>
+    for r in erp_cur.fetchall():
+             ^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

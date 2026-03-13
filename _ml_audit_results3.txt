@@ -1,0 +1,24 @@
+PROFIT_USE_LOGISTICS_FACT: True
+acc_order_logistics_fact schema:
+  amazon_order_id: nvarchar
+  acc_order_id: uniqueidentifier
+  shipments_count: int
+  delivered_shipments_count: int
+  total_logistics_pln: decimal
+  last_delivery_at: datetime2
+  calc_version: nvarchar
+  source_system: nvarchar
+  calculated_at: datetime2
+  actual_shipments_count: int
+  estimated_shipments_count: int
+Indexes:
+  PK_acc_order_logistics_fact: unique=True, pk=True
+  IX_acc_order_logistics_fact_order: unique=False, pk=False
+Rollup rows with logistics>0: 0
+Duplicate logistics fact samples:
+  order=028-0400778-4486722, logistics_pln=51.0400
+  order=028-0400778-4486722, logistics_pln=73.5130
+  order=028-0714541-0484353, logistics_pln=56.0400
+  order=028-0714541-0484353, logistics_pln=35.6410
+  order=028-1062459-1280315, logistics_pln=67.3000
+V1 vs V2 revenue delta (multi-line only): total=138985.33 PLN, avg=22.02 PLN, orders=6313

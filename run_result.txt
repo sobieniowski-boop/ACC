@@ -1,0 +1,7 @@
+STDOUT:
+2026-03-05 02:03:04 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+Written to tmp_fees_out.txt
+
+STDERR:
+
+RC:0

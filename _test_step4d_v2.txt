@@ -1,0 +1,60 @@
+﻿........................................................................ [ 10%]
+......................................................................2026-03-11 06:53:10 [info     ] sync_listings.parsed           marketplace=DE raw_rows=21288 valid_listings=21288
+2026-03-11 06:53:10 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 06:53:15 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.. [ 20%]
+..2026-03-11 06:53:41 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 06:54:01 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 06:54:01 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 06:54:17 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 06:54:18 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 06:54:18 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 06:54:18 [info     ] ads_sync.campaigns             campaigns=395 country=FR
+.2026-03-11 06:54:19 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 06:54:19 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 06:54:20 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 06:54:21 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 06:54:22 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 06:54:23 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 06:54:24 [info     ] ads_api.sb_campaigns.fetched   count=0 profile_id=4414157435569296
+.2026-03-11 06:54:24 [info     ] ads_api.sp_campaigns.fetched   count=42 profile_id=4414157435569296
+2026-03-11 06:54:24 [info     ] ads_api.sd_campaigns.fetched   count=0 profile_id=4414157435569296
+2026-03-11 06:54:24 [info     ] ads_api.campaigns.total        count=42 profile_id=4414157435569296
+2026-03-11 06:54:24 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.....2026-03-11 06:54:27 [info     ] ads_sync.campaigns             campaigns=42 country=NL
+..........2026-03-11 06:54:32 [info     ] ads_api.sd_campaigns.fetched   count=0 profile_id=1915712109695298
+2026-03-11 06:54:32 [info     ] ads_api.sp_campaigns.fetched   count=6 profile_id=1915712109695298
+2026-03-11 06:54:32 [info     ] ads_api.sb_campaigns.fetched   count=0 profile_id=1915712109695298
+2026-03-11 06:54:32 [info     ] ads_api.campaigns.total        count=6 profile_id=1915712109695298
+2026-03-11 06:54:32 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..................................... [ 30%]
+........................................................................ [ 40%]
+........................................................................ [ 50%]
+........................................................................ [ 60%]
+........................................................................ [ 70%]
+........................................................................ [ 80%]
+........................................................................ [ 90%]
+..................................................................       [100%]
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_circuit_breaker.py::TestContentOpsIntegration::test_process_queued_short_circuits_when_open
+  C:\ACC\apps\api\app\services\content_ops.py:2300: RuntimeWarning: coroutine '_async_return' was never awaited
+    if _run_async(is_circuit_open()):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+  C:\ACC\apps\api\app\services\profitability_service.py:1593: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+714 passed, 33 warnings in 336.37s (0:05:36)

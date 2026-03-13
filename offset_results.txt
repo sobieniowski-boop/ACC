@@ -1,0 +1,2 @@
+﻿xlsx prices: 7605 SKUs
+2026-03-03 11:06:17 [debug    ] db.connect_netfox              database=default

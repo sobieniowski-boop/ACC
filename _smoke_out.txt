@@ -1,0 +1,40 @@
+TOTAL: 30 passed, 3 failed out of 33 checks
+
+PASS | ProfitOverview: KPI returned
+PASS | ProfitOverview: ad_spend_share_pct exists — val=5.3
+PASS | ProfitOverview: best_skus array — cnt=20
+PASS | ProfitOverview: worst_skus array — cnt=20
+PASS | ProfitOverview: loss_orders array — cnt=50
+FAIL ExecProducts: HTTP 422 — {"detail":[{"type":"missing","loc":["query","from"],"msg":"Field required","input":null},{"type":"missing","loc":["query","to"],"msg":"Field required","input":null}]}
+FAIL ProfitabilityProducts: HTTP 422 — {"detail":[{"type":"missing","loc":["query","from"],"msg":"Field required","input":null},{"type":"missing","loc":["query","to"],"msg":"Field required","input":null}]}
+FAIL ProfitabilityOrders: HTTP 422 — {"detail":[{"type":"missing","loc":["query","from"],"msg":"Field required","input":null},{"type":"missing","loc":["query","to"],"msg":"Field required","input":null}]}
+PASS | ExecMarketplaces: data returned — cnt=9
+PASS | ExecMarketplaces: no ad_spend_pln phantom
+PASS | ExecMarketplaces: no active_skus phantom
+PASS | Drilldown: empty for TEST sku (expected)
+PASS | StrategyOverview: kpi
+PASS | StrategyOverview: by_type
+PASS | StrategyOpps: items — cnt=5
+PASS | StrategyOpps: pages — pages=1693
+PASS | StrategyOpps: total — total=8465
+PASS | StrategyOpp: source_signals_json
+PASS | StrategyOpp: blocker_json
+PASS | Playbooks: array — cnt=7
+PASS | Playbooks: steps
+PASS | Playbooks: step.owner_role
+PASS | Bundles: array — cnt=0
+PASS | Bundles: variant_gaps — cnt=0
+PASS | MarketExpansion: items — cnt=2744
+PASS | MarketExpansion: confidence
+PASS | MarketExpansion: missing_components is list
+PASS | Experiments: items — cnt=0
+PASS | SeasonalityOpps: items — cnt=5
+PASS | SeasonalityOpps: page_size in response — val=5
+PASS | SeasonalityOpps: marketplace field
+PASS | api.ts: 1x LossOrderItem — found 1
+PASS | api.ts: 1x ProfitabilityLossOrderItem — found 1
+
+--- FAILED ---
+  X FAIL ExecProducts: HTTP 422 — {"detail":[{"type":"missing","loc":["query","from"],"msg":"Field required","input":null},{"type":"missing","loc":["query","to"],"msg":"Field required","input":null}]}
+  X FAIL ProfitabilityProducts: HTTP 422 — {"detail":[{"type":"missing","loc":["query","from"],"msg":"Field required","input":null},{"type":"missing","loc":["query","to"],"msg":"Field required","input":null}]}
+  X FAIL ProfitabilityOrders: HTTP 422 — {"detail":[{"type":"missing","loc":["query","from"],"msg":"Field required","input":null},{"type":"missing","loc":["query","to"],"msg":"Field required","input":null}]}

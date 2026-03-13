@@ -1,0 +1,53 @@
+........................................................................ [  8%]
+........................................................................ [ 16%]
+...........F.2026-03-11 23:47:57 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 23:47:58 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 23:48:14 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 23:48:28 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 23:48:30 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 23:48:35 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 23:48:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 23:48:58 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 23:48:59 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 23:49:00 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 23:49:01 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 23:49:01 [info     ] ai_matcher.calling_gpt         candidate_total=192 model=gpt-5.2 ref_count=8355 unmapped_count=8
+........................................... [ 25%]
+........................................................................ [ 33%]
+........................................................................ [ 41%]
+........................................................................ [ 50%]
+........................................................................ [ 58%]
+........................................................................ [ 66%]
+........................................................................ [ 75%]
+......................................FF................................ [ 83%]
+........................................................................ [ 91%]
+...........................................................2026-03-11 23:49:17 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..........    [100%]
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_event_backbone_unit.py::TestIsCircuitOpen::test_naive_datetime_treated_as_utc
+  C:\ACC\apps\api\tests\test_event_backbone_unit.py:98: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    future_naive = datetime.utcnow() + timedelta(minutes=10)
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+tests/test_profit_integration.py::TestIT02_RecomputeRollups::test_result_shape
+tests/test_profit_integration.py::TestIT02_RecomputeRollups::test_sku_merge_includes_cm1_cm2
+tests/test_profit_integration.py::TestIT06_WaterfallIntegrity::test_sku_rollup_sql_computes_cm1_before_cm2
+  C:\ACC\apps\api\app\intelligence\profit\rollup.py:1597: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_ads_sync_enqueues
+FAILED tests/test_p2_financial_fixes.py::TestSF06SchedulerDependencyChain::test_rollup_calls_ads_sync_before_rollup
+FAILED tests/test_p2_financial_fixes.py::TestSF06SchedulerDependencyChain::test_rollup_skipped_on_ads_sync_failure
+3 failed, 858 passed, 36 warnings in 179.59s (0:02:59)

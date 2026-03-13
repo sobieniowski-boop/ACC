@@ -1,0 +1,28 @@
+=== Simple price fill ===
+[1] Loading ERP Holding prices...
+  Holding prices: 9072
+  Unpriced products: 4270
+  Product→SKU map entries: 8241
+  Updated: 0
+    via internal_sku: 0
+    via EAN: 0
+    via SKU EAN: 0
+
+[2] Sibling lookups...
+  Sibling EAN: 0
+  Sibling parent: 0
+
+[3] Stamping order lines...
+  Lines stamped: 1
+
+  Coverage: 92352/150248 (61.47%), revenue-weighted: 62.54%
+
+[4] Recalc...
+  132763 orders in 6.1s
+
+============================================================
+FINAL COVERAGE: 92352/150248 (61.47%)
+Revenue: 13,494,856.20 | COGS: 2,853,864.03 | CM1: 10,640,992.17 (78.85%)
+Products still unpriced: 4248
+============================================================
+Time: 51.5s

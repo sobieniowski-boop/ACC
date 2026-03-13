@@ -1,0 +1,39 @@
+
+=== 2025-07 ===
+  checked=35,745  bl_found=34,593  gls=5,682  dhl=1,599  written=7,281  no_cost=2,084  match%=20.4  elapsed=284.3s
+  Grand total so far: 7,281
+
+=== 2025-08 ===
+  checked=49,809  bl_found=48,703  gls=11,222  dhl=3,353  written=14,575  no_cost=2,941  match%=29.3  elapsed=194.0s
+  Grand total so far: 21,856
+
+=== 2025-09 ===
+  checked=46,524  bl_found=45,257  gls=9,135  dhl=2,759  written=11,894  no_cost=2,851  match%=25.6  elapsed=207.9s
+  Grand total so far: 33,750
+
+=== 2025-10 ===
+  checked=45,350  bl_found=44,187  gls=15,453  dhl=4,009  written=19,462  no_cost=5,575  match%=42.9  elapsed=422.4s
+  Grand total so far: 53,212
+
+=== 2025-11 ===
+  checked=45,942  bl_found=44,875  gls=16,873  dhl=6,151  written=23,024  no_cost=3,748  match%=50.1  elapsed=301.3s
+  Grand total so far: 76,236
+
+=== 2025-12 ===
+  checked=30,686  bl_found=29,335  gls=5,693  dhl=0  written=5,693  no_cost=6,016  match%=18.6  elapsed=91.8s
+  Grand total so far: 81,929
+
+=== 2026-01 ===
+  checked=22,093  bl_found=20,531  gls=0  dhl=0  written=0  no_cost=6,352  match%=0.0  elapsed=18.6s
+  Grand total so far: 81,929
+
+=== 2026-02 ===
+  checked=28,873  bl_found=27,234  gls=0  dhl=0  written=0  no_cost=8,675  match%=0.0  elapsed=23.2s
+  Grand total so far: 81,929
+
+=== 2026-03 ===
+  checked=5,282  bl_found=1,140  gls=0  dhl=0  written=0  no_cost=391  match%=0.0  elapsed=4.3s
+  Grand total so far: 81,929
+
+============================================================
+DONE! Grand total written: 81,929

@@ -1,0 +1,6 @@
+rows_blank_actual=317
+bl_package_yes=158
+bl_package_no=159
+bl_tracking_status_date_found=57
+dhl_delivery_found=265
+buyer_country_breakdown={'AT': 299, 'DE': 18}

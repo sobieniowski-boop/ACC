@@ -1,0 +1,34 @@
+﻿c:\ACC\.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:1 char:1
++ c:\ACC\.venv\Scripts\python.exe -c "import pymssql; conn = pymssql.co ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src/pymssql/_pymssql.pyx", line 651, in pymssql._pymssql.connect
+  File "src/pymssql/_mssql.pyx", line 2189, in pymssql._mssql.connect
+  File "src/pymssql/_mssql.pyx", line 722, in pymssql._mssql.MSSQLConnection.__
+init__
+  File "src/pymssql/_mssql.pyx", line 1915, in pymssql._mssql.maybe_raise_MSSQL
+DatabaseException
+  File "src/pymssql/_mssql.pyx", line 1932, in pymssql._mssql.raise_MSSQLDataba
+seException
+pymssql._mssql.MSSQLDatabaseException: (18456, b"Login failed for user 'accadmi
+n'.DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check me
+ssages from the SQL Server\nDB-Lib error message 20002, severity 9:\nAdaptive S
+erver connection failed (acc-sql-kadax.database.windows.net)\nDB-Lib error mess
+age 20002, severity 9:\nAdaptive Server connection failed (acc-sql-kadax.databa
+se.windows.net)\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "src/pymssql/_pymssql.pyx", line 660, in pymssql._pymssql.connect
+pymssql.exceptions.OperationalError: (18456, b"Login failed for user 'accadmin'
+.DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check mess
+ages from the SQL Server\nDB-Lib error message 20002, severity 9:\nAdaptive Ser
+ver connection failed (acc-sql-kadax.database.windows.net)\nDB-Lib error messag
+e 20002, severity 9:\nAdaptive Server connection failed (acc-sql-kadax.database
+.windows.net)\n")

@@ -1,0 +1,97 @@
+﻿2026-03-10 22:35:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== ADS CAMPAIGN DAY columns ===
+  ['campaign_id', 'ad_type', 'report_date', 'impressions', 'clicks', 'spend', 'sales_7d', 'orders_7d', 'units_7d', 'currency', 'acos', 'roas', 'spend_pln', 'sales_pln', 'synced_at']
+
+=== ADS PRODUCT DAY columns ===
+  ['asin', 'ad_type', 'report_date', 'marketplace_id', 'campaign_id', 'sku', 'impressions', 'clicks', 'spend', 'sales_7d', 'orders_7d', 'units_7d', 'currency', 'spend_pln', 'sales_pln', 'synced_at']
+
+=== LOGISTICS FACT columns ===
+  ['amazon_order_id', 'acc_order_id', 'shipments_count', 'delivered_shipments_count', 'total_logistics_pln', 'last_delivery_at', 'calc_version', 'source_system', 'calculated_at', 'actual_shipments_count', 'estimated_shipments_count']
+
+=== EXECUTIVE DAILY METRICS columns ===
+  ['id', 'period_date', 'marketplace_id', 'revenue_pln', 'profit_pln', 'margin_pct', 'units', 'orders', 'ad_spend_pln', 'acos_pct', 'return_rate_pct', 'refund_pln', 'cogs_pln', 'sessions', 'page_views', 'cvr_pct', 'stockout_skus', 'suppressed_skus', 'computed_at', 'cm1_pln', 'cm2_pln']
+
+=== EXECUTIVE DAILY METRICS detail (Jan-Mar 2026) ===
+  2026-01: rows=  278 | days= 31 | rev=   4,792,995 | cogs=   1,436,844 | cm1= 1,059,495 | cm2=   875,475 | np=   875,475
+  2026-02: rows=  252 | days= 28 | rev=   5,392,094 | cogs=   1,611,755 | cm1= 1,886,834 | cm2= 1,600,834 | np= 1,600,834
+  2026-03: rows=   89 | days= 10 | rev=   2,671,737 | cogs=     805,656 | cm1= 1,266,235 | cm2= 1,072,930 | np= 1,072,930
+
+=== EXECUTIVE DAILY METRICS - ALL numeric columns Jan 2026 ===
+  Jan revenue_pln: 4,792,995.12
+  Jan profit_pln:   875,475.43
+  Jan margin_pct:     3,823.22
+  Jan ad_spend_pln:   184,019.64
+  Jan refund_pln:         0.00
+  Jan cogs_pln: 1,436,844.27
+  Jan cm1_pln: 1,059,495.07
+  Jan cm2_pln:   875,475.43
+
+  Feb revenue_pln: 5,392,094.39
+  Feb profit_pln: 1,600,834.28
+  Feb margin_pct:     8,158.86
+  Feb ad_spend_pln:   285,999.54
+  Feb refund_pln:         0.00
+  Feb cogs_pln: 1,611,755.48
+  Feb cm1_pln: 1,886,833.82
+  Feb cm2_pln: 1,600,834.28
+
+  Mar1-10 revenue_pln: 2,671,736.59
+  Mar1-10 profit_pln: 1,072,930.42
+  Mar1-10 margin_pct:     4,601.72
+  Mar1-10 ad_spend_pln:   121,246.00
+  Mar1-10 refund_pln:    19,488.36
+  Mar1-10 cogs_pln:   805,656.07
+  Mar1-10 cm1_pln: 1,266,235.22
+  Mar1-10 cm2_pln: 1,072,930.42
+
+=== ADS COST (Jan-Mar 2026) ===
+  No cost column found among: ['campaign_id', 'ad_type', 'report_date', 'impressions', 'clicks', 'spend', 'sales_7d', 'orders_7d', 'units_7d', 'currency', 'acos', 'roas', 'spend_pln', 'sales_pln', 'synced_at']
+
+=== DIRECT SQL P&L from acc_order_line (Jan-Mar 2026) ===
+python : Traceback (most recent call last):
+At line:1 char:1
++ python c:\ACC\_board_deep.py 2>&1 | Out-File -Encoding utf8 c:\ACC\_b ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execu
+te
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection
+.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_an
+d_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLData
+baseException
+pymssql._mssql.MSSQLDatabaseException: (207, b"Invalid column name 'revenue_pln
+'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check mes
+sages from the SQL Server\nDB-Lib error message 20018, severity 16:\nGeneral SQ
+L Server error: Check messages from the SQL Server\nDB-Lib error message 20018,
+ severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\nDB
+-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check message
+s from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\ACC\_board_deep.py", line 107, in <module>
+    for r in q("""
+             ^^^^^
+  File "c:\ACC\_board_deep.py", line 13, in q
+    cur.execute(sql)
+  File "c:\ACC\apps\api\app\core\pymssql_compat.py", line 91, in execute
+    self._cursor.execute(converted.replace("%%", "%"))
+  File "src\\pymssql\\_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execu
+te
+pymssql.exceptions.ProgrammingError: (207, b"Invalid column name 'revenue_pln'.
+DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messa
+ges from the SQL Server\nDB-Lib error message 20018, severity 16:\nGeneral SQL 
+Server error: Check messages from the SQL Server\nDB-Lib error message 20018, s
+everity 16:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-L
+ib error message 20018, severity 16:\nGeneral SQL Server error: Check messages 
+from the SQL Server\n")

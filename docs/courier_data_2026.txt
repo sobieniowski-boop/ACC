@@ -1,0 +1,120 @@
+acc_order_logistics_fact cols:
+['amazon_order_id', 'acc_order_id', 'shipments_count', 'delivered_shipments_count', 'total_logistics_pln', 'last_delivery_at', 'calc_version', 'source_system', 'calculated_at', 'actual_shipments_count', 'estimated_shipments_count']
+
+acc_shipment_cost cols:
+['id', 'shipment_id', 'cost_source', 'currency', 'net_amount', 'fuel_amount', 'toll_amount', 'gross_amount', 'invoice_number', 'invoice_date', 'billing_period', 'is_estimated', 'raw_payload_json', 'created_at', 'updated_at']
+
+=== FACT TABLE: monthly courier per order — 2026 ===
+Month     MKT                   Orders  W/Fact    TotalPLN     AvgNZ NonZero
+----------------------------------------------------------------------------
+2026-01   A13V1IB3VIYZZH          5176    3992   170697.89     42.82    3986
+2026-01   A1805IZSGTT6HS           853     642    23789.19     37.05     642
+2026-01   A1C3SOZRARQ6R3           521     338     3840.98     11.43     336
+2026-01   A1PA6795UKMFR9         28650   19757   523202.33     26.48   19757
+2026-01   A1RKKUPIHCS9HS          1291     714    41818.89     58.57     714
+2026-01   A28R8C7NBKEWEA           114      58     5538.52     95.49      58
+2026-01   A2NODRKZP88ZB9           449     265    13391.62     50.53     265
+2026-01   AMEN7PMS3EDWL            973     718    29584.50     41.26     717
+2026-01   APJ6JRA9NG5V4           4850    3231   140426.00     43.48    3230
+2026-02   A13V1IB3VIYZZH          6484    1669    40193.46     42.99     935
+2026-02   A1805IZSGTT6HS           907     439    13405.56     31.39     427
+2026-02   A1C3SOZRARQ6R3           524      91      713.34     11.32      63
+2026-02   A1PA6795UKMFR9         32656    9787   238333.48     24.35    9787
+2026-02   A1RKKUPIHCS9HS          1342     284    14696.75     59.50     247
+2026-02   A28R8C7NBKEWEA           131      28     2085.90     83.44      25
+2026-02   A2NODRKZP88ZB9           486     145     6254.13     44.36     141
+2026-02   AMEN7PMS3EDWL           1014     198     5248.69     37.49     140
+2026-02   APJ6JRA9NG5V4           5352    1657    64079.45     43.56    1471
+2026-03   A13V1IB3VIYZZH          2835       0        0.00      0.00       0
+2026-03   A1805IZSGTT6HS           462       0        0.00      0.00       0
+2026-03   A1C3SOZRARQ6R3           333       0        0.00      0.00       0
+2026-03   A1PA6795UKMFR9         15407       0        0.00      0.00       0
+2026-03   A1RKKUPIHCS9HS           512       0        0.00      0.00       0
+2026-03   A28R8C7NBKEWEA            55       0        0.00      0.00       0
+2026-03   A2NODRKZP88ZB9           189       0        0.00      0.00       0
+2026-03   AMEN7PMS3EDWL            613       0        0.00      0.00       0
+2026-03   APJ6JRA9NG5V4           2379       0        0.00      0.00       0
+
+=== LEGACY vs FACT — 2026 ===
+Month       Orders   LegacyPLN     FactPLN     Delta LegOnly FctOnly  Differ
+--------------------------------------------------------------------------------
+2026-01      42877   526585.11   952289.91-425704.80      12   11406     182
+2026-02      48896   182203.27   385010.77-202807.50    1054    8036       8
+2026-03      22785        0.00        0.00      0.00       0       0       0
+
+=== CARRIER BREAKDOWN — 2026 ===
+Month     Carrier    Shipments   TotalCost   AvgCost   Est   Act
+----------------------------------------------------------------------
+2026-01   DHL            13407   545399.56     40.68     0 13407
+2026-01   GLS            28039   583698.73     26.29     0 28039
+2026-02   DHL            11178   410466.06     36.72     0 11178
+2026-02   GLS             9499   186282.17     29.22     0  9499
+
+=== ROLLUP TABLE logistics — 2026 ===
+Month     MKT                    SKUDays    TotalPLN NonZero    Zero
+------------------------------------------------------------------------
+2026-01   A13V1IB3VIYZZH            4917   170698.51    3913    1004
+2026-01   A1805IZSGTT6HS             873    23789.22     663     210
+2026-01   A1C3SOZRARQ6R3             516     3840.19     337     179
+2026-01   A1PA6795UKMFR9           16979   523201.16   12735    4244
+2026-01   A1RKKUPIHCS9HS            1206    41853.11     696     510
+2026-01   A28R8C7NBKEWEA             115     5592.65      61      54
+2026-01   A2NODRKZP88ZB9             481    13391.62     295     186
+2026-01   AMEN7PMS3EDWL              970    29584.95     720     250
+2026-01   APJ6JRA9NG5V4             4229   140493.10    3049    1180
+2026-02   A13V1IB3VIYZZH            5903    40193.56     936    4967
+2026-02   A1805IZSGTT6HS             931    13405.56     451     480
+2026-02   A1C3SOZRARQ6R3             547      713.19      66     481
+2026-02   A1PA6795UKMFR9           19617   238332.52    7609   12008
+2026-02   A1RKKUPIHCS9HS            1220    14696.72     244     976
+2026-02   A28R8C7NBKEWEA             136     2085.89      27     109
+2026-02   A2NODRKZP88ZB9             504     6254.12     156     348
+2026-02   AMEN7PMS3EDWL             1028     5248.76     147     881
+2026-02   APJ6JRA9NG5V4             4496    64079.46    1414    3082
+2026-03   A13V1IB3VIYZZH            2303        0.00       0    2303
+2026-03   A1805IZSGTT6HS             426        0.00       0     426
+2026-03   A1C3SOZRARQ6R3             311        0.00       0     311
+2026-03   A1PA6795UKMFR9            8380        0.00       0    8380
+2026-03   A1RKKUPIHCS9HS             436        0.00       0     436
+2026-03   A28R8C7NBKEWEA              49        0.00       0      49
+2026-03   A2NODRKZP88ZB9             188        0.00       0     188
+2026-03   AMEN7PMS3EDWL              577        0.00       0     577
+2026-03   APJ6JRA9NG5V4             1699        0.00       0    1699
+
+=== SAMPLE MFN ORDERS — recent 20 ===
+OrderID               MKT               Date        FC     Legacy    FactVersion         
+------------------------------------------------------------------------------------------
+402-3991973-3216315   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+407-8328322-2720309   A1805IZSGTT6HS    2026-03-10  MFN      0.00    0.00                
+404-0527673-6027525   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+404-7299700-3142731   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+404-2709278-4380318   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+405-8520135-3142714   AMEN7PMS3EDWL     2026-03-10  MFN      0.00    0.00                
+404-0364329-1649165   A1C3SOZRARQ6R3    2026-03-10  MFN      0.00    0.00                
+407-0419709-7151520   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+406-7266210-1943560   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+405-9593978-2752320   APJ6JRA9NG5V4     2026-03-10  MFN      0.00    0.00                
+406-9756938-6365960   AMEN7PMS3EDWL     2026-03-10  MFN      0.00    0.00                
+403-8072328-0017103   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+403-9730121-6585954   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+404-6651620-6020325   APJ6JRA9NG5V4     2026-03-10  MFN      0.00    0.00                
+403-3618841-7038723   AMEN7PMS3EDWL     2026-03-10  MFN      0.00    0.00                
+402-9383812-8920369   A1RKKUPIHCS9HS    2026-03-10  MFN      0.00    0.00                
+405-8836673-6414730   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+407-8390939-2093150   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+406-4869488-1452364   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+405-9110116-5825916   A13V1IB3VIYZZH    2026-03-10  MFN      0.00    0.00                
+
+=== AFN (FBA) — logistics check 2026 ===
+Month          AFN   LegNZ   FctNZ    LegTotal    FctTotal
+--------------------------------------------------------------
+2026-01      12377       0       0        0.00        0.00
+2026-02      18713       0       0        0.00        0.00
+2026-03       6882       0       0        0.00        0.00
+
+=== GRAND TOTALS 2026 ===
+Total orders: 114558
+Orders with fact: 44013
+Fact total PLN: 1,337,300.68
+Legacy total PLN: 708,788.38
+Avg non-zero fact: 31.14 PLN

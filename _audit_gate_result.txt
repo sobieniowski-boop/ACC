@@ -1,0 +1,45 @@
+﻿2026-03-09 15:57:23 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+
+=== LAYER 1: ORDER-LEVEL TRUTH ===
+  [FAIL] G01: 8479 orders with revenue mismatch > 1 PLN
+  [FAIL] G02: 473 orders with COGS mismatch
+  [WARN] G03: 31 orders have >1 logistics fact row (deduped by OUTER APPLY TOP 1)
+  [FAIL] G04: 4998 orders with logistics fact vs order mismatch > 1 PLN
+
+=== LAYER 2: LINE-LEVEL TRUTH ===
+.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:1 char:1
++ .venv\Scripts\python.exe _audit_gate.py 2>&1 | Out-File -Encoding utf ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src/pymssql/_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src/pymssql/_mssql.pyx", line 1145, in pymssql._mssql.MSSQLConnection.e
+xecute_query
+  File "src/pymssql/_mssql.pyx", line 1176, in pymssql._mssql.MSSQLConnection.e
+xecute_query
+  File "src/pymssql/_mssql.pyx", line 1309, in pymssql._mssql.MSSQLConnection.f
+ormat_and_run_query
+  File "src/pymssql/_mssql.pyx", line 1886, in pymssql._mssql.check_cancel_and_
+raise
+  File "src/pymssql/_mssql.pyx", line 1932, in pymssql._mssql.raise_MSSQLDataba
+seException
+pymssql._mssql.MSSQLDatabaseException: (207, b"Invalid column name 'number_of_i
+tems_shipped'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server erro
+r: Check messages from the SQL Server\nDB-Lib error message 20018, severity 16:
+\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ACC\_audit_gate.py", line 154, in <module>
+    cur.execute("""
+  File "C:\ACC\apps\api\app\core\pymssql_compat.py", line 86, in execute
+    self._cursor.execute(converted, params)
+  File "src/pymssql/_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.ProgrammingError: (207, b"Invalid column name 'number_of_ite
+ms_shipped'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error:
+ Check messages from the SQL Server\nDB-Lib error message 20018, severity 16:\n
+General SQL Server error: Check messages from the SQL Server\n")

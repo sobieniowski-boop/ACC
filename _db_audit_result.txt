@@ -1,0 +1,22 @@
+=== acc_order financial columns ===
+  amazon_fees_pln
+Orders: 842,979
+Order lines: 161,644
+Finance txns: 615,697 | 2024-12-30 15:28:45+00:00 -> 2026-03-10 19:31:31.178000+00:00
+=== CM1 Black Hole charge types ===
+  ShippingHB: 24,552 txns, -102718.77 PLN
+  RefundCommission: 9,624 txns, -40178.33 PLN
+  ShippingChargeback: 2,805 txns, -33293.51 PLN
+=== Latest SKU profitability rollup ===
+  2026-03-10 | mkt=APJ6JRA9NG | rev=100 | cm1=78 (78.1%)
+  2026-03-10 | mkt=APJ6JRA9NG | rev=200 | cm1=146 (73.2%)
+  2026-03-10 | mkt=APJ6JRA9NG | rev=175 | cm1=84 (47.8%)
+  2026-03-10 | mkt=APJ6JRA9NG | rev=35 | cm1=24 (68.2%)
+  2026-03-10 | mkt=APJ6JRA9NG | rev=101 | cm1=77 (75.8%)
+=== Executive daily metrics (latest) ===
+  2026-03-10 | mkt=APJ6JRA9NG | rev=3783 cm1=2238 cm2=2185 np=2185
+  2026-03-10 | mkt=AMEN7PMS3E | rev=498 cm1=354 cm2=354 np=354
+  2026-03-10 | mkt=A2NODRKZP8 | rev=489 cm1=349 cm2=349 np=349
+  2026-03-10 | mkt=A1RKKUPIHC | rev=898 cm1=534 cm2=492 np=492
+  2026-03-10 | mkt=A1PA6795UK | rev=44916 cm1=28565 cm2=27485 np=27485
+=== DONE ===

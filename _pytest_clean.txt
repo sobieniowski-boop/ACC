@@ -1,0 +1,664 @@
+﻿..............................................FFFFFFFFFFFFFFFFFFFFFFFFFF [ 14%]
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF. [ 28%]
+....FFFFFFFFFFFF....................F.......................FF.......... [ 43%]
+F....................................................................... [ 57%]
+........................................................................ [ 72%]
+........................FFFFF..................F.FFF.................... [ 86%]
+.................................FFFFF....FF.......................      [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\config\__init__.py:1428
+  C:\ACC\.venv\Lib\site-packages\_pytest\config\__init__.py:1428: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+.venv\Lib\site-packages\_pytest\config\__init__.py:1428
+  C:\ACC\.venv\Lib\site-packages\_pytest\config\__init__.py:1428: PytestConfigWarning: Unknown config option: asyncio_mode
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+apps\api\tests\test_api_content_ops.py:84
+  C:\ACC\apps\api\tests\test_api_content_ops.py:84: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:90
+  C:\ACC\apps\api\tests\test_api_content_ops.py:90: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:107
+  C:\ACC\apps\api\tests\test_api_content_ops.py:107: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:118
+  C:\ACC\apps\api\tests\test_api_content_ops.py:118: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:129
+  C:\ACC\apps\api\tests\test_api_content_ops.py:129: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:140
+  C:\ACC\apps\api\tests\test_api_content_ops.py:140: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:154
+  C:\ACC\apps\api\tests\test_api_content_ops.py:154: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:167
+  C:\ACC\apps\api\tests\test_api_content_ops.py:167: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:178
+  C:\ACC\apps\api\tests\test_api_content_ops.py:178: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:189
+  C:\ACC\apps\api\tests\test_api_content_ops.py:189: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:197
+  C:\ACC\apps\api\tests\test_api_content_ops.py:197: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:207
+  C:\ACC\apps\api\tests\test_api_content_ops.py:207: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:232
+  C:\ACC\apps\api\tests\test_api_content_ops.py:232: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:258
+  C:\ACC\apps\api\tests\test_api_content_ops.py:258: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:286
+  C:\ACC\apps\api\tests\test_api_content_ops.py:286: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:314
+  C:\ACC\apps\api\tests\test_api_content_ops.py:314: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:344
+  C:\ACC\apps\api\tests\test_api_content_ops.py:344: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:374
+  C:\ACC\apps\api\tests\test_api_content_ops.py:374: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:404
+  C:\ACC\apps\api\tests\test_api_content_ops.py:404: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:439
+  C:\ACC\apps\api\tests\test_api_content_ops.py:439: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:460
+  C:\ACC\apps\api\tests\test_api_content_ops.py:460: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:485
+  C:\ACC\apps\api\tests\test_api_content_ops.py:485: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:506
+  C:\ACC\apps\api\tests\test_api_content_ops.py:506: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:526
+  C:\ACC\apps\api\tests\test_api_content_ops.py:526: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:549
+  C:\ACC\apps\api\tests\test_api_content_ops.py:549: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:572
+  C:\ACC\apps\api\tests\test_api_content_ops.py:572: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:591
+  C:\ACC\apps\api\tests\test_api_content_ops.py:591: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:620
+  C:\ACC\apps\api\tests\test_api_content_ops.py:620: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:640
+  C:\ACC\apps\api\tests\test_api_content_ops.py:640: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:667
+  C:\ACC\apps\api\tests\test_api_content_ops.py:667: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:707
+  C:\ACC\apps\api\tests\test_api_content_ops.py:707: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:744
+  C:\ACC\apps\api\tests\test_api_content_ops.py:744: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:789
+  C:\ACC\apps\api\tests\test_api_content_ops.py:789: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:804
+  C:\ACC\apps\api\tests\test_api_content_ops.py:804: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:826
+  C:\ACC\apps\api\tests\test_api_content_ops.py:826: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:855
+  C:\ACC\apps\api\tests\test_api_content_ops.py:855: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_content_ops.py:879
+  C:\ACC\apps\api\tests\test_api_content_ops.py:879: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:10
+  C:\ACC\apps\api\tests\test_api_courier.py:10: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:30
+  C:\ACC\apps\api\tests\test_api_courier.py:30: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:62
+  C:\ACC\apps\api\tests\test_api_courier.py:62: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:122
+  C:\ACC\apps\api\tests\test_api_courier.py:122: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:176
+  C:\ACC\apps\api\tests\test_api_courier.py:176: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:208
+  C:\ACC\apps\api\tests\test_api_courier.py:208: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:254
+  C:\ACC\apps\api\tests\test_api_courier.py:254: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_courier.py:303
+  C:\ACC\apps\api\tests\test_api_courier.py:303: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:12
+  C:\ACC\apps\api\tests\test_api_dhl.py:12: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:34
+  C:\ACC\apps\api\tests\test_api_dhl.py:34: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:50
+  C:\ACC\apps\api\tests\test_api_dhl.py:50: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:90
+  C:\ACC\apps\api\tests\test_api_dhl.py:90: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:130
+  C:\ACC\apps\api\tests\test_api_dhl.py:130: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:162
+  C:\ACC\apps\api\tests\test_api_dhl.py:162: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:194
+  C:\ACC\apps\api\tests\test_api_dhl.py:194: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:222
+  C:\ACC\apps\api\tests\test_api_dhl.py:222: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:245
+  C:\ACC\apps\api\tests\test_api_dhl.py:245: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_dhl.py:271
+  C:\ACC\apps\api\tests\test_api_dhl.py:271: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:52
+  C:\ACC\apps\api\tests\test_api_families.py:52: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:66
+  C:\ACC\apps\api\tests\test_api_families.py:66: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:82
+  C:\ACC\apps\api\tests\test_api_families.py:82: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:94
+  C:\ACC\apps\api\tests\test_api_families.py:94: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:131
+  C:\ACC\apps\api\tests\test_api_families.py:131: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:148
+  C:\ACC\apps\api\tests\test_api_families.py:148: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:165
+  C:\ACC\apps\api\tests\test_api_families.py:165: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:181
+  C:\ACC\apps\api\tests\test_api_families.py:181: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:205
+  C:\ACC\apps\api\tests\test_api_families.py:205: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:222
+  C:\ACC\apps\api\tests\test_api_families.py:222: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:239
+  C:\ACC\apps\api\tests\test_api_families.py:239: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:262
+  C:\ACC\apps\api\tests\test_api_families.py:262: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:284
+  C:\ACC\apps\api\tests\test_api_families.py:284: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:312
+  C:\ACC\apps\api\tests\test_api_families.py:312: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:331
+  C:\ACC\apps\api\tests\test_api_families.py:331: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:349
+  C:\ACC\apps\api\tests\test_api_families.py:349: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:371
+  C:\ACC\apps\api\tests\test_api_families.py:371: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:387
+  C:\ACC\apps\api\tests\test_api_families.py:387: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:410
+  C:\ACC\apps\api\tests\test_api_families.py:410: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:432
+  C:\ACC\apps\api\tests\test_api_families.py:432: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_families.py:440
+  C:\ACC\apps\api\tests\test_api_families.py:440: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_gls.py:10
+  C:\ACC\apps\api\tests\test_api_gls.py:10: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_gls.py:42
+  C:\ACC\apps\api\tests\test_api_gls.py:42: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_gls.py:87
+  C:\ACC\apps\api\tests\test_api_gls.py:87: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_gls.py:119
+  C:\ACC\apps\api\tests\test_api_gls.py:119: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_gls.py:151
+  C:\ACC\apps\api\tests\test_api_gls.py:151: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:29
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:29: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:36
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:36: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:45
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:45: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:53
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:53: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:61
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:61: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:69
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:69: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:80
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:80: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:88
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:88: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:96
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:96: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:104
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:104: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:112
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:112: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:123
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:123: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:134
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:134: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:145
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:145: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:153
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:153: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_api_jobified_endpoints.py:165
+  C:\ACC\apps\api\tests\test_api_jobified_endpoints.py:165: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:140
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:140: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:144
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:144: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:149
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:149: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:156
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:156: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:163
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:163: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:170
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:170: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:185
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:185: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:196
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:196: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:201
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:201: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:209
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:209: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:216
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:216: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_circuit_breaker.py:231
+  C:\ACC\apps\api\tests\test_circuit_breaker.py:231: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_de_builder.py:200
+  C:\ACC\apps\api\tests\test_de_builder.py:200: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_de_builder.py:213
+  C:\ACC\apps\api\tests\test_de_builder.py:213: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:328
+  C:\ACC\apps\api\tests\test_guardrails.py:328: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:340
+  C:\ACC\apps\api\tests\test_guardrails.py:340: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:353
+  C:\ACC\apps\api\tests\test_guardrails.py:353: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:360
+  C:\ACC\apps\api\tests\test_guardrails.py:360: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:370
+  C:\ACC\apps\api\tests\test_guardrails.py:370: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:509
+  C:\ACC\apps\api\tests\test_guardrails.py:509: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:529
+  C:\ACC\apps\api\tests\test_guardrails.py:529: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:547
+  C:\ACC\apps\api\tests\test_guardrails.py:547: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_guardrails.py:563
+  C:\ACC\apps\api\tests\test_guardrails.py:563: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_order_logistics_source.py:89
+  C:\ACC\apps\api\tests\test_order_logistics_source.py:89: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_order_logistics_source.py:104
+  C:\ACC\apps\api\tests\test_order_logistics_source.py:104: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_order_logistics_source.py:119
+  C:\ACC\apps\api\tests\test_order_logistics_source.py:119: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_p1_financial_fixes.py:27
+  C:\ACC\apps\api\tests\test_p1_financial_fixes.py:27: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_p1_financial_fixes.py:73
+  C:\ACC\apps\api\tests\test_p1_financial_fixes.py:73: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_p1_financial_fixes.py:166
+  C:\ACC\apps\api\tests\test_p1_financial_fixes.py:166: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+apps\api\tests\test_p1_financial_fixes.py:209
+  C:\ACC\apps\api\tests\test_p1_financial_fixes.py:209: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+tests/test_circuit_breaker.py::TestContentOpsIntegration::test_process_queued_short_circuits_when_open
+  C:\ACC\apps\api\app\services\content_ops.py:2300: RuntimeWarning: coroutine '_async_return' was never awaited
+    if _run_async(is_circuit_open()):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED apps\api\tests\test_api_content_ops.py::TestContentTasksAPI::test_get_tasks_requires_auth
+FAILED apps\api\tests\test_api_content_ops.py::TestContentTasksAPI::test_publish_refresh_ptd_forbidden_for_analyst
+FAILED apps\api\tests\test_api_content_ops.py::TestContentTasksAPI::test_get_tasks_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentTasksAPI::test_post_task_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentTasksAPI::test_patch_task_validation_error
+FAILED apps\api\tests\test_api_content_ops.py::TestContentTasksAPI::test_bulk_update_tasks_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentVersionsAPI::test_get_versions_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentVersionsAPI::test_post_version_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentVersionsAPI::test_put_version_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentVersionsAPI::test_submit_review_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentVersionsAPI::test_approve_blocked_by_policy
+FAILED apps\api\tests\test_api_content_ops.py::TestContentDiffSyncAPI::test_get_diff_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentDiffSyncAPI::test_sync_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentAssetsAPI::test_upload_asset_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentAssetsAPI::test_list_assets_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentAssetsAPI::test_link_asset_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_publish_package_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_list_publish_jobs_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_publish_push_preview_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_product_type_mappings_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_put_product_type_mappings_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_product_type_definitions_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_attribute_mappings_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_publish_coverage_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_publish_mapping_suggestions_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_publish_queue_health_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_post_publish_job_retry_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_post_publish_mapping_suggestions_apply_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentPublishAPI::test_get_content_ops_health_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentAIAPI::test_ai_generate_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_onboard_preflight_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_qa_verify_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_onboard_restrictions_check_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_onboard_catalog_search_by_ean_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_compliance_queue_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_content_impact_ok
+FAILED apps\api\tests\test_api_content_ops.py::TestContentOnboardAndQAAPI::test_content_data_quality_ok
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_readiness_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_evaluate_alerts_job_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_monthly_kpis_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_link_gap_diagnostics_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_verify_billing_completeness_job_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_refresh_monthly_kpis_job_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_sync_bl_distribution_cache_job_endpoint
+FAILED apps\api\tests\test_api_courier.py::TestCourierAPI::test_order_universe_linking_job_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_health - Failed: asyn...
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_shipments_count_requires_config
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_backfill_job_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_sync_costs_job_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_import_billing_job_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_seed_shipments_job_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_cost_trace_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_unmatched_shipments_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_shadow_diff_endpoint
+FAILED apps\api\tests\test_api_dhl.py::TestDHLAPI::test_shadow_job_endpoint
+FAILED apps\api\tests\test_api_families.py::TestListFamilies::test_empty_list
+FAILED apps\api\tests\test_api_families.py::TestListFamilies::test_with_search
+FAILED apps\api\tests\test_api_families.py::TestGetFamily::test_not_found - F...
+FAILED apps\api\tests\test_api_families.py::TestGetFamily::test_found - Faile...
+FAILED apps\api\tests\test_api_families.py::TestGetChildren::test_empty_children
+FAILED apps\api\tests\test_api_families.py::TestGetLinks::test_empty_links - ...
+FAILED apps\api\tests\test_api_families.py::TestUpdateLinkStatus::test_update_link
+FAILED apps\api\tests\test_api_families.py::TestUpdateLinkStatus::test_update_link_not_found
+FAILED apps\api\tests\test_api_families.py::TestGetCoverage::test_empty - Fai...
+FAILED apps\api\tests\test_api_families.py::TestGetIssues::test_empty - Faile...
+FAILED apps\api\tests\test_api_families.py::TestTriggerRebuildDE::test_ok - F...
+FAILED apps\api\tests\test_api_families.py::TestTriggerSyncMP::test_ok - Fail...
+FAILED apps\api\tests\test_api_families.py::TestTriggerMatching::test_ok - Fa...
+FAILED apps\api\tests\test_api_families.py::TestReviewQueue::test_empty - Fai...
+FAILED apps\api\tests\test_api_families.py::TestFixPackages::test_empty - Fai...
+FAILED apps\api\tests\test_api_families.py::TestGenerateFixPackages::test_ok
+FAILED apps\api\tests\test_api_families.py::TestApproveFixPackage::test_approve
+FAILED apps\api\tests\test_api_families.py::TestApproveFixPackage::test_approve_not_found
+FAILED apps\api\tests\test_api_families.py::TestMarketplaces::test_lists_all
+FAILED apps\api\tests\test_api_families.py::TestAuthRequired::test_list_families_no_auth
+FAILED apps\api\tests\test_api_families.py::TestAuthRequired::test_trigger_no_auth
+FAILED apps\api\tests\test_api_gls.py::TestGLSAPI::test_import_billing_job_endpoint
+FAILED apps\api\tests\test_api_gls.py::TestGLSAPI::test_sync_costs_job_endpoint
+FAILED apps\api\tests\test_api_gls.py::TestGLSAPI::test_seed_shipments_job_endpoint
+FAILED apps\api\tests\test_api_gls.py::TestGLSAPI::test_aggregate_job_endpoint
+FAILED apps\api\tests\test_api_gls.py::TestGLSAPI::test_shadow_job_endpoint
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_alerts_get_evaluate_is_rejected
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_jobs_run_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_jobs_import_cogs_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_jobs_sync_listings_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_ads_sync_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_inventory_taxonomy_refresh_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_planning_refresh_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_profit_ai_match_run_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_returns_sync_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_returns_backfill_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_families_trigger_sync_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_families_trigger_matching_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_import_products_upload_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_inventory_apply_job_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_content_refresh_definition_job_enqueues
+FAILED apps\api\tests\test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_content_apply_mapping_job_enqueues
+FAILED apps\api\tests\test_circuit_breaker.py::TestIsCircuitOpen::test_closed_when_no_state
+FAILED apps\api\tests\test_circuit_breaker.py::TestIsCircuitOpen::test_open_when_within_cooldown
+FAILED apps\api\tests\test_circuit_breaker.py::TestIsCircuitOpen::test_closed_after_cooldown_expired
+FAILED apps\api\tests\test_circuit_breaker.py::TestIsCircuitOpen::test_invalid_value_treated_as_closed
+FAILED apps\api\tests\test_circuit_breaker.py::TestRecordFailure::test_under_threshold_stays_closed
+FAILED apps\api\tests\test_circuit_breaker.py::TestRecordFailure::test_at_threshold_trips_open
+FAILED apps\api\tests\test_circuit_breaker.py::TestRecordFailure::test_old_failures_outside_window_pruned
+FAILED apps\api\tests\test_circuit_breaker.py::TestRecordSuccess::test_no_op_when_closed
+FAILED apps\api\tests\test_circuit_breaker.py::TestRecordSuccess::test_resets_when_half_open
+FAILED apps\api\tests\test_circuit_breaker.py::TestGetState::test_closed_state
+FAILED apps\api\tests\test_circuit_breaker.py::TestGetState::test_open_state
+FAILED apps\api\tests\test_circuit_breaker.py::TestForceReset::test_clears_all_state
+FAILED apps\api\tests\test_courier_order_universe_pipeline.py::test_run_pipeline_uses_defaults_and_builds_report
+FAILED apps\api\tests\test_de_builder.py::TestRebuildDeCanonical::test_smoke_with_parent_asins
+FAILED apps\api\tests\test_de_builder.py::TestRebuildDeCanonical::test_smoke_no_parents
+FAILED apps\api\tests\test_dhl_billing_import.py::test_collect_seed_links_prefers_jjd_match
+FAILED apps\api\tests\test_guardrails.py::TestSchedulerHealth::test_healthy
+FAILED apps\api\tests\test_guardrails.py::TestSchedulerHealth::test_no_leader
+FAILED apps\api\tests\test_guardrails.py::TestCircuitBreakerState::test_closed
+FAILED apps\api\tests\test_guardrails.py::TestCircuitBreakerState::test_open
+FAILED apps\api\tests\test_guardrails.py::TestRateLimitBlocks::test_few_blocked
+FAILED apps\api\tests\test_guardrails.py::TestOrchestrator::test_run_all_async_catches_exceptions
+FAILED apps\api\tests\test_guardrails.py::TestOrchestrator::test_run_guardrails_returns_report
+FAILED apps\api\tests\test_guardrails.py::TestOrchestrator::test_run_guardrails_healthy
+FAILED apps\api\tests\test_guardrails.py::TestOrchestrator::test_run_guardrails_critical
+FAILED apps\api\tests\test_order_logistics_source.py::test_resolve_profit_logistics_prefers_fact_value
+FAILED apps\api\tests\test_order_logistics_source.py::test_resolve_profit_logistics_falls_back_to_legacy
+FAILED apps\api\tests\test_order_logistics_source.py::test_resolve_profit_logistics_skips_db_without_order_id
+FAILED apps\api\tests\test_p1_financial_fixes.py::TestSF01_COGS_NoVAT::test_cogs_uses_net_price_not_gross
+FAILED apps\api\tests\test_p1_financial_fixes.py::TestSF01_COGS_NoVAT::test_cogs_from_order_line_not_multiplied
+FAILED apps\api\tests\test_p1_financial_fixes.py::TestSF03_Revenue_NET::test_revenue_subtracts_tax_and_promo
+FAILED apps\api\tests\test_p1_financial_fixes.py::TestSF03_Revenue_NET::test_revenue_handles_null_tax_and_promo
+129 failed, 370 passed, 130 warnings in 110.59s (0:01:50)

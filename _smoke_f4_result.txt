@@ -1,0 +1,39 @@
+﻿2026-03-09 15:49:12 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+BEFORE: total=76639, zero_logistics=76639, nonzero=0, sum=0.00
+2026-03-09 15:49:12 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+
+Running enrichment...
+2026-03-09 15:50:07 [info     ] profitability.enrich_done      ads_rows=39037 logistics_rows=76639 other_rows=0 refund_rows=138 return_units_rows=5403 storage_rows=10844
+Enrichment stats: {'storage_rows': 10844, 'refund_rows': 138, 'other_rows': 0, 'ads_rows': 39037, 'return_units_rows': 5403, 'logistics_rows': 76639}
+2026-03-09 15:50:07 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+
+AFTER:  total=76639, zero_logistics=44613, nonzero=32026, sum=1348939.69
+
+Top 5 SKU rows by logistics_pln:
+  MAG_5903699471982 | A1PA6795UKMFR9 | 2026-01-04 | logistics=5176.81 | rev=11406.40 | profit=451.62
+  MAG_5903699471982 | A1PA6795UKMFR9 | 2026-01-05 | logistics=4768.07 | rev=10943.67 | profit=-352.47
+  MAG_5903699471982 | A1PA6795UKMFR9 | 2026-01-02 | logistics=4447.28 | rev=9525.74 | profit=493.16
+  MAG_5903699471982 | A1PA6795UKMFR9 | 2026-01-03 | logistics=4276.49 | rev=9229.51 | profit=484.69
+  MAG_5903699471982 | A1PA6795UKMFR9 | 2026-01-06 | logistics=4143.29 | rev=9934.89 | profit=-135.62
+2026-03-09 15:50:08 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+
+Idempotency check: re-running enrichment...
+2026-03-09 15:50:34 [info     ] profitability.enrich_done      ads_rows=39037 logistics_rows=76639 other_rows=0 refund_rows=138 return_units_rows=5403 storage_rows=10844
+2026-03-09 15:50:34 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+After re-run: sum=1348939.68 (should match 1348939.69)
+.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:1 char:1
++ .venv\Scripts\python.exe _smoke_f4.py 2>&1 | Out-File -Encoding utf8  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "C:\ACC\_smoke_f4.py", line 97, in <module>
+    print("IDEMPOTENT \u2713")
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\enco
+dings\cp1250.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position
+ 11: character maps to <undefined>

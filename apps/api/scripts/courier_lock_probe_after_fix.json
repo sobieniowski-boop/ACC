@@ -1,0 +1,24 @@
+{
+  "runs": [
+    {
+      "scope": {
+        "month": "2025-12",
+        "carrier": "DHL"
+      },
+      "job": {
+        "id": "B85CBE0C-7909-49FA-9A5A-A001958C2C41",
+        "status": "failure",
+        "progress_pct": 100,
+        "progress_message": "Failed",
+        "error_message": "Supervisor stale-timeout after 60s without progress change"
+      },
+      "coverage": {
+        "orders_universe": 5909,
+        "orders_linked_primary": 4938,
+        "orders_with_fact": 2846,
+        "link_coverage_pct": 83.57,
+        "fact_coverage_pct": 48.16
+      }
+    }
+  ]
+}

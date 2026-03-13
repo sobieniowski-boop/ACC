@@ -1,0 +1,5 @@
+srv=acc-sql-kadax.database.windows.net usr=accadmin db=ACC
+Range: 2025-09-03 18:08:57+00:00 to 2026-03-07 14:44:58.419000+00:00
+Total: 1589384
+FBAStorageFee: cnt=792 sum=-54702.9500
+OK

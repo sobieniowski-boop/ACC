@@ -1,0 +1,382 @@
+{
+  "generated_at": "2026-03-07T19:24:29.539117+00:00",
+  "order_sync_health": {
+    "ok": false,
+    "status": "degraded",
+    "stale_minutes": 25,
+    "items": [
+      {
+        "marketplace_id": "A13V1IB3VIYZZH",
+        "marketplace_code": "FR",
+        "status": "gap",
+        "gap_minutes": 27.1,
+        "last_finished_at": "2026-03-07T18:57:20.777000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 16,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A17E79C6D8DWNP",
+        "marketplace_code": "SA",
+        "status": "gap",
+        "gap_minutes": 26.5,
+        "last_finished_at": "2026-03-07T18:57:57.619000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 0,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A1805IZSGTT6HS",
+        "marketplace_code": "NL",
+        "status": "gap",
+        "gap_minutes": 27.0,
+        "last_finished_at": "2026-03-07T18:57:28.591000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 6,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A1C3SOZRARQ6R3",
+        "marketplace_code": "PL",
+        "status": "gap",
+        "gap_minutes": 27.6,
+        "last_finished_at": "2026-03-07T18:56:55.509000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 2,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A1F83G8C2ARO7P",
+        "marketplace_code": "GB",
+        "status": "gap",
+        "gap_minutes": 27.5,
+        "last_finished_at": "2026-03-07T18:56:58.008000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 0,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A1PA6795UKMFR9",
+        "marketplace_code": "DE",
+        "status": "failed",
+        "gap_minutes": null,
+        "last_finished_at": null,
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 68,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A1RKKUPIHCS9HS",
+        "marketplace_code": "ES",
+        "status": "gap",
+        "gap_minutes": 27.5,
+        "last_finished_at": "2026-03-07T18:57:02.263000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 4,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A28R8C7NBKEWEA",
+        "marketplace_code": "IE",
+        "status": "gap",
+        "gap_minutes": 26.6,
+        "last_finished_at": "2026-03-07T18:57:52.785000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 1,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A2NODRKZP88ZB9",
+        "marketplace_code": "SE",
+        "status": "gap",
+        "gap_minutes": 26.7,
+        "last_finished_at": "2026-03-07T18:57:46.031000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 0,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A2VIGQ35RCS4UG",
+        "marketplace_code": "AE",
+        "status": "gap",
+        "gap_minutes": 26.6,
+        "last_finished_at": "2026-03-07T18:57:55.162000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 0,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "A33AVAJ2PDY3EV",
+        "marketplace_code": "TR",
+        "status": "gap",
+        "gap_minutes": 26.5,
+        "last_finished_at": "2026-03-07T18:57:59.928000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 0,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "AMEN7PMS3EDWL",
+        "marketplace_code": "BE",
+        "status": "gap",
+        "gap_minutes": 26.7,
+        "last_finished_at": "2026-03-07T18:57:50.126000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 4,
+        "last_error": null
+      },
+      {
+        "marketplace_id": "APJ6JRA9NG5V4",
+        "marketplace_code": "IT",
+        "status": "gap",
+        "gap_minutes": 26.8,
+        "last_finished_at": "2026-03-07T18:57:43.452000",
+        "last_successful_window_from": "2026-03-07T18:20:56.218000",
+        "last_successful_window_to": "2026-03-07T18:50:56.198000",
+        "last_orders_count": 14,
+        "last_error": null
+      }
+    ]
+  },
+  "jobs": {
+    "counts": {
+      "pending": 4,
+      "running": 4,
+      "completed": 173,
+      "failure": 119
+    },
+    "running": [
+      {
+        "id": "B5C0E368-B12E-4124-B673-53859BDCAD8D",
+        "job_type": "courier_order_universe_linking",
+        "progress_pct": 36,
+        "progress_message": "2025-12 GLS: aggregate+shadow",
+        "age_min": 12.9
+      },
+      {
+        "id": "E9103A79-9FEA-4B87-ADC2-E68520643172",
+        "job_type": "sync_fba_inventory",
+        "progress_pct": 10,
+        "progress_message": "Starting sync_fba_inventory",
+        "age_min": 1846.7
+      },
+      {
+        "id": "46AEDE8D-0A26-4FFE-927C-85F473090E0F",
+        "job_type": "sync_offer_fee_estimates",
+        "progress_pct": 10,
+        "progress_message": "Starting sync_offer_fee_estimates",
+        "age_min": 1850.4
+      },
+      {
+        "id": "57AFFDAA-EDAE-4BDA-AFF3-6B5E3308E37D",
+        "job_type": "sync_pricing",
+        "progress_pct": 10,
+        "progress_message": "Starting sync_pricing",
+        "age_min": 1851.5
+      }
+    ],
+    "pending_top10_oldest": [
+      {
+        "id": "BAF431B8-AA26-453D-9008-25F636116C59",
+        "job_type": "sync_purchase_prices",
+        "trigger_source": "scheduler",
+        "age_min": 2544.5
+      },
+      {
+        "id": "113C4D7D-D64A-4138-A679-2C5219CCD052",
+        "job_type": "sync_orders",
+        "trigger_source": "scheduler",
+        "age_min": 175.9
+      },
+      {
+        "id": "359849CF-E8EC-4D03-887D-D9013EE8C0C5",
+        "job_type": "run_fba_alerts",
+        "trigger_source": "scheduler",
+        "age_min": 159.6
+      },
+      {
+        "id": "F1EBCC6F-D4A2-49E9-8A79-6EAA625B00E9",
+        "job_type": "sync_orders",
+        "trigger_source": "scheduler",
+        "age_min": 1.6
+      }
+    ]
+  },
+  "benchmarks": [
+    {
+      "name": "executive.overview",
+      "elapsed_ms": 446.6,
+      "ok": true,
+      "meta": {
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "executive.products",
+      "elapsed_ms": 357.6,
+      "ok": true,
+      "meta": {
+        "has_kpi": false,
+        "items": 50,
+        "total": 13170
+      }
+    },
+    {
+      "name": "executive.marketplaces",
+      "elapsed_ms": 188.4,
+      "ok": true,
+      "meta": {
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "strategy.overview",
+      "elapsed_ms": 311.4,
+      "ok": true,
+      "meta": {
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "strategy.opportunities",
+      "elapsed_ms": 215.3,
+      "ok": true,
+      "meta": {
+        "has_kpi": false,
+        "items": 50,
+        "total": 1309
+      }
+    },
+    {
+      "name": "profitability.overview",
+      "elapsed_ms": 503.4,
+      "ok": true,
+      "meta": {
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "profitability.orders",
+      "elapsed_ms": 204.1,
+      "ok": true,
+      "meta": {
+        "has_kpi": false,
+        "items": 50,
+        "total": 57418
+      }
+    },
+    {
+      "name": "profitability.products",
+      "elapsed_ms": 370.1,
+      "ok": true,
+      "meta": {
+        "has_kpi": false,
+        "items": 50,
+        "total": 13170
+      }
+    }
+  ],
+  "sql": {
+    "resource_40samples": {
+      "avg_cpu_pct": 13.339999999999998,
+      "max_cpu_pct": 27.54,
+      "avg_data_io_pct": 45.96775000000001,
+      "max_data_io_pct": 99.27,
+      "avg_log_io_pct": 1.2840000000000003,
+      "max_log_io_pct": 3.25,
+      "avg_memory_pct": 20.436500000000002
+    },
+    "top_query_stats": [
+      {
+        "total_elapsed_ms": 4002564.6,
+        "avg_elapsed_ms": 11.6,
+        "execution_count": 344604,
+        "last_execution_time": "2026-03-07T12:22:30.320000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000))SELECT CONVERT([nvarchar](40),[id]) FROM [dbo].[acc_shipment_order_link] WITH(nolock)  WHERE [shipment_id]=CONVERT([uniqueidentifier],@1) AND [amazon_order_id]=@2 AN"
+      },
+      {
+        "total_elapsed_ms": 803601.1,
+        "avg_elapsed_ms": 5.8,
+        "execution_count": 139015,
+        "last_execution_time": "2026-03-07T19:15:47.423000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000),@4 nvarchar(4000),@5 varchar(8000),@6 nvarchar(4000),@7 nvarchar(4000),@8 numeric(3,2),@9 nvarchar(4000),@10 nvarchar(4000),@11 numeric(6,4),@12 numeric(5,4))INSERT "
+      },
+      {
+        "total_elapsed_ms": 575729.7,
+        "avg_elapsed_ms": 161.6,
+        "execution_count": 3563,
+        "last_execution_time": "2026-03-07T19:24:29.930000",
+        "sql_text": "(@1 nvarchar(4000))SELECT CONVERT([varchar](36),[id]),[status],[last_update_date],[sync_payload_hash] FROM [acc_order] WHERE [amazon_order_id]=@1"
+      },
+      {
+        "total_elapsed_ms": 431174.0,
+        "avg_elapsed_ms": 33167.2,
+        "execution_count": 13,
+        "last_execution_time": "2026-03-07T19:16:50.723000",
+        "sql_text": "         UPDATE o         SET o.amazon_fees_pln = ROUND(ISNULL(agg.total_fees, 0), 2)         FROM acc_order o         CROSS APPLY (             SELECT SUM(ISNULL(ol.fba_fee_pln, 0) + ISNULL(ol.referral_fee_pln, 0))     "
+      },
+      {
+        "total_elapsed_ms": 430523.3,
+        "avg_elapsed_ms": 9.0,
+        "execution_count": 47671,
+        "last_execution_time": "2026-03-07T19:15:47.347000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000),@4 nvarchar(4000),@5 varchar(8000),@6 nvarchar(4000),@7 nvarchar(4000),@8 numeric(4,2),@9 nvarchar(4000),@10 nvarchar(4000),@11 numeric(6,4),@12 numeric(5,4))INSERT "
+      },
+      {
+        "total_elapsed_ms": 373330.9,
+        "avg_elapsed_ms": 352.9,
+        "execution_count": 1058,
+        "last_execution_time": "2026-03-07T19:24:26.753000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000),@4 nvarchar(4000),@5 nvarchar(4000),@6 nvarchar(4000),@7 varchar(8000),@8 varchar(8000),@9 numeric(4,2),@10 nvarchar(4000),@11 nvarchar(4000),@12 nvarchar(4000),@13 "
+      },
+      {
+        "total_elapsed_ms": 331343.6,
+        "avg_elapsed_ms": 11.7,
+        "execution_count": 28399,
+        "last_execution_time": "2026-03-07T19:15:47.467000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000),@4 nvarchar(4000),@5 varchar(8000),@6 nvarchar(4000),@7 nvarchar(4000),@8 numeric(4,2),@9 nvarchar(4000),@10 nvarchar(4000),@11 numeric(7,4),@12 numeric(5,4))INSERT "
+      },
+      {
+        "total_elapsed_ms": 292027.0,
+        "avg_elapsed_ms": 586.4,
+        "execution_count": 498,
+        "last_execution_time": "2026-03-07T19:24:23.797000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000),@4 nvarchar(4000),@5 nvarchar(4000),@6 nvarchar(4000),@7 nvarchar(4000),@8 int,@9 int,@10 numeric(4,2),@11 numeric(3,2),@12 numeric(2,2),@13 nvarchar(4000),@14 numer"
+      },
+      {
+        "total_elapsed_ms": 272172.9,
+        "avg_elapsed_ms": 5.4,
+        "execution_count": 50051,
+        "last_execution_time": "2026-03-07T19:15:47.027000",
+        "sql_text": "(@1 nvarchar(4000),@2 nvarchar(4000),@3 nvarchar(4000),@4 nvarchar(4000),@5 varchar(8000),@6 nvarchar(4000),@7 nvarchar(4000),@8 numeric(3,2),@9 nvarchar(4000),@10 nvarchar(4000),@11 numeric(5,4),@12 numeric(5,4))INSERT "
+      },
+      {
+        "total_elapsed_ms": 252237.2,
+        "avg_elapsed_ms": 21019.8,
+        "execution_count": 12,
+        "last_execution_time": "2026-03-07T19:18:00.643000",
+        "sql_text": "             UPDATE dbo.acc_order             SET is_refund = 1,                 refund_type = ISNULL(refund_type, 'full'),                 refund_date = ISNULL(refund_date, last_update_date)             WHERE status = '"
+      }
+    ]
+  }
+}

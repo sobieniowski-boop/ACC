@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-03-07T19:44:23.248924+00:00",
+  "summary": {
+    "ok": 13,
+    "error": 0
+  },
+  "results": [
+    {
+      "name": "health.order_sync",
+      "status": "ok",
+      "elapsed_ms": 517.1,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 13,
+        "total": null
+      }
+    },
+    {
+      "name": "executive.overview",
+      "status": "ok",
+      "elapsed_ms": 3485.2,
+      "meta": {
+        "type": "dict",
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "executive.products",
+      "status": "ok",
+      "elapsed_ms": 2387.7,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 13170
+      }
+    },
+    {
+      "name": "executive.marketplaces",
+      "status": "ok",
+      "elapsed_ms": 192.1,
+      "meta": {
+        "type": "list",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "strategy.overview",
+      "status": "ok",
+      "elapsed_ms": 1961.9,
+      "meta": {
+        "type": "dict",
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "strategy.opportunities",
+      "status": "ok",
+      "elapsed_ms": 203.3,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 1309
+      }
+    },
+    {
+      "name": "profitability.overview",
+      "status": "ok",
+      "elapsed_ms": 17968.9,
+      "meta": {
+        "type": "dict",
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "profitability.orders",
+      "status": "ok",
+      "elapsed_ms": 2280.5,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 57432
+      }
+    },
+    {
+      "name": "profitability.products",
+      "status": "ok",
+      "elapsed_ms": 1675.9,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 13170
+      }
+    },
+    {
+      "name": "inventory.overview",
+      "status": "ok",
+      "elapsed_ms": 187729.1,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "finance.dashboard",
+      "status": "ok",
+      "elapsed_ms": 77114.0,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "fba.overview",
+      "status": "ok",
+      "elapsed_ms": 20788.3,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "courier.readiness",
+      "status": "ok",
+      "elapsed_ms": 90935.5,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    }
+  ]
+}

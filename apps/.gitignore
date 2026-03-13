@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Test / Coverage
+.coverage
+htmlcov/
+coverage.xml
+.pytest_cache/
+
+# Logs
+*.log
+
+# Temporary / diagnostic files (project root only)
+api/tmp_*
+api/_*
+api/full_out*.txt
+api/spapi_out.txt
+api/others_out.txt
+api/guard_out.txt
+api/cache_t1_output.txt
+api/test_output.txt
+api/full_test_out.txt
+api/full_run_output.txt
+api/full_run2_output.txt
+api/debug2_result.txt
+api/diag_out.txt
+api/execute_result.json
+api/RUNTIME_GUARDRAILS_REPORT.md
+
+# Build artifacts
+api/0
+api/=
+node_modules/
+web/dist/
+
+# Docker
+docker-compose.override.yml
+
+# Environment
+.env
+.env.local
+.env.*.local

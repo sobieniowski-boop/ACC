@@ -1,0 +1,315 @@
+﻿........................................................................ [ 10%]
+...............................................FFF...................... [ 20%]
+...2026-03-10 20:55:47 [info     ] catalog.search_complete        count=20
+2026-03-10 20:55:47 [info     ] catalog.batch_ok               batch=21 count=20
+.2026-03-10 20:55:55 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:56:05 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:10 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:56:17 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 20:56:18 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.............2026-03-10 20:56:19 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:56:20 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:56:21 [info     ] report.downloaded              doc_id=amzn1.spdoc.1.4.eu.25ba907e-6d80-4a61-89a6-f35b31db81f2.T2P4MV0FT7BGPP.2610 encoding=utf-8-sig size=385888
+2026-03-10 20:56:21 [info     ] return_tracker.parsed_report   marketplace=DE rows=1137
+2026-03-10 20:56:21 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:21 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:56:21 [info     ] ads_sync.campaigns             campaigns=395 country=FR
+.2026-03-10 20:56:22 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:56:23 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:56:23 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:24 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:56:25 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.....2026-03-10 20:56:27 [info     ] ads_api.sb_campaigns.fetched   count=0 profile_id=4414157435569296
+2026-03-10 20:56:27 [info     ] ads_api.sd_campaigns.fetched   count=0 profile_id=4414157435569296
+2026-03-10 20:56:27 [info     ] ads_api.sp_campaigns.fetched   count=42 profile_id=4414157435569296
+2026-03-10 20:56:27 [info     ] ads_api.campaigns.total        count=42 profile_id=4414157435569296
+2026-03-10 20:56:27 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:56:28 [info     ] marketplace_sync.mp_done       items=474 mp=PL
+..2026-03-10 20:56:29 [info     ] ads_sync.campaigns             campaigns=42 country=NL
+...2026-03-10 20:56:31 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-10 20:56:35 [info     ] catalog.search_complete        count=20
+2026-03-10 20:56:35 [info     ] catalog.batch_ok               batch=2 count=20
+.....2026-03-10 20:56:40 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:56:41 [info     ] catalog.search_complete        count=20
+2026-03-10 20:56:41 [info     ] catalog.batch_ok               batch=4 count=20
+.2026-03-10 20:56:42 [info     ] ads_api.sp_campaigns.fetched   count=161 profile_id=3175891521293524
+2026-03-10 20:56:42 [info     ] ads_api.campaigns.total        count=168 profile_id=3175891521293524
+2026-03-10 20:56:42 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-10 20:56:43 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-10 20:56:44 [info     ] catalog.search_complete        count=20
+2026-03-10 20:56:44 [info     ] catalog.batch_ok               batch=5 count=20
+..2026-03-10 20:56:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:50 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:55 [info     ] ai_matcher.calling_gpt         candidate_total=192 model=gpt-5.2 ref_count=8326 unmapped_count=8
+....... [ 30%]
+.................................................F...................... [ 40%]
+........................................................................ [ 50%]
+........................................................................ [ 60%]
+........FF........................F...F.FF.....F.................F...... [ 70%]
+.....................................................................FF. [ 80%]
+...............2026-03-10 20:58:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:58:50 [info     ] catalog.search_complete        count=20
+2026-03-10 20:58:50 [info     ] catalog.batch_ok               batch=22 count=20
+....2026-03-10 20:58:52 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:58:52 [info     ] catalog.search_complete        count=20
+2026-03-10 20:58:52 [info     ] catalog.batch_ok               batch=23 count=20
+......2026-03-10 20:58:55 [info     ] catalog.search_complete        count=20
+2026-03-10 20:58:55 [info     ] catalog.batch_ok               batch=24 count=20
+F........2026-03-10 20:58:58 [info     ] catalog.search_complete        count=20
+2026-03-10 20:58:58 [info     ] catalog.batch_ok               batch=25 count=20
+.......2026-03-10 20:58:59 [info     ] return_tracker.backfill_chunk  chunk=3/3 end=2026-03-10 mkt=DE start=2026-02-08
+......2026-03-10 20:59:01 [info     ] report.created                 report_id=4047504020522 type=GET_FBA_FULFILLMENT_CUSTOMER_RETURNS_DATA
+....2026-03-10 20:59:03 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 20:59:04 [debug    ] report.polling                 elapsed=0.0 report_id=4047504020522 status=IN_QUEUE
+............... [ 90%]
+.......2026-03-10 20:59:14 [info     ] ai_matcher.calling_gpt         candidate_total=192 model=gpt-5.2 ref_count=8326 unmapped_count=8
+..........................................FFFFFFFF.........       [100%]
+================================== FAILURES ===================================
+________________________ TestTriggerRebuildDE.test_ok _________________________
+tests\test_api_families.py:255: in test_ok
+    assert body["status"] == "ok"
+E   AssertionError: assert 'started' == 'ok'
+E     
+E     - ok
+E     + started
+__________________________ TestTriggerSyncMP.test_ok __________________________
+tests\test_api_families.py:276: in test_ok
+    assert r.status_code == 200
+E   assert 202 == 200
+E    +  where 202 = <Response [202 Accepted]>.status_code
+---------------------------- Captured stdout call -----------------------------
+2026-03-10 20:54:47 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+_________________________ TestTriggerMatching.test_ok _________________________
+tests\test_api_families.py:302: in test_ok
+    assert r.status_code == 200
+E   assert 202 == 200
+E    +  where 202 = <Response [202 Accepted]>.status_code
+---------------------------- Captured stdout setup ----------------------------
+2026-03-10 20:54:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:50 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+---------------------------- Captured stdout call -----------------------------
+2026-03-10 20:54:50 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:50 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:50 [info     ] marketplace_sync.start         de_children=13094 targets=8
+2026-03-10 20:54:50 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:54:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+________________ TestRebuildDeCanonical.test_smoke_no_parents _________________
+tests\test_de_builder.py:218: in test_smoke_no_parents
+    assert result["families"] == 0
+E   assert 5 == 0
+---------------------------- Captured stdout call -----------------------------
+2026-03-10 20:56:56 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:57 [info     ] de_builder.known_parents       count=1449
+2026-03-10 20:56:57 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:57 [info     ] catalog.search_complete        count=20
+2026-03-10 20:56:57 [info     ] catalog.batch_ok               batch=10 count=20
+2026-03-10 20:56:58 [info     ] de_builder.undiscovered_children count=743
+2026-03-10 20:56:58 [info     ] de_builder.discovering_parents msg=Scanning children without parent_asin via Catalog API
+2026-03-10 20:56:58 [info     ] de_builder.discovered_parents  new=0 total=0
+2026-03-10 20:56:58 [info     ] de_builder.backfilled_parent_asins count=0
+2026-03-10 20:56:58 [info     ] de_builder.start               parents=5
+2026-03-10 20:56:59 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:56:59 [info     ] de_builder.done                children=10 errors=0 families=5
+_____________________ TestOrderSyncFreshness.test_warning _____________________
+tests\test_guardrails.py:114: in test_warning
+    assert r.severity == Severity.WARNING
+E   AssertionError: assert <Severity.OK: 'ok'> == <Severity.WARNING: 'warning'>
+E     
+E     - warning
+E     + ok
+____________________ TestOrderSyncFreshness.test_critical _____________________
+tests\test_guardrails.py:120: in test_critical
+    assert r.severity == Severity.CRITICAL
+E   AssertionError: assert <Severity.WARNING: 'warning'> == <Severity.CRI...L: 'critical'>
+E     
+E     - critical
+E     + warning
+____________ TestProfitMarginAnomalies.test_few_anomalies_warning _____________
+tests\test_guardrails.py:278: in test_few_anomalies_warning
+    assert check_profit_margin_anomalies().severity == Severity.WARNING
+E   AssertionError: assert <Severity.OK: 'ok'> == <Severity.WARNING: 'warning'>
+E     
+E     - warning
+E     + ok
+__________________ TestDuplicateFinanceTxns.test_some_dupes ___________________
+tests\test_guardrails.py:306: in test_some_dupes
+    assert r.value == 5
+E   assert 3 == 5
+E    +  where 3 = GuardrailResult(check_name='duplicate_finance_txn', severity=<Severity.WARNING: 'warning'>, message='2 cross-batch dup...DATEDIFF(MINUTE, MIN(synced_at), MAX(synced_at)) > 5\n", elapsed_ms=0.5, checked_at='2026-03-10T19:56:59.987496+00:00').value
+____________________ TestOrderFinanceDrift.test_high_drift ____________________
+tests\test_guardrails.py:320: in test_high_drift
+    assert check_order_finance_drift().severity == Severity.CRITICAL
+E   AssertionError: assert <Severity.OK: 'ok'> == <Severity.CRI...L: 'critical'>
+E     
+E     - critical
+E     + ok
+______________________ TestSchedulerHealth.test_healthy _______________________
+tests\test_guardrails.py:338: in test_healthy
+    assert r.severity == Severity.OK
+E   AssertionError: assert <Severity.CRI...L: 'critical'> == <Severity.OK: 'ok'>
+E     
+E     - ok
+E     + critical
+___________________ TestOrderFinanceTotals.test_high_drift ____________________
+tests\test_guardrails.py:401: in test_high_drift
+    assert check_order_finance_totals().severity == Severity.CRITICAL
+E   AssertionError: assert <Severity.WARNING: 'warning'> == <Severity.CRI...L: 'critical'>
+E     
+E     - critical
+E     + warning
+___________ TestOrchestrator.test_run_all_async_catches_exceptions ____________
+tests\test_guardrails.py:522: in test_run_all_async_catches_exceptions
+    assert r.severity == Severity.UNKNOWN
+E   AssertionError: assert <Severity.CRI...L: 'critical'> == <Severity.UNKNOWN: 'unknown'>
+E     
+E     - unknown
+E     + critical
+---------------------------- Captured stdout call -----------------------------
+2026-03-10 20:57:01 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:57:01 [info     ] catalog.search_complete        count=20
+2026-03-10 20:57:01 [info     ] catalog.batch_ok               batch=12 count=20
+2026-03-10 20:57:02 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:57:03 [info     ] catalog.search_complete        count=20
+2026-03-10 20:57:03 [info     ] catalog.batch_ok               batch=13 count=20
+2026-03-10 20:57:04 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+____ TestSF04_ProfitTierLabels.test_profitability_overview_has_profit_tier ____
+tests\test_p1_financial_fixes.py:315: in test_profitability_overview_has_profit_tier
+    result = get_profitability_overview(date(2026, 3, 1), date(2026, 3, 7))
+app\services\profitability_service.py:214: in get_profitability_overview
+    cm1 = _f(row[7])
+E   IndexError: tuple index out of range
+______ TestSF04_ProfitTierLabels.test_executive_overview_has_profit_tier ______
+tests\test_p1_financial_fixes.py:341: in test_executive_overview_has_profit_tier
+    result = get_exec_overview(date(2026, 3, 1), date(2026, 3, 7))
+app\services\executive_service.py:127: in get_exec_overview
+    cm1 = _f(row[8]); cm2 = _f(row[9])
+E   IndexError: tuple index out of range
+__ TestP0_03_ProfitService_RegressionGuard.test_cm_formula_matches_expected ___
+tests\test_phase0_revenue_fix.py:244: in test_cm_formula_matches_expected
+    assert order.amazon_fees_pln == 16.00
+E   AssertionError: assert 19.0 == 16.0
+E    +  where 19.0 = <MagicMock id='2865303402400'>.amazon_fees_pln
+________________ TestRequestRetries.test_success_first_attempt ________________
+tests\test_spapi_backoff.py:153: in test_success_first_attempt
+    data = await client._request("GET", "/test")
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+__________________ TestRequestRetries.test_429_then_success ___________________
+tests\test_spapi_backoff.py:172: in test_429_then_success
+    data = await client._request("GET", "/test", retries=3)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+__________________ TestRequestRetries.test_500_then_success ___________________
+tests\test_spapi_backoff.py:188: in test_500_then_success
+    data = await client._request("GET", "/test", retries=3)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+_______________ TestRequestRetries.test_all_retryable_statuses ________________
+tests\test_spapi_backoff.py:204: in test_all_retryable_statuses
+    data = await client._request("GET", f"/test-{status}", retries=2)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+_________ TestRequestRetries.test_exhausted_retries_raises_throttled __________
+tests\test_spapi_backoff.py:215: in test_exhausted_retries_raises_throttled
+    await client._request("POST", "/test", retries=3)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+___________ TestRequestRetries.test_transient_connect_error_retries ___________
+tests\test_spapi_backoff.py:232: in test_transient_connect_error_retries
+    data = await client._request("GET", "/test", retries=3)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+___________ TestRequestRetries.test_transient_read_timeout_retries ____________
+tests\test_spapi_backoff.py:251: in test_transient_read_timeout_retries
+    data = await client._request("GET", "/test", retries=3)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+________ TestRequestRetries.test_non_retryable_4xx_raises_immediately _________
+tests\test_spapi_backoff.py:267: in test_non_retryable_4xx_raises_immediately
+    await client._request("GET", "/test", retries=3)
+app\connectors\amazon_sp_api\client.py:299: in _request
+    headers = await self._headers()
+app\connectors\amazon_sp_api\client.py:135: in _headers
+    if self._use_grantless:
+E   AttributeError: 'SPAPIClient' object has no attribute '_use_grantless'
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_circuit_breaker.py::TestContentOpsIntegration::test_process_queued_short_circuits_when_open
+  C:\ACC\apps\api\app\services\content_ops.py:2300: RuntimeWarning: coroutine '_async_return' was never awaited
+    if _run_async(is_circuit_open()):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+  C:\ACC\apps\api\app\services\profitability_service.py:1461: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_api_families.py::TestTriggerRebuildDE::test_ok - AssertionE...
+FAILED tests/test_api_families.py::TestTriggerSyncMP::test_ok - assert 202 ==...
+FAILED tests/test_api_families.py::TestTriggerMatching::test_ok - assert 202 ...
+FAILED tests/test_de_builder.py::TestRebuildDeCanonical::test_smoke_no_parents
+FAILED tests/test_guardrails.py::TestOrderSyncFreshness::test_warning - Asser...
+FAILED tests/test_guardrails.py::TestOrderSyncFreshness::test_critical - Asse...
+FAILED tests/test_guardrails.py::TestProfitMarginAnomalies::test_few_anomalies_warning
+FAILED tests/test_guardrails.py::TestDuplicateFinanceTxns::test_some_dupes - ...
+FAILED tests/test_guardrails.py::TestOrderFinanceDrift::test_high_drift - Ass...
+FAILED tests/test_guardrails.py::TestSchedulerHealth::test_healthy - Assertio...
+FAILED tests/test_guardrails.py::TestOrderFinanceTotals::test_high_drift - As...
+FAILED tests/test_guardrails.py::TestOrchestrator::test_run_all_async_catches_exceptions
+FAILED tests/test_p1_financial_fixes.py::TestSF04_ProfitTierLabels::test_profitability_overview_has_profit_tier
+FAILED tests/test_p1_financial_fixes.py::TestSF04_ProfitTierLabels::test_executive_overview_has_profit_tier
+FAILED tests/test_phase0_revenue_fix.py::TestP0_03_ProfitService_RegressionGuard::test_cm_formula_matches_expected
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_success_first_attempt
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_429_then_success
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_500_then_success
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_all_retryable_statuses
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_exhausted_retries_raises_throttled
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_transient_connect_error_retries
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_transient_read_timeout_retries
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_non_retryable_4xx_raises_immediately
+23 failed, 691 passed, 33 warnings in 370.07s (0:06:10)

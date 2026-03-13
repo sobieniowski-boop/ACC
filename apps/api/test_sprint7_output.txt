@@ -1,0 +1,136 @@
+﻿........................................................................ [  9%]
+...................................................................F.2026-03-11 21:12:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 21:12:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.. [ 19%]
+2026-03-11 21:13:01 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 21:13:09 [info     ] return_tracker.backfill_start  chunks=3 days_back=90 marketplace=DE
+2026-03-11 21:13:09 [info     ] return_tracker.backfill_chunk  chunk=1/3 end=2026-01-10 mkt=DE start=2025-12-11
+..2026-03-11 21:13:22 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-11 21:13:26 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:44 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 21:13:44 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 21:13:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-11 21:13:50 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:51 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:52 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:52 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:53 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 21:13:54 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 21:13:55 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:55 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:13:56 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..................................2026-03-11 21:14:14 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+........ [ 29%]
+.............2026-03-11 21:14:46 [info     ] return_tracker.upsert_complete errors=0 inserted=1096
+2026-03-11 21:14:46 [info     ] return_tracker.backfill_chunk_done chunk=1 mkt=DE rows=1096
+..............................................2026-03-11 21:15:03 [info     ] report.created                 report_id=4050267020523 type=GET_FBA_FULFILLMENT_CUSTOMER_RETURNS_DATA
+............. [ 39%]
+.2026-03-11 21:15:08 [error    ] sync_listings.error            error=(2627, b"Violation of UNIQUE KEY constraint 'UQ_acc_product_asin'. Cannot insert duplicate key in object 'dbo.acc_product'. The duplicate key value is (B07L34GRFC).DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check messages from the SQL Server\n") marketplace=DE
+2026-03-11 21:15:08 [info     ] sync_listings.complete         totals={'created': 0, 'enriched': 0, 'skipped': 0, 'errors': 1}
+2026-03-11 21:15:08 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 21:15:09 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-11 21:15:10 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.................................................................. [ 49%]
+.......................2026-03-11 21:15:36 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 21:15:36 [info     ] report.ready                   elapsed=30.0 report_id=4050267020523
+....2026-03-11 21:15:37 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-11 21:15:40 [info     ] report.downloaded              doc_id=amzn1.spdoc.1.4.eu.ee1db5d8-086a-4399-9303-808c81619e45.T2XK2JMHXBNA2R.2610 encoding=utf-8-sig size=399234
+2026-03-11 21:15:40 [info     ] return_tracker.parsed_report   marketplace=DE rows=1180
+2026-03-11 21:15:40 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+......................2026-03-11 21:15:46 [info     ] ai_matcher.start               reference=8849 unmapped=93
+..2026-03-11 21:15:47 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.............. [ 59%]
+........................................................................ [ 68%]
+............2026-03-11 21:16:56 [info     ] return_tracker.backfill_chunk  chunk=3/3 end=2026-03-11 mkt=DE start=2026-02-09
+.......2026-03-11 21:16:58 [info     ] report.created                 report_id=4050269020523 type=GET_FBA_FULFILLMENT_CUSTOMER_RETURNS_DATA
+...2026-03-11 21:16:59 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 21:16:59 [debug    ] report.polling                 elapsed=0.0 report_id=4050269020523 status=IN_QUEUE
+............................................... [ 78%]
+...FF.........2026-03-11 21:17:31 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-11 21:17:32 [info     ] report.ready                   elapsed=30.0 report_id=4050269020523
+.2026-03-11 21:17:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+......2026-03-11 21:17:37 [info     ] report.downloaded              doc_id=amzn1.spdoc.1.4.eu.1197e283-6764-4020-bc24-b4e3ea8ce1de.TO4OT03TWHJPA.2610 encoding=utf-8-sig size=420144
+2026-03-11 21:17:37 [info     ] return_tracker.parsed_report   marketplace=DE rows=1252
+2026-03-11 21:17:37 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+................................................ [ 88%]
+.................................2026-03-11 21:19:00 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...............2026-03-11 21:19:05 [info     ] return_tracker.upsert_complete errors=0 inserted=1252
+2026-03-11 21:19:05 [info     ] return_tracker.backfill_chunk_done chunk=3 mkt=DE rows=1252
+........................ [ 98%]
+.2026-03-11 21:19:23 [info     ] return_tracker.backfill_marketplace_fix fixed=0
+2026-03-11 21:19:23 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..........                                                              [100%]
+================================== FAILURES ===================================
+________________ TestJobifiedEndpoints.test_ads_sync_enqueues _________________
+tests\test_api_jobified_endpoints.py:66: in test_ads_sync_enqueues
+    assert response.status_code == 202
+E   assert 500 == 202
+E    +  where 500 = <Response [500 Internal Server Error]>.status_code
+---------------------------- Captured stdout setup ----------------------------
+2026-03-11 21:12:42 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+---------------------------- Captured stdout call -----------------------------
+2026-03-11 21:12:42 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-11 21:12:42 [info     ] sync_listings.start            marketplace=DE marketplace_id=A1PA6795UKMFR9
+2026-03-11 21:12:42 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+------------------------------ Captured log call ------------------------------
+ERROR    app.api.v1.ads:ads.py:380 ads.sync.manual_error
+Traceback (most recent call last):
+  File "C:\ACC\apps\api\app\api\v1\ads.py", line 371, in trigger_ads_sync
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\_backends\_asyncio.py", line 2502, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\_backends\_asyncio.py", line 986, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ACC\apps\api\app\connectors\mssql\mssql_store.py", line 2522, in enqueue_job
+    raise RuntimeError(f"{job_type} already active: {active_id} ({active_status})")
+RuntimeError: sync_ads already active: 855F4074-9317-41D5-85A5-6E2A5417C310 (running)
+__ TestSF06SchedulerDependencyChain.test_rollup_calls_ads_sync_before_rollup __
+tests\test_p2_financial_fixes.py:71: in test_rollup_calls_ads_sync_before_rollup
+    with patch.object(sched_mod, "_create_job_record", return_value="test-j"), \
+C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\unittest\mock.py:1467: in __enter__
+    original, local = self.get_original()
+C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\unittest\mock.py:1437: in get_original
+    raise AttributeError(
+E   AttributeError: <module 'app.scheduler' from 'C:\\ACC\\apps\\api\\app\\scheduler.py'> does not have the attribute '_create_job_record'
+__ TestSF06SchedulerDependencyChain.test_rollup_skipped_on_ads_sync_failure ___
+tests\test_p2_financial_fixes.py:123: in test_rollup_skipped_on_ads_sync_failure
+    with patch.object(sched_mod, "_create_job_record", return_value="test-j"), \
+C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\unittest\mock.py:1467: in __enter__
+    original, local = self.get_original()
+C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\unittest\mock.py:1437: in get_original
+    raise AttributeError(
+E   AttributeError: <module 'app.scheduler' from 'C:\\ACC\\apps\\api\\app\\scheduler.py'> does not have the attribute '_create_job_record'
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+tests/test_profit_integration.py::TestIT02_RecomputeRollups::test_result_shape
+tests/test_profit_integration.py::TestIT02_RecomputeRollups::test_sku_merge_includes_cm1_cm2
+tests/test_profit_integration.py::TestIT06_WaterfallIntegrity::test_sku_rollup_sql_computes_cm1_before_cm2
+  C:\ACC\apps\api\app\intelligence\profit\rollup.py:1565: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_api_jobified_endpoints.py::TestJobifiedEndpoints::test_ads_sync_enqueues
+FAILED tests/test_p2_financial_fixes.py::TestSF06SchedulerDependencyChain::test_rollup_calls_ads_sync_before_rollup
+FAILED tests/test_p2_financial_fixes.py::TestSF06SchedulerDependencyChain::test_rollup_skipped_on_ads_sync_failure
+3 failed, 728 passed, 35 warnings in 485.18s (0:08:05)

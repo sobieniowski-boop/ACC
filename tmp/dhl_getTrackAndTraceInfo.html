@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="/images/favicon.gif" type="image/gif" />
+        <link rel="stylesheet" type="text/css" href="/assets1/a8e73d98/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/assets1/a8e73d98/css/bootstrap.min.css.map" />
+<link rel="stylesheet" type="text/css" href="/themes/dhl24rwd/main/css/style.css?v=1769525448" />
+<link rel="stylesheet" type="text/css" href="/assets1/36a047f2/highlight.css" />
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script type="text/javascript" src="/assets1/c5e4ea96/js/jquery-3.4.1.min.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+<script type="text/javascript" src="/assets1/a8e73d98/js/bootstrap.bundle.min.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+<script type="text/javascript" src="/assets1/7ec00c5b/js/jquery.browser.min.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+<script type="text/javascript" src="/assets1/7ec00c5b/js/jquery.ba-bbq.min.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+<script type="text/javascript" src="/assets1/7ec00c5b/js/jquery.alerts.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+<script type="text/javascript" src="/assets1/7ec00c5b/js/jquery.nicescroll.min.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+<script type="text/javascript" nonce="9sYgJPShWRLL5s5naLbIjCoL">
+/*<![CDATA[*/
+var OBSpace = {};OBSpace.basePath = "";
+var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-3789046-1']);
+            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+/*]]>*/
+</script>
+<title>DHL24 - dokumentacja DHL24 WebAPI</title>
+
+                <!-- Google Tag Manager -->
+<script nonce="9sYgJPShWRLL5s5naLbIjCoL">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;var n=d.querySelector('[nonce]'); n&&j.setAttribute('nonce',n.nonce||n.getAttribute('nonce'));f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MZR53ZX');</script>
+<!-- End Google Tag Manager -->
+
+<script nonce="9sYgJPShWRLL5s5naLbIjCoL" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="466f0c92-f0e9-4a2a-b2df-9b44dfe46034" ></script>
+<script nonce="9sYgJPShWRLL5s5naLbIjCoL" type="text/javascript">
+    function OptanonWrapper() { }
+</script>                <script type="text/javascript" src="/themes/dhl24rwd/js/session.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+                
+
+    </head>
+    <body>
+                <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZR53ZX" height="0" width="0"  class="c27800482"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+        <script type="text/javascript" nonce="9sYgJPShWRLL5s5naLbIjCoL">
+    var DHL2Space = {};
+    DHL2Space.basePath = '';
+    DHL2Space.isAjax = false;
+    DHL2Space.removeText = 'Usuń';
+    DHL2Space.cancelText = 'Anuluj';
+    DHL2Space.yesText = 'Tak';
+    DHL2Space.noText = 'Nie';
+    DHL2Space.stayOnSite = 'Pozostań na stronie';
+    DHL2Space.gotoParcels = 'Przejdź do Moich Przesyłek';
+    DHL2Space.isSaveAjax = false;
+    DHL2Space.isPsDrop = false;
+    DHL2Space.isOrderPsDrop = false;
+    DHL2Space.lang = 'pl'
+    DHL2Space.logoutUrl = '/pl/uzytkownik/wyloguj.html';
+    DHL2Space.loginUrl = '/pl/uzytkownik/zaloguj.html';
+    DHL2Space.isLogin = '';
+    DHL2Space.aple = false;
+    DHL2Space.claimAbortRedirect = '/';
+    DHL2Space.sessionTimer = 10; // Fortify: false positive
+</script>
+<style nonce="9sYgJPShWRLL5s5naLbIjCoL">
+    .guest_lang_switcher__element.inactive {
+        font-weight: bold;
+    }
+</style>
+<!--<header class="header --><!--">-->
+<header class="header menu-collapse">
+    <div class="container header__container">
+        <div class="header__navigation">
+            <div class="header__logo">
+                <a class="header__logo-href" href="https://dhl24.com.pl/pl"><img class="header__logo-img img-fluid" src="/themes/dhl24rwd/main/img/logo-dhl.png" alt="DHL24" /></a>            </div>
+            <nav class="nav navbar navbar-main navbar-expand-lg navbar-light">
+                                <a data-test-id="nav-login" class="nav__login" href="/pl/uzytkownik/zaloguj.html">
+                    <span class="nav__login-icon icon icon-user"></span>
+                    <span class="nav__login-text nav__login-text--hidden nav__menu-item font-regular">
+                        Zaloguj                        </span>
+                </a>
+                <div class="guest_lang_switcher">
+                                                                                                                                <a class="nav__login guest_lang_switcher__element" href="/pl/language/set.html">
+                                    EN                                </a>
+                                                                                                                <a class="nav__login guest_lang_switcher__element inactive"> <span>PL</span></a>
+                                                                                        </div>
+                <button
+                    class="nav__switcher navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="nav__switcher-line"></span>
+                    <span class="nav__switcher-line"></span>
+                    <span class="nav__switcher-line"></span>
+                </button>
+                <div class="nav__menu collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav__menu-list navbar-nav">
+                                                <li class="nav__menu-item nav-item">
+                            <a class="nav__menu-link nav-link" href="/pl/claim/disposition/index.html"><p>Dyspozycje
+i reklamacje</p>
+</a>
+                        </li>
+                                                <li class="nav__menu-item nav-item">
+                            <a class="nav__menu-link nav-link" href="/pl/integracje.html">Integracja</a>
+                        </li>
+                                                <li class="nav__menu-item nav-item">
+                            <a class="nav__menu-link nav-link" href="https://www.dhlparcel.pl/pl/dla-ciebie/obsluga/kontakt.html">Kontakt</a>
+                        </li>
+                                                <li class="nav__menu-item nav-item nav__menu-item--hidden">
+                            <a class="nav__menu-link nav-link" href="/pl/paczka.html">
+                                Dla Ciebie
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                            </nav>
+            <div class="top-tabs">
+                <a class="top-tabs--link" href="/pl/paczka.html">
+                    Dla Ciebie                </a>
+                <a class="top-tabs--link top-tabs--active" href="/">
+                    Dla Biznesu                </a>
+            </div>
+        </div>
+            </div>
+</header>
+                        <style nonce="9sYgJPShWRLL5s5naLbIjCoL">
+            main.main>p {
+                color: red;
+            }
+        </style>
+        <main class="main">
+            <p></p>
+            <section class="section section__heading">
+    <div class="container container--medium">
+        <div class="row">
+            <div class="col-12 webapi-doc">
+                
+<h1>Metoda getTrackAndTraceInfo</h1>
+
+<p>Możliwość pobrania historii procesu doręczania przesyłki oraz jej aktualnego statusu.</p>
+
+<h3>Parametry wejściowe</h3>
+
+<table class="table table-condensed table-responsive table-striped">
+    <tr>
+        <th>Nazwa pola</th>
+        <th>Typ</th>
+        <th>Wymagane?</th>
+        <th>Opis</th>
+    </tr>
+    <tr>
+        <td>authData</td>
+        <td><a class="webapiLink" href="/pl/webapi2/doc/info/autoryzacyjna.html">AuthData</a></td>
+        <td>Tak</td>
+        <td>Struktura autoryzacyjna</td>
+    </tr>
+    <tr>
+        <td>shipmentId</td>
+        <td>string</a></td>
+        <td>Tak</td>
+        <td>Numer identyfikacyjny przesyłki</td>
+    </tr>
+</table>
+
+<h3>Parametry wyjściowe</h3>
+
+<table class="table table-condensed table-responsive table-striped">
+    <tr>
+        <th>Nazwa pola</th>
+        <th>Typ</th>
+        <th>Wymagane?</th>
+        <th>Opis</th>
+    </tr>
+    <tr>
+        <td>shipmentId</td>
+        <td>string</td>
+        <td>Tak</td>
+        <td>Numer identyfikacyjny przesyłki</td>
+    </tr>
+    <tr>
+        <td>receivedBy</td>
+        <td>string</td>
+        <td>Tak</td>
+        <td>Informacja o tym kto odebrał przesyłkę (jeśli została już dostarczona)</td>
+    </tr>
+    <tr>
+        <td>events</td>
+        <td>array</td>
+        <td>Tak</td>
+        <td>Tablica struktur <a class="webapiLink" href="/pl/webapi2/doc/info/shipmentEvent.html">ShipmentEvent</a></td>
+    </tr>
+</table>
+
+<h3>Przykład wywołania</h3>
+<div class="webapiCode"><div class="xml-hl-main"><pre><span class="xml-hl-brackets">&lt;</span><span class="xml-hl-reserved">getTrackAndTraceInfo</span><span class="xml-hl-brackets">&gt;</span>
+    <span class="xml-hl-brackets">&lt;</span><span class="xml-hl-reserved">authData</span><span class="xml-hl-brackets">&gt;</span>
+        <span class="xml-hl-brackets">&lt;</span><span class="xml-hl-reserved">username</span><span class="xml-hl-brackets">&gt;</span><span class="xml-hl-code">szymontester</span><span class="xml-hl-brackets">&lt;/</span><span class="xml-hl-reserved">username</span><span class="xml-hl-brackets">&gt;</span>
+        <span class="xml-hl-brackets">&lt;</span><span class="xml-hl-reserved">password</span><span class="xml-hl-brackets">&gt;</span><span class="xml-hl-code">111111</span><span class="xml-hl-brackets">&lt;/</span><span class="xml-hl-reserved">password</span><span class="xml-hl-brackets">&gt;</span>
+    <span class="xml-hl-brackets">&lt;/</span><span class="xml-hl-reserved">authData</span><span class="xml-hl-brackets">&gt;</span>
+    <span class="xml-hl-brackets">&lt;</span><span class="xml-hl-reserved">shipmentId</span><span class="xml-hl-brackets">&gt;</span><span class="xml-hl-code">11122223333</span><span class="xml-hl-brackets">&lt;/</span><span class="xml-hl-reserved">shipmentId</span><span class="xml-hl-brackets">&gt;</span>
+<span class="xml-hl-brackets">&lt;/</span><span class="xml-hl-reserved">getTrackAndTraceInfo</span><span class="xml-hl-brackets">&gt;</span></pre></div></div>                <a class="btn btn__primary btn--overline btn--center" href="/pl/webapi2/doc.html">Wróć do listy tematów</a>
+            </div>
+        </div>
+    </div>
+</section>
+<style nonce="9sYgJPShWRLL5s5naLbIjCoL">
+    .webapi-doc br { display: block !important; }
+</style>        </main>
+                
+
+<footer>
+    <section class="footer__container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="footer__container-inner">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="footer__container-inner-dpd">
+                                    <img class="img-fluid" src="/themes/dhl24rwd/main/img/dpd.png" alt="DHL24" />                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-3">
+                                <div class="footer__item">
+                                    <a href="https://www.dhlecommerce.pl/pl/dla-ciebie/obsluga/kontakt.html" class="footer__item-href">
+                                        Skontaktuj się z nami </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <div class="footer__item">
+                                    <a href="/pl/claim/disposition/create.html?ps=1" class="footer__item-href">
+                                        Pochwała / Skarga </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <div class="footer__item">
+                                    <a href="https://www.dhl.com/pl-pl/ecommerce/dla-ciebie/obsluga/dokumenty.html" class="footer__item-href" target="_blank">
+                                        Regulamin i dokumenty do pobrania                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3">
+                                <div class="footer__item">
+                                    <a href="https://www.dhl.com/pl-pl/ecommerce/o-dhl-ecommerce/polityka-prywatnosci.html" class="footer__item-href" target="_blank">
+                                        Ochrona danych i pliki cookies                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="footer__copy">
+                                    <span class="footer__copy-text">
+                                        &copy; 2026 DHL eCommerce (Poland) Sp. z o.o. - dhlecommerce.pl - Wszystkie prawa zastrzeżone                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+<script type="text/javascript" src="/themes/dhl24rwd/js/password_mask.js" nonce="9sYgJPShWRLL5s5naLbIjCoL"></script>
+        <script type="text/javascript" nonce="9sYgJPShWRLL5s5naLbIjCoL">
+            $(function () {
+                $('body').css('min-height', $(window).height());
+                $('ul.header__menu > li').css('width', (100 / $('ul.header__menu > li').length) + '%');
+                // $('.nav__menu').on('show.bs.collapse', function () {
+                //     $(".header").addClass('menu-collapse');
+                // });
+                // $('.nav__menu').on('hide.bs.collapse', function () {
+                //     $(".header").removeClass('menu-collapse');
+                // });
+                $(window).on('load', function () {
+                    $('.main__benefits a.main__benefit--active').click();
+                });
+                $(window).on('resize', function () {
+                    $('.main__benefits a.main__benefit--active').click();
+                });
+                $(document).on('click', '.main__benefits a', function () {
+                    var img = $(this).find('img');
+                    var icoLeft = img.position().left;
+                    var id = ($(this).attr('href')).substring(1);
+                    var wrap = $("#wrap-" + id);
+                    wrap.find('.tr').css('left', parseInt(icoLeft + 10) + 'px');
+                    wrap.find('.tr img').css('left', parseInt((icoLeft + 10) * -1) + 'px');
+                    wrap.find('.tr img').css('transform-origin', parseInt((icoLeft + 10) + 25) + 'px 40px');
+                });
+                $('.modal__cancel').on('click', function() {
+                    $('.modal_flash').hide();
+                    $('body').removeClass('overlay');
+                });
+                $(function () {
+                    $('[data-toggle="popover"]').popover({
+                        trigger: 'hover',
+                        placement: 'auto',
+                        html: true
+                    })
+                })
+            });
+        </script>
+                                        <div class="modal" id="redirect-foryou-modal">
+    <div class="container">
+        <div class="row">
+            <button type="button" class="button-close close" data-dismiss="modal" aria-label="Close">
+                <span class="fa fa-close" aria-hidden="true"></span>
+            </button>
+            <div class="col-12">
+                <div class="modal__text pb-5">Definicja przesyłek gotówkowych dostępna tylko z poziomu strony DHLDlaCiebie.<br />Czy chcesz kontynuować akcję?</div>
+                <div class="modal__buttons justify-content-center">
+                    <button class="btn btn__modal btn__primary btn--overline modal__cancel redirect-foryou-shutdown">Kontynuuj</button>
+                </div>
+            </div>
+            <input type="hidden" id="Redirect4You_addressId" value=""/>
+        </div>
+    </div>
+</div>
+
+<script nonce="9sYgJPShWRLL5s5naLbIjCoL">
+    $(function () {
+        $(document).on('click', '.show-redirect-foryou-popup', function (e) {
+            e.preventDefault();
+            $('#Redirect4You_addressId').val($(this).attr('data-addressId'));
+            $('#redirect-foryou-modal').modal('show');
+        });
+        $(document).on('click','.redirect-foryou-shutdown',function(){
+            var addressId = $('#Redirect4You_addressId').val();             var url = '/pl/paczka.html';
+            if (addressId != '') {
+                url += '?addressId=' + addressId
+            }
+            window.location.href = url ;          });
+    });
+</script>
+    <script type="text/javascript" nonce="9sYgJPShWRLL5s5naLbIjCoL">
+/*<![CDATA[*/
+jQuery(function($) {
+
+        $('.form').on('refresh_ac', function(e){
+            if ($('#ReceiverForm_city').length > 0 && $('#ReceiverForm_city').hasClass('ac_input')) {
+                
+                function findPostCodeByCity_receiver() {
+                    if ($('.autocomplete-field-city_receiver').val().length > 2) {
+                        $.ajax( {
+                          url: '/autocomplete/suggest/postalCode',
+                          dataType: 'json',
+                          data: {
+                              city: $('.autocomplete-field-city_receiver').val(),
+                              street: $('.autocomplete-field-street_receiver').val(),
+                              YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                          },
+                          success: function( data ) {
+                              if( data && data.length == 1) {
+                                $('.autocomplete-field-postal-code_receiver').val(data[0].value);
+                                $('.autocomplete-field-postal-code_receiver').trigger('change');
+                              }
+                          }
+                        } );
+                    }
+                }
+                function onChangeCity_receiver() {
+                    if ($('.autocomplete-field-city_receiver').val() != '') {
+                        $('.autocomplete-field-street_receiver').val('');
+                        $('.autocomplete-field-building-number_receiver').val('');
+                        $('.autocomplete-field-apartment-number_receiver').val('');
+                        $('.autocomplete-field-postal-code_receiver').val('');
+                        $('.autocomplete-field-street_receiver').prop( 'disabled', false );
+                        $('.autocomplete-field-building-number_receiver').prop( 'disabled', true );
+                        $('.autocomplete-field-postal-code_receiver').prop( 'disabled', true );
+                    } else {
+                        $('.autocomplete-field-street_receiver').prop( 'disabled', true );
+                        $('.autocomplete-field-building-number_receiver').prop( 'disabled', true );
+                        $('.autocomplete-field-postal-code_receiver').prop( 'disabled', true );
+                    }
+                }
+                    setTimeout(function(){ $('#ReceiverForm_city').autocomplete(
+                    {
+                        minLength: 3,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/city',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_receiver').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                            this.value = ui.item.value;
+                            $('#ReceiverForm_city').trigger('ac_change');
+                            $('#ReceiverForm_city').trigger('change');
+                            $('.autocomplete-field-street_receiver').val('').focus().trigger('ac_change');
+                        },
+                        change: function(event, ui){
+                            onChangeCity_receiver();
+                        },
+                        response: function( event, ui ) {
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-city_receiver', function( event ){
+                    if (event.which != 9) { // TAB
+                        onChangeCity_receiver();
+                    }
+                });
+                $('body').on('keydown', '.autocomplete-field-city_receiver', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeCity_receiver();
+                    } else if (event.which == 9) {
+                        $('#ReceiverForm_city').focus().select();
+                    }
+                });
+                $('.autocomplete-field-city_receiver').on('blur', function(){
+                    findPostCodeByCity_receiver();
+                });
+                
+            }
+            if ($('#ReceiverForm_street').length > 0 && $('#ReceiverForm_street').hasClass('ac_input')) {
+                
+                function findPostCodeByCityAndStreet_receiver() {
+                    if ($('.autocomplete-field-city_receiver').val().length > 2) {
+                        $.ajax( {
+                          url: '/autocomplete/suggest/postalCode',
+                          dataType: 'json',
+                          data: {
+                              city: $('.autocomplete-field-city_receiver').val(),
+                              street: $('.autocomplete-field-street_receiver').val(),
+                              YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                          },
+                          success: function( data ) {
+                              if( data && data.length == 1) {
+                                $('.autocomplete-field-postal-code_receiver').val(data[0].value);
+                                $('.autocomplete-field-postal-code_receiver').trigger('change');
+                              }
+                          }
+                        } );
+                    }
+                }
+                function onChangeStreet_receiver() {
+                    if ($('.autocomplete-field-street_receiver').val() != '') {
+                        $('.autocomplete-field-building-number_receiver').val('');
+                        $('.autocomplete-field-apartment-number_receiver').val('');
+                        $('.autocomplete-field-postal-code_receiver').val('');
+                        $('.autocomplete-field-building-number_receiver').prop( 'disabled', false );
+                        $('.autocomplete-field-postal-code_receiver').prop( 'disabled', true );
+                    } else {
+                        $('.autocomplete-field-building-number_receiver').prop( 'disabled', true );
+                        $('.autocomplete-field-postal-code_receiver').prop( 'disabled', true );
+                    }
+                }
+                    setTimeout(function(){ 
+                $('#ReceiverForm_street').attr('autocomplete','nope').autocomplete(
+                    {
+                        minLength: 3,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/street',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_receiver').val(),
+                                street: $('.autocomplete-field-street_receiver').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        search: function( event, ui ) {
+                            //console.log(event.currentTarget.defaultValue);
+                        },
+                        select: function(event, ui){
+                            this.value = ui.item.value;
+                            $('#ReceiverForm_street').trigger('ac_change');
+                            $('#ReceiverForm_street').trigger('change');
+                            $('.autocomplete-field-building-number_receiver').val('').focus().trigger('ac_change');
+                        },
+                        change: function(event, ui){
+                            onChangeStreet_receiver();
+                        },
+                        response: function( event, ui ) {
+                        },
+                    }
+                ); 
+                }, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-street_receiver', function( event ){
+                    if (event.which != 9) { // TAB
+                        onChangeStreet_receiver();
+                    }                
+                });
+                $('body').on('keydown', '.autocomplete-field-street_receiver', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeStreet_receiver();
+                    } else if (event.which == 9) {
+                        $('#ReceiverForm_street').focus().select();
+                    }
+                });
+                $('.autocomplete-field-street_receiver').on('blur', function(){
+                    findPostCodeByCityAndStreet_receiver();
+                });
+                if ($('.autocomplete-field-city_receiver').val() != '') {
+                    $('.autocomplete-field-street_receiver').prop( 'disabled', false );
+                }
+            }
+            if ($('#ReceiverForm_number').length > 0 && $('#ReceiverForm_number').hasClass('ac_input')) {
+                
+                function onChangeBuildingNumber_receiver() {
+                    if ($('.autocomplete-field-building-number_receiver').val() != '') {
+                        $('.autocomplete-field-apartment-number_receiver').val('');
+                        $('.autocomplete-field-postal-code_receiver').prop( 'disabled', false );
+                    } else {
+                        $('.autocomplete-field-postal-code_receiver').prop( 'disabled', true );
+                    }
+                }
+                    setTimeout(function(){ 
+                $('#ReceiverForm_number').autocomplete(
+                    {
+                        minLength: 1,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/buildingNumber',
+                            dataType: 'json',
+                            data: {
+                                
+                                city: $('.autocomplete-field-city_receiver').val(),
+                                street: $('.autocomplete-field-street_receiver').val(),
+                                buildingNumber: $('.autocomplete-field-building-number_receiver').val(),
+                    
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                            var data = ui.item.value;
+                            var dataArr = data.split(' ; ');
+                            
+                     if (dataArr[0] != '' && dataArr[1] != '') {
+                                $('.autocomplete-field-building-number_receiver').val(dataArr[0]);
+                                $('.autocomplete-field-postal-code_receiver').val(dataArr[1]);
+                            }
+                    
+                            $('.autocomplete-field-apartment-number_receiver').focus().trigger('ac_change');
+                            $('#ReceiverForm_number').trigger('change');
+                            return false;
+                        },
+                        change: function(event, ui){
+                            onChangeBuildingNumber_receiver();
+                        },
+                        response: function( event, ui ) {
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-building-number_receiver', function( event ){
+                    if (event.which != 9) { // TAB
+                        onChangeBuildingNumber_receiver();
+                    }                
+                });
+                $('body').on('keydown', '.autocomplete-field-building-number_receiver', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeBuildingNumber_receiver();
+                    } else if (event.which == 9) {
+                        $('#ReceiverForm_number').focus().select();
+                    }
+                });
+                $('.autocomplete-field-building-number_receiver').on('blur', function(){
+                    //findPostCodeByCityAndStreet_receiver();
+                });
+                if ($('.autocomplete-field-street_receiver').val() != '') {
+                    $('.autocomplete-field-building-number_receiver').prop( 'disabled', false );
+                }
+            }
+            if ($('#ReceiverForm_apt').length > 0 && $('#ReceiverForm_apt').hasClass('ac_input')) {
+                
+                function onChangeApartmentNumber_receiver() {
+                }
+                    setTimeout(function(){ 
+                $('#ReceiverForm_apt').attr('autocomplete','nope').autocomplete(
+                    {
+                        minLength: 100,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/buildingNumber',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_receiver').val(),
+                                street: $('.autocomplete-field-street_receiver').val(),
+                                buildingNumber: $('.autocomplete-field-building-number_receiver').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                        },
+                        change: function(event, ui){
+                            onChangeApartmentNumber_receiver();
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-apartment-number_receiver', function(){
+                    onChangeApartmentNumber_receiver();
+                });
+                $('body').on('keydown', '.autocomplete-field-apartment-number_receiver', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeApartmentNumber_receiver();
+                    } else if (event.which == 9) {
+                        $('#ReceiverForm_apt').focus().select();
+                    }
+                });
+                if ($('.autocomplete-field-building-number_receiver').val() != '') {
+                    $('.autocomplete-field-apartment-number_receiver').prop( 'disabled', false );
+                }
+            }
+            if ($('#ReceiverForm_postalCode').length > 0 && $('#ReceiverForm_postalCode').hasClass('ac_input')) {
+                
+                    function onChangePostalCode_receiver() {
+                    }
+                    setTimeout(function(){ 
+                    $('#ReceiverForm_postalCode').attr('autocomplete','nope').autocomplete(
+                    {
+                        minLength: 0,
+                        deferRequestBy: 200,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/postalCode',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_receiver').val(),
+                                street: $('.autocomplete-field-street_receiver').val(),
+                                buildingNumber: $('.autocomplete-field-building-number_receiver').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                            this.value = ui.item.value;
+                            $('#ReceiverForm_postalCode').trigger('change');
+                        },
+                        change: function(event, ui){
+                            onChangePostalCode_receiver();
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-postal-code_receiver', function(){
+                    onChangePostalCode_receiver();
+                });
+                $('.autocomplete-field-postal-code_receiver').on('focus', function(){
+                    $('.autocomplete-field-postal-code_receiver').autocomplete('search');
+                });
+                if ($('.autocomplete-field-building-number_receiver').val() != '') {
+                    $('.autocomplete-field-postal-code_receiver').prop( 'disabled', false );
+                }
+            }
+            if ($('#ThirdPartyForm_city').length > 0 && $('#ThirdPartyForm_city').hasClass('ac_input')) {
+                
+                function findPostCodeByCity_thirdParty() {
+                    if ($('.autocomplete-field-city_thirdParty').val().length > 2) {
+                        $.ajax( {
+                          url: '/autocomplete/suggest/postalCode',
+                          dataType: 'json',
+                          data: {
+                              city: $('.autocomplete-field-city_thirdParty').val(),
+                              street: $('.autocomplete-field-street_thirdParty').val(),
+                              YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                          },
+                          success: function( data ) {
+                              if( data && data.length == 1) {
+                                $('.autocomplete-field-postal-code_thirdParty').val(data[0].value);
+                                $('.autocomplete-field-postal-code_thirdParty').trigger('change');
+                              }
+                          }
+                        } );
+                    }
+                }
+                function onChangeCity_thirdParty() {
+                    if ($('.autocomplete-field-city_thirdParty').val() != '') {
+                        $('.autocomplete-field-street_thirdParty').val('');
+                        $('.autocomplete-field-building-number_thirdParty').val('');
+                        $('.autocomplete-field-apartment-number_thirdParty').val('');
+                        $('.autocomplete-field-postal-code_thirdParty').val('');
+                        $('.autocomplete-field-street_thirdParty').prop( 'disabled', false );
+                        $('.autocomplete-field-building-number_thirdParty').prop( 'disabled', true );
+                        $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', true );
+                    } else {
+                        $('.autocomplete-field-street_thirdParty').prop( 'disabled', true );
+                        $('.autocomplete-field-building-number_thirdParty').prop( 'disabled', true );
+                        $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', true );
+                    }
+                }
+                    setTimeout(function(){ $('#ThirdPartyForm_city').autocomplete(
+                    {
+                        minLength: 3,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/city',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_thirdParty').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                            this.value = ui.item.value;
+                            $('#ThirdPartyForm_city').trigger('ac_change');
+                            $('#ThirdPartyForm_city').trigger('change');
+                            $('.autocomplete-field-street_thirdParty').val('').focus().trigger('ac_change');
+                        },
+                        change: function(event, ui){
+                            onChangeCity_thirdParty();
+                        },
+                        response: function( event, ui ) {
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-city_thirdParty', function( event ){
+                    if (event.which != 9) { // TAB
+                        onChangeCity_thirdParty();
+                    }
+                });
+                $('body').on('keydown', '.autocomplete-field-city_thirdParty', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeCity_thirdParty();
+                    } else if (event.which == 9) {
+                        $('#ThirdPartyForm_city').focus().select();
+                    }
+                });
+                $('.autocomplete-field-city_thirdParty').on('blur', function(){
+                    findPostCodeByCity_thirdParty();
+                });
+                
+            }
+            if ($('#ThirdPartyForm_street').length > 0 && $('#ThirdPartyForm_street').hasClass('ac_input')) {
+                
+                function findPostCodeByCityAndStreet_thirdParty() {
+                    if ($('.autocomplete-field-city_thirdParty').val().length > 2) {
+                        $.ajax( {
+                          url: '/autocomplete/suggest/postalCode',
+                          dataType: 'json',
+                          data: {
+                              city: $('.autocomplete-field-city_thirdParty').val(),
+                              street: $('.autocomplete-field-street_thirdParty').val(),
+                              YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                          },
+                          success: function( data ) {
+                              if( data && data.length == 1) {
+                                $('.autocomplete-field-postal-code_thirdParty').val(data[0].value);
+                                $('.autocomplete-field-postal-code_thirdParty').trigger('change');
+                              }
+                          }
+                        } );
+                    }
+                }
+                function onChangeStreet_thirdParty() {
+                    if ($('.autocomplete-field-street_thirdParty').val() != '') {
+                        $('.autocomplete-field-building-number_thirdParty').val('');
+                        $('.autocomplete-field-apartment-number_thirdParty').val('');
+                        $('.autocomplete-field-postal-code_thirdParty').val('');
+                        $('.autocomplete-field-building-number_thirdParty').prop( 'disabled', false );
+                        $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', true );
+                    } else {
+                        $('.autocomplete-field-building-number_thirdParty').prop( 'disabled', true );
+                        $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', true );
+                    }
+                }
+                    setTimeout(function(){ 
+                $('#ThirdPartyForm_street').attr('autocomplete','nope').autocomplete(
+                    {
+                        minLength: 3,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/street',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_thirdParty').val(),
+                                street: $('.autocomplete-field-street_thirdParty').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        search: function( event, ui ) {
+                            //console.log(event.currentTarget.defaultValue);
+                        },
+                        select: function(event, ui){
+                            this.value = ui.item.value;
+                            $('#ThirdPartyForm_street').trigger('ac_change');
+                            $('#ThirdPartyForm_street').trigger('change');
+                            $('.autocomplete-field-building-number_thirdParty').val('').focus().trigger('ac_change');
+                        },
+                        change: function(event, ui){
+                            onChangeStreet_thirdParty();
+                        },
+                        response: function( event, ui ) {
+                        },
+                    }
+                ); 
+                }, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-street_thirdParty', function( event ){
+                    if (event.which != 9) { // TAB
+                        onChangeStreet_thirdParty();
+                    }                
+                });
+                $('body').on('keydown', '.autocomplete-field-street_thirdParty', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeStreet_thirdParty();
+                    } else if (event.which == 9) {
+                        $('#ThirdPartyForm_street').focus().select();
+                    }
+                });
+                $('.autocomplete-field-street_thirdParty').on('blur', function(){
+                    findPostCodeByCityAndStreet_thirdParty();
+                });
+                if ($('.autocomplete-field-city_thirdParty').val() != '') {
+                    $('.autocomplete-field-street_thirdParty').prop( 'disabled', false );
+                }
+            }
+            if ($('#ThirdPartyForm_number').length > 0 && $('#ThirdPartyForm_number').hasClass('ac_input')) {
+                
+                function onChangeBuildingNumber_thirdParty() {
+                    if ($('.autocomplete-field-building-number_thirdParty').val() != '') {
+                        $('.autocomplete-field-apartment-number_thirdParty').val('');
+                        $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', false );
+                    } else {
+                        $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', true );
+                    }
+                }
+                    setTimeout(function(){ 
+                $('#ThirdPartyForm_number').autocomplete(
+                    {
+                        minLength: 1,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/buildingNumber',
+                            dataType: 'json',
+                            data: {
+                                
+                                city: $('.autocomplete-field-city_thirdParty').val(),
+                                street: $('.autocomplete-field-street_thirdParty').val(),
+                                buildingNumber: $('.autocomplete-field-building-number_thirdParty').val(),
+                    
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                            var data = ui.item.value;
+                            var dataArr = data.split(' ; ');
+                            
+                     if (dataArr[0] != '' && dataArr[1] != '') {
+                                $('.autocomplete-field-building-number_thirdParty').val(dataArr[0]);
+                                $('.autocomplete-field-postal-code_thirdParty').val(dataArr[1]);
+                            }
+                    
+                            $('.autocomplete-field-apartment-number_thirdParty').focus().trigger('ac_change');
+                            $('#ThirdPartyForm_number').trigger('change');
+                            return false;
+                        },
+                        change: function(event, ui){
+                            onChangeBuildingNumber_thirdParty();
+                        },
+                        response: function( event, ui ) {
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-building-number_thirdParty', function( event ){
+                    if (event.which != 9) { // TAB
+                        onChangeBuildingNumber_thirdParty();
+                    }                
+                });
+                $('body').on('keydown', '.autocomplete-field-building-number_thirdParty', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeBuildingNumber_thirdParty();
+                    } else if (event.which == 9) {
+                        $('#ThirdPartyForm_number').focus().select();
+                    }
+                });
+                $('.autocomplete-field-building-number_thirdParty').on('blur', function(){
+                    //findPostCodeByCityAndStreet_thirdParty();
+                });
+                if ($('.autocomplete-field-street_thirdParty').val() != '') {
+                    $('.autocomplete-field-building-number_thirdParty').prop( 'disabled', false );
+                }
+            }
+            if ($('#ThirdPartyForm_apt').length > 0 && $('#ThirdPartyForm_apt').hasClass('ac_input')) {
+                
+                function onChangeApartmentNumber_thirdParty() {
+                }
+                    setTimeout(function(){ 
+                $('#ThirdPartyForm_apt').attr('autocomplete','nope').autocomplete(
+                    {
+                        minLength: 100,
+                        deferRequestBy: 200,
+                        autoFocus: true,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/buildingNumber',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_thirdParty').val(),
+                                street: $('.autocomplete-field-street_thirdParty').val(),
+                                buildingNumber: $('.autocomplete-field-building-number_thirdParty').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                        },
+                        change: function(event, ui){
+                            onChangeApartmentNumber_thirdParty();
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-apartment-number_thirdParty', function(){
+                    onChangeApartmentNumber_thirdParty();
+                });
+                $('body').on('keydown', '.autocomplete-field-apartment-number_thirdParty', function( event ){
+                    if (event.which == 8 || event.which == 46) { // backspace || delete
+                        onChangeApartmentNumber_thirdParty();
+                    } else if (event.which == 9) {
+                        $('#ThirdPartyForm_apt').focus().select();
+                    }
+                });
+                if ($('.autocomplete-field-building-number_thirdParty').val() != '') {
+                    $('.autocomplete-field-apartment-number_thirdParty').prop( 'disabled', false );
+                }
+            }
+            if ($('#ThirdPartyForm_postalCode').length > 0 && $('#ThirdPartyForm_postalCode').hasClass('ac_input')) {
+                
+                    function onChangePostalCode_thirdParty() {
+                    }
+                    setTimeout(function(){ 
+                    $('#ThirdPartyForm_postalCode').attr('autocomplete','nope').autocomplete(
+                    {
+                        minLength: 0,
+                        deferRequestBy: 200,
+                        source: function( request, response ) {
+                          $.ajax( {
+                            url: '/autocomplete/suggest/postalCode',
+                            dataType: 'json',
+                            data: {
+                                city: $('.autocomplete-field-city_thirdParty').val(),
+                                street: $('.autocomplete-field-street_thirdParty').val(),
+                                buildingNumber: $('.autocomplete-field-building-number_thirdParty').val(),
+                                YII_CSRF_TOKEN: $('input[name=\'YII_CSRF_TOKEN\']').val()
+                            },
+                            success: function( data ) {
+                                if( data ) {
+                                    response( data );
+                                } else {
+                                    response();
+                                }
+                            }
+                          } );
+                        },
+                        select: function(event, ui){
+                            this.value = ui.item.value;
+                            $('#ThirdPartyForm_postalCode').trigger('change');
+                        },
+                        change: function(event, ui){
+                            onChangePostalCode_thirdParty();
+                        },
+                    }
+                );}, 1000); 
+                $('body').on('change keyup paste', '.autocomplete-field-postal-code_thirdParty', function(){
+                    onChangePostalCode_thirdParty();
+                });
+                $('.autocomplete-field-postal-code_thirdParty').on('focus', function(){
+                    $('.autocomplete-field-postal-code_thirdParty').autocomplete('search');
+                });
+                if ($('.autocomplete-field-building-number_thirdParty').val() != '') {
+                    $('.autocomplete-field-postal-code_thirdParty').prop( 'disabled', false );
+                }
+            }
+        });
+});
+/*]]>*/
+</script>
+</body>
+        </html>
+
+
+<style nonce="9sYgJPShWRLL5s5naLbIjCoL">
+.c27800482 { display:none;visibility:hidden }
+</style>

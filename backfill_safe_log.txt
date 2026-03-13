@@ -1,0 +1,1676 @@
+[2026-03-10 16:21:47] Watchdog started
+[2026-03-10 16:21:47] === SAFE FINANCE BACKFILL ===
+[2026-03-10 16:21:47] Range: 2025-01-01 -> now
+[2026-03-10 16:21:47] Windows: 15 x 30d
+[2026-03-10 16:21:47] Marketplaces: 9
+[2026-03-10 16:21:47] Total tasks: 135
+[2026-03-10 16:21:47] Already completed: 0
+[2026-03-10 16:21:47] Remaining: 135
+[2026-03-10 16:21:47] Checkpoint: C:\ACC\backfill_checkpoint.json
+[2026-03-10 16:21:47] 
+[2026-03-10 16:22:04] Watchdog started
+[2026-03-10 16:22:04] === SAFE FINANCE BACKFILL ===
+[2026-03-10 16:22:04] Range: 2025-01-01 -> now
+[2026-03-10 16:22:04] Windows: 15 x 30d
+[2026-03-10 16:22:04] Marketplaces: 9
+[2026-03-10 16:22:04] Total tasks: 135
+[2026-03-10 16:22:04] Already completed: 0
+[2026-03-10 16:22:04] Remaining: 135
+[2026-03-10 16:22:04] Checkpoint: C:\ACC\backfill_checkpoint.json
+[2026-03-10 16:22:04] 
+[2026-03-10 16:22:04] --- Marketplace: DE (A1PA6795UKMFR9) ---
+[2026-03-10 16:22:10]   DE 2025-01-01->2025-01-31: 0 transactions (empty window)
+[2026-03-10 16:22:10]   CHECKPOINT saved (1/135 = 0.7%) total_rows=0
+[2026-03-10 16:22:13]   DE 2025-01-31->2025-03-02: 0 transactions (empty window)
+[2026-03-10 16:22:13]   CHECKPOINT saved (2/135 = 1.5%) total_rows=0
+[2026-03-10 16:22:16]   DE 2025-03-02->2025-04-01: 0 transactions (empty window)
+[2026-03-10 16:22:16]   CHECKPOINT saved (3/135 = 2.2%) total_rows=0
+[2026-03-10 16:22:19]   DE 2025-04-01->2025-05-01: 0 transactions (empty window)
+[2026-03-10 16:22:19]   CHECKPOINT saved (4/135 = 3.0%) total_rows=0
+[2026-03-10 16:22:22]   DE 2025-05-01->2025-05-31: 0 transactions (empty window)
+[2026-03-10 16:22:22]   CHECKPOINT saved (5/135 = 3.7%) total_rows=0
+[2026-03-10 16:22:25]   DE 2025-05-31->2025-06-30: 0 transactions (empty window)
+[2026-03-10 16:22:25]   CHECKPOINT saved (6/135 = 4.4%) total_rows=0
+[2026-03-10 16:22:28]   DE 2025-06-30->2025-07-30: 0 transactions (empty window)
+[2026-03-10 16:22:28]   CHECKPOINT saved (7/135 = 5.2%) total_rows=0
+[2026-03-10 16:22:31]   DE 2025-07-30->2025-08-29: 0 transactions (empty window)
+[2026-03-10 16:22:31]   CHECKPOINT saved (8/135 = 5.9%) total_rows=0
+[2026-03-10 16:22:35]   DE 2025-08-29->2025-09-28: 0 transactions (empty window)
+[2026-03-10 16:22:35]   CHECKPOINT saved (9/135 = 6.7%) total_rows=0
+[2026-03-10 16:22:38]   DE 2025-09-28->2025-10-28: 0 transactions (empty window)
+[2026-03-10 16:22:38]   CHECKPOINT saved (10/135 = 7.4%) total_rows=0
+[2026-03-10 16:22:41]   DE 2025-10-28->2025-11-27: 0 transactions (empty window)
+[2026-03-10 16:22:41]   CHECKPOINT saved (11/135 = 8.1%) total_rows=0
+[2026-03-10 16:22:44]   DE 2025-11-27->2025-12-27: 0 transactions (empty window)
+[2026-03-10 16:22:44]   CHECKPOINT saved (12/135 = 8.9%) total_rows=0
+[2026-03-10 16:22:47]   DE 2025-12-27->2026-01-26: 0 transactions (empty window)
+[2026-03-10 16:22:47]   CHECKPOINT saved (13/135 = 9.6%) total_rows=0
+[2026-03-10 16:22:51]   DE 2026-01-26->2026-02-25: 0 transactions (empty window)
+[2026-03-10 16:22:51]   CHECKPOINT saved (14/135 = 10.4%) total_rows=0
+[2026-03-10 16:22:55]   DE 2026-02-25->2026-03-10: 0 transactions (empty window)
+[2026-03-10 16:22:55]   CHECKPOINT saved (15/135 = 11.1%) total_rows=0
+[2026-03-10 16:22:56] --- Marketplace: PL (A1C3SOZRARQ6R3) ---
+[2026-03-10 16:22:59]   PL 2025-01-01->2025-01-31: 0 transactions (empty window)
+[2026-03-10 16:22:59]   CHECKPOINT saved (16/135 = 11.9%) total_rows=0
+[2026-03-10 16:23:02]   PL 2025-01-31->2025-03-02: 0 transactions (empty window)
+[2026-03-10 16:23:02]   CHECKPOINT saved (17/135 = 12.6%) total_rows=0
+[2026-03-10 16:23:05]   PL 2025-03-02->2025-04-01: 0 transactions (empty window)
+[2026-03-10 16:23:05]   CHECKPOINT saved (18/135 = 13.3%) total_rows=0
+[2026-03-10 16:23:08]   PL 2025-04-01->2025-05-01: 0 transactions (empty window)
+[2026-03-10 16:23:08]   CHECKPOINT saved (19/135 = 14.1%) total_rows=0
+[2026-03-10 16:23:12]   PL 2025-05-01->2025-05-31: 0 transactions (empty window)
+[2026-03-10 16:23:12]   CHECKPOINT saved (20/135 = 14.8%) total_rows=0
+[2026-03-10 16:23:15]   PL 2025-05-31->2025-06-30: 0 transactions (empty window)
+[2026-03-10 16:23:15]   CHECKPOINT saved (21/135 = 15.6%) total_rows=0
+[2026-03-10 16:23:17]   PL 2025-06-30->2025-07-30: 0 transactions (empty window)
+[2026-03-10 16:23:17]   CHECKPOINT saved (22/135 = 16.3%) total_rows=0
+[2026-03-10 16:23:20]   PL 2025-07-30->2025-08-29: 0 transactions (empty window)
+[2026-03-10 16:23:20]   CHECKPOINT saved (23/135 = 17.0%) total_rows=0
+[2026-03-10 16:23:23]   PL 2025-08-29->2025-09-28: 0 transactions (empty window)
+[2026-03-10 16:23:23]   CHECKPOINT saved (24/135 = 17.8%) total_rows=0
+[2026-03-10 16:23:26]   PL 2025-09-28->2025-10-28: 0 transactions (empty window)
+[2026-03-10 16:23:26]   CHECKPOINT saved (25/135 = 18.5%) total_rows=0
+[2026-03-10 16:23:29]   PL 2025-10-28->2025-11-27: 0 transactions (empty window)
+[2026-03-10 16:23:29]   CHECKPOINT saved (26/135 = 19.3%) total_rows=0
+[2026-03-10 16:23:34]   PL 2025-11-27->2025-12-27: 0 transactions (empty window)
+[2026-03-10 16:23:34]   CHECKPOINT saved (27/135 = 20.0%) total_rows=0
+[2026-03-10 16:23:37]   PL 2025-12-27->2026-01-26: 0 transactions (empty window)
+[2026-03-10 16:23:37]   CHECKPOINT saved (28/135 = 20.7%) total_rows=0
+[2026-03-10 16:23:41]   PL 2026-01-26->2026-02-25: 0 transactions (empty window)
+[2026-03-10 16:23:41]   CHECKPOINT saved (29/135 = 21.5%) total_rows=0
+[2026-03-10 16:23:45]   PL 2026-02-25->2026-03-10: 0 transactions (empty window)
+[2026-03-10 16:23:45]   CHECKPOINT saved (30/135 = 22.2%) total_rows=0
+[2026-03-10 16:23:46] --- Marketplace: ES (A1RKKUPIHCS9HS) ---
+[2026-03-10 16:23:50]   ES 2025-01-01->2025-01-31: 0 transactions (empty window)
+[2026-03-10 16:23:50]   CHECKPOINT saved (31/135 = 23.0%) total_rows=0
+[2026-03-10 16:23:53]   ES 2025-01-31->2025-03-02: 0 transactions (empty window)
+[2026-03-10 16:23:53]   CHECKPOINT saved (32/135 = 23.7%) total_rows=0
+[2026-03-10 16:23:56]   ES 2025-03-02->2025-04-01: 0 transactions (empty window)
+[2026-03-10 16:23:56]   CHECKPOINT saved (33/135 = 24.4%) total_rows=0
+[2026-03-10 16:24:01]   ES 2025-04-01->2025-05-01: 0 transactions (empty window)
+[2026-03-10 16:24:01]   CHECKPOINT saved (34/135 = 25.2%) total_rows=0
+[2026-03-10 16:24:05]   ES 2025-05-01->2025-05-31: 0 transactions (empty window)
+[2026-03-10 16:24:05]   CHECKPOINT saved (35/135 = 25.9%) total_rows=0
+[2026-03-10 16:24:09]   ES 2025-05-31->2025-06-30: 0 transactions (empty window)
+[2026-03-10 16:24:09]   CHECKPOINT saved (36/135 = 26.7%) total_rows=0
+[2026-03-10 16:24:12]   ES 2025-06-30->2025-07-30: 0 transactions (empty window)
+[2026-03-10 16:24:12]   CHECKPOINT saved (37/135 = 27.4%) total_rows=0
+[2026-03-10 16:24:15]   ES 2025-07-30->2025-08-29: 0 transactions (empty window)
+[2026-03-10 16:24:15]   CHECKPOINT saved (38/135 = 28.1%) total_rows=0
+[2026-03-10 16:24:19]   ES 2025-08-29->2025-09-28: 0 transactions (empty window)
+[2026-03-10 16:24:19]   CHECKPOINT saved (39/135 = 28.9%) total_rows=0
+[2026-03-10 16:24:23]   ES 2025-09-28->2025-10-28: 0 transactions (empty window)
+[2026-03-10 16:24:23]   CHECKPOINT saved (40/135 = 29.6%) total_rows=0
+[2026-03-10 16:24:27]   ES 2025-10-28->2025-11-27: 0 transactions (empty window)
+[2026-03-10 16:24:27]   CHECKPOINT saved (41/135 = 30.4%) total_rows=0
+[2026-03-10 16:24:31]   ES 2025-11-27->2025-12-27: 0 transactions (empty window)
+[2026-03-10 16:24:31]   CHECKPOINT saved (42/135 = 31.1%) total_rows=0
+[2026-03-10 16:24:34]   ES 2025-12-27->2026-01-26: 0 transactions (empty window)
+[2026-03-10 16:24:34]   CHECKPOINT saved (43/135 = 31.9%) total_rows=0
+[2026-03-10 16:24:39]   ES 2026-01-26->2026-02-25: 0 transactions (empty window)
+[2026-03-10 16:24:39]   CHECKPOINT saved (44/135 = 32.6%) total_rows=0
+[2026-03-10 16:24:43]   ES 2026-02-25->2026-03-10: 0 transactions (empty window)
+[2026-03-10 16:24:43]   CHECKPOINT saved (45/135 = 33.3%) total_rows=0
+[2026-03-10 16:24:44] --- Marketplace: FR (A13V1IB3VIYZZH) ---
+[2026-03-10 16:24:48]   FR 2025-01-01->2025-01-31: 0 transactions (empty window)
+[2026-03-10 16:24:48]   CHECKPOINT saved (46/135 = 34.1%) total_rows=0
+[2026-03-10 16:24:51]   FR 2025-01-31->2025-03-02: 0 transactions (empty window)
+[2026-03-10 16:24:51]   CHECKPOINT saved (47/135 = 34.8%) total_rows=0
+[2026-03-10 16:24:55]   FR 2025-03-02->2025-04-01: 0 transactions (empty window)
+[2026-03-10 16:24:55]   CHECKPOINT saved (48/135 = 35.6%) total_rows=0
+[2026-03-10 16:24:58]   FR 2025-04-01->2025-05-01: 0 transactions (empty window)
+[2026-03-10 16:24:58]   CHECKPOINT saved (49/135 = 36.3%) total_rows=0
+[2026-03-10 16:25:01]   FR 2025-05-01->2025-05-31: 0 transactions (empty window)
+[2026-03-10 16:25:01]   CHECKPOINT saved (50/135 = 37.0%) total_rows=0
+[2026-03-10 16:25:05]   FR 2025-05-31->2025-06-30: 0 transactions (empty window)
+[2026-03-10 16:25:05]   CHECKPOINT saved (51/135 = 37.8%) total_rows=0
+[2026-03-10 16:25:09]   FR 2025-06-30->2025-07-30: 0 transactions (empty window)
+[2026-03-10 16:25:09]   CHECKPOINT saved (52/135 = 38.5%) total_rows=0
+[2026-03-10 16:25:12]   FR 2025-07-30->2025-08-29: 0 transactions (empty window)
+[2026-03-10 16:25:12]   CHECKPOINT saved (53/135 = 39.3%) total_rows=0
+[2026-03-10 16:25:15]   FR 2025-08-29->2025-09-28: 0 transactions (empty window)
+[2026-03-10 16:25:15]   CHECKPOINT saved (54/135 = 40.0%) total_rows=0
+[2026-03-10 16:25:19]   FR 2025-09-28->2025-10-28: 0 transactions (empty window)
+[2026-03-10 16:25:19]   CHECKPOINT saved (55/135 = 40.7%) total_rows=0
+[2026-03-10 16:25:23]   FR 2025-10-28->2025-11-27: 0 transactions (empty window)
+[2026-03-10 16:25:23]   CHECKPOINT saved (56/135 = 41.5%) total_rows=0
+[2026-03-10 16:25:26]   FR 2025-11-27->2025-12-27: 0 transactions (empty window)
+[2026-03-10 16:25:26]   CHECKPOINT saved (57/135 = 42.2%) total_rows=0
+[2026-03-10 16:25:30]   FR 2025-12-27->2026-01-26: 0 transactions (empty window)
+[2026-03-10 16:25:30]   CHECKPOINT saved (58/135 = 43.0%) total_rows=0
+[2026-03-10 16:25:33]   FR 2026-01-26->2026-02-25: 0 transactions (empty window)
+[2026-03-10 16:25:33]   CHECKPOINT saved (59/135 = 43.7%) total_rows=0
+[2026-03-10 16:25:38]   FR 2026-02-25->2026-03-10: 0 transactions (empty window)
+[2026-03-10 16:25:38]   CHECKPOINT saved (60/135 = 44.4%) total_rows=0
+[2026-03-10 16:25:39] --- Marketplace: NL (A1805IZSGTT6HS) ---
+[2026-03-10 16:25:42]   NL 2025-01-01->2025-01-31: 0 transactions (empty window)
+[2026-03-10 16:25:42]   CHECKPOINT saved (61/135 = 45.2%) total_rows=0
+[2026-03-10 16:25:45]   NL 2025-01-31->2025-03-02: 0 transactions (empty window)
+[2026-03-10 16:25:45]   CHECKPOINT saved (62/135 = 45.9%) total_rows=0
+[2026-03-10 16:25:49]   NL 2025-03-02->2025-04-01: 0 transactions (empty window)
+[2026-03-10 16:25:49]   CHECKPOINT saved (63/135 = 46.7%) total_rows=0
+[2026-03-10 16:25:52]   NL 2025-04-01->2025-05-01: 0 transactions (empty window)
+[2026-03-10 16:25:52]   CHECKPOINT saved (64/135 = 47.4%) total_rows=0
+[2026-03-10 16:25:55]   NL 2025-05-01->2025-05-31: 0 transactions (empty window)
+[2026-03-10 16:25:55]   CHECKPOINT saved (65/135 = 48.1%) total_rows=0
+[2026-03-10 16:25:58]   NL 2025-05-31->2025-06-30: 0 transactions (empty window)
+[2026-03-10 16:25:58]   CHECKPOINT saved (66/135 = 48.9%) total_rows=0
+[2026-03-10 16:26:02]   NL 2025-06-30->2025-07-30: 0 transactions (empty window)
+[2026-03-10 16:26:02]   CHECKPOINT saved (67/135 = 49.6%) total_rows=0
+[2026-03-10 16:26:05]   NL 2025-07-30->2025-08-29: 0 transactions (empty window)
+[2026-03-10 16:26:05]   CHECKPOINT saved (68/135 = 50.4%) total_rows=0
+[2026-03-10 16:26:08]   NL 2025-08-29->2025-09-28: 0 transactions (empty window)
+[2026-03-10 16:26:08]   CHECKPOINT saved (69/135 = 51.1%) total_rows=0
+[2026-03-10 16:26:11]   NL 2025-09-28->2025-10-28: 0 transactions (empty window)
+[2026-03-10 16:26:11]   CHECKPOINT saved (70/135 = 51.9%) total_rows=0
+[2026-03-10 16:26:15]   NL 2025-10-28->2025-11-27: 0 transactions (empty window)
+[2026-03-10 16:26:15]   CHECKPOINT saved (71/135 = 52.6%) total_rows=0
+[2026-03-10 16:26:18]   NL 2025-11-27->2025-12-27: 0 transactions (empty window)
+[2026-03-10 16:26:18]   CHECKPOINT saved (72/135 = 53.3%) total_rows=0
+[2026-03-10 16:26:21]   NL 2025-12-27->2026-01-26: 0 transactions (empty window)
+[2026-03-10 16:26:21]   CHECKPOINT saved (73/135 = 54.1%) total_rows=0
+[2026-03-10 16:26:24]   NL 2026-01-26->2026-02-25: 0 transactions (empty window)
+[2026-03-10 16:26:24]   CHECKPOINT saved (74/135 = 54.8%) total_rows=0
+[2026-03-10 16:26:29]   NL 2026-02-25->2026-03-10: 0 transactions (empty window)
+[2026-03-10 16:26:29]   CHECKPOINT saved (75/135 = 55.6%) total_rows=0
+[2026-03-10 16:26:30] --- Marketplace: IT (APJ6JRA9NG5V4) ---
+[2026-03-10 16:26:33]   IT 2025-01-01->2025-01-31: 0 transactions (empty window)
+[2026-03-10 16:26:33]   CHECKPOINT saved (76/135 = 56.3%) total_rows=0
+[2026-03-10 16:26:36]   IT 2025-01-31->2025-03-02: 0 transactions (empty window)
+[2026-03-10 16:26:36]   CHECKPOINT saved (77/135 = 57.0%) total_rows=0
+[2026-03-10 16:26:40]   IT 2025-03-02->2025-04-01: 0 transactions (empty window)
+[2026-03-10 16:26:40]   CHECKPOINT saved (78/135 = 57.8%) total_rows=0
+[2026-03-10 16:26:44]   IT 2025-04-01->2025-05-01: 0 transactions (empty window)
+[2026-03-10 16:26:44]   CHECKPOINT saved (79/135 = 58.5%) total_rows=0
+[2026-03-10 16:26:47]   IT 2025-05-01->2025-05-31: 0 transactions (empty window)
+[2026-03-10 16:26:47]   CHECKPOINT saved (80/135 = 59.3%) total_rows=0
+[2026-03-10 16:26:51]   IT 2025-05-31->2025-06-30: 0 transactions (empty window)
+[2026-03-10 16:26:51]   CHECKPOINT saved (81/135 = 60.0%) total_rows=0
+[2026-03-10 16:26:54]   IT 2025-06-30->2025-07-30: 0 transactions (empty window)
+[2026-03-10 16:26:54]   CHECKPOINT saved (82/135 = 60.7%) total_rows=0
+[2026-03-10 16:26:58]   IT 2025-07-30->2025-08-29: 0 transactions (empty window)
+[2026-03-10 16:26:58]   CHECKPOINT saved (83/135 = 61.5%) total_rows=0
+[2026-03-10 16:27:01]   IT 2025-08-29->2025-09-28: 0 transactions (empty window)
+[2026-03-10 16:27:01]   CHECKPOINT saved (84/135 = 62.2%) total_rows=0
+[2026-03-10 16:27:05]   IT 2025-09-28->2025-10-28: 0 transactions (empty window)
+[2026-03-10 16:27:05]   CHECKPOINT saved (85/135 = 63.0%) total_rows=0
+[2026-03-10 16:30:54] ============================================================
+[2026-03-10 16:30:54] SAFE FINANCE API BACKFILL
+[2026-03-10 16:30:54] ============================================================
+[2026-03-10 16:30:54] days_back=435 (~14 months)
+[2026-03-10 16:30:54] DB: 223,003 rows currently
+[2026-03-10 16:30:54] Groups tracked: 1282 (1250 terminal = will be skipped)
+[2026-03-10 16:30:54] Max retries: 3
+[2026-03-10 16:30:54] Log: C:\ACC\backfill_safe_log.txt
+[2026-03-10 16:30:54] Status: C:\ACC\backfill_status.json
+[2026-03-10 16:30:54] 
+[2026-03-10 16:30:54] Watchdog + DB monitor started
+[2026-03-10 16:30:54] --- Attempt 1/3 ---
+[2026-03-10 16:31:27]   DB MONITOR: 223,003 rows total (+0 new) | months with data: 5
+[2026-03-10 16:32:27]   DB MONITOR: 223,003 rows total (+0 new) | months with data: 5
+[2026-03-10 16:33:28]   DB MONITOR: 223,003 rows total (+0 new) | months with data: 5
+[2026-03-10 16:34:28]   DB MONITOR: 223,077 rows total (+74 new) | months with data: 5
+[2026-03-10 16:35:29]   DB MONITOR: 223,763 rows total (+760 new) | months with data: 5
+[2026-03-10 16:36:30]   DB MONITOR: 225,001 rows total (+1,998 new) | months with data: 5
+[2026-03-10 16:37:31]   DB MONITOR: 227,873 rows total (+4,870 new) | months with data: 5
+[2026-03-10 16:38:31]   DB MONITOR: 227,508 rows total (+4,505 new) | months with data: 5
+[2026-03-10 16:39:32]   DB MONITOR: 229,681 rows total (+6,678 new) | months with data: 5
+[2026-03-10 16:40:32]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:41:38]   DB MONITOR: 227,493 rows total (+4,490 new) | months with data: 5
+[2026-03-10 16:42:39]   DB MONITOR: 229,556 rows total (+6,553 new) | months with data: 5
+[2026-03-10 16:43:39]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:44:47]   DB MONITOR: 222,955 rows total (+-48 new) | months with data: 5
+[2026-03-10 16:45:47]   DB MONITOR: 226,349 rows total (+3,346 new) | months with data: 5
+[2026-03-10 16:46:17] WATCHDOG WARNING: no heartbeat for 923s! task=step_sync_finances attempt 1
+[2026-03-10 16:46:47] WATCHDOG WARNING: no heartbeat for 953s! task=step_sync_finances attempt 1
+[2026-03-10 16:46:48]   DB MONITOR: 228,155 rows total (+5,152 new) | months with data: 5
+[2026-03-10 16:47:18] WATCHDOG WARNING: no heartbeat for 984s! task=step_sync_finances attempt 1
+[2026-03-10 16:47:48] WATCHDOG WARNING: no heartbeat for 1014s! task=step_sync_finances attempt 1
+[2026-03-10 16:47:48]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:48:18] WATCHDOG WARNING: no heartbeat for 1044s! task=step_sync_finances attempt 1
+[2026-03-10 16:48:48] WATCHDOG WARNING: no heartbeat for 1074s! task=step_sync_finances attempt 1
+[2026-03-10 16:48:49]   DB MONITOR: 229,713 rows total (+6,710 new) | months with data: 5
+[2026-03-10 16:49:19] WATCHDOG WARNING: no heartbeat for 1104s! task=step_sync_finances attempt 1
+[2026-03-10 16:49:49] WATCHDOG WARNING: no heartbeat for 1134s! task=step_sync_finances attempt 1
+[2026-03-10 16:49:52]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:50:22] WATCHDOG WARNING: no heartbeat for 1168s! task=step_sync_finances attempt 1
+[2026-03-10 16:50:52] WATCHDOG WARNING: no heartbeat for 1198s! task=step_sync_finances attempt 1
+[2026-03-10 16:50:53]   DB MONITOR: 224,672 rows total (+1,669 new) | months with data: 5
+[2026-03-10 16:51:23] WATCHDOG WARNING: no heartbeat for 1228s! task=step_sync_finances attempt 1
+[2026-03-10 16:51:53] WATCHDOG WARNING: no heartbeat for 1258s! task=step_sync_finances attempt 1
+[2026-03-10 16:51:53]   DB MONITOR: 229,147 rows total (+6,144 new) | months with data: 5
+[2026-03-10 16:52:23] WATCHDOG WARNING: no heartbeat for 1289s! task=step_sync_finances attempt 1
+[2026-03-10 16:52:53] WATCHDOG WARNING: no heartbeat for 1319s! task=step_sync_finances attempt 1
+[2026-03-10 16:52:53]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:53:23] WATCHDOG WARNING: no heartbeat for 1349s! task=step_sync_finances attempt 1
+[2026-03-10 16:53:53] WATCHDOG WARNING: no heartbeat for 1379s! task=step_sync_finances attempt 1
+[2026-03-10 16:53:59]   DB MONITOR: 225,705 rows total (+2,702 new) | months with data: 5
+[2026-03-10 16:54:29] WATCHDOG WARNING: no heartbeat for 1415s! task=step_sync_finances attempt 1
+[2026-03-10 16:54:59] WATCHDOG WARNING: no heartbeat for 1445s! task=step_sync_finances attempt 1
+[2026-03-10 16:55:00]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:55:30] WATCHDOG WARNING: no heartbeat for 1475s! task=step_sync_finances attempt 1
+[2026-03-10 16:56:00] WATCHDOG WARNING: no heartbeat for 1505s! task=step_sync_finances attempt 1
+[2026-03-10 16:56:00]   DB MONITOR: 229,008 rows total (+6,005 new) | months with data: 5
+[2026-03-10 16:56:30] WATCHDOG WARNING: no heartbeat for 1536s! task=step_sync_finances attempt 1
+[2026-03-10 16:57:00] WATCHDOG WARNING: no heartbeat for 1566s! task=step_sync_finances attempt 1
+[2026-03-10 16:57:00]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:57:30] WATCHDOG WARNING: no heartbeat for 1596s! task=step_sync_finances attempt 1
+[2026-03-10 16:58:00] WATCHDOG WARNING: no heartbeat for 1626s! task=step_sync_finances attempt 1
+[2026-03-10 16:58:08]   DB MONITOR: 225,606 rows total (+2,603 new) | months with data: 5
+[2026-03-10 16:58:38] WATCHDOG WARNING: no heartbeat for 1664s! task=step_sync_finances attempt 1
+[2026-03-10 16:59:08] WATCHDOG WARNING: no heartbeat for 1694s! task=step_sync_finances attempt 1
+[2026-03-10 16:59:09]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 16:59:39] WATCHDOG WARNING: no heartbeat for 1725s! task=step_sync_finances attempt 1
+[2026-03-10 17:00:09] WATCHDOG WARNING: no heartbeat for 1755s! task=step_sync_finances attempt 1
+[2026-03-10 17:00:09]   DB MONITOR: 229,484 rows total (+6,481 new) | months with data: 5
+[2026-03-10 17:00:39] WATCHDOG WARNING: no heartbeat for 1785s! task=step_sync_finances attempt 1
+[2026-03-10 17:01:09] WATCHDOG WARNING: no heartbeat for 1815s! task=step_sync_finances attempt 1
+[2026-03-10 17:01:10]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:01:40] WATCHDOG WARNING: no heartbeat for 1845s! task=step_sync_finances attempt 1
+[2026-03-10 17:02:10] WATCHDOG WARNING: no heartbeat for 1875s! task=step_sync_finances attempt 1
+[2026-03-10 17:02:14]   DB MONITOR: 225,228 rows total (+2,225 new) | months with data: 5
+[2026-03-10 17:02:44] WATCHDOG WARNING: no heartbeat for 1910s! task=step_sync_finances attempt 1
+[2026-03-10 17:03:14] WATCHDOG WARNING: no heartbeat for 1940s! task=step_sync_finances attempt 1
+[2026-03-10 17:03:14]   DB MONITOR: 228,598 rows total (+5,595 new) | months with data: 5
+[2026-03-10 17:03:44] WATCHDOG WARNING: no heartbeat for 1970s! task=step_sync_finances attempt 1
+[2026-03-10 17:04:14] WATCHDOG WARNING: no heartbeat for 2000s! task=step_sync_finances attempt 1
+[2026-03-10 17:04:15]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:04:45] WATCHDOG WARNING: no heartbeat for 2031s! task=step_sync_finances attempt 1
+[2026-03-10 17:05:15] WATCHDOG WARNING: no heartbeat for 2061s! task=step_sync_finances attempt 1
+[2026-03-10 17:05:22]   DB MONITOR: 225,264 rows total (+2,261 new) | months with data: 5
+[2026-03-10 17:05:52] WATCHDOG WARNING: no heartbeat for 2097s! task=step_sync_finances attempt 1
+[2026-03-10 17:06:22] WATCHDOG WARNING: no heartbeat for 2127s! task=step_sync_finances attempt 1
+[2026-03-10 17:06:22]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:06:52] WATCHDOG WARNING: no heartbeat for 2158s! task=step_sync_finances attempt 1
+[2026-03-10 17:07:22] WATCHDOG WARNING: no heartbeat for 2188s! task=step_sync_finances attempt 1
+[2026-03-10 17:07:23]   DB MONITOR: 226,901 rows total (+3,898 new) | months with data: 5
+[2026-03-10 17:07:53] WATCHDOG WARNING: no heartbeat for 2218s! task=step_sync_finances attempt 1
+[2026-03-10 17:08:23] WATCHDOG WARNING: no heartbeat for 2248s! task=step_sync_finances attempt 1
+[2026-03-10 17:08:29]   DB MONITOR: 229,421 rows total (+6,418 new) | months with data: 5
+[2026-03-10 17:08:59] WATCHDOG WARNING: no heartbeat for 2285s! task=step_sync_finances attempt 1
+[2026-03-10 17:09:29] WATCHDOG WARNING: no heartbeat for 2315s! task=step_sync_finances attempt 1
+[2026-03-10 17:09:30]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:10:00] WATCHDOG WARNING: no heartbeat for 2345s! task=step_sync_finances attempt 1
+[2026-03-10 17:10:30] WATCHDOG WARNING: no heartbeat for 2375s! task=step_sync_finances attempt 1
+[2026-03-10 17:10:30]   DB MONITOR: 224,527 rows total (+1,524 new) | months with data: 5
+[2026-03-10 17:11:00] WATCHDOG WARNING: no heartbeat for 2406s! task=step_sync_finances attempt 1
+[2026-03-10 17:11:30] WATCHDOG WARNING: no heartbeat for 2436s! task=step_sync_finances attempt 1
+[2026-03-10 17:11:30]   DB MONITOR: 226,014 rows total (+3,011 new) | months with data: 5
+[2026-03-10 17:12:00] WATCHDOG WARNING: no heartbeat for 2466s! task=step_sync_finances attempt 1
+[2026-03-10 17:12:30] WATCHDOG WARNING: no heartbeat for 2496s! task=step_sync_finances attempt 1
+[2026-03-10 17:12:31]   DB MONITOR: 227,536 rows total (+4,533 new) | months with data: 5
+[2026-03-10 17:13:01] WATCHDOG WARNING: no heartbeat for 2527s! task=step_sync_finances attempt 1
+[2026-03-10 17:13:31] WATCHDOG WARNING: no heartbeat for 2557s! task=step_sync_finances attempt 1
+[2026-03-10 17:14:23]   DB MONITOR: 228,473 rows total (+5,470 new) | months with data: 5
+[2026-03-10 17:14:53] WATCHDOG WARNING: no heartbeat for 2639s! task=step_sync_finances attempt 1
+[2026-03-10 17:14:54]   DB MONITOR: 229,857 rows total (+6,854 new) | months with data: 5
+[2026-03-10 17:15:24] WATCHDOG WARNING: no heartbeat for 2669s! task=step_sync_finances attempt 1
+[2026-03-10 17:15:54] WATCHDOG WARNING: no heartbeat for 2699s! task=step_sync_finances attempt 1
+[2026-03-10 17:15:54]   DB MONITOR: 227,933 rows total (+4,930 new) | months with data: 5
+[2026-03-10 17:16:24] WATCHDOG WARNING: no heartbeat for 2730s! task=step_sync_finances attempt 1
+[2026-03-10 17:16:54] WATCHDOG WARNING: no heartbeat for 2760s! task=step_sync_finances attempt 1
+[2026-03-10 17:16:54]   DB MONITOR: 229,398 rows total (+6,395 new) | months with data: 5
+[2026-03-10 17:17:24] WATCHDOG WARNING: no heartbeat for 2790s! task=step_sync_finances attempt 1
+[2026-03-10 17:17:54] WATCHDOG WARNING: no heartbeat for 2820s! task=step_sync_finances attempt 1
+[2026-03-10 17:17:55]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:18:25] WATCHDOG WARNING: no heartbeat for 2851s! task=step_sync_finances attempt 1
+[2026-03-10 17:18:55] WATCHDOG WARNING: no heartbeat for 2881s! task=step_sync_finances attempt 1
+[2026-03-10 17:19:00]   DB MONITOR: 223,989 rows total (+986 new) | months with data: 5
+[2026-03-10 17:19:30] WATCHDOG WARNING: no heartbeat for 2915s! task=step_sync_finances attempt 1
+[2026-03-10 17:20:00] WATCHDOG WARNING: no heartbeat for 2945s! task=step_sync_finances attempt 1
+[2026-03-10 17:20:00]   DB MONITOR: 229,482 rows total (+6,479 new) | months with data: 5
+[2026-03-10 17:20:30] WATCHDOG WARNING: no heartbeat for 2976s! task=step_sync_finances attempt 1
+[2026-03-10 17:21:00] WATCHDOG WARNING: no heartbeat for 3006s! task=step_sync_finances attempt 1
+[2026-03-10 17:21:01]   DB MONITOR: 229,510 rows total (+6,507 new) | months with data: 5
+[2026-03-10 17:21:31] WATCHDOG WARNING: no heartbeat for 3036s! task=step_sync_finances attempt 1
+[2026-03-10 17:22:01] WATCHDOG WARNING: no heartbeat for 3066s! task=step_sync_finances attempt 1
+[2026-03-10 17:22:09]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:22:39] WATCHDOG WARNING: no heartbeat for 3105s! task=step_sync_finances attempt 1
+[2026-03-10 17:23:09] WATCHDOG WARNING: no heartbeat for 3135s! task=step_sync_finances attempt 1
+[2026-03-10 17:23:10]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:23:40] WATCHDOG WARNING: no heartbeat for 3166s! task=step_sync_finances attempt 1
+[2026-03-10 17:24:10] WATCHDOG WARNING: no heartbeat for 3196s! task=step_sync_finances attempt 1
+[2026-03-10 17:24:10]   DB MONITOR: 229,713 rows total (+6,710 new) | months with data: 5
+[2026-03-10 17:24:40] WATCHDOG WARNING: no heartbeat for 3226s! task=step_sync_finances attempt 1
+[2026-03-10 17:25:10] WATCHDOG WARNING: no heartbeat for 3256s! task=step_sync_finances attempt 1
+[2026-03-10 17:25:11]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:25:41] WATCHDOG WARNING: no heartbeat for 3286s! task=step_sync_finances attempt 1
+[2026-03-10 17:26:11] WATCHDOG WARNING: no heartbeat for 3316s! task=step_sync_finances attempt 1
+[2026-03-10 17:26:15]   DB MONITOR: 225,143 rows total (+2,140 new) | months with data: 5
+[2026-03-10 17:26:45] WATCHDOG WARNING: no heartbeat for 3351s! task=step_sync_finances attempt 1
+[2026-03-10 17:27:15] WATCHDOG WARNING: no heartbeat for 3381s! task=step_sync_finances attempt 1
+[2026-03-10 17:27:15]   DB MONITOR: 229,858 rows total (+6,855 new) | months with data: 5
+[2026-03-10 17:27:45] WATCHDOG WARNING: no heartbeat for 3411s! task=step_sync_finances attempt 1
+[2026-03-10 17:28:15] WATCHDOG WARNING: no heartbeat for 3441s! task=step_sync_finances attempt 1
+[2026-03-10 17:28:16]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:28:46] WATCHDOG WARNING: no heartbeat for 3472s! task=step_sync_finances attempt 1
+[2026-03-10 17:29:16] WATCHDOG WARNING: no heartbeat for 3502s! task=step_sync_finances attempt 1
+[2026-03-10 17:29:16]   DB MONITOR: 229,819 rows total (+6,816 new) | months with data: 5
+[2026-03-10 17:29:46] WATCHDOG WARNING: no heartbeat for 3532s! task=step_sync_finances attempt 1
+[2026-03-10 17:30:16] WATCHDOG WARNING: no heartbeat for 3562s! task=step_sync_finances attempt 1
+[2026-03-10 17:30:17]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:30:47] WATCHDOG WARNING: no heartbeat for 3592s! task=step_sync_finances attempt 1
+[2026-03-10 17:31:17] WATCHDOG WARNING: no heartbeat for 3622s! task=step_sync_finances attempt 1
+[2026-03-10 17:31:23]   DB MONITOR: 226,233 rows total (+3,230 new) | months with data: 5
+[2026-03-10 17:31:53] WATCHDOG WARNING: no heartbeat for 3659s! task=step_sync_finances attempt 1
+[2026-03-10 17:32:23] WATCHDOG WARNING: no heartbeat for 3689s! task=step_sync_finances attempt 1
+[2026-03-10 17:32:23]   DB MONITOR: 228,287 rows total (+5,284 new) | months with data: 5
+[2026-03-10 17:32:53] WATCHDOG WARNING: no heartbeat for 3719s! task=step_sync_finances attempt 1
+[2026-03-10 17:33:23] WATCHDOG WARNING: no heartbeat for 3749s! task=step_sync_finances attempt 1
+[2026-03-10 17:33:24]   DB MONITOR: 229,644 rows total (+6,641 new) | months with data: 5
+[2026-03-10 17:33:54] WATCHDOG WARNING: no heartbeat for 3780s! task=step_sync_finances attempt 1
+[2026-03-10 17:34:24] WATCHDOG WARNING: no heartbeat for 3810s! task=step_sync_finances attempt 1
+[2026-03-10 17:34:24]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:34:54] WATCHDOG WARNING: no heartbeat for 3840s! task=step_sync_finances attempt 1
+[2026-03-10 17:35:24] WATCHDOG WARNING: no heartbeat for 3870s! task=step_sync_finances attempt 1
+[2026-03-10 17:35:35]   DB MONITOR: 223,706 rows total (+703 new) | months with data: 5
+[2026-03-10 17:36:05] WATCHDOG WARNING: no heartbeat for 3911s! task=step_sync_finances attempt 1
+[2026-03-10 17:36:35] WATCHDOG WARNING: no heartbeat for 3941s! task=step_sync_finances attempt 1
+[2026-03-10 17:36:35]   DB MONITOR: 225,699 rows total (+2,696 new) | months with data: 5
+[2026-03-10 17:37:05] WATCHDOG WARNING: no heartbeat for 3971s! task=step_sync_finances attempt 1
+[2026-03-10 17:37:35] WATCHDOG WARNING: no heartbeat for 4001s! task=step_sync_finances attempt 1
+[2026-03-10 17:37:36]   DB MONITOR: 227,634 rows total (+4,631 new) | months with data: 5
+[2026-03-10 17:38:06] WATCHDOG WARNING: no heartbeat for 4032s! task=step_sync_finances attempt 1
+[2026-03-10 17:38:36] WATCHDOG WARNING: no heartbeat for 4062s! task=step_sync_finances attempt 1
+[2026-03-10 17:38:36]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:39:06] WATCHDOG WARNING: no heartbeat for 4092s! task=step_sync_finances attempt 1
+[2026-03-10 17:39:36] WATCHDOG WARNING: no heartbeat for 4122s! task=step_sync_finances attempt 1
+[2026-03-10 17:39:37]   DB MONITOR: 225,848 rows total (+2,845 new) | months with data: 5
+[2026-03-10 17:40:07] WATCHDOG WARNING: no heartbeat for 4153s! task=step_sync_finances attempt 1
+[2026-03-10 17:40:37] WATCHDOG WARNING: no heartbeat for 4183s! task=step_sync_finances attempt 1
+[2026-03-10 17:40:39]   DB MONITOR: 228,300 rows total (+5,297 new) | months with data: 5
+[2026-03-10 17:41:09] WATCHDOG WARNING: no heartbeat for 4215s! task=step_sync_finances attempt 1
+[2026-03-10 17:41:39] WATCHDOG WARNING: no heartbeat for 4245s! task=step_sync_finances attempt 1
+[2026-03-10 17:41:40]   DB MONITOR: 229,458 rows total (+6,455 new) | months with data: 5
+[2026-03-10 17:42:10] WATCHDOG WARNING: no heartbeat for 4275s! task=step_sync_finances attempt 1
+[2026-03-10 17:42:40] WATCHDOG WARNING: no heartbeat for 4305s! task=step_sync_finances attempt 1
+[2026-03-10 17:42:40]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:43:10] WATCHDOG WARNING: no heartbeat for 4336s! task=step_sync_finances attempt 1
+[2026-03-10 17:43:40] WATCHDOG WARNING: no heartbeat for 4366s! task=step_sync_finances attempt 1
+[2026-03-10 17:43:41]   DB MONITOR: 220,389 rows total (+-2,614 new) | months with data: 5
+[2026-03-10 17:44:11] WATCHDOG WARNING: no heartbeat for 4397s! task=step_sync_finances attempt 1
+[2026-03-10 17:44:41] WATCHDOG WARNING: no heartbeat for 4427s! task=step_sync_finances attempt 1
+[2026-03-10 17:44:47]   DB MONITOR: 224,300 rows total (+1,297 new) | months with data: 5
+[2026-03-10 17:45:17] WATCHDOG WARNING: no heartbeat for 4463s! task=step_sync_finances attempt 1
+[2026-03-10 17:45:47] WATCHDOG WARNING: no heartbeat for 4493s! task=step_sync_finances attempt 1
+[2026-03-10 17:45:47]   DB MONITOR: 229,066 rows total (+6,063 new) | months with data: 5
+[2026-03-10 17:46:17] WATCHDOG WARNING: no heartbeat for 4523s! task=step_sync_finances attempt 1
+[2026-03-10 17:46:47] WATCHDOG WARNING: no heartbeat for 4553s! task=step_sync_finances attempt 1
+[2026-03-10 17:46:48]   DB MONITOR: 229,646 rows total (+6,643 new) | months with data: 5
+[2026-03-10 17:47:18] WATCHDOG WARNING: no heartbeat for 4584s! task=step_sync_finances attempt 1
+[2026-03-10 17:47:48] WATCHDOG WARNING: no heartbeat for 4614s! task=step_sync_finances attempt 1
+[2026-03-10 17:47:48]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:48:18] WATCHDOG WARNING: no heartbeat for 4644s! task=step_sync_finances attempt 1
+[2026-03-10 17:48:48] WATCHDOG WARNING: no heartbeat for 4674s! task=step_sync_finances attempt 1
+[2026-03-10 17:48:53]   DB MONITOR: 228,560 rows total (+5,557 new) | months with data: 5
+[2026-03-10 17:49:23] WATCHDOG WARNING: no heartbeat for 4709s! task=step_sync_finances attempt 1
+[2026-03-10 17:49:53] WATCHDOG WARNING: no heartbeat for 4739s! task=step_sync_finances attempt 1
+[2026-03-10 17:49:54]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:50:24] WATCHDOG WARNING: no heartbeat for 4770s! task=step_sync_finances attempt 1
+[2026-03-10 17:50:54] WATCHDOG WARNING: no heartbeat for 4800s! task=step_sync_finances attempt 1
+[2026-03-10 17:50:54]   DB MONITOR: 226,772 rows total (+3,769 new) | months with data: 5
+[2026-03-10 17:51:24] WATCHDOG WARNING: no heartbeat for 4830s! task=step_sync_finances attempt 1
+[2026-03-10 17:51:54] WATCHDOG WARNING: no heartbeat for 4860s! task=step_sync_finances attempt 1
+[2026-03-10 17:51:58]   DB MONITOR: 228,660 rows total (+5,657 new) | months with data: 5
+[2026-03-10 17:52:28] WATCHDOG WARNING: no heartbeat for 4894s! task=step_sync_finances attempt 1
+[2026-03-10 17:52:58] WATCHDOG WARNING: no heartbeat for 4924s! task=step_sync_finances attempt 1
+[2026-03-10 17:52:59]   DB MONITOR: 229,853 rows total (+6,850 new) | months with data: 5
+[2026-03-10 17:53:29] WATCHDOG WARNING: no heartbeat for 4955s! task=step_sync_finances attempt 1
+[2026-03-10 17:53:59] WATCHDOG WARNING: no heartbeat for 4985s! task=step_sync_finances attempt 1
+[2026-03-10 17:53:59]   DB MONITOR: 229,613 rows total (+6,610 new) | months with data: 5
+[2026-03-10 17:54:29] WATCHDOG WARNING: no heartbeat for 5015s! task=step_sync_finances attempt 1
+[2026-03-10 17:54:59] WATCHDOG WARNING: no heartbeat for 5045s! task=step_sync_finances attempt 1
+[2026-03-10 17:55:00]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:55:30] WATCHDOG WARNING: no heartbeat for 5076s! task=step_sync_finances attempt 1
+[2026-03-10 17:56:00] WATCHDOG WARNING: no heartbeat for 5106s! task=step_sync_finances attempt 1
+[2026-03-10 17:56:00]   DB MONITOR: 229,691 rows total (+6,688 new) | months with data: 5
+[2026-03-10 17:56:30] WATCHDOG WARNING: no heartbeat for 5136s! task=step_sync_finances attempt 1
+[2026-03-10 17:57:00] WATCHDOG WARNING: no heartbeat for 5166s! task=step_sync_finances attempt 1
+[2026-03-10 17:57:00]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:57:31] WATCHDOG WARNING: no heartbeat for 5196s! task=step_sync_finances attempt 1
+[2026-03-10 17:58:01] WATCHDOG WARNING: no heartbeat for 5226s! task=step_sync_finances attempt 1
+[2026-03-10 17:58:03]   DB MONITOR: 227,000 rows total (+3,997 new) | months with data: 5
+[2026-03-10 17:58:33] WATCHDOG WARNING: no heartbeat for 5259s! task=step_sync_finances attempt 1
+[2026-03-10 17:59:03] WATCHDOG WARNING: no heartbeat for 5289s! task=step_sync_finances attempt 1
+[2026-03-10 17:59:08]   DB MONITOR: 229,867 rows total (+6,864 new) | months with data: 5
+[2026-03-10 17:59:38] WATCHDOG WARNING: no heartbeat for 5324s! task=step_sync_finances attempt 1
+[2026-03-10 18:00:08] WATCHDOG WARNING: no heartbeat for 5354s! task=step_sync_finances attempt 1
+[2026-03-10 18:00:09]   DB MONITOR: 232,834 rows total (+9,831 new) | months with data: 5
+[2026-03-10 18:00:39] WATCHDOG WARNING: no heartbeat for 5384s! task=step_sync_finances attempt 1
+[2026-03-10 18:01:09] WATCHDOG WARNING: no heartbeat for 5414s! task=step_sync_finances attempt 1
+[2026-03-10 18:01:09]   DB MONITOR: 236,612 rows total (+13,609 new) | months with data: 5
+[2026-03-10 18:01:39] WATCHDOG WARNING: no heartbeat for 5445s! task=step_sync_finances attempt 1
+[2026-03-10 18:02:09] WATCHDOG WARNING: no heartbeat for 5475s! task=step_sync_finances attempt 1
+[2026-03-10 18:02:09]   DB MONITOR: 238,782 rows total (+15,779 new) | months with data: 5
+[2026-03-10 18:02:39] WATCHDOG WARNING: no heartbeat for 5505s! task=step_sync_finances attempt 1
+[2026-03-10 18:03:09] WATCHDOG WARNING: no heartbeat for 5535s! task=step_sync_finances attempt 1
+[2026-03-10 18:03:10]   DB MONITOR: 240,339 rows total (+17,336 new) | months with data: 5
+[2026-03-10 18:03:40] WATCHDOG WARNING: no heartbeat for 5566s! task=step_sync_finances attempt 1
+[2026-03-10 18:04:10] WATCHDOG WARNING: no heartbeat for 5596s! task=step_sync_finances attempt 1
+[2026-03-10 18:04:10]   DB MONITOR: 243,250 rows total (+20,247 new) | months with data: 5
+[2026-03-10 18:04:40] WATCHDOG WARNING: no heartbeat for 5626s! task=step_sync_finances attempt 1
+[2026-03-10 18:05:10] WATCHDOG WARNING: no heartbeat for 5656s! task=step_sync_finances attempt 1
+[2026-03-10 18:05:11]   DB MONITOR: 244,767 rows total (+21,764 new) | months with data: 5
+[2026-03-10 18:05:41] WATCHDOG WARNING: no heartbeat for 5687s! task=step_sync_finances attempt 1
+[2026-03-10 18:06:11] WATCHDOG WARNING: no heartbeat for 5717s! task=step_sync_finances attempt 1
+[2026-03-10 18:06:11]   DB MONITOR: 244,969 rows total (+21,966 new) | months with data: 5
+[2026-03-10 18:06:41] WATCHDOG WARNING: no heartbeat for 5747s! task=step_sync_finances attempt 1
+[2026-03-10 18:07:11] WATCHDOG WARNING: no heartbeat for 5777s! task=step_sync_finances attempt 1
+[2026-03-10 18:07:15]   DB MONITOR: 246,574 rows total (+23,571 new) | months with data: 5
+[2026-03-10 18:07:45] WATCHDOG WARNING: no heartbeat for 5811s! task=step_sync_finances attempt 1
+[2026-03-10 18:08:15] WATCHDOG WARNING: no heartbeat for 5841s! task=step_sync_finances attempt 1
+[2026-03-10 18:08:16]   DB MONITOR: 250,557 rows total (+27,554 new) | months with data: 5
+[2026-03-10 18:08:46] WATCHDOG WARNING: no heartbeat for 5872s! task=step_sync_finances attempt 1
+[2026-03-10 18:09:16] WATCHDOG WARNING: no heartbeat for 5902s! task=step_sync_finances attempt 1
+[2026-03-10 18:09:17]   DB MONITOR: 253,463 rows total (+30,460 new) | months with data: 5
+[2026-03-10 18:09:47] WATCHDOG WARNING: no heartbeat for 5933s! task=step_sync_finances attempt 1
+[2026-03-10 18:10:17] WATCHDOG WARNING: no heartbeat for 5963s! task=step_sync_finances attempt 1
+[2026-03-10 18:10:17]   DB MONITOR: 256,206 rows total (+33,203 new) | months with data: 5
+[2026-03-10 18:10:47] WATCHDOG WARNING: no heartbeat for 5993s! task=step_sync_finances attempt 1
+[2026-03-10 18:11:17] WATCHDOG WARNING: no heartbeat for 6023s! task=step_sync_finances attempt 1
+[2026-03-10 18:11:18]   DB MONITOR: 257,643 rows total (+34,640 new) | months with data: 5
+[2026-03-10 18:11:48] WATCHDOG WARNING: no heartbeat for 6054s! task=step_sync_finances attempt 1
+[2026-03-10 18:12:18] WATCHDOG WARNING: no heartbeat for 6084s! task=step_sync_finances attempt 1
+[2026-03-10 18:12:18]   DB MONITOR: 257,837 rows total (+34,834 new) | months with data: 5
+[2026-03-10 18:12:48] WATCHDOG WARNING: no heartbeat for 6114s! task=step_sync_finances attempt 1
+[2026-03-10 18:13:18] WATCHDOG WARNING: no heartbeat for 6144s! task=step_sync_finances attempt 1
+[2026-03-10 18:13:38]   DB MONITOR: 258,468 rows total (+35,465 new) | months with data: 5
+[2026-03-10 18:14:08] WATCHDOG WARNING: no heartbeat for 6194s! task=step_sync_finances attempt 1
+[2026-03-10 18:14:38] WATCHDOG WARNING: no heartbeat for 6224s! task=step_sync_finances attempt 1
+[2026-03-10 18:14:39]   DB MONITOR: 258,813 rows total (+35,810 new) | months with data: 5
+[2026-03-10 18:15:09] WATCHDOG WARNING: no heartbeat for 6255s! task=step_sync_finances attempt 1
+[2026-03-10 18:15:39] WATCHDOG WARNING: no heartbeat for 6285s! task=step_sync_finances attempt 1
+[2026-03-10 18:15:39]   DB MONITOR: 258,978 rows total (+35,975 new) | months with data: 5
+[2026-03-10 18:16:09] WATCHDOG WARNING: no heartbeat for 6315s! task=step_sync_finances attempt 1
+[2026-03-10 18:16:39] WATCHDOG WARNING: no heartbeat for 6345s! task=step_sync_finances attempt 1
+[2026-03-10 18:16:42]   DB MONITOR: 263,180 rows total (+40,177 new) | months with data: 5
+[2026-03-10 18:17:12] WATCHDOG WARNING: no heartbeat for 6378s! task=step_sync_finances attempt 1
+[2026-03-10 18:17:42] WATCHDOG WARNING: no heartbeat for 6408s! task=step_sync_finances attempt 1
+[2026-03-10 18:17:42]   DB MONITOR: 266,825 rows total (+43,822 new) | months with data: 5
+[2026-03-10 18:18:12] WATCHDOG WARNING: no heartbeat for 6438s! task=step_sync_finances attempt 1
+[2026-03-10 18:18:42] WATCHDOG WARNING: no heartbeat for 6468s! task=step_sync_finances attempt 1
+[2026-03-10 18:18:43]   DB MONITOR: 267,534 rows total (+44,531 new) | months with data: 5
+[2026-03-10 18:19:13] WATCHDOG WARNING: no heartbeat for 6499s! task=step_sync_finances attempt 1
+[2026-03-10 18:19:43] WATCHDOG WARNING: no heartbeat for 6529s! task=step_sync_finances attempt 1
+[2026-03-10 18:19:43]   DB MONITOR: 269,655 rows total (+46,652 new) | months with data: 5
+[2026-03-10 18:20:13] WATCHDOG WARNING: no heartbeat for 6559s! task=step_sync_finances attempt 1
+[2026-03-10 18:20:43] WATCHDOG WARNING: no heartbeat for 6589s! task=step_sync_finances attempt 1
+[2026-03-10 18:20:44]   DB MONITOR: 271,126 rows total (+48,123 new) | months with data: 5
+[2026-03-10 18:21:14] WATCHDOG WARNING: no heartbeat for 6619s! task=step_sync_finances attempt 1
+[2026-03-10 18:21:44] WATCHDOG WARNING: no heartbeat for 6649s! task=step_sync_finances attempt 1
+[2026-03-10 18:21:44]   DB MONITOR: 275,624 rows total (+52,621 new) | months with data: 5
+[2026-03-10 18:22:14] WATCHDOG WARNING: no heartbeat for 6680s! task=step_sync_finances attempt 1
+[2026-03-10 18:22:44] WATCHDOG WARNING: no heartbeat for 6710s! task=step_sync_finances attempt 1
+[2026-03-10 18:22:44]   DB MONITOR: 279,023 rows total (+56,020 new) | months with data: 5
+[2026-03-10 18:23:15] WATCHDOG WARNING: no heartbeat for 6740s! task=step_sync_finances attempt 1
+[2026-03-10 18:23:45] WATCHDOG WARNING: no heartbeat for 6770s! task=step_sync_finances attempt 1
+[2026-03-10 18:23:47]   DB MONITOR: 279,696 rows total (+56,693 new) | months with data: 5
+[2026-03-10 18:24:17] WATCHDOG WARNING: no heartbeat for 6803s! task=step_sync_finances attempt 1
+[2026-03-10 18:24:47] WATCHDOG WARNING: no heartbeat for 6833s! task=step_sync_finances attempt 1
+[2026-03-10 18:24:48]   DB MONITOR: 284,381 rows total (+61,378 new) | months with data: 5
+[2026-03-10 18:25:18] WATCHDOG WARNING: no heartbeat for 6863s! task=step_sync_finances attempt 1
+[2026-03-10 18:25:48] WATCHDOG WARNING: no heartbeat for 6893s! task=step_sync_finances attempt 1
+[2026-03-10 18:25:48]   DB MONITOR: 284,927 rows total (+61,924 new) | months with data: 5
+[2026-03-10 18:26:18] WATCHDOG WARNING: no heartbeat for 6924s! task=step_sync_finances attempt 1
+[2026-03-10 18:26:48] WATCHDOG WARNING: no heartbeat for 6954s! task=step_sync_finances attempt 1
+[2026-03-10 18:26:48]   DB MONITOR: 286,416 rows total (+63,413 new) | months with data: 5
+[2026-03-10 18:27:18] WATCHDOG WARNING: no heartbeat for 6984s! task=step_sync_finances attempt 1
+[2026-03-10 18:27:48] WATCHDOG WARNING: no heartbeat for 7014s! task=step_sync_finances attempt 1
+[2026-03-10 18:27:49]   DB MONITOR: 287,805 rows total (+64,802 new) | months with data: 5
+[2026-03-10 18:28:19] WATCHDOG WARNING: no heartbeat for 7045s! task=step_sync_finances attempt 1
+[2026-03-10 18:28:49] WATCHDOG WARNING: no heartbeat for 7075s! task=step_sync_finances attempt 1
+[2026-03-10 18:28:49]   DB MONITOR: 290,066 rows total (+67,063 new) | months with data: 5
+[2026-03-10 18:29:19] WATCHDOG WARNING: no heartbeat for 7105s! task=step_sync_finances attempt 1
+[2026-03-10 18:29:49] WATCHDOG WARNING: no heartbeat for 7135s! task=step_sync_finances attempt 1
+[2026-03-10 18:29:50]   DB MONITOR: 293,822 rows total (+70,819 new) | months with data: 5
+[2026-03-10 18:30:20] WATCHDOG WARNING: no heartbeat for 7165s! task=step_sync_finances attempt 1
+[2026-03-10 18:30:50] WATCHDOG WARNING: no heartbeat for 7195s! task=step_sync_finances attempt 1
+[2026-03-10 18:30:52]   DB MONITOR: 296,559 rows total (+73,556 new) | months with data: 5
+[2026-03-10 18:31:22] WATCHDOG WARNING: no heartbeat for 7228s! task=step_sync_finances attempt 1
+[2026-03-10 18:31:52] WATCHDOG WARNING: no heartbeat for 7258s! task=step_sync_finances attempt 1
+[2026-03-10 18:31:53]   DB MONITOR: 297,957 rows total (+74,954 new) | months with data: 5
+[2026-03-10 18:32:23] WATCHDOG WARNING: no heartbeat for 7289s! task=step_sync_finances attempt 1
+[2026-03-10 18:32:53] WATCHDOG WARNING: no heartbeat for 7319s! task=step_sync_finances attempt 1
+[2026-03-10 18:32:53]   DB MONITOR: 303,192 rows total (+80,189 new) | months with data: 5
+[2026-03-10 18:33:23] WATCHDOG WARNING: no heartbeat for 7349s! task=step_sync_finances attempt 1
+[2026-03-10 18:33:53] WATCHDOG WARNING: no heartbeat for 7379s! task=step_sync_finances attempt 1
+[2026-03-10 18:33:54]   DB MONITOR: 306,793 rows total (+83,790 new) | months with data: 5
+[2026-03-10 18:34:24] WATCHDOG WARNING: no heartbeat for 7409s! task=step_sync_finances attempt 1
+[2026-03-10 18:34:54] WATCHDOG WARNING: no heartbeat for 7439s! task=step_sync_finances attempt 1
+[2026-03-10 18:34:54]   DB MONITOR: 307,780 rows total (+84,777 new) | months with data: 5
+[2026-03-10 18:35:24] WATCHDOG WARNING: no heartbeat for 7470s! task=step_sync_finances attempt 1
+[2026-03-10 18:35:54] WATCHDOG WARNING: no heartbeat for 7500s! task=step_sync_finances attempt 1
+[2026-03-10 18:35:56]   DB MONITOR: 311,324 rows total (+88,321 new) | months with data: 5
+[2026-03-10 18:36:26] WATCHDOG WARNING: no heartbeat for 7531s! task=step_sync_finances attempt 1
+[2026-03-10 18:36:56] WATCHDOG WARNING: no heartbeat for 7561s! task=step_sync_finances attempt 1
+[2026-03-10 18:36:58]   DB MONITOR: 314,750 rows total (+91,747 new) | months with data: 5
+[2026-03-10 18:37:28] WATCHDOG WARNING: no heartbeat for 7594s! task=step_sync_finances attempt 1
+[2026-03-10 18:37:58] WATCHDOG WARNING: no heartbeat for 7624s! task=step_sync_finances attempt 1
+[2026-03-10 18:37:58]   DB MONITOR: 316,595 rows total (+93,592 new) | months with data: 5
+[2026-03-10 18:38:28] WATCHDOG WARNING: no heartbeat for 7654s! task=step_sync_finances attempt 1
+[2026-03-10 18:38:58] WATCHDOG WARNING: no heartbeat for 7684s! task=step_sync_finances attempt 1
+[2026-03-10 18:38:59]   DB MONITOR: 318,255 rows total (+95,252 new) | months with data: 5
+[2026-03-10 18:39:29] WATCHDOG WARNING: no heartbeat for 7715s! task=step_sync_finances attempt 1
+[2026-03-10 18:39:59] WATCHDOG WARNING: no heartbeat for 7745s! task=step_sync_finances attempt 1
+[2026-03-10 18:40:00]   DB MONITOR: 320,734 rows total (+97,731 new) | months with data: 5
+[2026-03-10 18:40:30] WATCHDOG WARNING: no heartbeat for 7775s! task=step_sync_finances attempt 1
+[2026-03-10 18:41:00] WATCHDOG WARNING: no heartbeat for 7805s! task=step_sync_finances attempt 1
+[2026-03-10 18:41:00]   DB MONITOR: 324,709 rows total (+101,706 new) | months with data: 5
+[2026-03-10 18:41:30] WATCHDOG WARNING: no heartbeat for 7836s! task=step_sync_finances attempt 1
+[2026-03-10 18:42:00] WATCHDOG WARNING: no heartbeat for 7866s! task=step_sync_finances attempt 1
+[2026-03-10 18:42:00]   DB MONITOR: 328,005 rows total (+105,002 new) | months with data: 5
+[2026-03-10 18:42:30] WATCHDOG WARNING: no heartbeat for 7896s! task=step_sync_finances attempt 1
+[2026-03-10 18:43:00] WATCHDOG WARNING: no heartbeat for 7926s! task=step_sync_finances attempt 1
+[2026-03-10 18:43:01]   DB MONITOR: 328,005 rows total (+105,002 new) | months with data: 5
+[2026-03-10 18:43:31] WATCHDOG WARNING: no heartbeat for 7957s! task=step_sync_finances attempt 1
+[2026-03-10 18:44:01] WATCHDOG WARNING: no heartbeat for 7987s! task=step_sync_finances attempt 1
+[2026-03-10 18:44:03]   DB MONITOR: 332,523 rows total (+109,520 new) | months with data: 5
+[2026-03-10 18:44:33] WATCHDOG WARNING: no heartbeat for 8019s! task=step_sync_finances attempt 1
+[2026-03-10 18:45:03] WATCHDOG WARNING: no heartbeat for 8049s! task=step_sync_finances attempt 1
+[2026-03-10 18:45:04]   DB MONITOR: 335,975 rows total (+112,972 new) | months with data: 5
+[2026-03-10 18:45:34] WATCHDOG WARNING: no heartbeat for 8080s! task=step_sync_finances attempt 1
+[2026-03-10 18:46:04] WATCHDOG WARNING: no heartbeat for 8110s! task=step_sync_finances attempt 1
+[2026-03-10 18:46:05]   DB MONITOR: 339,433 rows total (+116,430 new) | months with data: 5
+[2026-03-10 18:46:35] WATCHDOG WARNING: no heartbeat for 8141s! task=step_sync_finances attempt 1
+[2026-03-10 18:47:05] WATCHDOG WARNING: no heartbeat for 8171s! task=step_sync_finances attempt 1
+[2026-03-10 18:47:06]   DB MONITOR: 341,379 rows total (+118,376 new) | months with data: 5
+[2026-03-10 18:47:36] WATCHDOG WARNING: no heartbeat for 8201s! task=step_sync_finances attempt 1
+[2026-03-10 18:48:06] WATCHDOG WARNING: no heartbeat for 8232s! task=step_sync_finances attempt 1
+[2026-03-10 18:48:06]   DB MONITOR: 342,552 rows total (+119,549 new) | months with data: 5
+[2026-03-10 18:48:36] WATCHDOG WARNING: no heartbeat for 8262s! task=step_sync_finances attempt 1
+[2026-03-10 18:49:06] WATCHDOG WARNING: no heartbeat for 8292s! task=step_sync_finances attempt 1
+[2026-03-10 18:49:07]   DB MONITOR: 346,320 rows total (+123,317 new) | months with data: 5
+[2026-03-10 18:49:37] WATCHDOG WARNING: no heartbeat for 8322s! task=step_sync_finances attempt 1
+[2026-03-10 18:50:07] WATCHDOG WARNING: no heartbeat for 8353s! task=step_sync_finances attempt 1
+[2026-03-10 18:50:07]   DB MONITOR: 348,317 rows total (+125,314 new) | months with data: 5
+[2026-03-10 18:50:37] WATCHDOG WARNING: no heartbeat for 8383s! task=step_sync_finances attempt 1
+[2026-03-10 18:51:07] WATCHDOG WARNING: no heartbeat for 8413s! task=step_sync_finances attempt 1
+[2026-03-10 18:51:10]   DB MONITOR: 352,511 rows total (+129,508 new) | months with data: 5
+[2026-03-10 18:51:40] WATCHDOG WARNING: no heartbeat for 8446s! task=step_sync_finances attempt 1
+[2026-03-10 18:52:10] WATCHDOG WARNING: no heartbeat for 8476s! task=step_sync_finances attempt 1
+[2026-03-10 18:52:10]   DB MONITOR: 353,644 rows total (+130,641 new) | months with data: 5
+[2026-03-10 18:52:40] WATCHDOG WARNING: no heartbeat for 8506s! task=step_sync_finances attempt 1
+[2026-03-10 18:53:10] WATCHDOG WARNING: no heartbeat for 8536s! task=step_sync_finances attempt 1
+[2026-03-10 18:53:11]   DB MONITOR: 357,757 rows total (+134,754 new) | months with data: 5
+[2026-03-10 18:53:41] WATCHDOG WARNING: no heartbeat for 8566s! task=step_sync_finances attempt 1
+[2026-03-10 18:54:11] WATCHDOG WARNING: no heartbeat for 8596s! task=step_sync_finances attempt 1
+[2026-03-10 18:54:11]   DB MONITOR: 359,352 rows total (+136,349 new) | months with data: 5
+[2026-03-10 18:54:41] WATCHDOG WARNING: no heartbeat for 8627s! task=step_sync_finances attempt 1
+[2026-03-10 18:55:11] WATCHDOG WARNING: no heartbeat for 8657s! task=step_sync_finances attempt 1
+[2026-03-10 18:55:12]   DB MONITOR: 359,585 rows total (+136,582 new) | months with data: 5
+[2026-03-10 18:55:42] WATCHDOG WARNING: no heartbeat for 8687s! task=step_sync_finances attempt 1
+[2026-03-10 18:56:12] WATCHDOG WARNING: no heartbeat for 8717s! task=step_sync_finances attempt 1
+[2026-03-10 18:56:12]   DB MONITOR: 361,302 rows total (+138,299 new) | months with data: 5
+[2026-03-10 18:56:42] WATCHDOG WARNING: no heartbeat for 8748s! task=step_sync_finances attempt 1
+[2026-03-10 18:57:12] WATCHDOG WARNING: no heartbeat for 8778s! task=step_sync_finances attempt 1
+[2026-03-10 18:57:13]   DB MONITOR: 362,622 rows total (+139,619 new) | months with data: 5
+[2026-03-10 18:57:43] WATCHDOG WARNING: no heartbeat for 8808s! task=step_sync_finances attempt 1
+[2026-03-10 18:58:13] WATCHDOG WARNING: no heartbeat for 8838s! task=step_sync_finances attempt 1
+[2026-03-10 18:58:13]   DB MONITOR: 362,659 rows total (+139,656 new) | months with data: 5
+[2026-03-10 18:58:43] WATCHDOG WARNING: no heartbeat for 8869s! task=step_sync_finances attempt 1
+[2026-03-10 18:59:13] WATCHDOG WARNING: no heartbeat for 8899s! task=step_sync_finances attempt 1
+[2026-03-10 18:59:14]   DB MONITOR: 365,148 rows total (+142,145 new) | months with data: 5
+[2026-03-10 18:59:44] WATCHDOG WARNING: no heartbeat for 8929s! task=step_sync_finances attempt 1
+[2026-03-10 19:00:14] WATCHDOG WARNING: no heartbeat for 8959s! task=step_sync_finances attempt 1
+[2026-03-10 19:00:14]   DB MONITOR: 367,792 rows total (+144,789 new) | months with data: 5
+[2026-03-10 19:00:44] WATCHDOG WARNING: no heartbeat for 8990s! task=step_sync_finances attempt 1
+[2026-03-10 19:01:14] WATCHDOG WARNING: no heartbeat for 9020s! task=step_sync_finances attempt 1
+[2026-03-10 19:01:15]   DB MONITOR: 367,987 rows total (+144,984 new) | months with data: 5
+[2026-03-10 19:01:45] WATCHDOG WARNING: no heartbeat for 9051s! task=step_sync_finances attempt 1
+[2026-03-10 19:02:15] WATCHDOG WARNING: no heartbeat for 9081s! task=step_sync_finances attempt 1
+[2026-03-10 19:02:15]   DB MONITOR: 369,063 rows total (+146,060 new) | months with data: 5
+[2026-03-10 19:02:45] WATCHDOG WARNING: no heartbeat for 9111s! task=step_sync_finances attempt 1
+[2026-03-10 19:03:15] WATCHDOG WARNING: no heartbeat for 9141s! task=step_sync_finances attempt 1
+[2026-03-10 19:03:16]   DB MONITOR: 370,515 rows total (+147,512 new) | months with data: 5
+[2026-03-10 19:03:46] WATCHDOG WARNING: no heartbeat for 9172s! task=step_sync_finances attempt 1
+[2026-03-10 19:04:16] WATCHDOG WARNING: no heartbeat for 9202s! task=step_sync_finances attempt 1
+[2026-03-10 19:04:16]   DB MONITOR: 370,664 rows total (+147,661 new) | months with data: 5
+[2026-03-10 19:04:46] WATCHDOG WARNING: no heartbeat for 9232s! task=step_sync_finances attempt 1
+[2026-03-10 19:05:16] WATCHDOG WARNING: no heartbeat for 9262s! task=step_sync_finances attempt 1
+[2026-03-10 19:05:17]   DB MONITOR: 370,996 rows total (+147,993 new) | months with data: 5
+[2026-03-10 19:05:47] WATCHDOG WARNING: no heartbeat for 9293s! task=step_sync_finances attempt 1
+[2026-03-10 19:06:17] WATCHDOG WARNING: no heartbeat for 9323s! task=step_sync_finances attempt 1
+[2026-03-10 19:06:18]   DB MONITOR: 371,202 rows total (+148,199 new) | months with data: 5
+[2026-03-10 19:06:48] WATCHDOG WARNING: no heartbeat for 9354s! task=step_sync_finances attempt 1
+[2026-03-10 19:07:18] WATCHDOG WARNING: no heartbeat for 9384s! task=step_sync_finances attempt 1
+[2026-03-10 19:07:23]   DB MONITOR: 373,860 rows total (+150,857 new) | months with data: 5
+[2026-03-10 19:07:53] WATCHDOG WARNING: no heartbeat for 9419s! task=step_sync_finances attempt 1
+[2026-03-10 19:08:23] WATCHDOG WARNING: no heartbeat for 9449s! task=step_sync_finances attempt 1
+[2026-03-10 19:08:24]   DB MONITOR: 376,445 rows total (+153,442 new) | months with data: 5
+[2026-03-10 19:08:54] WATCHDOG WARNING: no heartbeat for 9480s! task=step_sync_finances attempt 1
+[2026-03-10 19:09:24] WATCHDOG WARNING: no heartbeat for 9510s! task=step_sync_finances attempt 1
+[2026-03-10 19:09:24]   DB MONITOR: 379,072 rows total (+156,069 new) | months with data: 5
+[2026-03-10 19:09:54] WATCHDOG WARNING: no heartbeat for 9540s! task=step_sync_finances attempt 1
+[2026-03-10 19:10:24] WATCHDOG WARNING: no heartbeat for 9570s! task=step_sync_finances attempt 1
+[2026-03-10 19:10:25]   DB MONITOR: 381,564 rows total (+158,561 new) | months with data: 5
+[2026-03-10 19:10:55] WATCHDOG WARNING: no heartbeat for 9601s! task=step_sync_finances attempt 1
+[2026-03-10 19:11:25] WATCHDOG WARNING: no heartbeat for 9631s! task=step_sync_finances attempt 1
+[2026-03-10 19:11:26]   DB MONITOR: 381,990 rows total (+158,987 new) | months with data: 5
+[2026-03-10 19:11:56] WATCHDOG WARNING: no heartbeat for 9661s! task=step_sync_finances attempt 1
+[2026-03-10 19:12:26] WATCHDOG WARNING: no heartbeat for 9691s! task=step_sync_finances attempt 1
+[2026-03-10 19:12:26]   DB MONITOR: 386,264 rows total (+163,261 new) | months with data: 5
+[2026-03-10 19:12:56] WATCHDOG WARNING: no heartbeat for 9722s! task=step_sync_finances attempt 1
+[2026-03-10 19:13:26] WATCHDOG WARNING: no heartbeat for 9752s! task=step_sync_finances attempt 1
+[2026-03-10 19:13:27]   DB MONITOR: 388,274 rows total (+165,271 new) | months with data: 5
+[2026-03-10 19:13:57] WATCHDOG WARNING: no heartbeat for 9782s! task=step_sync_finances attempt 1
+[2026-03-10 19:14:27] WATCHDOG WARNING: no heartbeat for 9812s! task=step_sync_finances attempt 1
+[2026-03-10 19:14:27]   DB MONITOR: 389,374 rows total (+166,371 new) | months with data: 5
+[2026-03-10 19:14:57] WATCHDOG WARNING: no heartbeat for 9843s! task=step_sync_finances attempt 1
+[2026-03-10 19:15:27] WATCHDOG WARNING: no heartbeat for 9873s! task=step_sync_finances attempt 1
+[2026-03-10 19:15:28]   DB MONITOR: 390,329 rows total (+167,326 new) | months with data: 5
+[2026-03-10 19:15:58] WATCHDOG WARNING: no heartbeat for 9904s! task=step_sync_finances attempt 1
+[2026-03-10 19:16:28] WATCHDOG WARNING: no heartbeat for 9934s! task=step_sync_finances attempt 1
+[2026-03-10 19:16:28]   DB MONITOR: 391,893 rows total (+168,890 new) | months with data: 5
+[2026-03-10 19:16:58] WATCHDOG WARNING: no heartbeat for 9964s! task=step_sync_finances attempt 1
+[2026-03-10 19:17:28] WATCHDOG WARNING: no heartbeat for 9994s! task=step_sync_finances attempt 1
+[2026-03-10 19:17:31]   DB MONITOR: 395,704 rows total (+172,701 new) | months with data: 5
+[2026-03-10 19:18:01] WATCHDOG WARNING: no heartbeat for 10027s! task=step_sync_finances attempt 1
+[2026-03-10 19:18:31] WATCHDOG WARNING: no heartbeat for 10057s! task=step_sync_finances attempt 1
+[2026-03-10 19:18:31]   DB MONITOR: 399,844 rows total (+176,841 new) | months with data: 5
+[2026-03-10 19:19:01] WATCHDOG WARNING: no heartbeat for 10087s! task=step_sync_finances attempt 1
+[2026-03-10 19:19:31] WATCHDOG WARNING: no heartbeat for 10117s! task=step_sync_finances attempt 1
+[2026-03-10 19:19:32]   DB MONITOR: 401,693 rows total (+178,690 new) | months with data: 5
+[2026-03-10 19:20:02] WATCHDOG WARNING: no heartbeat for 10148s! task=step_sync_finances attempt 1
+[2026-03-10 19:20:32] WATCHDOG WARNING: no heartbeat for 10178s! task=step_sync_finances attempt 1
+[2026-03-10 19:20:32]   DB MONITOR: 405,185 rows total (+182,182 new) | months with data: 5
+[2026-03-10 19:21:03] WATCHDOG WARNING: no heartbeat for 10208s! task=step_sync_finances attempt 1
+[2026-03-10 19:21:33] WATCHDOG WARNING: no heartbeat for 10238s! task=step_sync_finances attempt 1
+[2026-03-10 19:21:33]   DB MONITOR: 408,525 rows total (+185,522 new) | months with data: 5
+[2026-03-10 19:22:03] WATCHDOG WARNING: no heartbeat for 10269s! task=step_sync_finances attempt 1
+[2026-03-10 19:22:33] WATCHDOG WARNING: no heartbeat for 10299s! task=step_sync_finances attempt 1
+[2026-03-10 19:22:33]   DB MONITOR: 408,525 rows total (+185,522 new) | months with data: 5
+[2026-03-10 19:23:03] WATCHDOG WARNING: no heartbeat for 10329s! task=step_sync_finances attempt 1
+[2026-03-10 19:23:33] WATCHDOG WARNING: no heartbeat for 10359s! task=step_sync_finances attempt 1
+[2026-03-10 19:23:35]   DB MONITOR: 411,774 rows total (+188,771 new) | months with data: 5
+[2026-03-10 19:24:05] WATCHDOG WARNING: no heartbeat for 10391s! task=step_sync_finances attempt 1
+[2026-03-10 19:24:35] WATCHDOG WARNING: no heartbeat for 10421s! task=step_sync_finances attempt 1
+[2026-03-10 19:24:38]   DB MONITOR: 415,774 rows total (+192,771 new) | months with data: 5
+[2026-03-10 19:25:08] WATCHDOG WARNING: no heartbeat for 10454s! task=step_sync_finances attempt 1
+[2026-03-10 19:25:38] WATCHDOG WARNING: no heartbeat for 10484s! task=step_sync_finances attempt 1
+[2026-03-10 19:25:38]   DB MONITOR: 419,323 rows total (+196,320 new) | months with data: 5
+[2026-03-10 19:26:08] WATCHDOG WARNING: no heartbeat for 10514s! task=step_sync_finances attempt 1
+[2026-03-10 19:26:38] WATCHDOG WARNING: no heartbeat for 10544s! task=step_sync_finances attempt 1
+[2026-03-10 19:26:39]   DB MONITOR: 422,765 rows total (+199,762 new) | months with data: 5
+[2026-03-10 19:27:09] WATCHDOG WARNING: no heartbeat for 10575s! task=step_sync_finances attempt 1
+[2026-03-10 19:27:39] WATCHDOG WARNING: no heartbeat for 10605s! task=step_sync_finances attempt 1
+[2026-03-10 19:27:40]   DB MONITOR: 423,187 rows total (+200,184 new) | months with data: 5
+[2026-03-10 19:28:10] WATCHDOG WARNING: no heartbeat for 10635s! task=step_sync_finances attempt 1
+[2026-03-10 19:28:40] WATCHDOG WARNING: no heartbeat for 10665s! task=step_sync_finances attempt 1
+[2026-03-10 19:28:40]   DB MONITOR: 427,986 rows total (+204,983 new) | months with data: 5
+[2026-03-10 19:29:10] WATCHDOG WARNING: no heartbeat for 10696s! task=step_sync_finances attempt 1
+[2026-03-10 19:29:40] WATCHDOG WARNING: no heartbeat for 10726s! task=step_sync_finances attempt 1
+[2026-03-10 19:29:41]   DB MONITOR: 431,523 rows total (+208,520 new) | months with data: 5
+[2026-03-10 19:30:11] WATCHDOG WARNING: no heartbeat for 10756s! task=step_sync_finances attempt 1
+[2026-03-10 19:30:41] WATCHDOG WARNING: no heartbeat for 10786s! task=step_sync_finances attempt 1
+[2026-03-10 19:30:41]   DB MONITOR: 434,410 rows total (+211,407 new) | months with data: 5
+[2026-03-10 19:31:11] WATCHDOG WARNING: no heartbeat for 10817s! task=step_sync_finances attempt 1
+[2026-03-10 19:31:41] WATCHDOG WARNING: no heartbeat for 10847s! task=step_sync_finances attempt 1
+[2026-03-10 19:31:42]   DB MONITOR: 434,722 rows total (+211,719 new) | months with data: 5
+[2026-03-10 19:32:12] WATCHDOG WARNING: no heartbeat for 10877s! task=step_sync_finances attempt 1
+[2026-03-10 19:32:42] WATCHDOG WARNING: no heartbeat for 10907s! task=step_sync_finances attempt 1
+[2026-03-10 19:32:44]   DB MONITOR: 438,461 rows total (+215,458 new) | months with data: 5
+[2026-03-10 19:33:14] WATCHDOG WARNING: no heartbeat for 10940s! task=step_sync_finances attempt 1
+[2026-03-10 19:33:44] WATCHDOG WARNING: no heartbeat for 10970s! task=step_sync_finances attempt 1
+[2026-03-10 19:33:45]   DB MONITOR: 442,258 rows total (+219,255 new) | months with data: 5
+[2026-03-10 19:34:15] WATCHDOG WARNING: no heartbeat for 11001s! task=step_sync_finances attempt 1
+[2026-03-10 19:34:45] WATCHDOG WARNING: no heartbeat for 11031s! task=step_sync_finances attempt 1
+[2026-03-10 19:34:45]   DB MONITOR: 443,268 rows total (+220,265 new) | months with data: 5
+[2026-03-10 19:35:15] WATCHDOG WARNING: no heartbeat for 11061s! task=step_sync_finances attempt 1
+[2026-03-10 19:35:45] WATCHDOG WARNING: no heartbeat for 11091s! task=step_sync_finances attempt 1
+[2026-03-10 19:35:46]   DB MONITOR: 445,082 rows total (+222,079 new) | months with data: 5
+[2026-03-10 19:36:16] WATCHDOG WARNING: no heartbeat for 11122s! task=step_sync_finances attempt 1
+[2026-03-10 19:36:46] WATCHDOG WARNING: no heartbeat for 11152s! task=step_sync_finances attempt 1
+[2026-03-10 19:36:47]   DB MONITOR: 449,073 rows total (+226,070 new) | months with data: 5
+[2026-03-10 19:37:17] WATCHDOG WARNING: no heartbeat for 11183s! task=step_sync_finances attempt 1
+[2026-03-10 19:37:47] WATCHDOG WARNING: no heartbeat for 11213s! task=step_sync_finances attempt 1
+[2026-03-10 19:37:48]   DB MONITOR: 451,568 rows total (+228,565 new) | months with data: 5
+[2026-03-10 19:38:18] WATCHDOG WARNING: no heartbeat for 11244s! task=step_sync_finances attempt 1
+[2026-03-10 19:38:48] WATCHDOG WARNING: no heartbeat for 11274s! task=step_sync_finances attempt 1
+[2026-03-10 19:38:49]   DB MONITOR: 453,368 rows total (+230,365 new) | months with data: 5
+[2026-03-10 19:39:19] WATCHDOG WARNING: no heartbeat for 11304s! task=step_sync_finances attempt 1
+[2026-03-10 19:39:49] WATCHDOG WARNING: no heartbeat for 11334s! task=step_sync_finances attempt 1
+[2026-03-10 19:39:50]   DB MONITOR: 453,815 rows total (+230,812 new) | months with data: 5
+[2026-03-10 19:40:20] WATCHDOG WARNING: no heartbeat for 11366s! task=step_sync_finances attempt 1
+[2026-03-10 19:40:50] WATCHDOG WARNING: no heartbeat for 11396s! task=step_sync_finances attempt 1
+[2026-03-10 19:40:51]   DB MONITOR: 456,376 rows total (+233,373 new) | months with data: 5
+[2026-03-10 19:41:21] WATCHDOG WARNING: no heartbeat for 11427s! task=step_sync_finances attempt 1
+[2026-03-10 19:41:51] WATCHDOG WARNING: no heartbeat for 11457s! task=step_sync_finances attempt 1
+[2026-03-10 19:41:52]   DB MONITOR: 459,061 rows total (+236,058 new) | months with data: 5
+[2026-03-10 19:42:22] WATCHDOG WARNING: no heartbeat for 11488s! task=step_sync_finances attempt 1
+[2026-03-10 19:42:52] WATCHDOG WARNING: no heartbeat for 11518s! task=step_sync_finances attempt 1
+[2026-03-10 19:42:58]   DB MONITOR: 461,858 rows total (+238,855 new) | months with data: 5
+[2026-03-10 19:43:28] WATCHDOG WARNING: no heartbeat for 11554s! task=step_sync_finances attempt 1
+[2026-03-10 19:43:58] WATCHDOG WARNING: no heartbeat for 11584s! task=step_sync_finances attempt 1
+[2026-03-10 19:43:59]   DB MONITOR: 462,714 rows total (+239,711 new) | months with data: 5
+[2026-03-10 19:44:29] WATCHDOG WARNING: no heartbeat for 11614s! task=step_sync_finances attempt 1
+[2026-03-10 19:44:59] WATCHDOG WARNING: no heartbeat for 11644s! task=step_sync_finances attempt 1
+[2026-03-10 19:44:59]   DB MONITOR: 466,096 rows total (+243,093 new) | months with data: 5
+[2026-03-10 19:45:29] WATCHDOG WARNING: no heartbeat for 11675s! task=step_sync_finances attempt 1
+[2026-03-10 19:45:59] WATCHDOG WARNING: no heartbeat for 11705s! task=step_sync_finances attempt 1
+[2026-03-10 19:46:00]   DB MONITOR: 467,395 rows total (+244,392 new) | months with data: 5
+[2026-03-10 19:46:30] WATCHDOG WARNING: no heartbeat for 11736s! task=step_sync_finances attempt 1
+[2026-03-10 19:47:00] WATCHDOG WARNING: no heartbeat for 11766s! task=step_sync_finances attempt 1
+[2026-03-10 19:47:01]   DB MONITOR: 472,535 rows total (+249,532 new) | months with data: 5
+[2026-03-10 19:47:31] WATCHDOG WARNING: no heartbeat for 11797s! task=step_sync_finances attempt 1
+[2026-03-10 19:48:01] WATCHDOG WARNING: no heartbeat for 11827s! task=step_sync_finances attempt 1
+[2026-03-10 19:48:02]   DB MONITOR: 475,804 rows total (+252,801 new) | months with data: 5
+[2026-03-10 19:48:32] WATCHDOG WARNING: no heartbeat for 11858s! task=step_sync_finances attempt 1
+[2026-03-10 19:49:02] WATCHDOG WARNING: no heartbeat for 11888s! task=step_sync_finances attempt 1
+[2026-03-10 19:49:03]   DB MONITOR: 476,940 rows total (+253,937 new) | months with data: 5
+[2026-03-10 19:49:33] WATCHDOG WARNING: no heartbeat for 11919s! task=step_sync_finances attempt 1
+[2026-03-10 19:50:03] WATCHDOG WARNING: no heartbeat for 11949s! task=step_sync_finances attempt 1
+[2026-03-10 19:50:04]   DB MONITOR: 479,588 rows total (+256,585 new) | months with data: 5
+[2026-03-10 19:50:34] WATCHDOG WARNING: no heartbeat for 11979s! task=step_sync_finances attempt 1
+[2026-03-10 19:51:04] WATCHDOG WARNING: no heartbeat for 12009s! task=step_sync_finances attempt 1
+[2026-03-10 19:51:04]   DB MONITOR: 482,462 rows total (+259,459 new) | months with data: 5
+[2026-03-10 19:51:34] WATCHDOG WARNING: no heartbeat for 12040s! task=step_sync_finances attempt 1
+[2026-03-10 19:52:04] WATCHDOG WARNING: no heartbeat for 12070s! task=step_sync_finances attempt 1
+[2026-03-10 19:52:08]   DB MONITOR: 485,021 rows total (+262,018 new) | months with data: 5
+[2026-03-10 19:52:38] WATCHDOG WARNING: no heartbeat for 12104s! task=step_sync_finances attempt 1
+[2026-03-10 19:53:08] WATCHDOG WARNING: no heartbeat for 12134s! task=step_sync_finances attempt 1
+[2026-03-10 19:53:09]   DB MONITOR: 487,256 rows total (+264,253 new) | months with data: 5
+[2026-03-10 19:53:39] WATCHDOG WARNING: no heartbeat for 12165s! task=step_sync_finances attempt 1
+[2026-03-10 19:54:09] WATCHDOG WARNING: no heartbeat for 12195s! task=step_sync_finances attempt 1
+[2026-03-10 19:54:10]   DB MONITOR: 491,046 rows total (+268,043 new) | months with data: 5
+[2026-03-10 19:54:40] WATCHDOG WARNING: no heartbeat for 12225s! task=step_sync_finances attempt 1
+[2026-03-10 19:55:10] WATCHDOG WARNING: no heartbeat for 12255s! task=step_sync_finances attempt 1
+[2026-03-10 19:55:10]   DB MONITOR: 495,207 rows total (+272,204 new) | months with data: 5
+[2026-03-10 19:55:40] WATCHDOG WARNING: no heartbeat for 12286s! task=step_sync_finances attempt 1
+[2026-03-10 19:56:10] WATCHDOG WARNING: no heartbeat for 12316s! task=step_sync_finances attempt 1
+[2026-03-10 19:56:11]   DB MONITOR: 497,030 rows total (+274,027 new) | months with data: 5
+[2026-03-10 19:56:41] WATCHDOG WARNING: no heartbeat for 12346s! task=step_sync_finances attempt 1
+[2026-03-10 19:57:11] WATCHDOG WARNING: no heartbeat for 12376s! task=step_sync_finances attempt 1
+[2026-03-10 19:57:11]   DB MONITOR: 501,080 rows total (+278,077 new) | months with data: 5
+[2026-03-10 19:57:41] WATCHDOG WARNING: no heartbeat for 12407s! task=step_sync_finances attempt 1
+[2026-03-10 19:58:11] WATCHDOG WARNING: no heartbeat for 12437s! task=step_sync_finances attempt 1
+[2026-03-10 19:58:12]   DB MONITOR: 503,718 rows total (+280,715 new) | months with data: 5
+[2026-03-10 19:58:42] WATCHDOG WARNING: no heartbeat for 12468s! task=step_sync_finances attempt 1
+[2026-03-10 19:59:12] WATCHDOG WARNING: no heartbeat for 12498s! task=step_sync_finances attempt 1
+[2026-03-10 19:59:12]   DB MONITOR: 505,194 rows total (+282,191 new) | months with data: 5
+[2026-03-10 19:59:42] WATCHDOG WARNING: no heartbeat for 12528s! task=step_sync_finances attempt 1
+[2026-03-10 20:00:12] WATCHDOG WARNING: no heartbeat for 12558s! task=step_sync_finances attempt 1
+[2026-03-10 20:00:16]   DB MONITOR: 509,279 rows total (+286,276 new) | months with data: 5
+[2026-03-10 20:00:46] WATCHDOG WARNING: no heartbeat for 12591s! task=step_sync_finances attempt 1
+[2026-03-10 20:01:16] WATCHDOG WARNING: no heartbeat for 12621s! task=step_sync_finances attempt 1
+[2026-03-10 20:01:16]   DB MONITOR: 511,607 rows total (+288,604 new) | months with data: 5
+[2026-03-10 20:01:46] WATCHDOG WARNING: no heartbeat for 12652s! task=step_sync_finances attempt 1
+[2026-03-10 20:02:16] WATCHDOG WARNING: no heartbeat for 12682s! task=step_sync_finances attempt 1
+[2026-03-10 20:02:17]   DB MONITOR: 512,924 rows total (+289,921 new) | months with data: 5
+[2026-03-10 20:02:47] WATCHDOG WARNING: no heartbeat for 12713s! task=step_sync_finances attempt 1
+[2026-03-10 20:03:17] WATCHDOG WARNING: no heartbeat for 12743s! task=step_sync_finances attempt 1
+[2026-03-10 20:03:17]   DB MONITOR: 518,024 rows total (+295,021 new) | months with data: 5
+[2026-03-10 20:03:47] WATCHDOG WARNING: no heartbeat for 12773s! task=step_sync_finances attempt 1
+[2026-03-10 20:04:17] WATCHDOG WARNING: no heartbeat for 12803s! task=step_sync_finances attempt 1
+[2026-03-10 20:04:18]   DB MONITOR: 521,517 rows total (+298,514 new) | months with data: 5
+[2026-03-10 20:04:48] WATCHDOG WARNING: no heartbeat for 12834s! task=step_sync_finances attempt 1
+[2026-03-10 20:05:18] WATCHDOG WARNING: no heartbeat for 12864s! task=step_sync_finances attempt 1
+[2026-03-10 20:05:18]   DB MONITOR: 521,828 rows total (+298,825 new) | months with data: 5
+[2026-03-10 20:05:48] WATCHDOG WARNING: no heartbeat for 12894s! task=step_sync_finances attempt 1
+[2026-03-10 20:06:18] WATCHDOG WARNING: no heartbeat for 12924s! task=step_sync_finances attempt 1
+[2026-03-10 20:06:19]   DB MONITOR: 527,149 rows total (+304,146 new) | months with data: 5
+[2026-03-10 20:06:49] WATCHDOG WARNING: no heartbeat for 12955s! task=step_sync_finances attempt 1
+[2026-03-10 20:07:19] WATCHDOG WARNING: no heartbeat for 12985s! task=step_sync_finances attempt 1
+[2026-03-10 20:07:20]   DB MONITOR: 529,782 rows total (+306,779 new) | months with data: 5
+[2026-03-10 20:07:50] WATCHDOG WARNING: no heartbeat for 13016s! task=step_sync_finances attempt 1
+[2026-03-10 20:08:20] WATCHDOG WARNING: no heartbeat for 13046s! task=step_sync_finances attempt 1
+[2026-03-10 20:08:22]   DB MONITOR: 532,725 rows total (+309,722 new) | months with data: 5
+[2026-03-10 20:08:52] WATCHDOG WARNING: no heartbeat for 13078s! task=step_sync_finances attempt 1
+[2026-03-10 20:09:22] WATCHDOG WARNING: no heartbeat for 13108s! task=step_sync_finances attempt 1
+[2026-03-10 20:09:22]   DB MONITOR: 532,769 rows total (+309,766 new) | months with data: 5
+[2026-03-10 20:09:52] WATCHDOG WARNING: no heartbeat for 13138s! task=step_sync_finances attempt 1
+[2026-03-10 20:10:22] WATCHDOG WARNING: no heartbeat for 13168s! task=step_sync_finances attempt 1
+[2026-03-10 20:10:23]   DB MONITOR: 538,359 rows total (+315,356 new) | months with data: 5
+[2026-03-10 20:10:53] WATCHDOG WARNING: no heartbeat for 13199s! task=step_sync_finances attempt 1
+[2026-03-10 20:11:23] WATCHDOG WARNING: no heartbeat for 13229s! task=step_sync_finances attempt 1
+[2026-03-10 20:11:23]   DB MONITOR: 542,090 rows total (+319,087 new) | months with data: 5
+[2026-03-10 20:11:53] WATCHDOG WARNING: no heartbeat for 13259s! task=step_sync_finances attempt 1
+[2026-03-10 20:12:23] WATCHDOG WARNING: no heartbeat for 13289s! task=step_sync_finances attempt 1
+[2026-03-10 20:12:25]   DB MONITOR: 545,161 rows total (+322,158 new) | months with data: 5
+[2026-03-10 20:12:55] WATCHDOG WARNING: no heartbeat for 13320s! task=step_sync_finances attempt 1
+[2026-03-10 20:13:25] WATCHDOG WARNING: no heartbeat for 13350s! task=step_sync_finances attempt 1
+[2026-03-10 20:13:26]   DB MONITOR: 545,741 rows total (+322,738 new) | months with data: 5
+[2026-03-10 20:13:56] WATCHDOG WARNING: no heartbeat for 13381s! task=step_sync_finances attempt 1
+[2026-03-10 20:14:26] WATCHDOG WARNING: no heartbeat for 13411s! task=step_sync_finances attempt 1
+[2026-03-10 20:14:26]   DB MONITOR: 549,817 rows total (+326,814 new) | months with data: 5
+[2026-03-10 20:14:56] WATCHDOG WARNING: no heartbeat for 13442s! task=step_sync_finances attempt 1
+[2026-03-10 20:15:26] WATCHDOG WARNING: no heartbeat for 13472s! task=step_sync_finances attempt 1
+[2026-03-10 20:15:27]   DB MONITOR: 553,487 rows total (+330,484 new) | months with data: 5
+[2026-03-10 20:15:57] WATCHDOG WARNING: no heartbeat for 13503s! task=step_sync_finances attempt 1
+[2026-03-10 20:16:27] WATCHDOG WARNING: no heartbeat for 13533s! task=step_sync_finances attempt 1
+[2026-03-10 20:16:33]   DB MONITOR: 555,932 rows total (+332,929 new) | months with data: 5
+[2026-03-10 20:17:03] WATCHDOG WARNING: no heartbeat for 13569s! task=step_sync_finances attempt 1
+[2026-03-10 20:17:33] WATCHDOG WARNING: no heartbeat for 13599s! task=step_sync_finances attempt 1
+[2026-03-10 20:17:33]   DB MONITOR: 557,958 rows total (+334,955 new) | months with data: 5
+[2026-03-10 20:18:03] WATCHDOG WARNING: no heartbeat for 13629s! task=step_sync_finances attempt 1
+[2026-03-10 20:18:33] WATCHDOG WARNING: no heartbeat for 13659s! task=step_sync_finances attempt 1
+[2026-03-10 20:18:34]   DB MONITOR: 558,994 rows total (+335,991 new) | months with data: 5
+[2026-03-10 20:19:04] WATCHDOG WARNING: no heartbeat for 13690s! task=step_sync_finances attempt 1
+[2026-03-10 20:19:34] WATCHDOG WARNING: no heartbeat for 13720s! task=step_sync_finances attempt 1
+[2026-03-10 20:19:35]   DB MONITOR: 562,630 rows total (+339,627 new) | months with data: 5
+[2026-03-10 20:20:05] WATCHDOG WARNING: no heartbeat for 13750s! task=step_sync_finances attempt 1
+[2026-03-10 20:20:35] WATCHDOG WARNING: no heartbeat for 13780s! task=step_sync_finances attempt 1
+[2026-03-10 20:20:35]   DB MONITOR: 564,543 rows total (+341,540 new) | months with data: 5
+[2026-03-10 20:21:05] WATCHDOG WARNING: no heartbeat for 13811s! task=step_sync_finances attempt 1
+[2026-03-10 20:21:35] WATCHDOG WARNING: no heartbeat for 13841s! task=step_sync_finances attempt 1
+[2026-03-10 20:21:36]   DB MONITOR: 567,174 rows total (+344,171 new) | months with data: 5
+[2026-03-10 20:22:06] WATCHDOG WARNING: no heartbeat for 13872s! task=step_sync_finances attempt 1
+[2026-03-10 20:22:36] WATCHDOG WARNING: no heartbeat for 13902s! task=step_sync_finances attempt 1
+[2026-03-10 20:22:37]   DB MONITOR: 568,806 rows total (+345,803 new) | months with data: 5
+[2026-03-10 20:23:07] WATCHDOG WARNING: no heartbeat for 13932s! task=step_sync_finances attempt 1
+[2026-03-10 20:23:37] WATCHDOG WARNING: no heartbeat for 13962s! task=step_sync_finances attempt 1
+[2026-03-10 20:23:37]   DB MONITOR: 569,206 rows total (+346,203 new) | months with data: 5
+[2026-03-10 20:24:07] WATCHDOG WARNING: no heartbeat for 13993s! task=step_sync_finances attempt 1
+[2026-03-10 20:24:37] WATCHDOG WARNING: no heartbeat for 14023s! task=step_sync_finances attempt 1
+[2026-03-10 20:24:38]   DB MONITOR: 571,813 rows total (+348,810 new) | months with data: 5
+[2026-03-10 20:25:08] WATCHDOG WARNING: no heartbeat for 14054s! task=step_sync_finances attempt 1
+[2026-03-10 20:25:38] WATCHDOG WARNING: no heartbeat for 14084s! task=step_sync_finances attempt 1
+[2026-03-10 20:25:39]   DB MONITOR: 574,315 rows total (+351,312 new) | months with data: 5
+[2026-03-10 20:26:09] WATCHDOG WARNING: no heartbeat for 14115s! task=step_sync_finances attempt 1
+[2026-03-10 20:26:39] WATCHDOG WARNING: no heartbeat for 14145s! task=step_sync_finances attempt 1
+[2026-03-10 20:26:40]   DB MONITOR: 576,379 rows total (+353,376 new) | months with data: 5
+[2026-03-10 20:27:10] WATCHDOG WARNING: no heartbeat for 14176s! task=step_sync_finances attempt 1
+[2026-03-10 20:27:40] WATCHDOG WARNING: no heartbeat for 14206s! task=step_sync_finances attempt 1
+[2026-03-10 20:27:42]   DB MONITOR: 577,243 rows total (+354,240 new) | months with data: 5
+[2026-03-10 20:28:12] WATCHDOG WARNING: no heartbeat for 14238s! task=step_sync_finances attempt 1
+[2026-03-10 20:28:42] WATCHDOG WARNING: no heartbeat for 14268s! task=step_sync_finances attempt 1
+[2026-03-10 20:28:43]   DB MONITOR: 578,477 rows total (+355,474 new) | months with data: 5
+[2026-03-10 20:29:13] WATCHDOG WARNING: no heartbeat for 14299s! task=step_sync_finances attempt 1
+[2026-03-10 20:29:43] WATCHDOG WARNING: no heartbeat for 14329s! task=step_sync_finances attempt 1
+[2026-03-10 20:30:11]   DB MONITOR: 579,802 rows total (+356,799 new) | months with data: 5
+[2026-03-10 20:30:41] WATCHDOG WARNING: no heartbeat for 14387s! task=step_sync_finances attempt 1
+[2026-03-10 20:31:11] WATCHDOG WARNING: no heartbeat for 14417s! task=step_sync_finances attempt 1
+[2026-03-10 20:31:12]   DB MONITOR: 583,164 rows total (+360,161 new) | months with data: 5
+[2026-03-10 20:31:42] WATCHDOG WARNING: no heartbeat for 14448s! task=step_sync_finances attempt 1
+[2026-03-10 20:32:12] WATCHDOG WARNING: no heartbeat for 14478s! task=step_sync_finances attempt 1
+[2026-03-10 20:32:13]   DB MONITOR: 585,639 rows total (+362,636 new) | months with data: 5
+[2026-03-10 20:32:43] WATCHDOG WARNING: no heartbeat for 14509s! task=step_sync_finances attempt 1
+[2026-03-10 20:33:13] WATCHDOG WARNING: no heartbeat for 14539s! task=step_sync_finances attempt 1
+[2026-03-10 20:33:14]   DB MONITOR: 587,553 rows total (+364,550 new) | months with data: 5
+[2026-03-10 20:33:44] WATCHDOG WARNING: no heartbeat for 14570s! task=step_sync_finances attempt 1
+[2026-03-10 20:34:14] WATCHDOG WARNING: no heartbeat for 14600s! task=step_sync_finances attempt 1
+[2026-03-10 20:34:15]   DB MONITOR: 588,575 rows total (+365,572 new) | months with data: 5
+[2026-03-10 20:34:45] WATCHDOG WARNING: no heartbeat for 14631s! task=step_sync_finances attempt 1
+[2026-03-10 20:35:15] WATCHDOG WARNING: no heartbeat for 14661s! task=step_sync_finances attempt 1
+[2026-03-10 20:35:16]   DB MONITOR: 589,540 rows total (+366,537 new) | months with data: 5
+[2026-03-10 20:35:46] WATCHDOG WARNING: no heartbeat for 14692s! task=step_sync_finances attempt 1
+[2026-03-10 20:36:16] WATCHDOG WARNING: no heartbeat for 14722s! task=step_sync_finances attempt 1
+[2026-03-10 20:36:17]   DB MONITOR: 593,032 rows total (+370,029 new) | months with data: 5
+[2026-03-10 20:36:47] WATCHDOG WARNING: no heartbeat for 14753s! task=step_sync_finances attempt 1
+[2026-03-10 20:37:17] WATCHDOG WARNING: no heartbeat for 14783s! task=step_sync_finances attempt 1
+[2026-03-10 20:37:18]   DB MONITOR: 596,496 rows total (+373,493 new) | months with data: 5
+[2026-03-10 20:37:48] WATCHDOG WARNING: no heartbeat for 14814s! task=step_sync_finances attempt 1
+[2026-03-10 20:38:18] WATCHDOG WARNING: no heartbeat for 14844s! task=step_sync_finances attempt 1
+[2026-03-10 20:38:18]   DB MONITOR: 599,116 rows total (+376,113 new) | months with data: 5
+[2026-03-10 20:38:48] WATCHDOG WARNING: no heartbeat for 14874s! task=step_sync_finances attempt 1
+[2026-03-10 20:39:18] WATCHDOG WARNING: no heartbeat for 14904s! task=step_sync_finances attempt 1
+[2026-03-10 20:39:19]   DB MONITOR: 601,524 rows total (+378,521 new) | months with data: 5
+[2026-03-10 20:39:49] WATCHDOG WARNING: no heartbeat for 14935s! task=step_sync_finances attempt 1
+[2026-03-10 20:40:19] WATCHDOG WARNING: no heartbeat for 14965s! task=step_sync_finances attempt 1
+[2026-03-10 20:40:20]   DB MONITOR: 601,524 rows total (+378,521 new) | months with data: 5
+[2026-03-10 20:40:50] WATCHDOG WARNING: no heartbeat for 14996s! task=step_sync_finances attempt 1
+[2026-03-10 20:41:20] WATCHDOG WARNING: no heartbeat for 15026s! task=step_sync_finances attempt 1
+[2026-03-10 20:41:27]   DB MONITOR: 604,087 rows total (+381,084 new) | months with data: 5
+[2026-03-10 20:41:57] WATCHDOG WARNING: no heartbeat for 15063s! task=step_sync_finances attempt 1
+[2026-03-10 20:42:27] WATCHDOG WARNING: no heartbeat for 15093s! task=step_sync_finances attempt 1
+[2026-03-10 20:42:28]   DB MONITOR: 607,845 rows total (+384,842 new) | months with data: 5
+[2026-03-10 20:42:58] WATCHDOG WARNING: no heartbeat for 15124s! task=step_sync_finances attempt 1
+[2026-03-10 20:43:28] WATCHDOG WARNING: no heartbeat for 15154s! task=step_sync_finances attempt 1
+[2026-03-10 20:43:29]   DB MONITOR: 610,480 rows total (+387,477 new) | months with data: 5
+[2026-03-10 20:43:59] WATCHDOG WARNING: no heartbeat for 15184s! task=step_sync_finances attempt 1
+[2026-03-10 20:44:29] WATCHDOG WARNING: no heartbeat for 15214s! task=step_sync_finances attempt 1
+[2026-03-10 20:44:29]   DB MONITOR: 611,176 rows total (+388,173 new) | months with data: 5
+[2026-03-10 20:44:59] WATCHDOG WARNING: no heartbeat for 15245s! task=step_sync_finances attempt 1
+[2026-03-10 20:45:29] WATCHDOG WARNING: no heartbeat for 15275s! task=step_sync_finances attempt 1
+[2026-03-10 20:45:30]   DB MONITOR: 611,899 rows total (+388,896 new) | months with data: 5
+[2026-03-10 20:46:00] WATCHDOG WARNING: no heartbeat for 15306s! task=step_sync_finances attempt 1
+[2026-03-10 20:46:30] WATCHDOG WARNING: no heartbeat for 15336s! task=step_sync_finances attempt 1
+[2026-03-10 20:46:31]   DB MONITOR: 614,296 rows total (+391,293 new) | months with data: 5
+[2026-03-10 20:47:01] WATCHDOG WARNING: no heartbeat for 15367s! task=step_sync_finances attempt 1
+[2026-03-10 20:47:31] WATCHDOG WARNING: no heartbeat for 15397s! task=step_sync_finances attempt 1
+[2026-03-10 20:47:31]   DB MONITOR: 616,006 rows total (+393,003 new) | months with data: 5
+[2026-03-10 20:48:01] WATCHDOG WARNING: no heartbeat for 15427s! task=step_sync_finances attempt 1
+[2026-03-10 20:48:31] WATCHDOG WARNING: no heartbeat for 15457s! task=step_sync_finances attempt 1
+[2026-03-10 20:48:32]   DB MONITOR: 618,296 rows total (+395,293 new) | months with data: 5
+[2026-03-10 20:49:02] WATCHDOG WARNING: no heartbeat for 15488s! task=step_sync_finances attempt 1
+[2026-03-10 20:49:32] WATCHDOG WARNING: no heartbeat for 15518s! task=step_sync_finances attempt 1
+[2026-03-10 20:49:33]   DB MONITOR: 620,846 rows total (+397,843 new) | months with data: 5
+[2026-03-10 20:50:03] WATCHDOG WARNING: no heartbeat for 15549s! task=step_sync_finances attempt 1
+[2026-03-10 20:50:33] WATCHDOG WARNING: no heartbeat for 15579s! task=step_sync_finances attempt 1
+[2026-03-10 20:50:34]   DB MONITOR: 620,997 rows total (+397,994 new) | months with data: 5
+[2026-03-10 20:51:04] WATCHDOG WARNING: no heartbeat for 15609s! task=step_sync_finances attempt 1
+[2026-03-10 20:51:53] ============================================================
+[2026-03-10 20:51:53] SAFE FINANCE API BACKFILL
+[2026-03-10 20:51:53] ============================================================
+[2026-03-10 20:51:53] days_back=435 (~14 months)
+[2026-03-10 20:51:53] DB: 620,914 rows currently
+[2026-03-10 20:51:53] Groups tracked: 1457 (1424 terminal = will be skipped)
+[2026-03-10 20:51:53] Max retries: 3
+[2026-03-10 20:51:53] Log: C:\ACC\backfill_safe_log.txt
+[2026-03-10 20:51:53] Status: C:\ACC\backfill_status.json
+[2026-03-10 20:51:53] 
+[2026-03-10 20:51:53] Watchdog + DB monitor started
+[2026-03-10 20:51:53] --- Attempt 1/3 ---
+[2026-03-10 20:52:24]   DB MONITOR: 620,914 rows total (+0 new) | months with data: 5
+[2026-03-10 20:53:26]   DB MONITOR: 620,914 rows total (+0 new) | months with data: 5
+[2026-03-10 20:54:26]   DB MONITOR: 621,019 rows total (+105 new) | months with data: 5
+[2026-03-10 20:55:27]   DB MONITOR: 621,019 rows total (+105 new) | months with data: 5
+[2026-03-10 20:56:46]   DB MONITOR: 616,635 rows total (+-4,279 new) | months with data: 5
+[2026-03-10 20:57:47]   DB MONITOR: 617,187 rows total (+-3,727 new) | months with data: 5
+[2026-03-10 20:58:48]   DB MONITOR: 618,442 rows total (+-2,472 new) | months with data: 5
+[2026-03-10 20:59:48]   DB MONITOR: 621,507 rows total (+593 new) | months with data: 5
+[2026-03-10 21:00:49]   DB MONITOR: 622,099 rows total (+1,185 new) | months with data: 5
+[2026-03-10 21:01:50]   DB MONITOR: 622,192 rows total (+1,278 new) | months with data: 5
+[2026-03-10 21:02:50]   DB MONITOR: 622,533 rows total (+1,619 new) | months with data: 5
+[2026-03-10 21:03:51]   DB MONITOR: 623,158 rows total (+2,244 new) | months with data: 5
+[2026-03-10 21:04:52]   DB MONITOR: 623,142 rows total (+2,228 new) | months with data: 5
+[2026-03-10 21:05:52]   DB MONITOR: 621,072 rows total (+158 new) | months with data: 5
+[2026-03-10 21:06:53]   DB MONITOR: 624,280 rows total (+3,366 new) | months with data: 5
+[2026-03-10 21:07:23] WATCHDOG WARNING: no heartbeat for 930s! task=step_sync_finances attempt 1
+[2026-03-10 21:07:53] WATCHDOG WARNING: no heartbeat for 960s! task=step_sync_finances attempt 1
+[2026-03-10 21:08:07]   DB MONITOR: 617,097 rows total (+-3,817 new) | months with data: 5
+[2026-03-10 21:08:37] WATCHDOG WARNING: no heartbeat for 1004s! task=step_sync_finances attempt 1
+[2026-03-10 21:09:07] WATCHDOG WARNING: no heartbeat for 1034s! task=step_sync_finances attempt 1
+[2026-03-10 21:09:08]   DB MONITOR: 620,486 rows total (+-428 new) | months with data: 5
+[2026-03-10 21:09:38] WATCHDOG WARNING: no heartbeat for 1064s! task=step_sync_finances attempt 1
+[2026-03-10 21:10:08] WATCHDOG WARNING: no heartbeat for 1094s! task=step_sync_finances attempt 1
+[2026-03-10 21:10:08]   DB MONITOR: 624,316 rows total (+3,402 new) | months with data: 5
+[2026-03-10 21:10:38] WATCHDOG WARNING: no heartbeat for 1125s! task=step_sync_finances attempt 1
+[2026-03-10 21:11:08] WATCHDOG WARNING: no heartbeat for 1155s! task=step_sync_finances attempt 1
+[2026-03-10 21:11:09]   DB MONITOR: 623,499 rows total (+2,585 new) | months with data: 5
+[2026-03-10 21:11:39] WATCHDOG WARNING: no heartbeat for 1186s! task=step_sync_finances attempt 1
+[2026-03-10 21:12:09] WATCHDOG WARNING: no heartbeat for 1216s! task=step_sync_finances attempt 1
+[2026-03-10 21:12:10]   DB MONITOR: 624,916 rows total (+4,002 new) | months with data: 5
+[2026-03-10 21:12:40] WATCHDOG WARNING: no heartbeat for 1246s! task=step_sync_finances attempt 1
+[2026-03-10 21:13:10] WATCHDOG WARNING: no heartbeat for 1276s! task=step_sync_finances attempt 1
+[2026-03-10 21:13:10]   DB MONITOR: 622,694 rows total (+1,780 new) | months with data: 5
+[2026-03-10 21:13:40] WATCHDOG WARNING: no heartbeat for 1307s! task=step_sync_finances attempt 1
+[2026-03-10 21:14:10] WATCHDOG WARNING: no heartbeat for 1337s! task=step_sync_finances attempt 1
+[2026-03-10 21:14:16]   DB MONITOR: 626,092 rows total (+5,178 new) | months with data: 5
+[2026-03-10 21:14:46] WATCHDOG WARNING: no heartbeat for 1372s! task=step_sync_finances attempt 1
+[2026-03-10 21:15:16] WATCHDOG WARNING: no heartbeat for 1402s! task=step_sync_finances attempt 1
+[2026-03-10 21:15:16]   DB MONITOR: 626,092 rows total (+5,178 new) | months with data: 5
+[2026-03-10 21:15:46] WATCHDOG WARNING: no heartbeat for 1433s! task=step_sync_finances attempt 1
+[2026-03-10 21:16:16] WATCHDOG WARNING: no heartbeat for 1463s! task=step_sync_finances attempt 1
+[2026-03-10 21:16:17]   DB MONITOR: 626,092 rows total (+5,178 new) | months with data: 5
+[2026-03-10 21:16:47] WATCHDOG WARNING: no heartbeat for 1494s! task=step_sync_finances attempt 1
+[2026-03-10 21:17:17] WATCHDOG WARNING: no heartbeat for 1524s! task=step_sync_finances attempt 1
+[2026-03-10 21:17:18]   DB MONITOR: 620,775 rows total (+-139 new) | months with data: 5
+[2026-03-10 21:17:48] WATCHDOG WARNING: no heartbeat for 1554s! task=step_sync_finances attempt 1
+[2026-03-10 21:18:18] WATCHDOG WARNING: no heartbeat for 1584s! task=step_sync_finances attempt 1
+[2026-03-10 21:18:19]   DB MONITOR: 622,893 rows total (+1,979 new) | months with data: 5
+[2026-03-10 21:18:49] WATCHDOG WARNING: no heartbeat for 1615s! task=step_sync_finances attempt 1
+[2026-03-10 21:19:19] WATCHDOG WARNING: no heartbeat for 1645s! task=step_sync_finances attempt 1
+[2026-03-10 21:19:21]   DB MONITOR: 624,531 rows total (+3,617 new) | months with data: 5
+[2026-03-10 21:19:51] WATCHDOG WARNING: no heartbeat for 1678s! task=step_sync_finances attempt 1
+[2026-03-10 21:20:21] WATCHDOG WARNING: no heartbeat for 1708s! task=step_sync_finances attempt 1
+[2026-03-10 21:20:22]   DB MONITOR: 626,207 rows total (+5,293 new) | months with data: 5
+[2026-03-10 21:20:52] WATCHDOG WARNING: no heartbeat for 1739s! task=step_sync_finances attempt 1
+[2026-03-10 21:21:22] WATCHDOG WARNING: no heartbeat for 1769s! task=step_sync_finances attempt 1
+[2026-03-10 21:21:32]   DB MONITOR: 624,759 rows total (+3,845 new) | months with data: 5
+[2026-03-10 21:22:02] WATCHDOG WARNING: no heartbeat for 1809s! task=step_sync_finances attempt 1
+[2026-03-10 21:22:32] WATCHDOG WARNING: no heartbeat for 1839s! task=step_sync_finances attempt 1
+[2026-03-10 21:22:33]   DB MONITOR: 625,047 rows total (+4,133 new) | months with data: 5
+[2026-03-10 21:23:03] WATCHDOG WARNING: no heartbeat for 1869s! task=step_sync_finances attempt 1
+[2026-03-10 21:23:33] WATCHDOG WARNING: no heartbeat for 1899s! task=step_sync_finances attempt 1
+[2026-03-10 21:23:36]   DB MONITOR: 626,896 rows total (+5,982 new) | months with data: 5
+[2026-03-10 21:24:06] WATCHDOG WARNING: no heartbeat for 1933s! task=step_sync_finances attempt 1
+[2026-03-10 21:24:36] WATCHDOG WARNING: no heartbeat for 1963s! task=step_sync_finances attempt 1
+[2026-03-10 21:24:39]   DB MONITOR: 626,896 rows total (+5,982 new) | months with data: 5
+[2026-03-10 21:25:09] WATCHDOG WARNING: no heartbeat for 1996s! task=step_sync_finances attempt 1
+[2026-03-10 21:25:39] WATCHDOG WARNING: no heartbeat for 2026s! task=step_sync_finances attempt 1
+[2026-03-10 21:25:42]   DB MONITOR: 620,289 rows total (+-625 new) | months with data: 5
+[2026-03-10 21:26:12] WATCHDOG WARNING: no heartbeat for 2059s! task=step_sync_finances attempt 1
+[2026-03-10 21:26:42] WATCHDOG WARNING: no heartbeat for 2089s! task=step_sync_finances attempt 1
+[2026-03-10 21:26:57]   DB MONITOR: 622,510 rows total (+1,596 new) | months with data: 5
+[2026-03-10 21:27:27] WATCHDOG WARNING: no heartbeat for 2134s! task=step_sync_finances attempt 1
+[2026-03-10 21:27:57] WATCHDOG WARNING: no heartbeat for 2164s! task=step_sync_finances attempt 1
+[2026-03-10 21:27:58]   DB MONITOR: 625,946 rows total (+5,032 new) | months with data: 5
+[2026-03-10 21:28:28] WATCHDOG WARNING: no heartbeat for 2195s! task=step_sync_finances attempt 1
+[2026-03-10 21:28:58] WATCHDOG WARNING: no heartbeat for 2225s! task=step_sync_finances attempt 1
+[2026-03-10 21:28:59]   DB MONITOR: 628,319 rows total (+7,405 new) | months with data: 5
+[2026-03-10 21:29:29] WATCHDOG WARNING: no heartbeat for 2256s! task=step_sync_finances attempt 1
+[2026-03-10 21:29:59] WATCHDOG WARNING: no heartbeat for 2286s! task=step_sync_finances attempt 1
+[2026-03-10 21:30:00]   DB MONITOR: 630,552 rows total (+9,638 new) | months with data: 5
+[2026-03-10 21:30:30] WATCHDOG WARNING: no heartbeat for 2317s! task=step_sync_finances attempt 1
+[2026-03-10 21:31:00] WATCHDOG WARNING: no heartbeat for 2347s! task=step_sync_finances attempt 1
+[2026-03-10 21:31:01]   DB MONITOR: 632,109 rows total (+11,195 new) | months with data: 5
+[2026-03-10 21:31:31] WATCHDOG WARNING: no heartbeat for 2377s! task=step_sync_finances attempt 1
+[2026-03-10 21:32:01] WATCHDOG WARNING: no heartbeat for 2407s! task=step_sync_finances attempt 1
+[2026-03-10 21:32:17]   DB MONITOR: 634,149 rows total (+13,235 new) | months with data: 5
+[2026-03-10 21:32:47] WATCHDOG WARNING: no heartbeat for 2453s! task=step_sync_finances attempt 1
+[2026-03-10 21:33:17] WATCHDOG WARNING: no heartbeat for 2483s! task=step_sync_finances attempt 1
+[2026-03-10 21:33:18]   DB MONITOR: 634,149 rows total (+13,235 new) | months with data: 5
+[2026-03-10 21:33:48] WATCHDOG WARNING: no heartbeat for 2515s! task=step_sync_finances attempt 1
+[2026-03-10 21:34:18] WATCHDOG WARNING: no heartbeat for 2545s! task=step_sync_finances attempt 1
+[2026-03-10 21:34:19]   DB MONITOR: 636,442 rows total (+15,528 new) | months with data: 5
+[2026-03-10 21:34:49] WATCHDOG WARNING: no heartbeat for 2576s! task=step_sync_finances attempt 1
+[2026-03-10 21:35:19] WATCHDOG WARNING: no heartbeat for 2606s! task=step_sync_finances attempt 1
+[2026-03-10 21:35:21]   DB MONITOR: 638,425 rows total (+17,511 new) | months with data: 5
+[2026-03-10 21:35:51] WATCHDOG WARNING: no heartbeat for 2637s! task=step_sync_finances attempt 1
+[2026-03-10 21:36:21] WATCHDOG WARNING: no heartbeat for 2667s! task=step_sync_finances attempt 1
+[2026-03-10 21:36:22]   DB MONITOR: 640,489 rows total (+19,575 new) | months with data: 5
+[2026-03-10 21:36:52] WATCHDOG WARNING: no heartbeat for 2699s! task=step_sync_finances attempt 1
+[2026-03-10 21:37:22] WATCHDOG WARNING: no heartbeat for 2729s! task=step_sync_finances attempt 1
+[2026-03-10 21:37:23]   DB MONITOR: 642,374 rows total (+21,460 new) | months with data: 5
+[2026-03-10 21:37:53] WATCHDOG WARNING: no heartbeat for 2759s! task=step_sync_finances attempt 1
+[2026-03-10 21:38:23] WATCHDOG WARNING: no heartbeat for 2789s! task=step_sync_finances attempt 1
+[2026-03-10 21:38:23]   DB MONITOR: 644,958 rows total (+24,044 new) | months with data: 5
+[2026-03-10 21:38:53] WATCHDOG WARNING: no heartbeat for 2820s! task=step_sync_finances attempt 1
+[2026-03-10 21:39:24] WATCHDOG WARNING: no heartbeat for 2850s! task=step_sync_finances attempt 1
+[2026-03-10 21:39:24]   DB MONITOR: 646,110 rows total (+25,196 new) | months with data: 5
+[2026-03-10 21:39:54] WATCHDOG WARNING: no heartbeat for 2881s! task=step_sync_finances attempt 1
+[2026-03-10 21:40:24] WATCHDOG WARNING: no heartbeat for 2911s! task=step_sync_finances attempt 1
+[2026-03-10 21:40:25]   DB MONITOR: 646,537 rows total (+25,623 new) | months with data: 5
+[2026-03-10 21:40:55] WATCHDOG WARNING: no heartbeat for 2941s! task=step_sync_finances attempt 1
+[2026-03-10 21:41:25] WATCHDOG WARNING: no heartbeat for 2971s! task=step_sync_finances attempt 1
+[2026-03-10 21:41:26]   DB MONITOR: 648,502 rows total (+27,588 new) | months with data: 5
+[2026-03-10 21:41:56] WATCHDOG WARNING: no heartbeat for 3002s! task=step_sync_finances attempt 1
+[2026-03-10 21:42:26] WATCHDOG WARNING: no heartbeat for 3032s! task=step_sync_finances attempt 1
+[2026-03-10 21:42:27]   DB MONITOR: 649,747 rows total (+28,833 new) | months with data: 5
+[2026-03-10 21:42:57] WATCHDOG WARNING: no heartbeat for 3063s! task=step_sync_finances attempt 1
+[2026-03-10 21:43:27] WATCHDOG WARNING: no heartbeat for 3093s! task=step_sync_finances attempt 1
+[2026-03-10 21:43:39]   DB MONITOR: 650,137 rows total (+29,223 new) | months with data: 5
+[2026-03-10 21:44:09] WATCHDOG WARNING: no heartbeat for 3136s! task=step_sync_finances attempt 1
+[2026-03-10 21:44:39] WATCHDOG WARNING: no heartbeat for 3166s! task=step_sync_finances attempt 1
+[2026-03-10 21:44:41]   DB MONITOR: 650,559 rows total (+29,645 new) | months with data: 5
+[2026-03-10 21:45:11] WATCHDOG WARNING: no heartbeat for 3198s! task=step_sync_finances attempt 1
+[2026-03-10 21:45:41] WATCHDOG WARNING: no heartbeat for 3228s! task=step_sync_finances attempt 1
+[2026-03-10 21:45:42]   DB MONITOR: 650,960 rows total (+30,046 new) | months with data: 5
+[2026-03-10 21:46:12] WATCHDOG WARNING: no heartbeat for 3258s! task=step_sync_finances attempt 1
+[2026-03-10 21:46:42] WATCHDOG WARNING: no heartbeat for 3288s! task=step_sync_finances attempt 1
+[2026-03-10 21:46:46]   DB MONITOR: 651,247 rows total (+30,333 new) | months with data: 5
+[2026-03-10 21:47:16] WATCHDOG WARNING: no heartbeat for 3322s! task=step_sync_finances attempt 1
+[2026-03-10 21:47:46] WATCHDOG WARNING: no heartbeat for 3352s! task=step_sync_finances attempt 1
+[2026-03-10 21:47:47]   DB MONITOR: 652,516 rows total (+31,602 new) | months with data: 5
+[2026-03-10 21:48:17] WATCHDOG WARNING: no heartbeat for 3383s! task=step_sync_finances attempt 1
+[2026-03-10 21:48:47] WATCHDOG WARNING: no heartbeat for 3413s! task=step_sync_finances attempt 1
+[2026-03-10 21:48:47]   DB MONITOR: 653,360 rows total (+32,446 new) | months with data: 5
+[2026-03-10 21:49:17] WATCHDOG WARNING: no heartbeat for 3444s! task=step_sync_finances attempt 1
+[2026-03-10 21:49:47] WATCHDOG WARNING: no heartbeat for 3474s! task=step_sync_finances attempt 1
+[2026-03-10 21:49:48]   DB MONITOR: 655,425 rows total (+34,511 new) | months with data: 5
+[2026-03-10 21:50:18] WATCHDOG WARNING: no heartbeat for 3505s! task=step_sync_finances attempt 1
+[2026-03-10 21:50:48] WATCHDOG WARNING: no heartbeat for 3535s! task=step_sync_finances attempt 1
+[2026-03-10 21:50:49]   DB MONITOR: 657,835 rows total (+36,921 new) | months with data: 5
+[2026-03-10 21:51:19] WATCHDOG WARNING: no heartbeat for 3565s! task=step_sync_finances attempt 1
+[2026-03-10 21:51:49] WATCHDOG WARNING: no heartbeat for 3595s! task=step_sync_finances attempt 1
+[2026-03-10 21:51:55]   DB MONITOR: 659,650 rows total (+38,736 new) | months with data: 5
+[2026-03-10 21:52:25] WATCHDOG WARNING: no heartbeat for 3632s! task=step_sync_finances attempt 1
+[2026-03-10 21:52:55] WATCHDOG WARNING: no heartbeat for 3662s! task=step_sync_finances attempt 1
+[2026-03-10 21:52:56]   DB MONITOR: 660,525 rows total (+39,611 new) | months with data: 5
+[2026-03-10 21:53:26] WATCHDOG WARNING: no heartbeat for 3693s! task=step_sync_finances attempt 1
+[2026-03-10 21:53:56] WATCHDOG WARNING: no heartbeat for 3723s! task=step_sync_finances attempt 1
+[2026-03-10 21:53:57]   DB MONITOR: 664,071 rows total (+43,157 new) | months with data: 5
+[2026-03-10 21:54:27] WATCHDOG WARNING: no heartbeat for 3754s! task=step_sync_finances attempt 1
+[2026-03-10 21:54:57] WATCHDOG WARNING: no heartbeat for 3784s! task=step_sync_finances attempt 1
+[2026-03-10 21:54:58]   DB MONITOR: 667,420 rows total (+46,506 new) | months with data: 5
+[2026-03-10 21:55:28] WATCHDOG WARNING: no heartbeat for 3814s! task=step_sync_finances attempt 1
+[2026-03-10 21:55:58] WATCHDOG WARNING: no heartbeat for 3844s! task=step_sync_finances attempt 1
+[2026-03-10 21:55:58]   DB MONITOR: 669,507 rows total (+48,593 new) | months with data: 6
+[2026-03-10 21:56:28] WATCHDOG WARNING: no heartbeat for 3875s! task=step_sync_finances attempt 1
+[2026-03-10 21:56:58] WATCHDOG WARNING: no heartbeat for 3905s! task=step_sync_finances attempt 1
+[2026-03-10 21:56:59]   DB MONITOR: 669,547 rows total (+48,633 new) | months with data: 6
+[2026-03-10 21:57:29] WATCHDOG WARNING: no heartbeat for 3936s! task=step_sync_finances attempt 1
+[2026-03-10 21:57:59] WATCHDOG WARNING: no heartbeat for 3966s! task=step_sync_finances attempt 1
+[2026-03-10 21:58:00]   DB MONITOR: 669,981 rows total (+49,067 new) | months with data: 6
+[2026-03-10 21:58:30] WATCHDOG WARNING: no heartbeat for 3996s! task=step_sync_finances attempt 1
+[2026-03-10 21:59:00] WATCHDOG WARNING: no heartbeat for 4026s! task=step_sync_finances attempt 1
+[2026-03-10 21:59:00]   DB MONITOR: 671,824 rows total (+50,910 new) | months with data: 6
+[2026-03-10 21:59:30] WATCHDOG WARNING: no heartbeat for 4057s! task=step_sync_finances attempt 1
+[2026-03-10 22:00:00] WATCHDOG WARNING: no heartbeat for 4087s! task=step_sync_finances attempt 1
+[2026-03-10 22:00:01]   DB MONITOR: 675,632 rows total (+54,718 new) | months with data: 6
+[2026-03-10 22:00:31] WATCHDOG WARNING: no heartbeat for 4118s! task=step_sync_finances attempt 1
+[2026-03-10 22:01:01] WATCHDOG WARNING: no heartbeat for 4148s! task=step_sync_finances attempt 1
+[2026-03-10 22:01:02]   DB MONITOR: 678,033 rows total (+57,119 new) | months with data: 6
+[2026-03-10 22:01:32] WATCHDOG WARNING: no heartbeat for 4179s! task=step_sync_finances attempt 1
+[2026-03-10 22:02:02] WATCHDOG WARNING: no heartbeat for 4209s! task=step_sync_finances attempt 1
+[2026-03-10 22:02:03]   DB MONITOR: 680,777 rows total (+59,863 new) | months with data: 6
+[2026-03-10 22:02:33] WATCHDOG WARNING: no heartbeat for 4239s! task=step_sync_finances attempt 1
+[2026-03-10 22:03:03] WATCHDOG WARNING: no heartbeat for 4269s! task=step_sync_finances attempt 1
+[2026-03-10 22:03:04]   DB MONITOR: 680,777 rows total (+59,863 new) | months with data: 6
+[2026-03-10 22:03:34] WATCHDOG WARNING: no heartbeat for 4300s! task=step_sync_finances attempt 1
+[2026-03-10 22:04:04] WATCHDOG WARNING: no heartbeat for 4330s! task=step_sync_finances attempt 1
+[2026-03-10 22:04:04]   DB MONITOR: 683,397 rows total (+62,483 new) | months with data: 6
+[2026-03-10 22:04:34] WATCHDOG WARNING: no heartbeat for 4361s! task=step_sync_finances attempt 1
+[2026-03-10 22:05:04] WATCHDOG WARNING: no heartbeat for 4391s! task=step_sync_finances attempt 1
+[2026-03-10 22:05:12]   DB MONITOR: 687,386 rows total (+66,472 new) | months with data: 6
+[2026-03-10 22:05:42] WATCHDOG WARNING: no heartbeat for 4428s! task=step_sync_finances attempt 1
+[2026-03-10 22:06:12] WATCHDOG WARNING: no heartbeat for 4458s! task=step_sync_finances attempt 1
+[2026-03-10 22:06:13]   DB MONITOR: 690,515 rows total (+69,601 new) | months with data: 6
+[2026-03-10 22:06:43] WATCHDOG WARNING: no heartbeat for 4489s! task=step_sync_finances attempt 1
+[2026-03-10 22:07:13] WATCHDOG WARNING: no heartbeat for 4519s! task=step_sync_finances attempt 1
+[2026-03-10 22:07:13]   DB MONITOR: 692,799 rows total (+71,885 new) | months with data: 6
+[2026-03-10 22:07:43] WATCHDOG WARNING: no heartbeat for 4550s! task=step_sync_finances attempt 1
+[2026-03-10 22:08:13] WATCHDOG WARNING: no heartbeat for 4580s! task=step_sync_finances attempt 1
+[2026-03-10 22:08:14]   DB MONITOR: 693,974 rows total (+73,060 new) | months with data: 6
+[2026-03-10 22:08:44] WATCHDOG WARNING: no heartbeat for 4611s! task=step_sync_finances attempt 1
+[2026-03-10 22:09:14] WATCHDOG WARNING: no heartbeat for 4641s! task=step_sync_finances attempt 1
+[2026-03-10 22:09:15]   DB MONITOR: 697,420 rows total (+76,506 new) | months with data: 6
+[2026-03-10 22:09:45] WATCHDOG WARNING: no heartbeat for 4672s! task=step_sync_finances attempt 1
+[2026-03-10 22:10:15] WATCHDOG WARNING: no heartbeat for 4702s! task=step_sync_finances attempt 1
+[2026-03-10 22:10:16]   DB MONITOR: 700,257 rows total (+79,343 new) | months with data: 6
+[2026-03-10 22:10:46] WATCHDOG WARNING: no heartbeat for 4732s! task=step_sync_finances attempt 1
+[2026-03-10 22:11:16] WATCHDOG WARNING: no heartbeat for 4762s! task=step_sync_finances attempt 1
+[2026-03-10 22:11:16]   DB MONITOR: 702,488 rows total (+81,574 new) | months with data: 6
+[2026-03-10 22:11:46] WATCHDOG WARNING: no heartbeat for 4793s! task=step_sync_finances attempt 1
+[2026-03-10 22:12:16] WATCHDOG WARNING: no heartbeat for 4823s! task=step_sync_finances attempt 1
+[2026-03-10 22:12:17]   DB MONITOR: 704,971 rows total (+84,057 new) | months with data: 6
+[2026-03-10 22:12:47] WATCHDOG WARNING: no heartbeat for 4854s! task=step_sync_finances attempt 1
+[2026-03-10 22:13:17] WATCHDOG WARNING: no heartbeat for 4884s! task=step_sync_finances attempt 1
+[2026-03-10 22:13:18]   DB MONITOR: 705,501 rows total (+84,587 new) | months with data: 6
+[2026-03-10 22:13:48] WATCHDOG WARNING: no heartbeat for 4914s! task=step_sync_finances attempt 1
+[2026-03-10 22:14:18] WATCHDOG WARNING: no heartbeat for 4944s! task=step_sync_finances attempt 1
+[2026-03-10 22:14:18]   DB MONITOR: 707,077 rows total (+86,163 new) | months with data: 6
+[2026-03-10 22:14:48] WATCHDOG WARNING: no heartbeat for 4975s! task=step_sync_finances attempt 1
+[2026-03-10 22:15:19] WATCHDOG WARNING: no heartbeat for 5005s! task=step_sync_finances attempt 1
+[2026-03-10 22:15:19]   DB MONITOR: 709,048 rows total (+88,134 new) | months with data: 6
+[2026-03-10 22:15:49] WATCHDOG WARNING: no heartbeat for 5036s! task=step_sync_finances attempt 1
+[2026-03-10 22:16:19] WATCHDOG WARNING: no heartbeat for 5066s! task=step_sync_finances attempt 1
+[2026-03-10 22:16:20]   DB MONITOR: 711,178 rows total (+90,264 new) | months with data: 6
+[2026-03-10 22:16:50] WATCHDOG WARNING: no heartbeat for 5097s! task=step_sync_finances attempt 1
+[2026-03-10 22:17:20] WATCHDOG WARNING: no heartbeat for 5127s! task=step_sync_finances attempt 1
+[2026-03-10 22:17:21]   DB MONITOR: 712,405 rows total (+91,491 new) | months with data: 6
+[2026-03-10 22:17:51] WATCHDOG WARNING: no heartbeat for 5158s! task=step_sync_finances attempt 1
+[2026-03-10 22:18:21] WATCHDOG WARNING: no heartbeat for 5188s! task=step_sync_finances attempt 1
+[2026-03-10 22:18:49]   DB MONITOR: 714,179 rows total (+93,265 new) | months with data: 6
+[2026-03-10 22:19:19] WATCHDOG WARNING: no heartbeat for 5246s! task=step_sync_finances attempt 1
+[2026-03-10 22:19:49] WATCHDOG WARNING: no heartbeat for 5276s! task=step_sync_finances attempt 1
+[2026-03-10 22:19:50]   DB MONITOR: 715,046 rows total (+94,132 new) | months with data: 6
+[2026-03-10 22:20:20] WATCHDOG WARNING: no heartbeat for 5307s! task=step_sync_finances attempt 1
+[2026-03-10 22:20:50] WATCHDOG WARNING: no heartbeat for 5337s! task=step_sync_finances attempt 1
+[2026-03-10 22:20:54]   DB MONITOR: 715,894 rows total (+94,980 new) | months with data: 6
+[2026-03-10 22:21:24] WATCHDOG WARNING: no heartbeat for 5371s! task=step_sync_finances attempt 1
+[2026-03-10 22:21:54] WATCHDOG WARNING: no heartbeat for 5401s! task=step_sync_finances attempt 1
+[2026-03-10 22:21:56]   DB MONITOR: 716,406 rows total (+95,492 new) | months with data: 6
+[2026-03-10 22:22:26] WATCHDOG WARNING: no heartbeat for 5432s! task=step_sync_finances attempt 1
+[2026-03-10 22:22:56] WATCHDOG WARNING: no heartbeat for 5462s! task=step_sync_finances attempt 1
+[2026-03-10 22:22:58]   DB MONITOR: 716,534 rows total (+95,620 new) | months with data: 6
+[2026-03-10 22:23:28] WATCHDOG WARNING: no heartbeat for 5494s! task=step_sync_finances attempt 1
+[2026-03-10 22:23:58] WATCHDOG WARNING: no heartbeat for 5524s! task=step_sync_finances attempt 1
+[2026-03-10 22:23:59]   DB MONITOR: 716,908 rows total (+95,994 new) | months with data: 6
+[2026-03-10 22:24:29] WATCHDOG WARNING: no heartbeat for 5555s! task=step_sync_finances attempt 1
+[2026-03-10 22:24:59] WATCHDOG WARNING: no heartbeat for 5585s! task=step_sync_finances attempt 1
+[2026-03-10 22:25:01]   DB MONITOR: 718,180 rows total (+97,266 new) | months with data: 6
+[2026-03-10 22:25:31] WATCHDOG WARNING: no heartbeat for 5618s! task=step_sync_finances attempt 1
+[2026-03-10 22:26:01] WATCHDOG WARNING: no heartbeat for 5648s! task=step_sync_finances attempt 1
+[2026-03-10 22:26:02]   DB MONITOR: 718,294 rows total (+97,380 new) | months with data: 6
+[2026-03-10 22:26:32] WATCHDOG WARNING: no heartbeat for 5679s! task=step_sync_finances attempt 1
+[2026-03-10 22:27:02] WATCHDOG WARNING: no heartbeat for 5709s! task=step_sync_finances attempt 1
+[2026-03-10 22:27:03]   DB MONITOR: 720,155 rows total (+99,241 new) | months with data: 6
+[2026-03-10 22:27:33] WATCHDOG WARNING: no heartbeat for 5740s! task=step_sync_finances attempt 1
+[2026-03-10 22:28:03] WATCHDOG WARNING: no heartbeat for 5770s! task=step_sync_finances attempt 1
+[2026-03-10 22:28:05]   DB MONITOR: 721,172 rows total (+100,258 new) | months with data: 6
+[2026-03-10 22:28:35] WATCHDOG WARNING: no heartbeat for 5802s! task=step_sync_finances attempt 1
+[2026-03-10 22:29:05] WATCHDOG WARNING: no heartbeat for 5832s! task=step_sync_finances attempt 1
+[2026-03-10 22:29:08]   DB MONITOR: 723,419 rows total (+102,505 new) | months with data: 6
+[2026-03-10 22:29:39] WATCHDOG WARNING: no heartbeat for 5865s! task=step_sync_finances attempt 1
+[2026-03-10 22:30:09] WATCHDOG WARNING: no heartbeat for 5895s! task=step_sync_finances attempt 1
+[2026-03-10 22:30:12]   DB MONITOR: 725,172 rows total (+104,258 new) | months with data: 6
+[2026-03-10 22:30:42] WATCHDOG WARNING: no heartbeat for 5928s! task=step_sync_finances attempt 1
+[2026-03-10 22:31:12] WATCHDOG WARNING: no heartbeat for 5958s! task=step_sync_finances attempt 1
+[2026-03-10 22:31:12]   DB MONITOR: 725,862 rows total (+104,948 new) | months with data: 6
+[2026-03-10 22:31:42] WATCHDOG WARNING: no heartbeat for 5989s! task=step_sync_finances attempt 1
+[2026-03-10 22:32:12] WATCHDOG WARNING: no heartbeat for 6019s! task=step_sync_finances attempt 1
+[2026-03-10 22:32:13]   DB MONITOR: 726,280 rows total (+105,366 new) | months with data: 6
+[2026-03-10 22:32:43] WATCHDOG WARNING: no heartbeat for 6050s! task=step_sync_finances attempt 1
+[2026-03-10 22:33:13] WATCHDOG WARNING: no heartbeat for 6080s! task=step_sync_finances attempt 1
+[2026-03-10 22:33:14]   DB MONITOR: 727,791 rows total (+106,877 new) | months with data: 6
+[2026-03-10 22:33:44] WATCHDOG WARNING: no heartbeat for 6111s! task=step_sync_finances attempt 1
+[2026-03-10 22:34:14] WATCHDOG WARNING: no heartbeat for 6141s! task=step_sync_finances attempt 1
+[2026-03-10 22:34:15]   DB MONITOR: 730,056 rows total (+109,142 new) | months with data: 6
+[2026-03-10 22:34:45] WATCHDOG WARNING: no heartbeat for 6172s! task=step_sync_finances attempt 1
+[2026-03-10 22:35:15] WATCHDOG WARNING: no heartbeat for 6202s! task=step_sync_finances attempt 1
+[2026-03-10 22:35:16]   DB MONITOR: 730,300 rows total (+109,386 new) | months with data: 6
+[2026-03-10 22:35:46] WATCHDOG WARNING: no heartbeat for 6232s! task=step_sync_finances attempt 1
+[2026-03-10 22:36:16] WATCHDOG WARNING: no heartbeat for 6263s! task=step_sync_finances attempt 1
+[2026-03-10 22:36:17]   DB MONITOR: 730,718 rows total (+109,804 new) | months with data: 6
+[2026-03-10 22:36:47] WATCHDOG WARNING: no heartbeat for 6293s! task=step_sync_finances attempt 1
+[2026-03-10 22:37:17] WATCHDOG WARNING: no heartbeat for 6323s! task=step_sync_finances attempt 1
+[2026-03-10 22:37:18]   DB MONITOR: 731,913 rows total (+110,999 new) | months with data: 6
+[2026-03-10 22:37:48] WATCHDOG WARNING: no heartbeat for 6355s! task=step_sync_finances attempt 1
+[2026-03-10 22:38:18] WATCHDOG WARNING: no heartbeat for 6385s! task=step_sync_finances attempt 1
+[2026-03-10 22:38:21]   DB MONITOR: 734,263 rows total (+113,349 new) | months with data: 6
+[2026-03-10 22:38:51] WATCHDOG WARNING: no heartbeat for 6417s! task=step_sync_finances attempt 1
+[2026-03-10 22:39:21] WATCHDOG WARNING: no heartbeat for 6447s! task=step_sync_finances attempt 1
+[2026-03-10 22:39:21]   DB MONITOR: 737,343 rows total (+116,429 new) | months with data: 6
+[2026-03-10 22:39:51] WATCHDOG WARNING: no heartbeat for 6478s! task=step_sync_finances attempt 1
+[2026-03-10 22:40:21] WATCHDOG WARNING: no heartbeat for 6508s! task=step_sync_finances attempt 1
+[2026-03-10 22:40:22]   DB MONITOR: 740,202 rows total (+119,288 new) | months with data: 6
+[2026-03-10 22:40:52] WATCHDOG WARNING: no heartbeat for 6539s! task=step_sync_finances attempt 1
+[2026-03-10 22:41:22] WATCHDOG WARNING: no heartbeat for 6569s! task=step_sync_finances attempt 1
+[2026-03-10 22:41:29]   DB MONITOR: 741,976 rows total (+121,062 new) | months with data: 6
+[2026-03-10 22:41:59] WATCHDOG WARNING: no heartbeat for 6606s! task=step_sync_finances attempt 1
+[2026-03-10 22:42:29] WATCHDOG WARNING: no heartbeat for 6636s! task=step_sync_finances attempt 1
+[2026-03-10 22:42:30]   DB MONITOR: 742,840 rows total (+121,926 new) | months with data: 6
+[2026-03-10 22:43:00] WATCHDOG WARNING: no heartbeat for 6667s! task=step_sync_finances attempt 1
+[2026-03-10 22:43:30] WATCHDOG WARNING: no heartbeat for 6697s! task=step_sync_finances attempt 1
+[2026-03-10 22:43:31]   DB MONITOR: 743,399 rows total (+122,485 new) | months with data: 6
+[2026-03-10 22:44:01] WATCHDOG WARNING: no heartbeat for 6728s! task=step_sync_finances attempt 1
+[2026-03-10 22:44:31] WATCHDOG WARNING: no heartbeat for 6758s! task=step_sync_finances attempt 1
+[2026-03-10 22:44:32]   DB MONITOR: 743,626 rows total (+122,712 new) | months with data: 6
+[2026-03-10 22:45:02] WATCHDOG WARNING: no heartbeat for 6788s! task=step_sync_finances attempt 1
+[2026-03-10 22:45:32] WATCHDOG WARNING: no heartbeat for 6819s! task=step_sync_finances attempt 1
+[2026-03-10 22:45:33]   DB MONITOR: 744,322 rows total (+123,408 new) | months with data: 6
+[2026-03-10 22:46:03] WATCHDOG WARNING: no heartbeat for 6849s! task=step_sync_finances attempt 1
+[2026-03-10 22:46:33] WATCHDOG WARNING: no heartbeat for 6879s! task=step_sync_finances attempt 1
+[2026-03-10 22:46:34]   DB MONITOR: 745,325 rows total (+124,411 new) | months with data: 6
+[2026-03-10 22:47:04] WATCHDOG WARNING: no heartbeat for 6910s! task=step_sync_finances attempt 1
+[2026-03-10 22:47:34] WATCHDOG WARNING: no heartbeat for 6940s! task=step_sync_finances attempt 1
+[2026-03-10 22:47:34]   DB MONITOR: 745,672 rows total (+124,758 new) | months with data: 6
+[2026-03-10 22:48:04] WATCHDOG WARNING: no heartbeat for 6971s! task=step_sync_finances attempt 1
+[2026-03-10 22:48:34] WATCHDOG WARNING: no heartbeat for 7001s! task=step_sync_finances attempt 1
+[2026-03-10 22:48:35]   DB MONITOR: 746,432 rows total (+125,518 new) | months with data: 6
+[2026-03-10 22:49:05] WATCHDOG WARNING: no heartbeat for 7032s! task=step_sync_finances attempt 1
+[2026-03-10 22:49:35] WATCHDOG WARNING: no heartbeat for 7062s! task=step_sync_finances attempt 1
+[2026-03-10 22:49:36]   DB MONITOR: 747,449 rows total (+126,535 new) | months with data: 6
+[2026-03-10 22:50:06] WATCHDOG WARNING: no heartbeat for 7093s! task=step_sync_finances attempt 1
+[2026-03-10 22:50:36] WATCHDOG WARNING: no heartbeat for 7123s! task=step_sync_finances attempt 1
+[2026-03-10 22:50:39]   DB MONITOR: 748,108 rows total (+127,194 new) | months with data: 6
+[2026-03-10 22:51:09] WATCHDOG WARNING: no heartbeat for 7156s! task=step_sync_finances attempt 1
+[2026-03-10 22:51:39] WATCHDOG WARNING: no heartbeat for 7186s! task=step_sync_finances attempt 1
+[2026-03-10 22:51:40]   DB MONITOR: 748,772 rows total (+127,858 new) | months with data: 6
+[2026-03-10 22:52:10] WATCHDOG WARNING: no heartbeat for 7217s! task=step_sync_finances attempt 1
+[2026-03-10 22:52:40] WATCHDOG WARNING: no heartbeat for 7247s! task=step_sync_finances attempt 1
+[2026-03-10 22:52:41]   DB MONITOR: 750,868 rows total (+129,954 new) | months with data: 6
+[2026-03-10 22:53:11] WATCHDOG WARNING: no heartbeat for 7277s! task=step_sync_finances attempt 1
+[2026-03-10 22:53:41] WATCHDOG WARNING: no heartbeat for 7307s! task=step_sync_finances attempt 1
+[2026-03-10 22:53:42]   DB MONITOR: 752,055 rows total (+131,141 new) | months with data: 6
+[2026-03-10 22:54:12] WATCHDOG WARNING: no heartbeat for 7339s! task=step_sync_finances attempt 1
+[2026-03-10 22:54:42] WATCHDOG WARNING: no heartbeat for 7369s! task=step_sync_finances attempt 1
+[2026-03-10 22:54:43]   DB MONITOR: 752,433 rows total (+131,519 new) | months with data: 6
+[2026-03-10 22:55:13] WATCHDOG WARNING: no heartbeat for 7400s! task=step_sync_finances attempt 1
+[2026-03-10 22:55:43] WATCHDOG WARNING: no heartbeat for 7430s! task=step_sync_finances attempt 1
+[2026-03-10 22:55:44]   DB MONITOR: 755,115 rows total (+134,201 new) | months with data: 6
+[2026-03-10 22:56:14] WATCHDOG WARNING: no heartbeat for 7461s! task=step_sync_finances attempt 1
+[2026-03-10 22:56:44] WATCHDOG WARNING: no heartbeat for 7491s! task=step_sync_finances attempt 1
+[2026-03-10 22:56:45]   DB MONITOR: 756,088 rows total (+135,174 new) | months with data: 6
+[2026-03-10 22:57:15] WATCHDOG WARNING: no heartbeat for 7521s! task=step_sync_finances attempt 1
+[2026-03-10 22:57:45] WATCHDOG WARNING: no heartbeat for 7551s! task=step_sync_finances attempt 1
+[2026-03-10 22:57:46]   DB MONITOR: 756,423 rows total (+135,509 new) | months with data: 6
+[2026-03-10 22:58:16] WATCHDOG WARNING: no heartbeat for 7582s! task=step_sync_finances attempt 1
+[2026-03-10 22:58:46] WATCHDOG WARNING: no heartbeat for 7612s! task=step_sync_finances attempt 1
+[2026-03-10 22:58:46]   DB MONITOR: 758,260 rows total (+137,346 new) | months with data: 6
+[2026-03-10 22:59:17] WATCHDOG WARNING: no heartbeat for 7643s! task=step_sync_finances attempt 1
+[2026-03-10 22:59:47] WATCHDOG WARNING: no heartbeat for 7673s! task=step_sync_finances attempt 1
+[2026-03-10 22:59:47]   DB MONITOR: 760,182 rows total (+139,268 new) | months with data: 6
+[2026-03-10 23:00:17] WATCHDOG WARNING: no heartbeat for 7704s! task=step_sync_finances attempt 1
+[2026-03-10 23:00:47] WATCHDOG WARNING: no heartbeat for 7734s! task=step_sync_finances attempt 1
+[2026-03-10 23:00:48]   DB MONITOR: 762,259 rows total (+141,345 new) | months with data: 6
+[2026-03-10 23:01:18] WATCHDOG WARNING: no heartbeat for 7765s! task=step_sync_finances attempt 1
+[2026-03-10 23:01:48] WATCHDOG WARNING: no heartbeat for 7795s! task=step_sync_finances attempt 1
+[2026-03-10 23:01:49]   DB MONITOR: 762,371 rows total (+141,457 new) | months with data: 6
+[2026-03-10 23:02:19] WATCHDOG WARNING: no heartbeat for 7826s! task=step_sync_finances attempt 1
+[2026-03-10 23:02:49] WATCHDOG WARNING: no heartbeat for 7856s! task=step_sync_finances attempt 1
+[2026-03-10 23:02:50]   DB MONITOR: 765,145 rows total (+144,231 new) | months with data: 6
+[2026-03-10 23:03:20] WATCHDOG WARNING: no heartbeat for 7887s! task=step_sync_finances attempt 1
+[2026-03-10 23:03:50] WATCHDOG WARNING: no heartbeat for 7917s! task=step_sync_finances attempt 1
+[2026-03-10 23:03:51]   DB MONITOR: 765,302 rows total (+144,388 new) | months with data: 6
+[2026-03-10 23:04:21] WATCHDOG WARNING: no heartbeat for 7947s! task=step_sync_finances attempt 1
+[2026-03-10 23:04:51] WATCHDOG WARNING: no heartbeat for 7977s! task=step_sync_finances attempt 1
+[2026-03-10 23:04:52]   DB MONITOR: 766,214 rows total (+145,300 new) | months with data: 6
+[2026-03-10 23:05:22] WATCHDOG WARNING: no heartbeat for 8009s! task=step_sync_finances attempt 1
+[2026-03-10 23:05:52] WATCHDOG WARNING: no heartbeat for 8039s! task=step_sync_finances attempt 1
+[2026-03-10 23:05:53]   DB MONITOR: 766,319 rows total (+145,405 new) | months with data: 6
+[2026-03-10 23:06:23] WATCHDOG WARNING: no heartbeat for 8069s! task=step_sync_finances attempt 1
+[2026-03-10 23:06:53] WATCHDOG WARNING: no heartbeat for 8099s! task=step_sync_finances attempt 1
+[2026-03-10 23:06:54]   DB MONITOR: 766,690 rows total (+145,776 new) | months with data: 6
+[2026-03-10 23:07:24] WATCHDOG WARNING: no heartbeat for 8131s! task=step_sync_finances attempt 1
+[2026-03-10 23:07:54] WATCHDOG WARNING: no heartbeat for 8161s! task=step_sync_finances attempt 1
+[2026-03-10 23:07:55]   DB MONITOR: 767,094 rows total (+146,180 new) | months with data: 6
+[2026-03-10 23:08:25] WATCHDOG WARNING: no heartbeat for 8192s! task=step_sync_finances attempt 1
+[2026-03-10 23:08:55] WATCHDOG WARNING: no heartbeat for 8222s! task=step_sync_finances attempt 1
+[2026-03-10 23:09:01]   DB MONITOR: 768,462 rows total (+147,548 new) | months with data: 6
+[2026-03-10 23:09:31] WATCHDOG WARNING: no heartbeat for 8258s! task=step_sync_finances attempt 1
+[2026-03-10 23:10:01] WATCHDOG WARNING: no heartbeat for 8288s! task=step_sync_finances attempt 1
+[2026-03-10 23:10:11]   DB MONITOR: 771,062 rows total (+150,148 new) | months with data: 6
+[2026-03-10 23:10:41] WATCHDOG WARNING: no heartbeat for 8327s! task=step_sync_finances attempt 1
+[2026-03-10 23:11:11] WATCHDOG WARNING: no heartbeat for 8357s! task=step_sync_finances attempt 1
+[2026-03-10 23:11:11]   DB MONITOR: 772,224 rows total (+151,310 new) | months with data: 6
+[2026-03-10 23:11:42] WATCHDOG WARNING: no heartbeat for 8388s! task=step_sync_finances attempt 1
+[2026-03-10 23:12:12] WATCHDOG WARNING: no heartbeat for 8418s! task=step_sync_finances attempt 1
+[2026-03-10 23:12:13]   DB MONITOR: 773,629 rows total (+152,715 new) | months with data: 6
+[2026-03-10 23:12:43] WATCHDOG WARNING: no heartbeat for 8449s! task=step_sync_finances attempt 1
+[2026-03-10 23:13:13] WATCHDOG WARNING: no heartbeat for 8479s! task=step_sync_finances attempt 1
+[2026-03-10 23:13:50] WATCHDOG WARNING: no heartbeat for 8516s! task=step_sync_finances attempt 1
+[2026-03-10 23:14:20] WATCHDOG WARNING: no heartbeat for 8546s! task=step_sync_finances attempt 1
+[2026-03-10 23:14:21]   DB MONITOR: 775,758 rows total (+154,844 new) | months with data: 6
+[2026-03-10 23:14:51] WATCHDOG WARNING: no heartbeat for 8577s! task=step_sync_finances attempt 1
+[2026-03-10 23:15:21] WATCHDOG WARNING: no heartbeat for 8607s! task=step_sync_finances attempt 1
+[2026-03-10 23:15:25]   DB MONITOR: 775,937 rows total (+155,023 new) | months with data: 6
+[2026-03-10 23:15:55] WATCHDOG WARNING: no heartbeat for 8641s! task=step_sync_finances attempt 1
+[2026-03-10 23:16:25] WATCHDOG WARNING: no heartbeat for 8671s! task=step_sync_finances attempt 1
+[2026-03-10 23:16:27]   DB MONITOR: 776,005 rows total (+155,091 new) | months with data: 6
+[2026-03-10 23:16:57] WATCHDOG WARNING: no heartbeat for 8703s! task=step_sync_finances attempt 1
+[2026-03-10 23:17:27] WATCHDOG WARNING: no heartbeat for 8733s! task=step_sync_finances attempt 1
+[2026-03-10 23:17:28]   DB MONITOR: 776,698 rows total (+155,784 new) | months with data: 6
+[2026-03-10 23:17:58] WATCHDOG WARNING: no heartbeat for 8765s! task=step_sync_finances attempt 1
+[2026-03-10 23:18:28] WATCHDOG WARNING: no heartbeat for 8795s! task=step_sync_finances attempt 1
+[2026-03-10 23:18:32]   DB MONITOR: 777,455 rows total (+156,541 new) | months with data: 6
+[2026-03-10 23:19:02] WATCHDOG WARNING: no heartbeat for 8828s! task=step_sync_finances attempt 1
+[2026-03-10 23:19:32] WATCHDOG WARNING: no heartbeat for 8858s! task=step_sync_finances attempt 1
+[2026-03-10 23:19:33]   DB MONITOR: 779,351 rows total (+158,437 new) | months with data: 6
+[2026-03-10 23:20:03] WATCHDOG WARNING: no heartbeat for 8890s! task=step_sync_finances attempt 1
+[2026-03-10 23:20:33] WATCHDOG WARNING: no heartbeat for 8920s! task=step_sync_finances attempt 1
+[2026-03-10 23:20:35]   DB MONITOR: 780,250 rows total (+159,336 new) | months with data: 6
+[2026-03-10 23:21:05] WATCHDOG WARNING: no heartbeat for 8951s! task=step_sync_finances attempt 1
+[2026-03-10 23:21:35] WATCHDOG WARNING: no heartbeat for 8981s! task=step_sync_finances attempt 1
+[2026-03-10 23:21:37]   DB MONITOR: 780,726 rows total (+159,812 new) | months with data: 6
+[2026-03-10 23:22:07] WATCHDOG WARNING: no heartbeat for 9013s! task=step_sync_finances attempt 1
+[2026-03-10 23:22:37] WATCHDOG WARNING: no heartbeat for 9043s! task=step_sync_finances attempt 1
+[2026-03-10 23:22:41]   DB MONITOR: 781,593 rows total (+160,679 new) | months with data: 6
+[2026-03-10 23:23:11] WATCHDOG WARNING: no heartbeat for 9077s! task=step_sync_finances attempt 1
+[2026-03-10 23:23:41] WATCHDOG WARNING: no heartbeat for 9107s! task=step_sync_finances attempt 1
+[2026-03-10 23:23:43]   DB MONITOR: 783,355 rows total (+162,441 new) | months with data: 6
+[2026-03-10 23:24:13] WATCHDOG WARNING: no heartbeat for 9140s! task=step_sync_finances attempt 1
+[2026-03-10 23:24:43] WATCHDOG WARNING: no heartbeat for 9170s! task=step_sync_finances attempt 1
+[2026-03-10 23:24:48]   DB MONITOR: 784,349 rows total (+163,435 new) | months with data: 6
+[2026-03-10 23:25:18] WATCHDOG WARNING: no heartbeat for 9204s! task=step_sync_finances attempt 1
+[2026-03-10 23:25:48] WATCHDOG WARNING: no heartbeat for 9234s! task=step_sync_finances attempt 1
+[2026-03-10 23:25:50]   DB MONITOR: 785,591 rows total (+164,677 new) | months with data: 6
+[2026-03-10 23:26:20] WATCHDOG WARNING: no heartbeat for 9267s! task=step_sync_finances attempt 1
+[2026-03-10 23:26:50] WATCHDOG WARNING: no heartbeat for 9297s! task=step_sync_finances attempt 1
+[2026-03-10 23:26:53]   DB MONITOR: 786,809 rows total (+165,895 new) | months with data: 6
+[2026-03-10 23:27:23] WATCHDOG WARNING: no heartbeat for 9329s! task=step_sync_finances attempt 1
+[2026-03-10 23:27:53] WATCHDOG WARNING: no heartbeat for 9359s! task=step_sync_finances attempt 1
+[2026-03-10 23:27:55]   DB MONITOR: 788,486 rows total (+167,572 new) | months with data: 6
+[2026-03-10 23:28:25] WATCHDOG WARNING: no heartbeat for 9392s! task=step_sync_finances attempt 1
+[2026-03-10 23:28:55] WATCHDOG WARNING: no heartbeat for 9422s! task=step_sync_finances attempt 1
+[2026-03-10 23:28:58]   DB MONITOR: 789,337 rows total (+168,423 new) | months with data: 6
+[2026-03-10 23:29:28] WATCHDOG WARNING: no heartbeat for 9454s! task=step_sync_finances attempt 1
+[2026-03-10 23:29:58] WATCHDOG WARNING: no heartbeat for 9484s! task=step_sync_finances attempt 1
+[2026-03-10 23:30:02]   DB MONITOR: 790,575 rows total (+169,661 new) | months with data: 6
+[2026-03-10 23:30:32] WATCHDOG WARNING: no heartbeat for 9518s! task=step_sync_finances attempt 1
+[2026-03-10 23:31:02] WATCHDOG WARNING: no heartbeat for 9548s! task=step_sync_finances attempt 1
+[2026-03-10 23:31:05]   DB MONITOR: 792,341 rows total (+171,427 new) | months with data: 6
+[2026-03-10 23:31:35] WATCHDOG WARNING: no heartbeat for 9581s! task=step_sync_finances attempt 1
+[2026-03-10 23:32:05] WATCHDOG WARNING: no heartbeat for 9611s! task=step_sync_finances attempt 1
+[2026-03-10 23:32:08]   DB MONITOR: 792,974 rows total (+172,060 new) | months with data: 6
+[2026-03-10 23:32:38] WATCHDOG WARNING: no heartbeat for 9645s! task=step_sync_finances attempt 1
+[2026-03-10 23:33:08] WATCHDOG WARNING: no heartbeat for 9675s! task=step_sync_finances attempt 1
+[2026-03-10 23:33:10]   DB MONITOR: 792,974 rows total (+172,060 new) | months with data: 6
+[2026-03-10 23:33:40] WATCHDOG WARNING: no heartbeat for 9707s! task=step_sync_finances attempt 1
+[2026-03-10 23:34:10] WATCHDOG WARNING: no heartbeat for 9737s! task=step_sync_finances attempt 1
+[2026-03-10 23:34:11]   DB MONITOR: 793,922 rows total (+173,008 new) | months with data: 6
+[2026-03-10 23:34:41] WATCHDOG WARNING: no heartbeat for 9768s! task=step_sync_finances attempt 1
+[2026-03-10 23:35:11] WATCHDOG WARNING: no heartbeat for 9798s! task=step_sync_finances attempt 1
+[2026-03-10 23:35:13]   DB MONITOR: 795,171 rows total (+174,257 new) | months with data: 6
+[2026-03-10 23:35:43] WATCHDOG WARNING: no heartbeat for 9830s! task=step_sync_finances attempt 1
+[2026-03-10 23:36:13] WATCHDOG WARNING: no heartbeat for 9860s! task=step_sync_finances attempt 1
+[2026-03-10 23:36:21]   DB MONITOR: 797,065 rows total (+176,151 new) | months with data: 6
+[2026-03-10 23:36:51] WATCHDOG WARNING: no heartbeat for 9898s! task=step_sync_finances attempt 1
+[2026-03-10 23:37:21] WATCHDOG WARNING: no heartbeat for 9928s! task=step_sync_finances attempt 1
+[2026-03-10 23:37:31]   DB MONITOR: 800,212 rows total (+179,298 new) | months with data: 6
+[2026-03-10 23:38:01] WATCHDOG WARNING: no heartbeat for 9968s! task=step_sync_finances attempt 1
+[2026-03-10 23:38:31] WATCHDOG WARNING: no heartbeat for 9998s! task=step_sync_finances attempt 1
+[2026-03-10 23:38:32]   DB MONITOR: 802,481 rows total (+181,567 new) | months with data: 6
+[2026-03-10 23:39:02] WATCHDOG WARNING: no heartbeat for 10029s! task=step_sync_finances attempt 1
+[2026-03-10 23:39:32] WATCHDOG WARNING: no heartbeat for 10059s! task=step_sync_finances attempt 1
+[2026-03-10 23:39:33]   DB MONITOR: 802,919 rows total (+182,005 new) | months with data: 6
+[2026-03-10 23:40:03] WATCHDOG WARNING: no heartbeat for 10090s! task=step_sync_finances attempt 1
+[2026-03-10 23:40:33] WATCHDOG WARNING: no heartbeat for 10120s! task=step_sync_finances attempt 1
+[2026-03-10 23:40:35]   DB MONITOR: 804,907 rows total (+183,993 new) | months with data: 6
+[2026-03-10 23:41:05] WATCHDOG WARNING: no heartbeat for 10151s! task=step_sync_finances attempt 1
+[2026-03-10 23:41:35] WATCHDOG WARNING: no heartbeat for 10181s! task=step_sync_finances attempt 1
+[2026-03-10 23:41:35]   DB MONITOR: 805,089 rows total (+184,175 new) | months with data: 6
+[2026-03-10 23:42:05] WATCHDOG WARNING: no heartbeat for 10212s! task=step_sync_finances attempt 1
+[2026-03-10 23:42:35] WATCHDOG WARNING: no heartbeat for 10242s! task=step_sync_finances attempt 1
+[2026-03-10 23:42:36]   DB MONITOR: 806,910 rows total (+185,996 new) | months with data: 6
+[2026-03-10 23:43:06] WATCHDOG WARNING: no heartbeat for 10273s! task=step_sync_finances attempt 1
+[2026-03-10 23:43:36] WATCHDOG WARNING: no heartbeat for 10303s! task=step_sync_finances attempt 1
+[2026-03-10 23:43:37]   DB MONITOR: 807,286 rows total (+186,372 new) | months with data: 6
+[2026-03-10 23:44:07] WATCHDOG WARNING: no heartbeat for 10334s! task=step_sync_finances attempt 1
+[2026-03-10 23:44:37] WATCHDOG WARNING: no heartbeat for 10364s! task=step_sync_finances attempt 1
+[2026-03-10 23:44:38]   DB MONITOR: 809,078 rows total (+188,164 new) | months with data: 6
+[2026-03-10 23:45:08] WATCHDOG WARNING: no heartbeat for 10395s! task=step_sync_finances attempt 1
+[2026-03-10 23:45:38] WATCHDOG WARNING: no heartbeat for 10425s! task=step_sync_finances attempt 1
+[2026-03-10 23:45:39]   DB MONITOR: 811,260 rows total (+190,346 new) | months with data: 6
+[2026-03-10 23:46:09] WATCHDOG WARNING: no heartbeat for 10456s! task=step_sync_finances attempt 1
+[2026-03-10 23:46:39] WATCHDOG WARNING: no heartbeat for 10486s! task=step_sync_finances attempt 1
+[2026-03-10 23:46:40]   DB MONITOR: 813,356 rows total (+192,442 new) | months with data: 6
+[2026-03-10 23:47:10] WATCHDOG WARNING: no heartbeat for 10517s! task=step_sync_finances attempt 1
+[2026-03-10 23:47:40] WATCHDOG WARNING: no heartbeat for 10547s! task=step_sync_finances attempt 1
+[2026-03-10 23:47:41]   DB MONITOR: 815,672 rows total (+194,758 new) | months with data: 6
+[2026-03-10 23:48:11] WATCHDOG WARNING: no heartbeat for 10578s! task=step_sync_finances attempt 1
+[2026-03-10 23:48:41] WATCHDOG WARNING: no heartbeat for 10608s! task=step_sync_finances attempt 1
+[2026-03-10 23:48:42]   DB MONITOR: 817,605 rows total (+196,691 new) | months with data: 6
+[2026-03-10 23:49:12] WATCHDOG WARNING: no heartbeat for 10638s! task=step_sync_finances attempt 1
+[2026-03-10 23:49:42] WATCHDOG WARNING: no heartbeat for 10668s! task=step_sync_finances attempt 1
+[2026-03-10 23:49:43]   DB MONITOR: 819,526 rows total (+198,612 new) | months with data: 6
+[2026-03-10 23:50:13] WATCHDOG WARNING: no heartbeat for 10700s! task=step_sync_finances attempt 1
+[2026-03-10 23:50:43] WATCHDOG WARNING: no heartbeat for 10730s! task=step_sync_finances attempt 1
+[2026-03-10 23:50:44]   DB MONITOR: 821,988 rows total (+201,074 new) | months with data: 6
+[2026-03-10 23:51:14] WATCHDOG WARNING: no heartbeat for 10760s! task=step_sync_finances attempt 1
+[2026-03-10 23:51:44] WATCHDOG WARNING: no heartbeat for 10790s! task=step_sync_finances attempt 1
+[2026-03-10 23:51:45]   DB MONITOR: 822,887 rows total (+201,973 new) | months with data: 6
+[2026-03-10 23:52:15] WATCHDOG WARNING: no heartbeat for 10821s! task=step_sync_finances attempt 1
+[2026-03-10 23:52:45] WATCHDOG WARNING: no heartbeat for 10851s! task=step_sync_finances attempt 1
+[2026-03-10 23:52:45]   DB MONITOR: 823,177 rows total (+202,263 new) | months with data: 6
+[2026-03-10 23:53:15] WATCHDOG WARNING: no heartbeat for 10882s! task=step_sync_finances attempt 1
+[2026-03-10 23:53:45] WATCHDOG WARNING: no heartbeat for 10912s! task=step_sync_finances attempt 1
+[2026-03-10 23:53:53]   DB MONITOR: 826,253 rows total (+205,339 new) | months with data: 6
+[2026-03-10 23:54:23] WATCHDOG WARNING: no heartbeat for 10949s! task=step_sync_finances attempt 1
+[2026-03-10 23:54:53] WATCHDOG WARNING: no heartbeat for 10979s! task=step_sync_finances attempt 1
+[2026-03-10 23:54:53]   DB MONITOR: 828,344 rows total (+207,430 new) | months with data: 6
+[2026-03-10 23:55:23] WATCHDOG WARNING: no heartbeat for 11010s! task=step_sync_finances attempt 1
+[2026-03-10 23:55:53] WATCHDOG WARNING: no heartbeat for 11040s! task=step_sync_finances attempt 1
+[2026-03-10 23:56:10]   DB MONITOR: 830,630 rows total (+209,716 new) | months with data: 6
+[2026-03-10 23:56:40] WATCHDOG WARNING: no heartbeat for 11087s! task=step_sync_finances attempt 1
+[2026-03-10 23:57:10] WATCHDOG WARNING: no heartbeat for 11117s! task=step_sync_finances attempt 1
+[2026-03-10 23:57:11]   DB MONITOR: 832,516 rows total (+211,602 new) | months with data: 6
+[2026-03-10 23:57:41] WATCHDOG WARNING: no heartbeat for 11147s! task=step_sync_finances attempt 1
+[2026-03-10 23:58:11] WATCHDOG WARNING: no heartbeat for 11177s! task=step_sync_finances attempt 1
+[2026-03-10 23:58:12]   DB MONITOR: 833,988 rows total (+213,074 new) | months with data: 6
+[2026-03-10 23:58:42] WATCHDOG WARNING: no heartbeat for 11208s! task=step_sync_finances attempt 1
+[2026-03-10 23:59:12] WATCHDOG WARNING: no heartbeat for 11238s! task=step_sync_finances attempt 1
+[2026-03-10 23:59:13]   DB MONITOR: 835,298 rows total (+214,384 new) | months with data: 6
+[2026-03-10 23:59:43] WATCHDOG WARNING: no heartbeat for 11269s! task=step_sync_finances attempt 1
+[2026-03-11 00:00:13] WATCHDOG WARNING: no heartbeat for 11299s! task=step_sync_finances attempt 1
+[2026-03-11 00:00:13]   DB MONITOR: 835,541 rows total (+214,627 new) | months with data: 6
+[2026-03-11 00:00:43] WATCHDOG WARNING: no heartbeat for 11330s! task=step_sync_finances attempt 1
+[2026-03-11 00:01:13] WATCHDOG WARNING: no heartbeat for 11360s! task=step_sync_finances attempt 1
+[2026-03-11 00:01:14]   DB MONITOR: 836,896 rows total (+215,982 new) | months with data: 6
+[2026-03-11 00:01:44] WATCHDOG WARNING: no heartbeat for 11391s! task=step_sync_finances attempt 1
+[2026-03-11 00:02:14] WATCHDOG WARNING: no heartbeat for 11421s! task=step_sync_finances attempt 1
+[2026-03-11 00:02:15]   DB MONITOR: 837,352 rows total (+216,438 new) | months with data: 6
+[2026-03-11 00:02:45] WATCHDOG WARNING: no heartbeat for 11451s! task=step_sync_finances attempt 1
+[2026-03-11 00:03:15] WATCHDOG WARNING: no heartbeat for 11481s! task=step_sync_finances attempt 1
+[2026-03-11 00:03:16]   DB MONITOR: 841,233 rows total (+220,319 new) | months with data: 6
+[2026-03-11 00:03:46] WATCHDOG WARNING: no heartbeat for 11512s! task=step_sync_finances attempt 1
+[2026-03-11 00:04:16] WATCHDOG WARNING: no heartbeat for 11542s! task=step_sync_finances attempt 1
+[2026-03-11 00:04:16]   DB MONITOR: 844,279 rows total (+223,365 new) | months with data: 6
+[2026-03-11 00:04:46] WATCHDOG WARNING: no heartbeat for 11573s! task=step_sync_finances attempt 1
+[2026-03-11 00:05:16] WATCHDOG WARNING: no heartbeat for 11603s! task=step_sync_finances attempt 1
+[2026-03-11 00:05:17]   DB MONITOR: 845,870 rows total (+224,956 new) | months with data: 6
+[2026-03-11 00:05:47] WATCHDOG WARNING: no heartbeat for 11634s! task=step_sync_finances attempt 1
+[2026-03-11 00:06:17] WATCHDOG WARNING: no heartbeat for 11664s! task=step_sync_finances attempt 1
+[2026-03-11 00:06:18]   DB MONITOR: 845,870 rows total (+224,956 new) | months with data: 6
+[2026-03-11 00:06:48] WATCHDOG WARNING: no heartbeat for 11695s! task=step_sync_finances attempt 1
+[2026-03-11 00:07:18] WATCHDOG WARNING: no heartbeat for 11725s! task=step_sync_finances attempt 1
+[2026-03-11 00:07:19]   DB MONITOR: 848,919 rows total (+228,005 new) | months with data: 6
+[2026-03-11 00:07:49] WATCHDOG WARNING: no heartbeat for 11756s! task=step_sync_finances attempt 1
+[2026-03-11 00:08:19] WATCHDOG WARNING: no heartbeat for 11786s! task=step_sync_finances attempt 1
+[2026-03-11 00:08:21]   DB MONITOR: 852,137 rows total (+231,223 new) | months with data: 6
+[2026-03-11 00:08:51] WATCHDOG WARNING: no heartbeat for 11817s! task=step_sync_finances attempt 1
+[2026-03-11 00:09:21] WATCHDOG WARNING: no heartbeat for 11847s! task=step_sync_finances attempt 1
+[2026-03-11 00:09:22]   DB MONITOR: 854,520 rows total (+233,606 new) | months with data: 6
+[2026-03-11 00:09:52] WATCHDOG WARNING: no heartbeat for 11878s! task=step_sync_finances attempt 1
+[2026-03-11 00:10:22] WATCHDOG WARNING: no heartbeat for 11908s! task=step_sync_finances attempt 1
+[2026-03-11 00:10:35]   DB MONITOR: 855,833 rows total (+234,919 new) | months with data: 6
+[2026-03-11 00:11:05] WATCHDOG WARNING: no heartbeat for 11951s! task=step_sync_finances attempt 1
+[2026-03-11 00:11:35] WATCHDOG WARNING: no heartbeat for 11981s! task=step_sync_finances attempt 1
+[2026-03-11 00:11:37]   DB MONITOR: 857,394 rows total (+236,480 new) | months with data: 6
+[2026-03-11 00:12:07] WATCHDOG WARNING: no heartbeat for 12013s! task=step_sync_finances attempt 1
+[2026-03-11 00:12:37] WATCHDOG WARNING: no heartbeat for 12043s! task=step_sync_finances attempt 1
+[2026-03-11 00:12:59]   DB MONITOR: 859,568 rows total (+238,654 new) | months with data: 6
+[2026-03-11 00:13:29] WATCHDOG WARNING: no heartbeat for 12096s! task=step_sync_finances attempt 1
+[2026-03-11 00:13:59] WATCHDOG WARNING: no heartbeat for 12126s! task=step_sync_finances attempt 1
+[2026-03-11 00:14:00]   DB MONITOR: 861,471 rows total (+240,557 new) | months with data: 6
+[2026-03-11 00:14:30] WATCHDOG WARNING: no heartbeat for 12156s! task=step_sync_finances attempt 1
+[2026-03-11 00:15:00] WATCHDOG WARNING: no heartbeat for 12186s! task=step_sync_finances attempt 1
+[2026-03-11 00:15:01]   DB MONITOR: 862,131 rows total (+241,217 new) | months with data: 6
+[2026-03-11 00:15:31] WATCHDOG WARNING: no heartbeat for 12217s! task=step_sync_finances attempt 1
+[2026-03-11 00:16:01] WATCHDOG WARNING: no heartbeat for 12247s! task=step_sync_finances attempt 1
+[2026-03-11 00:16:02]   DB MONITOR: 864,946 rows total (+244,032 new) | months with data: 6
+[2026-03-11 00:16:32] WATCHDOG WARNING: no heartbeat for 12278s! task=step_sync_finances attempt 1
+[2026-03-11 00:17:02] WATCHDOG WARNING: no heartbeat for 12308s! task=step_sync_finances attempt 1
+[2026-03-11 00:17:03]   DB MONITOR: 868,332 rows total (+247,418 new) | months with data: 6
+[2026-03-11 00:17:33] WATCHDOG WARNING: no heartbeat for 12339s! task=step_sync_finances attempt 1
+[2026-03-11 00:18:03] WATCHDOG WARNING: no heartbeat for 12369s! task=step_sync_finances attempt 1
+[2026-03-11 00:18:04]   DB MONITOR: 870,551 rows total (+249,637 new) | months with data: 6
+[2026-03-11 00:18:34] WATCHDOG WARNING: no heartbeat for 12400s! task=step_sync_finances attempt 1
+[2026-03-11 00:19:04] WATCHDOG WARNING: no heartbeat for 12430s! task=step_sync_finances attempt 1
+[2026-03-11 00:19:05]   DB MONITOR: 871,979 rows total (+251,065 new) | months with data: 6
+[2026-03-11 00:19:35] WATCHDOG WARNING: no heartbeat for 12461s! task=step_sync_finances attempt 1
+[2026-03-11 00:20:05] WATCHDOG WARNING: no heartbeat for 12491s! task=step_sync_finances attempt 1
+[2026-03-11 00:20:05]   DB MONITOR: 874,071 rows total (+253,157 new) | months with data: 6
+[2026-03-11 00:20:35] WATCHDOG WARNING: no heartbeat for 12522s! task=step_sync_finances attempt 1
+[2026-03-11 00:21:05] WATCHDOG WARNING: no heartbeat for 12552s! task=step_sync_finances attempt 1
+[2026-03-11 00:21:06]   DB MONITOR: 874,120 rows total (+253,206 new) | months with data: 6
+[2026-03-11 00:21:36] WATCHDOG WARNING: no heartbeat for 12583s! task=step_sync_finances attempt 1
+[2026-03-11 00:22:06] WATCHDOG WARNING: no heartbeat for 12613s! task=step_sync_finances attempt 1
+[2026-03-11 00:22:07]   DB MONITOR: 876,050 rows total (+255,136 new) | months with data: 6
+[2026-03-11 00:22:37] WATCHDOG WARNING: no heartbeat for 12644s! task=step_sync_finances attempt 1
+[2026-03-11 00:23:07] WATCHDOG WARNING: no heartbeat for 12674s! task=step_sync_finances attempt 1
+[2026-03-11 00:23:09]   DB MONITOR: 879,210 rows total (+258,296 new) | months with data: 6
+[2026-03-11 00:23:39] WATCHDOG WARNING: no heartbeat for 12705s! task=step_sync_finances attempt 1
+[2026-03-11 00:24:09] WATCHDOG WARNING: no heartbeat for 12735s! task=step_sync_finances attempt 1
+[2026-03-11 00:24:10]   DB MONITOR: 880,111 rows total (+259,197 new) | months with data: 6
+[2026-03-11 00:24:40] WATCHDOG WARNING: no heartbeat for 12767s! task=step_sync_finances attempt 1
+[2026-03-11 00:25:10] WATCHDOG WARNING: no heartbeat for 12797s! task=step_sync_finances attempt 1
+[2026-03-11 00:25:16]   DB MONITOR: 881,272 rows total (+260,358 new) | months with data: 6
+[2026-03-11 00:25:46] WATCHDOG WARNING: no heartbeat for 12832s! task=step_sync_finances attempt 1
+[2026-03-11 00:26:16] WATCHDOG WARNING: no heartbeat for 12862s! task=step_sync_finances attempt 1
+[2026-03-11 00:26:18]   DB MONITOR: 882,192 rows total (+261,278 new) | months with data: 6
+[2026-03-11 00:26:48] WATCHDOG WARNING: no heartbeat for 12895s! task=step_sync_finances attempt 1
+[2026-03-11 00:27:18] WATCHDOG WARNING: no heartbeat for 12925s! task=step_sync_finances attempt 1
+[2026-03-11 00:27:19]   DB MONITOR: 882,900 rows total (+261,986 new) | months with data: 6
+[2026-03-11 00:27:49] WATCHDOG WARNING: no heartbeat for 12956s! task=step_sync_finances attempt 1
+[2026-03-11 00:28:19] WATCHDOG WARNING: no heartbeat for 12986s! task=step_sync_finances attempt 1
+[2026-03-11 00:28:21]   DB MONITOR: 884,299 rows total (+263,385 new) | months with data: 6
+[2026-03-11 00:28:51] WATCHDOG WARNING: no heartbeat for 13018s! task=step_sync_finances attempt 1
+[2026-03-11 00:29:21] WATCHDOG WARNING: no heartbeat for 13048s! task=step_sync_finances attempt 1
+[2026-03-11 00:29:23]   DB MONITOR: 884,990 rows total (+264,076 new) | months with data: 6
+[2026-03-11 00:29:53] WATCHDOG WARNING: no heartbeat for 13079s! task=step_sync_finances attempt 1
+[2026-03-11 00:30:23] WATCHDOG WARNING: no heartbeat for 13109s! task=step_sync_finances attempt 1
+[2026-03-11 00:30:25]   DB MONITOR: 885,306 rows total (+264,392 new) | months with data: 6
+[2026-03-11 00:30:55] WATCHDOG WARNING: no heartbeat for 13142s! task=step_sync_finances attempt 1
+[2026-03-11 00:31:25] WATCHDOG WARNING: no heartbeat for 13172s! task=step_sync_finances attempt 1
+[2026-03-11 00:31:26]   DB MONITOR: 885,660 rows total (+264,746 new) | months with data: 6
+[2026-03-11 00:31:56] WATCHDOG WARNING: no heartbeat for 13203s! task=step_sync_finances attempt 1
+[2026-03-11 00:32:26] WATCHDOG WARNING: no heartbeat for 13233s! task=step_sync_finances attempt 1
+[2026-03-11 00:32:27]   DB MONITOR: 885,991 rows total (+265,077 new) | months with data: 6
+[2026-03-11 00:32:57] WATCHDOG WARNING: no heartbeat for 13264s! task=step_sync_finances attempt 1
+[2026-03-11 00:33:27] WATCHDOG WARNING: no heartbeat for 13294s! task=step_sync_finances attempt 1
+[2026-03-11 00:33:29]   DB MONITOR: 886,795 rows total (+265,881 new) | months with data: 6
+[2026-03-11 00:33:59] WATCHDOG WARNING: no heartbeat for 13325s! task=step_sync_finances attempt 1
+[2026-03-11 00:34:29] WATCHDOG WARNING: no heartbeat for 13355s! task=step_sync_finances attempt 1
+[2026-03-11 00:34:30]   DB MONITOR: 888,038 rows total (+267,124 new) | months with data: 6
+[2026-03-11 00:35:00] WATCHDOG WARNING: no heartbeat for 13386s! task=step_sync_finances attempt 1
+[2026-03-11 00:35:30] WATCHDOG WARNING: no heartbeat for 13416s! task=step_sync_finances attempt 1
+[2026-03-11 00:35:31]   DB MONITOR: 888,364 rows total (+267,450 new) | months with data: 6
+[2026-03-11 00:36:01] WATCHDOG WARNING: no heartbeat for 13448s! task=step_sync_finances attempt 1
+[2026-03-11 00:36:31] WATCHDOG WARNING: no heartbeat for 13478s! task=step_sync_finances attempt 1
+[2026-03-11 00:36:32]   DB MONITOR: 888,468 rows total (+267,554 new) | months with data: 6
+[2026-03-11 00:37:02] WATCHDOG WARNING: no heartbeat for 13509s! task=step_sync_finances attempt 1
+[2026-03-11 00:37:32] WATCHDOG WARNING: no heartbeat for 13539s! task=step_sync_finances attempt 1
+[2026-03-11 00:37:33]   DB MONITOR: 888,597 rows total (+267,683 new) | months with data: 6
+[2026-03-11 00:38:03] WATCHDOG WARNING: no heartbeat for 13570s! task=step_sync_finances attempt 1
+[2026-03-11 00:38:33] WATCHDOG WARNING: no heartbeat for 13600s! task=step_sync_finances attempt 1
+[2026-03-11 00:40:03]   DB MONITOR: 889,401 rows total (+268,487 new) | months with data: 6
+[2026-03-11 00:40:33] WATCHDOG WARNING: no heartbeat for 13720s! task=step_sync_finances attempt 1
+[2026-03-11 00:40:35]   DB MONITOR: 889,768 rows total (+268,854 new) | months with data: 6
+[2026-03-11 00:41:05] WATCHDOG WARNING: no heartbeat for 13751s! task=step_sync_finances attempt 1
+[2026-03-11 00:41:35] WATCHDOG WARNING: no heartbeat for 13781s! task=step_sync_finances attempt 1
+[2026-03-11 00:41:36]   DB MONITOR: 890,960 rows total (+270,046 new) | months with data: 6
+[2026-03-11 00:42:06] WATCHDOG WARNING: no heartbeat for 13812s! task=step_sync_finances attempt 1
+[2026-03-11 00:42:36] WATCHDOG WARNING: no heartbeat for 13842s! task=step_sync_finances attempt 1
+[2026-03-11 00:42:36]   DB MONITOR: 891,969 rows total (+271,055 new) | months with data: 6
+[2026-03-11 00:43:06] WATCHDOG WARNING: no heartbeat for 13873s! task=step_sync_finances attempt 1
+[2026-03-11 00:43:36] WATCHDOG WARNING: no heartbeat for 13903s! task=step_sync_finances attempt 1
+[2026-03-11 00:43:37]   DB MONITOR: 894,164 rows total (+273,250 new) | months with data: 6
+[2026-03-11 00:44:07] WATCHDOG WARNING: no heartbeat for 13934s! task=step_sync_finances attempt 1
+[2026-03-11 00:44:37] WATCHDOG WARNING: no heartbeat for 13964s! task=step_sync_finances attempt 1
+[2026-03-11 00:44:38]   DB MONITOR: 897,306 rows total (+276,392 new) | months with data: 7
+[2026-03-11 00:45:08] WATCHDOG WARNING: no heartbeat for 13995s! task=step_sync_finances attempt 1
+[2026-03-11 00:45:38] WATCHDOG WARNING: no heartbeat for 14025s! task=step_sync_finances attempt 1
+[2026-03-11 00:45:39]   DB MONITOR: 898,864 rows total (+277,950 new) | months with data: 7
+[2026-03-11 00:46:09] WATCHDOG WARNING: no heartbeat for 14056s! task=step_sync_finances attempt 1
+[2026-03-11 00:46:39] WATCHDOG WARNING: no heartbeat for 14086s! task=step_sync_finances attempt 1
+[2026-03-11 00:46:40]   DB MONITOR: 901,808 rows total (+280,894 new) | months with data: 7
+[2026-03-11 00:47:10] WATCHDOG WARNING: no heartbeat for 14117s! task=step_sync_finances attempt 1
+[2026-03-11 00:47:40] WATCHDOG WARNING: no heartbeat for 14147s! task=step_sync_finances attempt 1
+[2026-03-11 00:47:41]   DB MONITOR: 903,955 rows total (+283,041 new) | months with data: 7
+[2026-03-11 00:48:11] WATCHDOG WARNING: no heartbeat for 14178s! task=step_sync_finances attempt 1
+[2026-03-11 00:48:41] WATCHDOG WARNING: no heartbeat for 14208s! task=step_sync_finances attempt 1
+[2026-03-11 00:48:42]   DB MONITOR: 905,719 rows total (+284,805 new) | months with data: 7
+[2026-03-11 00:49:12] WATCHDOG WARNING: no heartbeat for 14238s! task=step_sync_finances attempt 1
+[2026-03-11 00:49:42] WATCHDOG WARNING: no heartbeat for 14268s! task=step_sync_finances attempt 1
+[2026-03-11 00:49:47]   DB MONITOR: 905,719 rows total (+284,805 new) | months with data: 7
+[2026-03-11 00:50:17] WATCHDOG WARNING: no heartbeat for 14304s! task=step_sync_finances attempt 1
+[2026-03-11 00:50:47] WATCHDOG WARNING: no heartbeat for 14334s! task=step_sync_finances attempt 1
+[2026-03-11 00:50:49]   DB MONITOR: 905,936 rows total (+285,022 new) | months with data: 7
+[2026-03-11 00:51:19] WATCHDOG WARNING: no heartbeat for 14365s! task=step_sync_finances attempt 1
+[2026-03-11 00:51:49] WATCHDOG WARNING: no heartbeat for 14395s! task=step_sync_finances attempt 1
+[2026-03-11 00:51:50]   DB MONITOR: 907,078 rows total (+286,164 new) | months with data: 7
+[2026-03-11 00:52:20] WATCHDOG WARNING: no heartbeat for 14427s! task=step_sync_finances attempt 1
+[2026-03-11 00:52:50] WATCHDOG WARNING: no heartbeat for 14457s! task=step_sync_finances attempt 1
+[2026-03-11 00:52:55]   DB MONITOR: 908,738 rows total (+287,824 new) | months with data: 7
+[2026-03-11 00:53:25] WATCHDOG WARNING: no heartbeat for 14491s! task=step_sync_finances attempt 1
+[2026-03-11 00:53:55] WATCHDOG WARNING: no heartbeat for 14521s! task=step_sync_finances attempt 1
+[2026-03-11 00:53:58]   DB MONITOR: 910,057 rows total (+289,143 new) | months with data: 7
+[2026-03-11 00:54:28] WATCHDOG WARNING: no heartbeat for 14554s! task=step_sync_finances attempt 1
+[2026-03-11 00:54:58] WATCHDOG WARNING: no heartbeat for 14584s! task=step_sync_finances attempt 1
+[2026-03-11 00:55:01]   DB MONITOR: 912,386 rows total (+291,472 new) | months with data: 7
+[2026-03-11 00:55:31] WATCHDOG WARNING: no heartbeat for 14617s! task=step_sync_finances attempt 1
+[2026-03-11 00:56:01] WATCHDOG WARNING: no heartbeat for 14648s! task=step_sync_finances attempt 1
+[2026-03-11 00:56:05]   DB MONITOR: 913,555 rows total (+292,641 new) | months with data: 7
+[2026-03-11 00:56:35] WATCHDOG WARNING: no heartbeat for 14681s! task=step_sync_finances attempt 1
+[2026-03-11 00:57:05] WATCHDOG WARNING: no heartbeat for 14711s! task=step_sync_finances attempt 1
+[2026-03-11 00:57:16]   DB MONITOR: 915,432 rows total (+294,518 new) | months with data: 7
+[2026-03-11 00:57:47] WATCHDOG WARNING: no heartbeat for 14753s! task=step_sync_finances attempt 1
+[2026-03-11 00:58:17] WATCHDOG WARNING: no heartbeat for 14783s! task=step_sync_finances attempt 1
+[2026-03-11 00:58:18]   DB MONITOR: 917,389 rows total (+296,475 new) | months with data: 7
+[2026-03-11 00:58:48] WATCHDOG WARNING: no heartbeat for 14815s! task=step_sync_finances attempt 1
+[2026-03-11 00:59:18] WATCHDOG WARNING: no heartbeat for 14845s! task=step_sync_finances attempt 1
+[2026-03-11 00:59:22]   DB MONITOR: 919,057 rows total (+298,143 new) | months with data: 7
+[2026-03-11 00:59:52] WATCHDOG WARNING: no heartbeat for 14879s! task=step_sync_finances attempt 1
+[2026-03-11 01:00:22] WATCHDOG WARNING: no heartbeat for 14909s! task=step_sync_finances attempt 1
+[2026-03-11 01:00:42]   DB MONITOR: 920,288 rows total (+299,374 new) | months with data: 7
+[2026-03-11 01:01:12] WATCHDOG WARNING: no heartbeat for 14959s! task=step_sync_finances attempt 1
+[2026-03-11 01:01:42] WATCHDOG WARNING: no heartbeat for 14989s! task=step_sync_finances attempt 1
+[2026-03-11 01:01:47]   DB MONITOR: 921,978 rows total (+301,064 new) | months with data: 7
+[2026-03-11 01:02:17] WATCHDOG WARNING: no heartbeat for 15024s! task=step_sync_finances attempt 1
+[2026-03-11 01:02:47] WATCHDOG WARNING: no heartbeat for 15054s! task=step_sync_finances attempt 1
+[2026-03-11 01:02:48]   DB MONITOR: 923,603 rows total (+302,689 new) | months with data: 7
+[2026-03-11 01:03:19] WATCHDOG WARNING: no heartbeat for 15085s! task=step_sync_finances attempt 1
+[2026-03-11 01:03:49] WATCHDOG WARNING: no heartbeat for 15115s! task=step_sync_finances attempt 1
+[2026-03-11 01:03:50]   DB MONITOR: 924,917 rows total (+304,003 new) | months with data: 7
+[2026-03-11 01:04:20] WATCHDOG WARNING: no heartbeat for 15146s! task=step_sync_finances attempt 1
+[2026-03-11 01:04:50] WATCHDOG WARNING: no heartbeat for 15176s! task=step_sync_finances attempt 1
+[2026-03-11 01:04:51]   DB MONITOR: 927,151 rows total (+306,237 new) | months with data: 7
+[2026-03-11 01:05:21] WATCHDOG WARNING: no heartbeat for 15207s! task=step_sync_finances attempt 1
+[2026-03-11 01:05:51] WATCHDOG WARNING: no heartbeat for 15237s! task=step_sync_finances attempt 1
+[2026-03-11 01:05:52]   DB MONITOR: 929,105 rows total (+308,191 new) | months with data: 7
+[2026-03-11 01:06:22] WATCHDOG WARNING: no heartbeat for 15268s! task=step_sync_finances attempt 1
+[2026-03-11 01:06:52] WATCHDOG WARNING: no heartbeat for 15299s! task=step_sync_finances attempt 1
+[2026-03-11 01:06:53]   DB MONITOR: 931,061 rows total (+310,147 new) | months with data: 7
+[2026-03-11 01:07:23] WATCHDOG WARNING: no heartbeat for 15329s! task=step_sync_finances attempt 1
+[2026-03-11 01:07:53] WATCHDOG WARNING: no heartbeat for 15359s! task=step_sync_finances attempt 1
+[2026-03-11 01:07:54]   DB MONITOR: 931,343 rows total (+310,429 new) | months with data: 7
+[2026-03-11 01:08:24] WATCHDOG WARNING: no heartbeat for 15390s! task=step_sync_finances attempt 1
+[2026-03-11 01:08:54] WATCHDOG WARNING: no heartbeat for 15420s! task=step_sync_finances attempt 1
+[2026-03-11 01:08:55]   DB MONITOR: 934,340 rows total (+313,426 new) | months with data: 7
+[2026-03-11 01:09:25] WATCHDOG WARNING: no heartbeat for 15451s! task=step_sync_finances attempt 1
+[2026-03-11 01:09:55] WATCHDOG WARNING: no heartbeat for 15481s! task=step_sync_finances attempt 1
+[2026-03-11 01:09:56]   DB MONITOR: 937,596 rows total (+316,682 new) | months with data: 7
+[2026-03-11 01:10:26] WATCHDOG WARNING: no heartbeat for 15512s! task=step_sync_finances attempt 1
+[2026-03-11 01:10:56] WATCHDOG WARNING: no heartbeat for 15542s! task=step_sync_finances attempt 1
+[2026-03-11 01:10:57]   DB MONITOR: 940,144 rows total (+319,230 new) | months with data: 7
+[2026-03-11 01:11:27] WATCHDOG WARNING: no heartbeat for 15573s! task=step_sync_finances attempt 1
+[2026-03-11 01:11:57] WATCHDOG WARNING: no heartbeat for 15603s! task=step_sync_finances attempt 1
+[2026-03-11 01:11:58]   DB MONITOR: 940,982 rows total (+320,068 new) | months with data: 7
+[2026-03-11 01:12:28] WATCHDOG WARNING: no heartbeat for 15634s! task=step_sync_finances attempt 1
+[2026-03-11 01:12:58] WATCHDOG WARNING: no heartbeat for 15664s! task=step_sync_finances attempt 1
+[2026-03-11 01:12:59]   DB MONITOR: 944,291 rows total (+323,377 new) | months with data: 7
+[2026-03-11 01:13:29] WATCHDOG WARNING: no heartbeat for 15695s! task=step_sync_finances attempt 1
+[2026-03-11 01:13:59] WATCHDOG WARNING: no heartbeat for 15725s! task=step_sync_finances attempt 1
+[2026-03-11 01:14:00]   DB MONITOR: 946,160 rows total (+325,246 new) | months with data: 7

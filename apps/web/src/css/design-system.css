@@ -1,0 +1,221 @@
+/*
+ * ACC Design System — Extended Token Layer
+ * =========================================
+ * Supplements index.css (shadcn/ui base tokens).
+ * Import AFTER index.css in main.tsx:
+ *   import "./index.css";
+ *   import "./css/design-system.css";
+ *
+ * All color tokens use the HSL channel pattern so they compose
+ * with Tailwind's `hsl(var(--xxx))` convention.
+ */
+
+@tailwind base;
+@tailwind components;
+
+/* ────────────────────────────────────────────
+   1. EXTENDED CSS CUSTOM PROPERTIES
+   ──────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* ── Semantic colors (light mode) ─────────────── */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    --border-strong: 214.3 31.8% 78%;
+
+    /* ── Typography families ──────────────────────── */
+    --font-primary: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+    /* ── Type scale (px → rem) ────────────────────── */
+    --text-xs: 0.6875rem;   /* 11px */
+    --text-sm: 0.75rem;     /* 12px */
+    --text-base: 0.875rem;  /* 14px */
+    --text-lg: 1rem;        /* 16px */
+    --text-xl: 1.125rem;    /* 18px */
+    --text-2xl: 1.25rem;    /* 20px */
+    --text-3xl: 1.5rem;     /* 24px */
+    --text-4xl: 1.875rem;   /* 30px */
+    --text-5xl: 2.25rem;    /* 36px */
+
+    /* ── Line heights ─────────────────────────────── */
+    --leading-tight: 1.2;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.75;
+
+    /* ── Font weights ─────────────────────────────── */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* ── Spacing scale (4px base) ─────────────────── */
+    --space-0: 0px;
+    --space-1: 0.25rem;   /*  4px */
+    --space-2: 0.5rem;    /*  8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-20: 5rem;     /* 80px */
+
+    /* ── Border radius ────────────────────────────── */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    /* ── Shadows (light) ──────────────────────────── */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+    /* ── Motion ───────────────────────────────────── */
+    --transition-fast: 100ms;
+    --transition-base: 200ms;
+    --transition-slow: 350ms;
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ── Chart palette ────────────────────────────── */
+    --chart-1: 30 100% 50%;       /* Amber   #FF9900 */
+    --chart-2: 199 89% 60%;       /* Sky     #38BDF8 */
+    --chart-3: 160 64% 64%;       /* Emerald #34D399 */
+    --chart-4: 351 89% 75%;       /* Rose    #FB7185 */
+    --chart-5: 263 70% 76%;       /* Violet  #A78BFA */
+    --chart-6: 172 66% 50%;       /* Teal    #2DD4BF */
+    --chart-7: 292 84% 72%;       /* Fuchsia #E879F9 */
+    --chart-8: 215 16% 63%;       /* Slate   #94A3B8 */
+
+    /* ── Layout constants ─────────────────────────── */
+    --sidebar-width: 224px;
+    --sidebar-collapsed-width: 64px;
+    --topbar-height: 56px;
+    --content-padding: var(--space-6);
+    --container-max: 1400px;
+  }
+
+  /* ── Dark mode overrides ────────────────────────── */
+  .dark {
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    --border-strong: 217 33% 25%;
+
+    /* Dark-optimized shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.35), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.25);
+  }
+}
+
+/* ────────────────────────────────────────────
+   2. BASE TYPOGRAPHY
+   ──────────────────────────────────────────── */
+
+@layer base {
+  body {
+    font-family: var(--font-primary);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+  }
+
+  code, kbd, pre, samp {
+    font-family: var(--font-mono);
+  }
+}
+
+/* ────────────────────────────────────────────
+   3. UTILITY CLASSES
+   ──────────────────────────────────────────── */
+
+@layer components {
+  /* Monospace with tabular numerals — for financial data */
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* ── Semantic text colors ───────────────────────── */
+  .text-profit {
+    color: hsl(var(--success));
+  }
+  .text-loss {
+    color: hsl(var(--destructive));
+  }
+  .text-warning {
+    color: hsl(var(--warning));
+  }
+  .text-info {
+    color: hsl(var(--info));
+  }
+
+  /* ── Glow effects (ambient accent lighting) ─────── */
+  .glow-primary {
+    box-shadow:
+      0 0 20px rgb(255 153 0 / 0.15),
+      0 0 6px rgb(255 153 0 / 0.1);
+  }
+  .glow-success {
+    box-shadow:
+      0 0 20px rgb(34 197 94 / 0.15),
+      0 0 6px rgb(34 197 94 / 0.1);
+  }
+  .glow-destructive {
+    box-shadow:
+      0 0 20px rgb(239 68 68 / 0.15),
+      0 0 6px rgb(239 68 68 / 0.1);
+  }
+  .glow-info {
+    box-shadow:
+      0 0 20px rgb(59 130 246 / 0.15),
+      0 0 6px rgb(59 130 246 / 0.1);
+  }
+
+  /* ── Transition presets ─────────────────────────── */
+  .transition-fast {
+    transition-duration: var(--transition-fast);
+    transition-timing-function: var(--ease-default);
+  }
+  .transition-base {
+    transition-duration: var(--transition-base);
+    transition-timing-function: var(--ease-default);
+  }
+  .transition-slow {
+    transition-duration: var(--transition-slow);
+    transition-timing-function: var(--ease-default);
+  }
+}
+
+/* ────────────────────────────────────────────
+   4. ACCESSIBILITY — REDUCED MOTION
+   ──────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

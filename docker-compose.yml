@@ -1,0 +1,64 @@
+version: "3.9"
+
+# NOTE: Baza danych = MSSQL NetfoxAnalityka 192.168.230.120:11901 (zewnętrzny serwer)
+# PostgreSQL usunięty — nie jest potrzebny
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: acc_redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: acc_api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/api:/app
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  worker:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: acc_worker
+    env_file:
+      - .env
+    volumes:
+      - ./apps/api:/app
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: celery -A app.worker.celery_app worker --loglevel=info --queues=default,sync,ai
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: acc_web
+    ports:
+      - "3010:3010"
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://api:8000
+
+volumes:
+  redis_data:

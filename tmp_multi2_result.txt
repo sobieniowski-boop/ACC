@@ -1,0 +1,18 @@
+﻿2026-03-09 14:32:46 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+Order has 19 distinct SKUs:
+  MAG_5902730380856 (qty: 1)
+  MAG_5902730380917 (qty: 1)
+  MAG_5902730380948 (qty: 1)
+  MAG_5902730389378 (qty: 1)
+  MAG_5902730389392 (qty: 1)
+  ... and 14 more
+
+API status: 200, total: 1
+
+>>> FOUND: 303-6931509-4831549
+    sku: MAG_5902730380856
+    sku_count: 19
+    revenue: 590.47
+    profit_pln: 387.05
+    margin_pct: 65.55
+    CM check: PASS (expected=387.05)

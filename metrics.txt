@@ -1,0 +1,15 @@
+﻿2026-03-01 13:46:26 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+==================================================
+  AZURE SQL Ś CURRENT METRICS
+==================================================
+  orders                    2,077
+  order_lines               2,153
+  products                  1,135
+  mapped_products             897
+  products_w_price            662
+  purchase_history            670
+  lines_with_cogs           1,420
+  lines_no_cogs               733
+  lines_linked              1,967
+  lines_unlinked              186
+  exchange_rates            3,000

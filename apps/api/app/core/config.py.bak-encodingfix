@@ -1,0 +1,143 @@
+"""Application configuration — loaded from .env."""
+from __future__ import annotations
+
+from typing import List
+from urllib.parse import quote_plus
+
+from pydantic import computed_field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=True,
+        extra="ignore",
+    )
+
+    # App
+    APP_ENV: str = "development"
+    SECRET_KEY: str = "change-me"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 480
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 30
+    CORS_ORIGINS: List[str] = [
+        "http://localhost:3010",
+        "http://localhost:5173",
+        "http://192.168.49.97:3010",
+    ]
+
+    # Redis
+    REDIS_URL: str = "redis://localhost:6380/0"
+
+    # Amazon SP-API
+    SP_API_CLIENT_ID: str = ""
+    SP_API_CLIENT_SECRET: str = ""
+    SP_API_REFRESH_TOKEN: str = ""
+    SP_API_SELLER_ID: str = "A1O0H08K2DYVHX"
+    SP_API_REGION: str = "eu"
+    SP_API_SANDBOX: bool = False
+    SP_API_PRIMARY_MARKETPLACE: str = "A1PA6795UKMFR9"
+
+    # MSSQL NetfoxAnalityka — główna baza aplikacji + ERP
+    MSSQL_SERVER: str = "192.168.230.120"
+    MSSQL_PORT: int = 11901
+    MSSQL_USER: str = "msobieniowski"
+    MSSQL_PASSWORD: str = ""
+    MSSQL_DATABASE: str = "NetfoxAnalityka"
+
+    @computed_field
+    @property
+    def _odbc_driver(self) -> str:  # noqa: N802
+        """Wybiera najlepszy dostępny sterownik ODBC dla MSSQL."""
+        try:
+            import pyodbc
+            available = pyodbc.drivers()
+            for preferred in [
+                "ODBC Driver 18 for SQL Server",
+                "ODBC Driver 17 for SQL Server",
+                "SQL Server",
+            ]:
+                if preferred in available:
+                    return preferred
+        except Exception:
+            pass
+        return "ODBC Driver 18 for SQL Server"  # fallback dla Dockera
+
+    @computed_field
+    @property
+    def DATABASE_URL(self) -> str:  # noqa: N802
+        """Async MSSQL URL dla SQLAlchemy (aioodbc)."""
+        pwd = quote_plus(self.MSSQL_PASSWORD)
+        user = quote_plus(self.MSSQL_USER)
+        driver = quote_plus(self._odbc_driver)
+        extras = "&TrustServerCertificate=yes&async_execution=True" if "18" in self._odbc_driver or "17" in self._odbc_driver else ""
+        return (
+            f"mssql+aioodbc://{user}:{pwd}@"
+            f"{self.MSSQL_SERVER},{self.MSSQL_PORT}/{self.MSSQL_DATABASE}"
+            f"?driver={driver}{extras}"
+        )
+
+    @computed_field
+    @property
+    def DATABASE_URL_SYNC(self) -> str:  # noqa: N802
+        """Sync MSSQL URL dla Alembic i pyodbc."""
+        pwd = quote_plus(self.MSSQL_PASSWORD)
+        user = quote_plus(self.MSSQL_USER)
+        driver = quote_plus(self._odbc_driver)
+        extras = "&TrustServerCertificate=yes" if "18" in self._odbc_driver or "17" in self._odbc_driver else ""
+        return (
+            f"mssql+pyodbc://{user}:{pwd}@"
+            f"{self.MSSQL_SERVER},{self.MSSQL_PORT}/{self.MSSQL_DATABASE}"
+            f"?driver={driver}{extras}"
+        )
+
+    @property
+    def mssql_connection_string(self) -> str:
+        """Natywny connection string pyodbc (dla netfox.py i discover_mssql_schema.py)."""
+        trust = "TrustServerCertificate=yes;" if "18" in self._odbc_driver or "17" in self._odbc_driver else ""
+        return (
+            f"DRIVER={{{self._odbc_driver}}};"
+            f"SERVER={self.MSSQL_SERVER},{self.MSSQL_PORT};"
+            f"DATABASE={self.MSSQL_DATABASE};"
+            f"UID={self.MSSQL_USER};"
+            f"PWD={self.MSSQL_PASSWORD};"
+            f"{trust}"
+        )
+
+    # OpenAI
+    OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-5.2"
+    OPENAI_MAX_TOKENS: int = 4096
+
+    # Celery
+    CELERY_BROKER_URL: str = "redis://localhost:6380/1"
+    CELERY_RESULT_BACKEND: str = "redis://localhost:6380/2"
+
+    # Sentry
+    SENTRY_DSN: str = ""
+
+    # Currency
+    BASE_CURRENCY: str = "PLN"
+
+
+settings = Settings()
+
+# ---------------------------------------------------------------------------
+# Marketplace registry — all 18 KADAX marketplaces
+# ---------------------------------------------------------------------------
+MARKETPLACE_REGISTRY = {
+    "A1PA6795UKMFR9": {"code": "DE", "name": "Amazon.de",  "currency": "EUR", "tz": "Europe/Berlin"},
+    "A1C3SOZRARQ6R3": {"code": "PL", "name": "Amazon.pl",  "currency": "PLN", "tz": "Europe/Warsaw"},
+    "A1F83G8C2ARO7P": {"code": "GB", "name": "Amazon.co.uk","currency": "GBP", "tz": "Europe/London"},
+    "A1RKKUPIHCS9HS": {"code": "ES", "name": "Amazon.es",  "currency": "EUR", "tz": "Europe/Madrid"},
+    "A13V1IB3VIYZZH": {"code": "FR", "name": "Amazon.fr",  "currency": "EUR", "tz": "Europe/Paris"},
+    "A1805IZSGTT6HS": {"code": "NL", "name": "Amazon.nl",  "currency": "EUR", "tz": "Europe/Amsterdam"},
+    "APJ6JRA9NG5V4":  {"code": "IT", "name": "Amazon.it",  "currency": "EUR", "tz": "Europe/Rome"},
+    "A2NODRKZP88ZB9": {"code": "SE", "name": "Amazon.se",  "currency": "SEK", "tz": "Europe/Stockholm"},
+    "AMEN7PMS3EDWL":  {"code": "BE", "name": "Amazon.be",  "currency": "EUR", "tz": "Europe/Brussels"},
+    "A28R8C7NBKEWEA": {"code": "IE", "name": "Amazon.ie",  "currency": "EUR", "tz": "Europe/Dublin"},
+    "A2VIGQ35RCS4UG": {"code": "AE", "name": "Amazon.ae",  "currency": "AED", "tz": "Asia/Dubai"},
+    "A17E79C6D8DWNP": {"code": "SA", "name": "Amazon.sa",  "currency": "SAR", "tz": "Asia/Riyadh"},
+    "A33AVAJ2PDY3EV": {"code": "TR", "name": "Amazon.tr",  "currency": "TRY", "tz": "Europe/Istanbul"},
+}

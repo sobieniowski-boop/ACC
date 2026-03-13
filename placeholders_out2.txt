@@ -1,0 +1,1 @@
+﻿2026-03-03 20:01:18 [debug    ] db.connect_netfox              database=default

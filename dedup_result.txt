@@ -1,0 +1,15 @@
+Before: 1,589,384 rows
+  A28R8C7NBKEWEA: deleted 0 dupes (7.3s)
+  A1RKKUPIHCS9HS: deleted 26 dupes (239.8s)
+  AMEN7PMS3EDWL: deleted 0 dupes (240.2s)
+  None: deleted 0 dupes (0.0s)
+  APJ6JRA9NG5V4: deleted 84 dupes (241.1s)
+  A2NODRKZP88ZB9: deleted 4 dupes (16.0s)
+  A1PA6795UKMFR9: deleted 1,556 dupes (243.4s)
+  A13V1IB3VIYZZH: deleted 110 dupes (234.8s)
+  A1805IZSGTT6HS: deleted 0 dupes (246.7s)
+  A1C3SOZRARQ6R3: deleted 7 dupes (20.4s)
+
+Total deleted: 1,787
+After: 1,587,597
+FBAStorageFee: 772 rows, sum=-54698.6700 EUR

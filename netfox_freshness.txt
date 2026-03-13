@@ -1,0 +1,41 @@
+=== AZURE: acc_cache_packages ===
+  Rows: 3,020,299   min_order_id=7,294,266   max_order_id=316,810,446
+
+=== AZURE: acc_cache_bl_orders ===
+  Rows: 1,169,362   min_order_id=75,014,619   max_order_id=142,459,530
+
+=== AZURE: acc_cache_invoices ===
+  Rows: 1,721,201
+
+=== AZURE: acc_cache_extras ===
+  Rows: 9,836,371
+
+=== NETFOX: ITJK_BaselinkerOrderPackages ===
+  Rows: 3,022,572   min_order_id=7,294,266   max_order_id=316,878,741
+
+=== NETFOX: ITJK_ZamowieniaBaselinkerAPI row count ===
+  Total rows: 6,389,279
+  Amazon rows: 1,822,095
+
+=== NETFOX: ITJK_CouriersInvoicesDetails ===
+  Total rows: 1,721,201
+
+=== NETFOX: ITJK_CouriersInvoicesDetails_Extras ===
+  Total rows: 9,836,371
+
+=== NETFOX: ITJK_BaselinkerOrderPackages by order_id bucket ===
+  100M:    297,031
+  110M:    287,694
+  120M:    406,806
+  130M:    241,837
+  140M:     63,258
+  220M:        813
+  230M:     10,018
+  240M:     11,843
+  250M:     17,319
+  260M:     26,393
+  270M:     19,058
+  280M:     11,061
+  290M:     14,804
+  300M:     12,335
+  310M:      9,695

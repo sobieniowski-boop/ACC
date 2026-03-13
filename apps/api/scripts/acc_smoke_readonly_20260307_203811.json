@@ -1,0 +1,137 @@
+{
+  "generated_at": "2026-03-07T19:38:11.160628+00:00",
+  "summary": {
+    "ok": 10,
+    "error": 3
+  },
+  "results": [
+    {
+      "name": "health.order_sync",
+      "status": "ok",
+      "elapsed_ms": 240.6,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 13,
+        "total": null
+      }
+    },
+    {
+      "name": "executive.overview",
+      "status": "ok",
+      "elapsed_ms": 438.6,
+      "meta": {
+        "type": "dict",
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "executive.products",
+      "status": "ok",
+      "elapsed_ms": 378.5,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 13170
+      }
+    },
+    {
+      "name": "executive.marketplaces",
+      "status": "ok",
+      "elapsed_ms": 191.0,
+      "meta": {
+        "type": "list",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "strategy.overview",
+      "status": "ok",
+      "elapsed_ms": 347.1,
+      "meta": {
+        "type": "dict",
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "strategy.opportunities",
+      "status": "ok",
+      "elapsed_ms": 213.1,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 1309
+      }
+    },
+    {
+      "name": "profitability.overview",
+      "status": "ok",
+      "elapsed_ms": 4131.8,
+      "meta": {
+        "type": "dict",
+        "has_kpi": true,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "profitability.orders",
+      "status": "ok",
+      "elapsed_ms": 325.1,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 57432
+      }
+    },
+    {
+      "name": "profitability.products",
+      "status": "ok",
+      "elapsed_ms": 442.4,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": 20,
+        "total": 13170
+      }
+    },
+    {
+      "name": "inventory.overview",
+      "status": "ok",
+      "elapsed_ms": 161494.5,
+      "meta": {
+        "type": "dict",
+        "has_kpi": false,
+        "items": null,
+        "total": null
+      }
+    },
+    {
+      "name": "finance.dashboard",
+      "status": "error",
+      "elapsed_ms": 36768.2,
+      "error": "(20004, b'DB-Lib error message 20004, severity 9:\\nRead from the server failed\\nNet-Lib error during Unknown error (10054)\\n')"
+    },
+    {
+      "name": "fba.overview",
+      "status": "error",
+      "elapsed_ms": 60969.8,
+      "error": "[Errno 22] Invalid argument"
+    },
+    {
+      "name": "courier.readiness",
+      "status": "error",
+      "elapsed_ms": 0.4,
+      "error": "[Errno 22] Invalid argument"
+    }
+  ]
+}

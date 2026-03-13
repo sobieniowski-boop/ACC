@@ -1,0 +1,29 @@
+﻿2026-03-09 16:00:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+
+=== LAYER 1: ORDER-LEVEL TRUTH ===
+  [WARN] G01: 8479 orders have revenue vs line-agg delta > 1 PLN (stale stamps or fx rounding)
+  [WARN] G02: 473 orders have COGS stamp vs SUM(line cogs) delta > 0.5 PLN
+  [WARN] G03: 31 orders have >1 logistics fact row (deduped by OUTER APPLY TOP 1)
+  [WARN] G04: 4998 orders where fact logistics <> order.logistics_pln > 1 PLN (expected: fact is authoritative)
+
+=== LAYER 2: LINE-LEVEL TRUTH ===
+  [PASS] G05: 5358 multi-line orders; 78 have lines with zero/null COGS
+  [PASS] G06: 4378 multi-SKU orders exist and are now handled with deterministic primary SKU + all_skus
+  [PASS] G07: No order lines with NULL SKU in date range
+
+=== LAYER 3: ROLLUP TRUTH ===
+  [WARN] G08: 219/76639 SKU rollup rows have rev delta > 5 PLN (total delta 37846.15000000 PLN)
+  [PASS] G09: Rollup logistics populated: 32026/76639 rows (41.8%) nonzero, total 1348939.70 PLN
+  [PASS] G10: Rollup profit_pln == component sum for all rows (tol 0.02 PLN)
+
+=== LAYER 4: V1 vs V2 + EXECUTIVE CONSISTENCY ===
+  [FAIL] G11: 41846/111315 orders (37.59%) CM divergence > 5 PLN
+  [PASS] G12: Marketplace rollup matches SKU rollup aggregate for all 602 rows
+
+============================================================
+FINANCIAL CONFIRMATION GATE -- SUMMARY
+============================================================
+  PASS: 6   WARN: 5   FAIL: 1
+  Range: 2026-01-01 to 2026-03-09
+
+  VERDICT: FAIL -- blockers found, do NOT promote to production

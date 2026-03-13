@@ -1,0 +1,134 @@
+=== 1. ITJK_AMZvsBL ===
+  Rows: 639,148
+  NrBL                                     varchar         max=50
+  NrAMZ                                    varchar         max=150
+  Columns: ['NrBL', 'NrAMZ']
+  {'NrBL': '86257633', 'NrAMZ': '408-9399362-4092349'}
+  {'NrBL': '91581845', 'NrAMZ': '305-5800715-8975554'}
+  {'NrBL': '112773122', 'NrAMZ': '403-9269086-4625951'}
+  {'NrBL': '115445385', 'NrAMZ': '171-6421735-7449145'}
+  {'NrBL': '117501182', 'NrAMZ': '402-3081415-4327507'}
+
+=== 2. acc_order purchase_date by month ===
+  2024-03:      2,551
+  2024-04:          1
+  2024-07:          3
+  2024-09:          3
+  2024-10:          3
+  2024-12:          1
+  2025-01:     48,508
+  2025-02:     43,543
+  2025-03:     74,003
+  2025-04:     68,092
+  2025-05:     65,118
+  2025-06:     58,309
+  2025-07:     57,977
+  2025-08:     62,266
+  2025-09:     57,638
+  2025-10:     60,731
+  2025-11:     67,217
+  2025-12:     57,723
+  2026-01:     44,825
+  2026-02:     51,078
+  2026-03:      6,817
+
+=== 3. acc_order synced_at by month ===
+  2026-03:    826,407
+
+=== 4. acc_backfill_report_progress ===
+  Columns: ['id', 'marketplace_id', 'window_start', 'window_end', 'status', 'orders_upserted', 'report_id', 'error_message', 'started_at', 'completed_at']
+  {'id': 14, 'marketplace_id': 'A1PA6795UKMFR9', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 48, 12, 483333), 'completed_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 306666)}
+  {'id': 15, 'marketplace_id': 'A1C3SOZRARQ6R3', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 14, 41, 140000), 'completed_at': datetime.datetime(2026, 3, 2, 9, 34, 51, 280000)}
+  {'id': 16, 'marketplace_id': 'A1F83G8C2ARO7P', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 48, 12, 526666), 'completed_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 350000)}
+  {'id': 17, 'marketplace_id': 'A1RKKUPIHCS9HS', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 14, 41, 213333), 'completed_at': datetime.datetime(2026, 3, 2, 9, 34, 51, 356666)}
+  {'id': 18, 'marketplace_id': 'A13V1IB3VIYZZH', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 14, 41, 250000), 'completed_at': datetime.datetime(2026, 3, 2, 9, 34, 51, 393333)}
+  {'id': 19, 'marketplace_id': 'A1PA6795UKMFR9', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': '', 'started_at': datetime.datetime(2026, 3, 2, 10, 3, 16, 350000), 'completed_at': datetime.datetime(2026, 3, 2, 11, 9, 29, 313333)}
+  {'id': 20, 'marketplace_id': 'A1C3SOZRARQ6R3', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 10, 3, 16, 410000), 'completed_at': datetime.datetime(2026, 3, 2, 11, 9, 29, 360000)}
+  {'id': 21, 'marketplace_id': 'A1F83G8C2ARO7P', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': '', 'started_at': datetime.datetime(2026, 3, 2, 10, 3, 16, 450000), 'completed_at': datetime.datetime(2026, 3, 2, 11, 9, 29, 396666)}
+  {'id': 22, 'marketplace_id': 'A1RKKUPIHCS9HS', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 580000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 9, 18, 333333)}
+  {'id': 23, 'marketplace_id': 'A13V1IB3VIYZZH', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': '', 'started_at': datetime.datetime(2026, 3, 2, 10, 3, 16, 530000), 'completed_at': datetime.datetime(2026, 3, 2, 11, 9, 29, 473333)}
+  {'id': 24, 'marketplace_id': 'A1805IZSGTT6HS', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 34, 56, 613333), 'completed_at': datetime.datetime(2026, 3, 2, 9, 58, 20, 676666)}
+  {'id': 25, 'marketplace_id': 'APJ6JRA9NG5V4', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 34, 56, 653333), 'completed_at': datetime.datetime(2026, 3, 2, 9, 58, 20, 720000)}
+  {'id': 26, 'marketplace_id': 'A2NODRKZP88ZB9', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 34, 56, 720000), 'completed_at': datetime.datetime(2026, 3, 2, 9, 58, 20, 760000)}
+  {'id': 27, 'marketplace_id': 'AMEN7PMS3EDWL', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 34, 56, 773333), 'completed_at': datetime.datetime(2026, 3, 2, 9, 58, 20, 800000)}
+  {'id': 28, 'marketplace_id': 'A28R8C7NBKEWEA', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 34, 56, 810000), 'completed_at': datetime.datetime(2026, 3, 2, 9, 58, 20, 836666)}
+  {'id': 29, 'marketplace_id': 'A2VIGQ35RCS4UG', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 58, 26, 103333), 'completed_at': datetime.datetime(2026, 3, 2, 10, 3, 15, 996666)}
+  {'id': 30, 'marketplace_id': 'A17E79C6D8DWNP', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 58, 26, 150000), 'completed_at': datetime.datetime(2026, 3, 2, 10, 3, 16, 40000)}
+  {'id': 31, 'marketplace_id': 'A33AVAJ2PDY3EV', 'window_start': datetime.date(2026, 2, 19), 'window_end': datetime.date(2026, 3, 2), 'status': 'completed', 'orders_upserted': 22630, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 9, 58, 26, 186666), 'completed_at': datetime.datetime(2026, 3, 2, 10, 3, 16, 76666)}
+  {'id': 32, 'marketplace_id': 'A1805IZSGTT6HS', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 620000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 9, 18, 443333)}
+  {'id': 33, 'marketplace_id': 'APJ6JRA9NG5V4', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 660000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 9, 18, 486666)}
+  {'id': 34, 'marketplace_id': 'A2NODRKZP88ZB9', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 696666), 'completed_at': datetime.datetime(2026, 3, 2, 12, 9, 18, 523333)}
+  {'id': 35, 'marketplace_id': 'AMEN7PMS3EDWL', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 11, 54, 59, 736666), 'completed_at': datetime.datetime(2026, 3, 2, 12, 9, 18, 560000)}
+  {'id': 36, 'marketplace_id': 'A28R8C7NBKEWEA', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 9, 23, 770000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 366666)}
+  {'id': 37, 'marketplace_id': 'A2VIGQ35RCS4UG', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 9, 23, 810000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 410000)}
+  {'id': 38, 'marketplace_id': 'A17E79C6D8DWNP', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 9, 23, 850000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 446666)}
+  {'id': 39, 'marketplace_id': 'A33AVAJ2PDY3EV', 'window_start': datetime.date(2026, 1, 20), 'window_end': datetime.date(2026, 2, 19), 'status': 'completed', 'orders_upserted': 48380, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 9, 23, 890000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 483333)}
+  {'id': 40, 'marketplace_id': 'A1PA6795UKMFR9', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 720000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 54, 54, 333333)}
+  {'id': 41, 'marketplace_id': 'A1C3SOZRARQ6R3', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 756666), 'completed_at': datetime.datetime(2026, 3, 2, 12, 54, 54, 376666)}
+  {'id': 42, 'marketplace_id': 'A1F83G8C2ARO7P', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 793333), 'completed_at': datetime.datetime(2026, 3, 2, 12, 54, 54, 413333)}
+  {'id': 43, 'marketplace_id': 'A1RKKUPIHCS9HS', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 830000), 'completed_at': datetime.datetime(2026, 3, 2, 12, 54, 54, 453333)}
+  {'id': 44, 'marketplace_id': 'A13V1IB3VIYZZH', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 41, 28, 866666), 'completed_at': datetime.datetime(2026, 3, 2, 12, 54, 54, 490000)}
+  {'id': 45, 'marketplace_id': 'A1805IZSGTT6HS', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 54, 59, 706666), 'completed_at': datetime.datetime(2026, 3, 2, 13, 0, 58, 366666)}
+  {'id': 46, 'marketplace_id': 'APJ6JRA9NG5V4', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 3, 12, 13, 39, 330000), 'completed_at': datetime.datetime(2026, 3, 3, 12, 21, 1, 270000)}
+  {'id': 47, 'marketplace_id': 'A2NODRKZP88ZB9', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 3, 12, 4, 19, 23333), 'completed_at': datetime.datetime(2026, 3, 3, 12, 13, 39, 53333)}
+  {'id': 48, 'marketplace_id': 'AMEN7PMS3EDWL', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 2, 12, 54, 59, 820000), 'completed_at': datetime.datetime(2026, 3, 2, 13, 0, 58, 480000)}
+  {'id': 49, 'marketplace_id': 'A28R8C7NBKEWEA', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 3, 12, 4, 18, 990000), 'completed_at': datetime.datetime(2026, 3, 3, 12, 13, 39, 20000)}
+  {'id': 50, 'marketplace_id': 'A2VIGQ35RCS4UG', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'failed', 'orders_upserted': 0, 'report_id': None, 'error_message': "(1205, b'Transaction (Process ID 55) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.DB-Lib error message 20018, severity 13:\\nGeneral SQL Server error: Check messages from the SQL Server\\n')", 'started_at': datetime.datetime(2026, 3, 3, 12, 13, 39, 263333), 'completed_at': datetime.datetime(2026, 3, 3, 12, 21, 1, 196666)}
+  {'id': 51, 'marketplace_id': 'A17E79C6D8DWNP', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 3, 12, 4, 18, 956666), 'completed_at': datetime.datetime(2026, 3, 3, 12, 13, 38, 980000)}
+  {'id': 52, 'marketplace_id': 'A33AVAJ2PDY3EV', 'window_start': datetime.date(2025, 12, 21), 'window_end': datetime.date(2026, 1, 20), 'status': 'completed', 'orders_upserted': 39442, 'report_id': None, 'error_message': None, 'started_at': datetime.datetime(2026, 3, 3, 12, 13, 39, 296666), 'completed_at': datetime.datetime(2026, 3, 3, 12, 21, 1, 236666)}
+
+=== 5. Missing JJD-linked orders: BL order_id buckets ===
+  2024-03:        273
+  2024-07:          1
+  2024-10:          1
+  2025-01:     11,365
+  2025-02:      8,128
+  2025-03:     15,755
+  2025-04:     16,983
+  2025-05:     16,820
+  2025-06:     14,340
+  2025-07:      5,326
+  2025-08:      6,268
+  2025-09:      5,581
+  2025-10:      9,522
+  2025-11:      9,818
+  2025-12:      5,920
+  2026-01:      6,300
+  2026-02:      3,816
+  2026-03:        108
+  NOT_IN_ACC_ORDER:    107,260
+
+=== 6. Missing orders: bl_order_id stats ===
+  min_bl=82476178, max_bl=121556328, count=107260
+
+=== 7. backfill_via_reports.py file check ===
+  - 30-day windows, newest → oldest (2026-03-02 → 2024-03-01)
+  python backfill_via_reports.py --start 2025-01-01 # custom start
+  DEFAULT_START = date(2024, 3, 1)
+  start_date: date,
+  print(f"  Range: {today} -> {start_date} (newest first)")
+  w_start = start_date
+  start_date = date.fromisoformat(args.start)
+  start_date=start_date,
+
+=== 8. N: drive SB reports ===
+  KADAX_Advertising_Performance_Report_01_01_2025-12_01_2026_(2026_01_12_11_22_26_577).csv        3,697 bytes
+  KADAX_KADAX_Dashboard_by_day_01_01_2025-12_01_2026_(2026_01_12_13_47_21_928).csv      111,495 bytes
+  KADAX_KADAX_Dashboard_by_day_01_01_2026-14_01_2026_(2026_01_14_08_11_47_799).csv        4,517 bytes
+  KADAX_KADAX_Dashboard_by_day_01_01_2026-17_02_2026_(2026_02_17_13_59_59_892).csv       31,617 bytes
+  KADAX_KADAX_Dashboard_by_day_01_02_2026-17_02_2026_(2026_02_17_11_53_24_428).csv       11,645 bytes
+  KADAX_KADAX_Dashboard_by_day_09_02_2026-23_02_2026_(2026_02_24_18_57_12_988).csv       10,380 bytes
+  KADAX_KADAX_Dashboard_by_month_01_01_2025-12_01_2026_(2026_01_12_11_40_28_978).csv        5,019 bytes
+  KADAX_KADAX_Dashboard_by_month_01_01_2025-14_01_2026_(2026_01_14_12_45_16_562).csv       14,054 bytes
+  KADAX_KADAX_Dashboard_by_product_01_01_2026-12_01_2026_(2026_01_12_10_57_30_023).csv   67,958,731 bytes
+  KADAX_KADAX_Orders_01_01_2025-12_01_2026_(2026_01_12_12_54_28_133).csv            175,505,873 bytes
+  KADAX_KADAX_Orders_01_01_2026-14_01_2026_(2026_01_14_08_27_57_491).csv              4,864,907 bytes
+  KADAX_KADAX_Orders_01_01_2026-17_02_2026_(2026_02_17_13_56_32_956).csv             17,610,237 bytes
+  KADAX_KADAX_Orders_01_02_2026-17_02_2026_(2026_02_17_11_53_06_641).csv              6,955,245 bytes
+  KADAX_KADAX_Orders_09_02_2026-23_02_2026_(2026_02_24_18_53_22_917).csv              6,423,855 bytes
+  KADAX_Sales_by_productmonth_01_01_2025-12_01_2026_(2026_01_12_12_38_46_384).csv    18,955,692 bytes
+  KADAX_Sales_by_productmonth_01_01_2026-14_01_2026_(2026_01_14_08_11_57_752).csv     3,911,665 bytes
+
+=== 9. acc_cache_bl_orders schema ===
+  external_order_id              nvarchar
+  order_id                       int

@@ -1,0 +1,22 @@
+STDOUT:
+============================================================
+[1] ERP Holding price lookup for 285 products with internal_sku...
+2026-03-02 18:30:46 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+  Products with internal_sku needing price: 286
+2026-03-02 18:30:46 [debug    ] db.connect_netfox              database=default
+  ERP Holding articles w/ price: 9072
+  Holding direct matches: 1
+
+
+STDERR:
+Traceback (most recent call last):
+  File "C:\ACC\tmp_fill_v2.py", line 74, in <module>
+    p("[2] Products WITHOUT internal_sku — extract EAN \u2192 ERP lookup")
+  File "C:\ACC\tmp_fill_v2.py", line 15, in p
+    print(s)
+  File "C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1250.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 48: character maps to <undefined>
+
+RC=1

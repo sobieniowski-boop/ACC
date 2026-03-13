@@ -1,0 +1,5 @@
+[22:13:51] Starting incremental sync. Current rows: 83,665
+[22:13:51] Syncing 431 days back (Jan 2025 -> Mar 2026)...
+[23:15:07] Sync FAILED after 3675s: [Errno 11001] getaddrinfo failed
+[23:15:07] 
+=== VERIFICATION ===

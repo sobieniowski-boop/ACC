@@ -1,0 +1,26 @@
+﻿2026-03-05 08:48:11 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+acc_fba_customer_return total: 3385
+  A1PA6795UKMFR9: 3383 rows, 2025-12-05 06:28:38 - 2026-03-05 05:45:07
+  A1F83G8C2ARO7P: 1 rows, 2026-03-04 12:26:18 - 2026-03-04 12:26:18
+  A13V1IB3VIYZZH: 1 rows, 2026-03-04 07:09:06 - 2026-03-04 07:09:06
+
+Disposition breakdown:
+  CUSTOMER_DAMAGED: 2114
+  SELLABLE: 905
+  DEFECTIVE: 231
+  CARRIER_DAMAGED: 129
+  DAMAGED: 6
+
+acc_return_item by status:
+  pending: 4049
+  damaged_return: 642
+  lost_in_transit: 529
+  sellable_return: 221
+
+Sync state:
+  A1PA6795UKMFR9: synced_to=2026-03-05 06:17:10.049000, rows=3406, status=ok
+  A1C3SOZRARQ6R3: synced_to=2026-03-05 06:17:10.049000, rows=3406, status=ok
+  A1F83G8C2ARO7P: synced_to=2026-03-05 06:17:10.049000, rows=3407, status=ok
+  A1RKKUPIHCS9HS: synced_to=2026-03-05 06:17:10.049000, rows=3407, status=ok
+  A13V1IB3VIYZZH: synced_to=2026-03-05 06:17:10.049000, rows=3408, status=ok
+  A1805IZSGTT6HS: synced_to=2026-03-05 06:17:10.049000, rows=3408, status=ok

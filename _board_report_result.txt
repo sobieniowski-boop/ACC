@@ -1,0 +1,103 @@
+﻿2026-03-10 22:40:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== ORDER-LEVEL REVENUE & COGS (Jan-Mar 2026, Shipped) ===
+  2026-01: orders=42,877 | revenue_pln=   4,807,765 | cogs_pln=   1,436,122
+  2026-02: orders=48,896 | revenue_pln=   5,378,118 | cogs_pln=   1,610,372
+  2026-03: orders=22,631 | revenue_pln=   2,786,515 | cogs_pln=     842,214
+
+=== ADS RECONCILIATION ===
+  EDM 2026-01:   184,019.64
+  EDM 2026-02:   285,999.54
+  EDM 2026-03:   121,246.00
+  RAW 2026-01:   324,867.63
+  RAW 2026-02:   511,498.09
+  RAW 2026-03:   251,431.47
+  DIFF 2026-01:   140,847.99 (raw - edm)
+  DIFF 2026-02:   225,498.55 (raw - edm)
+  DIFF 2026-03:   130,185.47 (raw - edm)
+
+=== LOGISTICS DETAIL ===
+  2026-01: matched=29,715/42,877 (69%) | logistics_pln=  953,701.12
+  2026-02: matched=14,298/48,896 (29%) | logistics_pln=  385,010.77
+  2026-03: matched=     0/22,631 (0%) | logistics_pln=        0.00
+
+=== CM2 COMPONENTS from EXEC METRICS ===
+  Checking if storage/return columns exist in exec_daily_metrics...
+  All columns: ['id', 'period_date', 'marketplace_id', 'revenue_pln', 'profit_pln', 'margin_pct', 'units', 'orders', 'ad_spend_pln', 'acos_pct', 'return_rate_pct', 'refund_pln', 'cogs_pln', 'sessions', 'page_views', 'cvr_pct', 'stockout_skus', 'suppressed_skus', 'computed_at', 'cm1_pln', 'cm2_pln']
+
+================================================================================
+  BOARD MEETING P&L SUMMARY (PLN)
+================================================================================
+
+  --- Stycze˝ 2026 (31 dni) ---
+  Przychˇd (Revenue):            4,792,995
+  COGS:                          1,436,844
+  Mar┐a brutto:                  3,356,151  (70.0%)
+  Op│aty Amazon (fee+logi):      2,296,656
+  CM1:                           1,059,495  (22.1%)
+  Reklama (Ads):                   184,020
+  Refund:                                0
+  Inne CM2 odliczenia:                   0
+  CM2:                             875,475  (18.3%)
+  Overhead:                              0
+  WYNIK NETTO (NP):                875,475  (18.3%)
+
+  --- Luty 2026 (28 dni) ---
+  Przychˇd (Revenue):            5,392,094
+  COGS:                          1,611,755
+  Mar┐a brutto:                  3,780,339  (70.1%)
+  Op│aty Amazon (fee+logi):      1,893,505
+  CM1:                           1,886,834  (35.0%)
+  Reklama (Ads):                   286,000
+  Refund:                                0
+  Inne CM2 odliczenia:                   0
+  CM2:                           1,600,834  (29.7%)
+  Overhead:                              0
+  WYNIK NETTO (NP):              1,600,834  (29.7%)
+
+  --- Marzec 1-10 (10 dni) ---
+  Przychˇd (Revenue):            2,671,737
+  COGS:                            805,656
+  Mar┐a brutto:                  1,866,081  (69.8%)
+  Op│aty Amazon (fee+logi):        599,845
+  CM1:                           1,266,235  (47.4%)
+  Reklama (Ads):                   121,246
+  Refund:                           19,488
+  Inne CM2 odliczenia:              52,570
+  CM2:                           1,072,930  (40.2%)
+  Overhead:                              0
+  WYNIK NETTO (NP):              1,072,930  (40.2%)
+
+================================================================================
+  ESTYMACJA MARZEC 2026 (pe│ny miesi╣c)
+================================================================================
+  Bazowe: 10 dni -> ekstrapolacja x3.10 na 31 dni
+
+  Przychˇd (Revenue)            : aktual=   2,671,737 | estymacja=   8,282,383
+  COGS                          : aktual=     805,656 | estymacja=   2,497,534
+  CM1                           : aktual=   1,266,235 | estymacja=   3,925,329
+  Reklama (Ads)                 : aktual=     121,246 | estymacja=     375,863
+  Refund                        : aktual=      19,488 | estymacja=      60,414
+  CM2                           : aktual=   1,072,930 | estymacja=   3,326,084
+  WYNIK NETTO (NP)              : aktual=   1,072,930 | estymacja=   3,326,084
+
+================================================================================
+  Q1 2026 úąCZNIE (Sty + Lut + Mar estymacja)
+================================================================================
+  Przychˇd            :     18,467,473 PLN
+  COGS                :      5,546,134 PLN
+  CM1                 :      6,871,658 PLN
+  Ads                 :        845,882 PLN
+  CM2                 :      5,802,394 PLN
+  NP                  :      5,802,394 PLN
+
+================================================================================
+  UWAGI / CAVEATS
+================================================================================
+  1. Styczen: brak danych finance (acc_finance_transaction) -> CM2 nie zawiera zwrotow/refundow
+  2. Ads w EDM (184K sty) vs raw ads table (325K sty) - rozbieznosc wynika z alokacji per-produkt
+     Profit engine alokuje ads tylko do matchowanych produktow, reszta jest nieprzypisana
+  3. Logistics (courier) w marcu: brak danych -> CM1 marca nie zawiera kosztow kuriera
+  4. shipping_surcharge_pln, promo_order_fee_pln, refund_commission_pln - jeszcze puste (bridge nie populuje)
+  5. Estymacja marca: liniowa ekstrapolacja z 10 dni (uwzglednia weekendy ale nie sezonowosc)
+
+DONE

@@ -1,0 +1,25 @@
+[22:12:02] Connecting to DB to release stuck lock...
+[22:12:02] Current rows: 83,499
+[22:12:02] My session: 69
+[22:12:02] Killing stuck session 52...
+[22:12:02]   Could not kill 52: (6115, b'KILL command cannot be used inside user transactions.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+[22:12:04] Remaining application locks: 1
+[22:12:04] Starting step_sync_finances(days_back=431)...
+[22:12:06] Sync FAILED after 1s: finance_sync_transactions is already running in another session
+[22:12:06] 
+=== VERIFICATION ===
+[22:12:07] Total rows: 83,665 (was 83,499)
+[22:12:07] Date range: 2024-12-31 20:29:44+00:00 to 2026-03-07 21:11:44.551000+00:00
+[22:12:07] 
+Monthly distribution:
+[22:12:07]   2024-12:    500 rows
+[22:12:07]   2025-01:  82837 rows
+[22:12:07]   2025-03:    173 rows
+[22:12:07]   2026-03:    155 rows
+[22:12:07] 
+FBAStorageFee: 99 rows, EUR=-3808.11, PLN=-16277.77
+[22:12:08] 
+FBAStorageFee monthly:
+[22:12:08]   2026-03:   99 rows, EUR=  -3808.11, PLN=   -16277.77
+[22:12:08] 
+=== COMPLETE ===

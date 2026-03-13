@@ -1,0 +1,53 @@
+## Production overrides for ACC Docker Compose
+## Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  redis:
+    restart: always
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru --appendonly yes
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+
+  api:
+    restart: always
+    volumes: []  # No bind mounts in production
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 2 --log-level warning
+    environment:
+      - APP_ENV=production
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+        reservations:
+          memory: 512M
+          cpus: "0.5"
+
+  worker:
+    restart: always
+    volumes: []
+    command: celery -A app.worker.celery_app worker --loglevel=warning --concurrency=4 --queues=default,sync,ai
+    environment:
+      - APP_ENV=production
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+
+  web:
+    restart: always
+    volumes: []
+    environment:
+      - VITE_API_URL=/api
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"

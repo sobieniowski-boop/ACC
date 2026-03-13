@@ -1,0 +1,51 @@
+=== 1. 107K missing vs ITJK_AMZvsBL overlap ===
+  Total missing amazon_order_ids: 107,084
+  Found in ITJK_AMZvsBL: 107,084
+  NOT in ITJK_AMZvsBL: 0
+
+=== 2. Missing orders: BL mapping source ===
+  All 107K already in acc_cache_bl_orders (by definition): 107,260
+
+=== 3. ITJK_AMZvsBL vs acc_cache_bl_orders overlap ===
+  ITJK_AMZvsBL unique NrAMZ: 637,121
+  acc_cache_bl_orders unique external_order_id: 1,164,723
+
+=== 4. acc_cache_packages schema ===
+  order_id                                 int
+  courier_package_nr                       nvarchar
+  courier_inner_number                     nvarchar
+  courier_code                             nvarchar
+  courier_other_name                       nvarchar
+
+=== 5. acc_dhl_jjd_map ship_date for missing 107K ===
+  2024-06:        1
+  2024-07:        2
+  2024-08:   14,364
+  2024-09:    9,489
+  2024-10:   12,280
+  2024-11:   12,036
+  2024-12:   12,134
+  2025-01:      948
+  2025-02:        1
+
+=== 6. Reports API potential ===
+  backfill_via_reports.py DEFAULT_START = 2024-03-01
+  Current progress: 3 windows done (2025-12-21 -> 2026-03-02)
+  Remaining: ~21 months of 30-day windows = ~21 more runs
+  Expected: Would fill ALL missing amazon orders from 2024-03 onward
+
+=== 7. Existing matched orders: shipping cost status ===
+  no_shipping_cost:     82,807
+  has_shipping_cost:     53,210
+
+=== 8. Why 136K -> 53K? Missing steps breakdown ===
+  A_has_cost:     53,210
+  B_has_invoice_no_cost:     19,575
+  C_has_jjd_map_no_invoice:      9,563
+  D_no_jjd_map:     53,779
+
+=== 9. Alternative table schemas ===
+  acc_cache_extras: ['parcel_num_other', 'parcel_num']
+  acc_cache_packages: ['order_id', 'courier_package_nr', 'courier_inner_number', 'courier_code', 'courier_other_name']
+  acc_cache_invoices: ['parcel_num', 'netto', 'toll', 'fuel_surcharge', 'invoice_num', 'invoice_date', 'rcountry', 'courier']
+  acc_shipping_cost: ['id', 'amazon_order_id', 'bl_order_id', 'courier', 'courier_code', 'tracking_number', 'parcel_num_invoice', 'cost_netto_pln', 'cost_toll_pln', 'cost_fuel_pln', 'cost_total_pln', 'invoice_num', 'invoice_date', 'country', 'match_method', 'mapped_at']

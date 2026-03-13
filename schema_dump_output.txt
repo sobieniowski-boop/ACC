@@ -1,0 +1,350 @@
+﻿2026-03-08 08:07:20 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+TOTAL TABLES: 173
+
+acc_ads_campaign [12 cols]: campaign_id(nvarchar), profile_id(bigint), marketplace_id(nvarchar), campaign_name(nvarchar), ad_type(nvarchar), state(nvarchar), targeting_type(nvarchar), daily_budget(decimal), currency(nvarchar), start_date(date), end_date(date), synced_at(datetime2)
+
+acc_ads_campaign_day [15 cols]: campaign_id(nvarchar), ad_type(nvarchar), report_date(date), impressions(int), clicks(int), spend(decimal), sales_7d(decimal), orders_7d(int), units_7d(int), currency(nvarchar), acos(decimal), roas(decimal), spend_pln(decimal), sales_pln(decimal), synced_at(datetime2)
+
+acc_ads_product_day [16 cols]: asin(nvarchar), ad_type(nvarchar), report_date(date), marketplace_id(nvarchar), campaign_id(nvarchar), sku(nvarchar), impressions(int), clicks(int), spend(decimal), sales_7d(decimal), orders_7d(int), units_7d(int), currency(nvarchar), spend_pln(decimal), sales_pln(decimal), synced_at(datetime2)
+
+acc_ads_profile [8 cols]: profile_id(bigint), marketplace_id(nvarchar), country_code(nvarchar), currency(nvarchar), account_type(nvarchar), account_name(nvarchar), account_id(nvarchar), synced_at(datetime2)
+
+acc_ai_recommendation [17 cols]: id(uniqueidentifier), marketplace_id(nvarchar), product_id(uniqueidentifier), sku(nvarchar), recommendation_type(nvarchar), title(nvarchar), summary(nvarchar), action_items(nvarchar), confidence_score(decimal), model_used(nvarchar), prompt_tokens(int), completion_tokens(int), status(nvarchar), user_feedback(nvarchar), acted_by(uniqueidentifier), acted_at(datetime2), generated_at(datetime2)
+
+acc_al_alert_rules [13 cols]: id(uniqueidentifier), name(nvarchar), description(nvarchar), rule_type(nvarchar), marketplace_id(nvarchar), sku(nvarchar), category(nvarchar), threshold_value(decimal), threshold_operator(nvarchar), severity(nvarchar), is_active(bit), created_by(nvarchar), created_at(datetime2)
+
+acc_al_alerts [15 cols]: id(uniqueidentifier), rule_id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), title(nvarchar), detail(nvarchar), severity(nvarchar), current_value(decimal), is_read(bit), is_resolved(bit), triggered_at(datetime2), resolved_at(datetime2), resolved_by(nvarchar), detail_json(nvarchar), context_json(nvarchar)
+
+acc_al_job_semaphore [5 cols]: semaphore_key(nvarchar), slot_no(int), holder_job_id(uniqueidentifier), lease_expires_at(datetime2), updated_at(datetime2)
+
+acc_al_jobs [25 cols]: id(uniqueidentifier), celery_task_id(nvarchar), job_type(nvarchar), marketplace_id(nvarchar), trigger_source(nvarchar), triggered_by(nvarchar), status(nvarchar), progress_pct(int), progress_message(nvarchar), records_processed(int), error_message(nvarchar), started_at(datetime2), finished_at(datetime2), duration_seconds(float), params_json(nvarchar), created_at(datetime2), last_heartbeat_at(datetime2), retry_count(int), max_retries(int), next_retry_at(datetime2), last_error_code(nvarchar), last_error_kind(nvarchar), retry_policy(nvarchar), lease_owner(nvarchar), lease_expires_at(datetime2)
+
+acc_al_plan_lines [12 cols]: id(int), plan_id(int), marketplace_id(nvarchar), target_revenue_pln(decimal), target_orders(int), target_acos_pct(decimal), target_cm_pct(decimal), budget_ads_pln(decimal), actual_revenue_pln(decimal), actual_orders(int), actual_acos_pct(decimal), actual_cm_pct(decimal)
+
+acc_al_plans [6 cols]: id(int), year(int), month(int), status(nvarchar), created_by(nvarchar), created_at(datetime2)
+
+acc_al_product_task_comments [5 cols]: id(bigint), task_id(uniqueidentifier), comment(nvarchar), author(nvarchar), created_at(datetime2)
+
+acc_al_product_tasks [13 cols]: id(uniqueidentifier), task_type(nvarchar), sku(nvarchar), marketplace_id(nvarchar), status(nvarchar), title(nvarchar), note(nvarchar), owner(nvarchar), source_page(nvarchar), payload_json(nvarchar), created_by(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_al_profit_snapshot [13 cols]: id(bigint), sales_date(date), order_number(nvarchar), sku(nvarchar), title(nvarchar), quantity(float), revenue_net(decimal), revenue_gross(decimal), cogs(decimal), transport(decimal), channel(nvarchar), source_table(nvarchar), synced_at(datetime2)
+
+acc_al_task_owner_rules [8 cols]: id(int), is_active(bit), priority(int), task_type(nvarchar), marketplace_id(nvarchar), brand(nvarchar), owner(nvarchar), created_at(datetime2)
+
+acc_alert [13 cols]: id(uniqueidentifier), rule_id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), title(nvarchar), detail(nvarchar), severity(nvarchar), current_value(decimal), is_read(bit), is_resolved(bit), resolved_at(datetime2), resolved_by(uniqueidentifier), triggered_at(datetime2)
+
+acc_alert_rule [14 cols]: id(uniqueidentifier), name(nvarchar), description(nvarchar), rule_type(nvarchar), marketplace_id(nvarchar), sku(nvarchar), category(nvarchar), threshold_value(decimal), threshold_operator(nvarchar), severity(nvarchar), is_active(bit), created_by(uniqueidentifier), created_at(datetime2), updated_at(datetime2)
+
+acc_amazon_listing_registry [19 cols]: id(uniqueidentifier), merchant_sku(nvarchar), merchant_sku_alt(nvarchar), internal_sku(nvarchar), ean(nvarchar), asin(nvarchar), parent_asin(nvarchar), brand(nvarchar), product_name(nvarchar), listing_role(nvarchar), priority_label(nvarchar), launch_type(nvarchar), category_1(nvarchar), category_2(nvarchar), source_gid(nvarchar), row_hash(nvarchar), raw_json(nvarchar), synced_at(datetime2), updated_at(datetime2)
+
+acc_amazon_listing_registry_sync_state [6 cols]: source_gid(nvarchar), source_url(nvarchar), source_hash(nvarchar), row_count(int), last_synced_at(datetime2), updated_at(datetime2)
+
+acc_audit_log [12 cols]: id(bigint), audit_date(date), overall_status(nvarchar), cogs_coverage_pct(decimal), mapping_coverage_pct(decimal), total_issues(int), loss_lines(int), avg_cogs_pct(decimal), issues_json(nvarchar), checks_json(nvarchar), trigger_source(nvarchar), created_at(datetime2)
+
+acc_backfill_progress [10 cols]: id(int), marketplace_id(nvarchar), window_start(date), window_end(date), status(nvarchar), orders_fetched(int), items_fetched(int), error_message(nvarchar), started_at(datetime2), completed_at(datetime2)
+
+acc_backfill_report_progress [10 cols]: id(int), marketplace_id(nvarchar), window_start(date), window_end(date), status(nvarchar), orders_upserted(int), report_id(nvarchar), error_message(nvarchar), started_at(datetime2), completed_at(datetime2)
+
+acc_bl_distribution_order_cache [26 cols]: order_id(bigint), shop_order_id(bigint), external_order_id(nvarchar), order_source(nvarchar), order_source_id(int), order_status_id(int), date_add(datetime2), date_confirmed(datetime2), date_in_status(datetime2), confirmed(bit), delivery_method(nvarchar), delivery_package_module(nvarchar), delivery_package_nr(nvarchar), delivery_country_code(nvarchar), delivery_fullname(nvarchar), email(nvarchar), phone(nvarchar), admin_comments(nvarchar), extra_field_1(nvarchar), extra_field_2(nvarchar), order_page(nvarchar), pick_state(int), pack_state(int), raw_payload_json(nvarchar), source_hash(nvarchar), last_synced_at(datetime2)
+
+acc_bl_distribution_package_cache [16 cols]: package_id(bigint), order_id(bigint), courier_package_nr(nvarchar), courier_inner_number(nvarchar), courier_code(nvarchar), courier_other_name(nvarchar), account_id(nvarchar), tracking_status_date(datetime2), tracking_delivery_days(int), tracking_status(nvarchar), tracking_url(nvarchar), is_return(bit), package_type(nvarchar), raw_payload_json(nvarchar), source_hash(nvarchar), last_synced_at(datetime2)
+
+acc_cache_bl_orders [2 cols]: external_order_id(nvarchar), order_id(int)
+
+acc_cache_dis_map [2 cols]: holding_order_id(int), dis_order_id(int)
+
+acc_cache_extras [2 cols]: parcel_num_other(nvarchar), parcel_num(nvarchar)
+
+acc_cache_invoices [8 cols]: parcel_num(nvarchar), netto(decimal), toll(decimal), fuel_surcharge(decimal), invoice_num(nvarchar), invoice_date(nvarchar), rcountry(nvarchar), courier(nvarchar)
+
+acc_cache_packages [5 cols]: order_id(int), courier_package_nr(nvarchar), courier_inner_number(nvarchar), courier_code(nvarchar), courier_other_name(nvarchar)
+
+acc_co_ai_cache [9 cols]: id(uniqueidentifier), context_hash(nvarchar), mode(nvarchar), marketplace_id(nvarchar), input_json(nvarchar), output_json(nvarchar), model(nvarchar), created_at(datetime2), expires_at(datetime2)
+
+acc_co_asset_links [8 cols]: id(uniqueidentifier), asset_id(uniqueidentifier), sku(nvarchar), asin(nvarchar), marketplace_id(nvarchar), role(nvarchar), status(nvarchar), created_at(datetime2)
+
+acc_co_assets [9 cols]: id(uniqueidentifier), filename(nvarchar), mime(nvarchar), content_hash(nvarchar), storage_path(nvarchar), metadata_json(nvarchar), status(nvarchar), uploaded_by(nvarchar), uploaded_at(datetime2)
+
+acc_co_attribute_map [11 cols]: id(uniqueidentifier), marketplace_id(nvarchar), product_type(nvarchar), source_field(nvarchar), target_attribute(nvarchar), transform(nvarchar), priority(int), is_active(bit), created_by(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_co_impact_snapshots [7 cols]: id(uniqueidentifier), sku(nvarchar), marketplace_id(nvarchar), version_id(uniqueidentifier), range_days(int), metrics_json(nvarchar), created_at(datetime2)
+
+acc_co_policy_checks [6 cols]: id(uniqueidentifier), version_id(uniqueidentifier), results_json(nvarchar), passed(bit), checked_at(datetime2), checker_version(nvarchar)
+
+acc_co_policy_rules [8 cols]: id(uniqueidentifier), name(nvarchar), pattern(nvarchar), severity(nvarchar), applies_to_json(nvarchar), is_active(bit), created_by(nvarchar), created_at(datetime2)
+
+acc_co_product_type_defs [8 cols]: id(uniqueidentifier), marketplace_id(nvarchar), marketplace_code(nvarchar), product_type(nvarchar), requirements_json(nvarchar), required_attrs_json(nvarchar), source(nvarchar), refreshed_at(datetime2)
+
+acc_co_product_type_map [12 cols]: id(uniqueidentifier), marketplace_id(nvarchar), brand(nvarchar), category(nvarchar), subcategory(nvarchar), product_type(nvarchar), required_attrs_json(nvarchar), priority(int), is_active(bit), created_by(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_co_publish_jobs [21 cols]: id(uniqueidentifier), job_type(nvarchar), marketplaces_json(nvarchar), selection_mode(nvarchar), status(nvarchar), progress_pct(decimal), log_json(nvarchar), artifact_url(nvarchar), created_by(nvarchar), created_at(datetime2), finished_at(datetime2), idempotency_key(nvarchar), retry_count(int), max_retries(int), next_retry_at(datetime2), last_error(nvarchar), heartbeat_at(datetime2), manual_retry_owner(nvarchar), manual_retry_marketplace(nvarchar), retry_source_job_id(uniqueidentifier), retry_source_sku(nvarchar)
+
+acc_co_retry_policy [8 cols]: id(uniqueidentifier), owner(nvarchar), marketplace_id(nvarchar), max_manual_retries_24h(int), is_active(bit), created_by(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_co_tasks [16 cols]: id(uniqueidentifier), task_type(nvarchar), sku(nvarchar), asin(nvarchar), marketplace_id(nvarchar), priority(nvarchar), owner(nvarchar), due_date(datetime2), status(nvarchar), tags_json(nvarchar), title(nvarchar), note(nvarchar), source_page(nvarchar), created_by(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_co_versions [14 cols]: id(uniqueidentifier), sku(nvarchar), asin(nvarchar), marketplace_id(nvarchar), version_no(int), status(nvarchar), fields_json(nvarchar), compliance_notes(nvarchar), created_by(nvarchar), created_at(datetime2), approved_by(nvarchar), approved_at(datetime2), published_at(datetime2), parent_version_id(uniqueidentifier)
+
+acc_cogs_import_log [6 cols]: id(int), filename(nvarchar), file_hash(nvarchar), rows_imported(int), rows_updated(int), imported_at(datetime2)
+
+acc_courier_audit_log [15 cols]: id(uniqueidentifier), audit_type(nvarchar), carrier(nvarchar), scope_key(nvarchar), status(nvarchar), expected_count(int), imported_count(int), failed_count(int), missing_count(int), extra_count(int), matched_count(int), detail_json(nvarchar), trigger_source(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_courier_cost_estimate [19 cols]: id(uniqueidentifier), shipment_id(uniqueidentifier), carrier(nvarchar), amazon_order_id(nvarchar), estimator_name(nvarchar), model_version(nvarchar), horizon_days(int), min_samples(int), bucket_key(nvarchar), sample_count(int), estimated_amount_pln(decimal), estimated_at(datetime2), status(nvarchar), reconciled_at(datetime2), actual_amount_pln(decimal), abs_error_pln(decimal), ape_pct(decimal), replaced_by_cost_source(nvarchar), raw_payload_json(nvarchar)
+
+acc_courier_estimation_kpi_daily [8 cols]: kpi_date(date), carrier(nvarchar), model_version(nvarchar), samples_count(int), mape_pct(decimal), mae_pln(decimal), p95_ape_pct(decimal), calculated_at(datetime2)
+
+acc_dhl_billing_document [14 cols]: document_number(nvarchar), document_type(nvarchar), issue_date(date), ship_date(date), due_date(date), net_amount(decimal), vat_amount(decimal), gross_amount(decimal), currency(nvarchar), source_file(nvarchar), source_manifest_file(nvarchar), detail_rows_count(int), last_imported_at(datetime2), updated_at(datetime2)
+
+acc_dhl_billing_line [34 cols]: id(uniqueidentifier), document_number(nvarchar), issue_date(date), sales_date(date), due_date(date), parcel_number(nvarchar), parcel_number_base(nvarchar), parcel_number_suffix(nvarchar), delivery_date(date), quantity(decimal), product_code(nvarchar), description(nvarchar), weight(decimal), weight_kind(nvarchar), shipper_receiver(nvarchar), payer_type(nvarchar), sap_order(nvarchar), mpk(nvarchar), pkwiu(nvarchar), notes(nvarchar), net_amount(decimal), base_fee(decimal), base_discount(decimal), non_standard_fee(decimal), seasonal_fee(decimal), fuel_road_fee(decimal), insurance_fee(decimal), cod_fee(decimal), label_fee(decimal), volumetric_fee(decimal), source_file(nvarchar), source_row_no(int), source_hash(nvarchar), imported_at(datetime2)
+
+acc_dhl_import_file [12 cols]: id(uniqueidentifier), source_kind(nvarchar), file_path(nvarchar), file_name(nvarchar), document_number(nvarchar), file_size_bytes(bigint), file_mtime_utc(datetime2), status(nvarchar), rows_imported(int), error_message(nvarchar), last_imported_at(datetime2), updated_at(datetime2)
+
+acc_dhl_jjd_map [6 cols]: jjd_number(nvarchar), parcel_num(nvarchar), shipment_type(nvarchar), ship_date(datetime2), delivery_date(datetime2), source_file(nvarchar)
+
+acc_dhl_parcel_map [14 cols]: id(uniqueidentifier), parcel_number(nvarchar), parcel_number_base(nvarchar), parcel_number_suffix(nvarchar), jjd_number(nvarchar), shipment_type(nvarchar), ship_date(datetime2), delivery_date(datetime2), last_event_code(nvarchar), last_event_at(datetime2), source_file(nvarchar), source_row_no(int), source_hash(nvarchar), imported_at(datetime2)
+
+acc_exchange_rate [6 cols]: id(uniqueidentifier), rate_date(date), currency(nvarchar), rate_to_pln(decimal), source(nvarchar), created_at(datetime2)
+
+acc_fba_bundle [11 cols]: id(uniqueidentifier), bundle_sku(nvarchar), name(nvarchar), status_stage(nvarchar), marketplaces_json(nvarchar), bom_json(nvarchar), expected_cm1(decimal), expected_np(decimal), owner(nvarchar), due_date(date), created_at(datetime2)
+
+acc_fba_bundle_event [5 cols]: id(uniqueidentifier), bundle_id(uniqueidentifier), event_type(nvarchar), at(datetime2), payload_json(nvarchar)
+
+acc_fba_case [14 cols]: id(uniqueidentifier), case_type(nvarchar), marketplace_id(nvarchar), entity_type(nvarchar), entity_id(nvarchar), sku(nvarchar), detected_date(date), close_date(date), owner(nvarchar), status(nvarchar), root_cause(nvarchar), payload_json(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_fba_case_event [6 cols]: id(uniqueidentifier), case_id(uniqueidentifier), event_type(nvarchar), event_at(datetime2), actor(nvarchar), payload_json(nvarchar)
+
+acc_fba_config [3 cols]: key(nvarchar), value_json(nvarchar), updated_at(datetime2)
+
+acc_fba_customer_return [18 cols]: id(bigint), return_date(datetime2), order_id(nvarchar), sku(nvarchar), asin(nvarchar), fnsku(nvarchar), product_name(nvarchar), quantity(int), fulfillment_center_id(nvarchar), detailed_disposition(varchar), reason(nvarchar), status(nvarchar), license_plate_number(nvarchar), customer_comments(nvarchar), marketplace_id(nvarchar), currency(varchar), report_id(nvarchar), synced_at(datetime2)
+
+acc_fba_fee_reference [15 cols]: id(int), sku(nvarchar), marketplace_id(nvarchar), size_tier(nvarchar), weight_kg(decimal), longest_side_cm(decimal), median_side_cm(decimal), shortest_side_cm(decimal), expected_fee_eur(decimal), valid_from(date), valid_to(date), source(nvarchar), notes(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_fba_inbound_shipment [14 cols]: id(uniqueidentifier), marketplace_id(nvarchar), shipment_id(nvarchar), shipment_name(nvarchar), status(nvarchar), created_at(datetime2), last_update_at(datetime2), from_warehouse(nvarchar), units_planned(int), units_received(int), first_receive_at(datetime2), closed_at(datetime2), owner(nvarchar), payload_json(nvarchar)
+
+acc_fba_inbound_shipment_line [7 cols]: id(uniqueidentifier), shipment_id(nvarchar), sku(nvarchar), asin(nvarchar), qty_planned(int), qty_received(int), payload_json(nvarchar)
+
+acc_fba_initiative [13 cols]: id(uniqueidentifier), quarter(nvarchar), initiative_type(nvarchar), title(nvarchar), sku(nvarchar), bundle_id(uniqueidentifier), owner(nvarchar), status(nvarchar), planned(bit), approved(bit), live_stable_at(date), created_at(datetime2), updated_at(datetime2)
+
+acc_fba_inventory_snapshot [15 cols]: id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), on_hand(int), inbound(int), reserved(int), stranded_units(int), aged_0_30(int), aged_31_60(int), aged_61_90(int), aged_90_plus(int), excess_units(int), snapshot_date(date), created_at(datetime2)
+
+acc_fba_kpi_snapshot [11 cols]: id(uniqueidentifier), quarter(nvarchar), marketplace_id(nvarchar), ipi(decimal), oos_top100(decimal), aged_90plus_value_pct(decimal), stranded_value(decimal), bundles_created(int), bundles_breakeven_90d_pct(decimal), score_json(nvarchar), created_at(datetime2)
+
+acc_fba_launch [18 cols]: id(uniqueidentifier), quarter(nvarchar), launch_type(nvarchar), sku(nvarchar), bundle_id(uniqueidentifier), marketplace_id(nvarchar), planned_go_live_date(date), actual_go_live_date(date), live_stable_at(date), incident_free(bit), vine_eligible(bit), vine_eligible_at(date), vine_submitted_at(date), owner(nvarchar), status(nvarchar), payload_json(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_fba_receiving_reconciliation [11 cols]: id(uniqueidentifier), shipment_id(nvarchar), marketplace_id(nvarchar), sku(nvarchar), event_date(date), shipped_units(int), shortage_units(int), damage_units(int), reimbursement_units(int), notes_json(nvarchar), created_at(datetime2)
+
+acc_fba_report_diagnostic [13 cols]: id(uniqueidentifier), sync_scope(nvarchar), marketplace_id(nvarchar), report_type(nvarchar), fetch_mode(nvarchar), request_report_id(nvarchar), request_status(nvarchar), selected_report_id(nvarchar), selected_status(nvarchar), selected_document_id(nvarchar), fallback_source(nvarchar), detail_json(nvarchar), created_at(datetime2)
+
+acc_fba_shipment_plan [14 cols]: id(uniqueidentifier), quarter(nvarchar), marketplace_id(nvarchar), shipment_id(nvarchar), plan_week_start(date), planned_ship_date(date), planned_units(int), actual_ship_date(date), actual_units(int), tolerance_pct(decimal), status(nvarchar), owner(nvarchar), notes_json(nvarchar), updated_at(datetime2)
+
+acc_fba_sku_status [9 cols]: id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), is_excluded(bit), is_retired(bit), notes(nvarchar), effective_from(date), effective_to(date), updated_at(datetime2)
+
+acc_fee_gap_recheck_run [9 cols]: id(uniqueidentifier), started_at(datetime2), finished_at(datetime2), scope_json(nvarchar), checked_count(int), resolved_count(int), amazon_events_available_count(int), still_missing_count(int), note(nvarchar)
+
+acc_fee_gap_watch [15 cols]: id(uniqueidentifier), gap_type(nvarchar), gap_reason(nvarchar), marketplace_id(nvarchar), amazon_order_id(nvarchar), sample_sku(nvarchar), sample_asin(nvarchar), fulfillment_channel(nvarchar), status(nvarchar), first_seen_at(datetime2), last_seen_at(datetime2), last_checked_at(datetime2), resolved_at(datetime2), last_amazon_event_count(int), last_note(nvarchar)
+
+acc_fin_bank_line [8 cols]: id(uniqueidentifier), bank_date(date), amount(decimal), currency(nvarchar), description(nvarchar), reference(nvarchar), line_hash(nvarchar), imported_at(datetime2)
+
+acc_fin_chart_of_accounts [7 cols]: account_code(nvarchar), name(nvarchar), account_type(nvarchar), parent_code(nvarchar), is_active(bit), created_at(datetime2), updated_at(datetime2)
+
+acc_fin_event_group_sync [15 cols]: financial_event_group_id(nvarchar), marketplace_id(nvarchar), processing_status(nvarchar), fund_transfer_status(nvarchar), group_start(datetime2), group_end(datetime2), original_currency(nvarchar), original_amount(decimal), last_row_count(int), last_synced_at(datetime2), event_type_counts_json(nvarchar), payload_signature(nvarchar), first_posted_at(datetime2), last_posted_at(datetime2), open_refresh_after(datetime2)
+
+acc_fin_ledger_entry [25 cols]: id(uniqueidentifier), entry_date(date), source(nvarchar), source_ref(nvarchar), source_line_hash(nvarchar), marketplace_id(nvarchar), settlement_id(nvarchar), amazon_order_id(nvarchar), transaction_type(nvarchar), charge_type(nvarchar), currency(nvarchar), amount(decimal), fx_rate(decimal), amount_base(decimal), base_currency(nvarchar), account_code(nvarchar), tax_code(nvarchar), country(nvarchar), sku(nvarchar), asin(nvarchar), description(nvarchar), tags_json(nvarchar), reversed_entry_id(uniqueidentifier), created_at(datetime2), financial_event_group_id(nvarchar)
+
+acc_fin_mapping_rule [10 cols]: id(uniqueidentifier), source_system(nvarchar), source_type(nvarchar), account_code(nvarchar), tax_code(nvarchar), sign_multiplier(decimal), notes(nvarchar), is_active(bit), created_at(datetime2), updated_at(datetime2)
+
+acc_fin_reconciliation_payout [10 cols]: id(uniqueidentifier), settlement_id(nvarchar), bank_line_id(uniqueidentifier), status(nvarchar), matched_amount(decimal), diff_amount(decimal), notes(nvarchar), created_at(datetime2), updated_at(datetime2), financial_event_group_id(nvarchar)
+
+acc_fin_settlement_summary [12 cols]: id(uniqueidentifier), settlement_id(nvarchar), marketplace_id(nvarchar), currency(nvarchar), total_amount(decimal), total_amount_base(decimal), transaction_count(int), posted_from(date), posted_to(date), created_at(datetime2), updated_at(datetime2), financial_event_group_id(nvarchar)
+
+acc_fin_tax_code [8 cols]: code(nvarchar), vat_rate(decimal), oss_flag(bit), country(nvarchar), description(nvarchar), is_active(bit), created_at(datetime2), updated_at(datetime2)
+
+acc_finance_transaction [15 cols]: id(uniqueidentifier), marketplace_id(nvarchar), transaction_type(nvarchar), amazon_order_id(nvarchar), shipment_id(nvarchar), sku(nvarchar), posted_date(datetimeoffset), settlement_id(nvarchar), amount(decimal), currency(nvarchar), charge_type(nvarchar), amount_pln(decimal), exchange_rate(decimal), synced_at(datetime2), financial_event_group_id(nvarchar)
+
+acc_gls_billing_document [6 cols]: document_number(nvarchar), billing_period(nvarchar), source_file(nvarchar), detail_rows_count(int), last_imported_at(datetime2), updated_at(datetime2)
+
+acc_gls_billing_line [28 cols]: id(uniqueidentifier), document_number(nvarchar), billing_period(nvarchar), row_date(date), delivery_date(date), parcel_number(nvarchar), recipient_name(nvarchar), recipient_postal_code(nvarchar), recipient_city(nvarchar), recipient_country(nvarchar), weight(decimal), declared_weight(decimal), billing_weight(decimal), net_amount(decimal), toll_amount(decimal), fuel_amount(decimal), storewarehouse_amount(decimal), surcharge_amount(decimal), billing_type(nvarchar), note1(nvarchar), dimension_combined(nvarchar), volumetric_weight(decimal), parcel_status(nvarchar), service_code(nvarchar), source_file(nvarchar), source_row_no(int), source_hash(nvarchar), imported_at(datetime2)
+
+acc_gls_bl_map [8 cols]: id(uniqueidentifier), tracking_number(nvarchar), bl_order_id(int), map_source(nvarchar), source_file(nvarchar), source_row_no(int), source_hash(nvarchar), imported_at(datetime2)
+
+acc_gls_import_file [12 cols]: id(uniqueidentifier), source_kind(nvarchar), file_path(nvarchar), file_name(nvarchar), document_number(nvarchar), file_size_bytes(bigint), file_mtime_utc(datetime2), status(nvarchar), rows_imported(int), error_message(nvarchar), last_imported_at(datetime2), updated_at(datetime2)
+
+acc_import_products [37 cols]: id(int), sku(nvarchar), nazwa_pelna(nvarchar), kod_k(nvarchar), kod_importu(nvarchar), aktywny(bit), data_pierwszej_dostawy(date), stan_magazynowy(int), w_tym_fba(int), sprzedaz_30d(int), amazon_30d(int), fba_30d(int), allegro_30d(int), sklep_30d(int), inne_30d(int), zasieg_dni(int), estymacja_braku_stanu(date), dynamika_10_30(float), data_ostatniej_dostawy(date), ilosc_ostatniej_dostawy(int), cena_zakupu(decimal), wartosc_magazynu(decimal), srednia_cena_sprzedazy_30d(decimal), srednia_marza(decimal), marza(decimal), miejsc_paletowych(float), koszt_skladowania_1szt_30d(decimal), koszt_skladowania_zapasu_30d(decimal), nasycenie_12m(float), data_dostawy(date), tempo_pokrycie_150d(int), sprzedaz_12m(int), filtr(nvarchar), mix(nvarchar), is_import(bit), uploaded_at(datetime2), updated_at(datetime2)
+
+acc_inv_category_cvr_baseline [6 cols]: marketplace_id(nvarchar), category(nvarchar), p25(decimal), p50(decimal), p75(decimal), updated_at(datetime2)
+
+acc_inv_change_draft [19 cols]: id(uniqueidentifier), draft_type(nvarchar), marketplace_id(nvarchar), affected_parent_asin(nvarchar), affected_sku(nvarchar), payload_json(nvarchar), snapshot_before_json(nvarchar), snapshot_after_json(nvarchar), validation_status(nvarchar), validation_errors_json(nvarchar), approval_status(nvarchar), apply_status(nvarchar), created_by(nvarchar), created_at(datetime2), approved_by(nvarchar), approved_at(datetime2), apply_started_at(datetime2), applied_at(datetime2), rolled_back_at(datetime2)
+
+acc_inv_change_event [6 cols]: id(bigint), draft_id(uniqueidentifier), event_type(nvarchar), actor(nvarchar), payload_json(nvarchar), created_at(datetime2)
+
+acc_inv_item_cache [22 cols]: marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), snapshot_date(date), title_preferred(nvarchar), listing_status(nvarchar), stockout_risk_badge(nvarchar), overstock_risk_badge(nvarchar), family_health(nvarchar), global_family_status(nvarchar), days_cover(decimal), sessions_7d(int), orders_7d(int), units_ordered_7d(int), unit_session_pct_7d(decimal), cvr_delta_pct(decimal), sessions_delta_pct(decimal), traffic_coverage_flag(bit), internal_sku(nvarchar), ean(nvarchar), payload_json(nvarchar), updated_at(datetime2)
+
+acc_inv_settings [3 cols]: key(nvarchar), value_json(nvarchar), updated_at(datetime2)
+
+acc_inv_traffic_asin_daily [10 cols]: marketplace_id(nvarchar), asin(nvarchar), report_date(date), sessions(int), page_views(int), units_ordered(int), orders_count(int), revenue(decimal), unit_session_pct(decimal), updated_at(datetime2)
+
+acc_inv_traffic_rollup [13 cols]: marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), range_key(nvarchar), sessions(int), page_views(int), units(int), orders_count(int), revenue(decimal), unit_session_pct(decimal), sessions_delta_pct(decimal), cvr_delta_pct(decimal), updated_at(datetime2)
+
+acc_inv_traffic_sku_daily [11 cols]: marketplace_id(nvarchar), sku(nvarchar), report_date(date), asin(nvarchar), sessions(int), page_views(int), units_ordered(int), orders_count(int), revenue(decimal), unit_session_pct(decimal), updated_at(datetime2)
+
+acc_inventory_snapshot [15 cols]: id(uniqueidentifier), product_id(uniqueidentifier), marketplace_id(nvarchar), snapshot_date(date), sku(nvarchar), fnsku(nvarchar), asin(nvarchar), qty_fulfillable(int), qty_reserved(int), qty_inbound(int), qty_unfulfillable(int), avg_daily_sales_7d(decimal), doi(decimal), inventory_value_pln(decimal), synced_at(datetime2)
+
+acc_job_run [16 cols]: id(uniqueidentifier), celery_task_id(nvarchar), job_type(nvarchar), marketplace_id(nvarchar), triggered_by(uniqueidentifier), trigger_source(nvarchar), status(nvarchar), progress_pct(int), progress_message(nvarchar), records_processed(int), error_message(nvarchar), result_summary(nvarchar), started_at(datetime2), finished_at(datetime2), duration_seconds(decimal), created_at(datetime2)
+
+acc_mapping_change_log [11 cols]: id(int), product_id(nvarchar), sku(nvarchar), asin(nvarchar), old_internal_sku(nvarchar), new_internal_sku(nvarchar), old_source(nvarchar), new_source(nvarchar), change_type(nvarchar), reason(nvarchar), created_at(datetime2)
+
+acc_marketplace [6 cols]: id(nvarchar), code(nvarchar), name(nvarchar), currency(nvarchar), timezone(nvarchar), is_active(bit)
+
+acc_marketplace_profitability_rollup [21 cols]: id(bigint), period_date(date), marketplace_id(varchar), total_orders(int), total_units(int), unique_skus(int), revenue_pln(decimal), cogs_pln(decimal), amazon_fees_pln(decimal), fba_fees_pln(decimal), logistics_pln(decimal), ad_spend_pln(decimal), refund_pln(decimal), storage_fee_pln(decimal), other_fees_pln(decimal), profit_pln(decimal), margin_pct(decimal), acos_pct(decimal), refund_units(int), return_rate_pct(decimal), computed_at(datetime2)
+
+acc_offer [20 cols]: id(uniqueidentifier), product_id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), fnsku(nvarchar), price(decimal), currency(nvarchar), buybox_price(decimal), has_buybox(bit), is_featured_merchant(bit), fulfillment_channel(nvarchar), status(nvarchar), bsr_rank(int), bsr_category(nvarchar), fba_fee(decimal), referral_fee_rate(decimal), last_synced_at(datetime2), created_at(datetime2), updated_at(datetime2)
+
+acc_offer_fee_expected [16 cols]: id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), offer_price(decimal), currency(nvarchar), fulfillment_channel(nvarchar), expected_fba_fee(decimal), expected_referral_fee(decimal), expected_total_fee(decimal), expected_referral_rate(decimal), fee_detail_json(nvarchar), source(nvarchar), status(nvarchar), error_message(nvarchar), synced_at(datetime2)
+
+acc_order [28 cols]: id(uniqueidentifier), amazon_order_id(nvarchar), marketplace_id(nvarchar), status(nvarchar), fulfillment_channel(nvarchar), sales_channel(nvarchar), purchase_date(datetimeoffset), last_update_date(datetimeoffset), ship_date(datetimeoffset), order_total(decimal), currency(nvarchar), revenue_pln(decimal), vat_pln(decimal), cogs_pln(decimal), amazon_fees_pln(decimal), ads_cost_pln(decimal), logistics_pln(decimal), contribution_margin_pln(decimal), cm_percent(decimal), buyer_country(nvarchar), ship_country(nvarchar), synced_at(datetime2), is_refund(bit), refund_amount_eur(decimal), refund_amount_pln(decimal), refund_date(datetime2), refund_type(varchar), sync_payload_hash(nvarchar)
+
+acc_order_line [18 cols]: id(uniqueidentifier), order_id(uniqueidentifier), product_id(uniqueidentifier), amazon_order_item_id(nvarchar), sku(nvarchar), asin(nvarchar), title(nvarchar), quantity_ordered(int), quantity_shipped(int), item_price(decimal), item_tax(decimal), promotion_discount(decimal), currency(nvarchar), cogs_pln(decimal), fba_fee_pln(decimal), referral_fee_pln(decimal), purchase_price_pln(decimal), price_source(nvarchar)
+
+acc_order_logistics_fact [11 cols]: amazon_order_id(nvarchar), acc_order_id(uniqueidentifier), shipments_count(int), delivered_shipments_count(int), total_logistics_pln(decimal), last_delivery_at(datetime2), calc_version(nvarchar), source_system(nvarchar), calculated_at(datetime2), actual_shipments_count(int), estimated_shipments_count(int)
+
+acc_order_logistics_shadow [12 cols]: amazon_order_id(nvarchar), acc_order_id(uniqueidentifier), legacy_logistics_pln(decimal), shadow_logistics_pln(decimal), delta_pln(decimal), delta_abs_pln(decimal), shipments_count(int), actual_shipments_count(int), estimated_shipments_count(int), comparison_status(nvarchar), calc_version(nvarchar), calculated_at(datetime2)
+
+acc_order_sync_state [12 cols]: marketplace_id(nvarchar), last_mode(nvarchar), last_status(nvarchar), last_started_at(datetime2), last_finished_at(datetime2), last_window_from(datetime2), last_window_to(datetime2), last_successful_window_from(datetime2), last_successful_window_to(datetime2), last_orders_count(int), last_error(nvarchar), updated_at(datetime2)
+
+acc_plan_line [10 cols]: id(uniqueidentifier), plan_month_id(uniqueidentifier), product_id(uniqueidentifier), sku(nvarchar), category(nvarchar), target_units(int), target_revenue_pln(decimal), target_price(decimal), target_ads_spend_pln(decimal), notes(nvarchar)
+
+acc_plan_month [15 cols]: id(uniqueidentifier), marketplace_id(nvarchar), year(int), month(int), label(nvarchar), target_revenue_pln(decimal), target_orders(int), target_acos(decimal), target_cm_percent(decimal), budget_ads_pln(decimal), notes(nvarchar), status(nvarchar), created_by(uniqueidentifier), created_at(datetime2), updated_at(datetime2)
+
+acc_price_change_log [11 cols]: id(int), internal_sku(nvarchar), old_price_pln(decimal), new_price_pln(decimal), pct_change(decimal), source(nvarchar), source_document(nvarchar), change_type(nvarchar), flagged(bit), flag_reason(nvarchar), created_at(datetime2)
+
+acc_product [19 cols]: id(uniqueidentifier), asin(nvarchar), ean(nvarchar), sku(nvarchar), brand(nvarchar), category(nvarchar), subcategory(nvarchar), title(nvarchar), image_url(nvarchar), is_parent(bit), parent_asin(nvarchar), netto_purchase_price_pln(decimal), vat_rate(decimal), internal_sku(nvarchar), k_number(nvarchar), ergonode_id(nvarchar), mapping_source(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_product_match_suggestion [18 cols]: id(int), unmapped_product_id(uniqueidentifier), unmapped_sku(nvarchar), unmapped_asin(nvarchar), unmapped_title(nvarchar), matched_internal_sku(nvarchar), matched_title(nvarchar), matched_sku(nvarchar), confidence(decimal), reasoning(nvarchar), quantity_in_bundle(int), unit_price_pln(decimal), total_price_pln(decimal), bom_json(nvarchar), status(nvarchar), reviewed_at(datetime2), created_at(datetime2), updated_at(datetime2)
+
+acc_profit_cost_config [4 cols]: config_key(nvarchar), value_decimal(decimal), value_text(nvarchar), updated_at(datetime2)
+
+acc_profit_overhead_pool [12 cols]: id(uniqueidentifier), period_from(date), period_to(date), marketplace_id(nvarchar), pool_name(nvarchar), amount_pln(decimal), allocation_method(nvarchar), confidence_pct(decimal), notes(nvarchar), is_active(bit), created_at(datetime2), updated_at(datetime2)
+
+acc_purchase_price [9 cols]: id(int), internal_sku(nvarchar), netto_price_pln(decimal), valid_from(date), valid_to(date), source(nvarchar), source_document(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_return_daily_summary [18 cols]: id(bigint), report_date(date), marketplace_id(nvarchar), refund_orders(int), refund_units(int), return_received_units(int), sellable_units(int), damaged_units(int), pending_units(int), reimbursed_units(int), refund_amount_pln(decimal), cogs_total_pln(decimal), cogs_recovered_pln(decimal), cogs_write_off_pln(decimal), cogs_pending_pln(decimal), return_rate_pct(decimal), sellable_rate_pct(decimal), updated_at(datetime2)
+
+acc_return_item [27 cols]: id(bigint), amazon_order_id(nvarchar), order_line_id(nvarchar), order_id(nvarchar), marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), fnsku(nvarchar), refund_date(datetime2), refund_type(varchar), refund_amount_pln(decimal), return_date(datetime2), return_reason(nvarchar), return_reason_detail(nvarchar), disposition(varchar), quantity(int), financial_status(varchar), cogs_pln(decimal), cogs_recovered_pln(decimal), write_off_pln(decimal), manual_status(varchar), manual_note(nvarchar), manual_updated_by(nvarchar), manual_updated_at(datetime2), created_at(datetime2), updated_at(datetime2), source(varchar)
+
+acc_return_sync_state [7 cols]: id(int), marketplace_id(nvarchar), last_synced_to(datetime2), last_sync_at(datetime2), rows_synced(int), status(varchar), error_message(nvarchar)
+
+acc_sb_order_line_rebuild_state [14 cols]: period_key(nvarchar), date_from(date), date_to(date), source_name(nvarchar), status(nvarchar), target_orders(int), candidate_lines(int), candidate_with_product(int), candidate_with_sku(int), inserted_lines(int), note(nvarchar), started_at(datetime2), finished_at(datetime2), updated_at(datetime2)
+
+acc_sb_order_line_staging [35 cols]: id(uniqueidentifier), source_name(nvarchar), source_hash(nvarchar), source_row_number(int), source_row_hash(nvarchar), amazon_order_id(nvarchar), purchase_date(datetime2), marketplace_id(nvarchar), marketplace_code(nvarchar), sales_channel(nvarchar), fulfillment_channel(nvarchar), order_status(nvarchar), currency(nvarchar), asin(nvarchar), product_token(nvarchar), quantity(decimal), order_total_amount(decimal), shipping_amount(decimal), gift_wrap_amount(decimal), tax_amount(decimal), item_promotion_amount(decimal), ship_promotion_amount(decimal), commission_amount(decimal), fba_fee_amount(decimal), coupon_amount(decimal), raw_shipping_cost_amount(decimal), is_premium_order(bit), shipped_by_amazon_tfm(bit), is_replacement_order(bit), is_business_order(bit), is_prime(bit), shipment_service_level(nvarchar), raw_json(nvarchar), synced_at(datetime2), updated_at(datetime2)
+
+acc_sb_order_line_sync_state [8 cols]: source_name(nvarchar), source_hash(nvarchar), row_count_total(int), row_count_2025(int), status(nvarchar), note(nvarchar), last_imported_at(datetime2), updated_at(datetime2)
+
+acc_shipment [25 cols]: id(uniqueidentifier), carrier(nvarchar), carrier_account(nvarchar), shipment_number(nvarchar), piece_id(nvarchar), tracking_number(nvarchar), cedex_number(nvarchar), service_code(nvarchar), ship_date(date), created_at_carrier(datetime2), status_code(nvarchar), status_label(nvarchar), received_by(nvarchar), is_delivered(bit), delivered_at(datetime2), recipient_name(nvarchar), recipient_country(nvarchar), shipper_name(nvarchar), shipper_country(nvarchar), source_system(nvarchar), source_payload_json(nvarchar), source_payload_hash(nvarchar), first_seen_at(datetime2), last_seen_at(datetime2), last_sync_at(datetime2)
+
+acc_shipment_cost [15 cols]: id(uniqueidentifier), shipment_id(uniqueidentifier), cost_source(nvarchar), currency(nvarchar), net_amount(decimal), fuel_amount(decimal), toll_amount(decimal), gross_amount(decimal), invoice_number(nvarchar), invoice_date(date), billing_period(nvarchar), is_estimated(bit), raw_payload_json(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_shipment_event [10 cols]: id(bigint), shipment_id(uniqueidentifier), event_code(nvarchar), event_label(nvarchar), event_terminal(nvarchar), event_at(datetime2), location_city(nvarchar), location_country(nvarchar), raw_payload_json(nvarchar), created_at(datetime2)
+
+acc_shipment_order_link [10 cols]: id(uniqueidentifier), shipment_id(uniqueidentifier), amazon_order_id(nvarchar), acc_order_id(uniqueidentifier), bl_order_id(int), link_method(nvarchar), link_confidence(decimal), is_primary(bit), created_at(datetime2), updated_at(datetime2)
+
+acc_shipment_pod [10 cols]: id(uniqueidentifier), shipment_id(uniqueidentifier), pod_type(nvarchar), available(bit), mime_type(nvarchar), document_base64(nvarchar), document_ref(nvarchar), raw_payload_json(nvarchar), downloaded_at(datetime2), last_sync_at(datetime2)
+
+acc_shipping_cost [16 cols]: id(int), amazon_order_id(nvarchar), bl_order_id(int), courier(nvarchar), courier_code(nvarchar), tracking_number(nvarchar), parcel_num_invoice(nvarchar), cost_netto_pln(decimal), cost_toll_pln(decimal), cost_fuel_pln(decimal), cost_total_pln(decimal), invoice_num(nvarchar), invoice_date(nvarchar), country(nvarchar), match_method(nvarchar), mapped_at(datetime2)
+
+acc_sku_profitability_rollup [22 cols]: id(bigint), period_date(date), marketplace_id(varchar), sku(varchar), asin(varchar), units_sold(int), orders_count(int), revenue_pln(decimal), cogs_pln(decimal), amazon_fees_pln(decimal), fba_fees_pln(decimal), logistics_pln(decimal), ad_spend_pln(decimal), refund_pln(decimal), storage_fee_pln(decimal), other_fees_pln(decimal), profit_pln(decimal), margin_pct(decimal), acos_pct(decimal), refund_units(int), return_rate_pct(decimal), computed_at(datetime2)
+
+acc_sp_api_usage_daily [14 cols]: usage_date(date), endpoint_name(nvarchar), http_method(nvarchar), marketplace_id(nvarchar), sync_profile(nvarchar), status_code(int), calls_count(bigint), success_count(bigint), error_count(bigint), throttled_count(bigint), total_duration_ms(bigint), rows_returned(bigint), last_error(nvarchar), updated_at(datetime2)
+
+acc_taxonomy_alias [6 cols]: id(uniqueidentifier), alias_key(nvarchar), node_key(nvarchar), source(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+acc_taxonomy_node [7 cols]: id(uniqueidentifier), node_key(nvarchar), canonical_label_pl(nvarchar), parent_node_key(nvarchar), is_active(bit), created_at(datetime2), updated_at(datetime2)
+
+acc_taxonomy_prediction [17 cols]: id(uniqueidentifier), marketplace_id(nvarchar), sku(nvarchar), asin(nvarchar), ean(nvarchar), suggested_brand(nvarchar), suggested_category(nvarchar), suggested_product_type(nvarchar), confidence(decimal), source(nvarchar), status(nvarchar), reason(nvarchar), evidence_json(nvarchar), created_at(datetime2), updated_at(datetime2), reviewed_by(nvarchar), reviewed_at(datetime2)
+
+acc_tkl_cache_meta [7 cols]: cache_key(nvarchar), signature(nvarchar), source_courier_path(nvarchar), source_courier_mtime(datetime2), source_tkl_path(nvarchar), source_tkl_mtime(datetime2), loaded_at(datetime2)
+
+acc_tkl_cache_rows [11 cols]: id(bigint), cache_key(nvarchar), row_type(nvarchar), internal_sku(nvarchar), country_code(nvarchar), cost(decimal), courier(nvarchar), source(nvarchar), pack_qty(int), rank(int), created_at(datetime2)
+
+acc_user [10 cols]: id(uniqueidentifier), email(nvarchar), full_name(nvarchar), hashed_password(nvarchar), role(nvarchar), is_active(bit), is_superuser(bit), created_at(datetime2), updated_at(datetime2), last_login_at(datetime2)
+
+amazon_clearing_reconciliation [14 cols]: id(int), settlement_id(nvarchar), settlement_date(date), gross_sales(decimal), vat_oss(decimal), vat_local(decimal), amazon_fees(decimal), refunds(decimal), ads(decimal), payout_net(decimal), expected_net(decimal), difference_amount(decimal), status(nvarchar), details_json(nvarchar)
+
+compliance_issue [10 cols]: id(int), issue_type(nvarchar), severity(nvarchar), source_ref(nvarchar), country(nvarchar), marketplace(nvarchar), description(nvarchar), status(nvarchar), owner(nvarchar), created_at(datetime2)
+
+decision_learning [11 cols]: id(int), opportunity_type(varchar), sample_size(int), avg_expected_profit(decimal), avg_actual_profit(decimal), prediction_accuracy(decimal), avg_success_score(decimal), confidence_adjustment(decimal), win_rate(decimal), avg_roi(decimal), last_updated(datetime2)
+
+ecb_exchange_rate [6 cols]: id(int), rate_date(date), source_currency(nvarchar), target_currency(nvarchar), rate(decimal), created_at(datetime2)
+
+executive_daily_metrics [19 cols]: id(int), period_date(date), marketplace_id(varchar), revenue_pln(decimal), profit_pln(decimal), margin_pct(decimal), units(int), orders(int), ad_spend_pln(decimal), acos_pct(decimal), return_rate_pct(decimal), refund_pln(decimal), cogs_pln(decimal), sessions(int), page_views(int), cvr_pct(decimal), stockout_skus(int), suppressed_skus(int), computed_at(datetime2)
+
+executive_health_score [10 cols]: id(int), period_date(date), revenue_score(decimal), profit_score(decimal), demand_score(decimal), inventory_score(decimal), operations_score(decimal), overall_score(decimal), details_json(nvarchar), computed_at(datetime2)
+
+executive_opportunities [13 cols]: id(int), opp_type(varchar), category(varchar), priority(varchar), marketplace_id(varchar), sku(varchar), title(nvarchar), description(nvarchar), impact_estimate(decimal), confidence(decimal), is_active(bit), created_at(datetime2), resolved_at(datetime2)
+
+family_coverage_cache [10 cols]: global_family_id(int), marketplace(nvarchar), de_children_count(int), matched_children_count(int), coverage_pct(int), missing_children_count(int), extra_children_count(int), theme_mismatch(bit), confidence_avg(int), updated_at(datetime2)
+
+family_fix_job [8 cols]: id(int), job_type(nvarchar), marketplace(nvarchar), status(nvarchar), progress(int), started_at(datetime2), finished_at(datetime2), log(nvarchar)
+
+family_fix_package [9 cols]: id(int), marketplace(nvarchar), global_family_id(int), action_plan_json(nvarchar), status(nvarchar), generated_at(datetime2), approved_by(nvarchar), approved_at(datetime2), applied_at(datetime2)
+
+family_issues_cache [7 cols]: id(int), global_family_id(int), marketplace(nvarchar), issue_type(nvarchar), severity(nvarchar), payload_json(nvarchar), created_at(datetime2)
+
+family_restructure_log [8 cols]: id(int), family_id(int), marketplace_id(varchar), marketplace_code(varchar), total_steps(int), errors(int), steps_json(nvarchar), executed_at(datetime2)
+
+family_restructure_run [15 cols]: run_id(uniqueidentifier), family_id(int), marketplace_id(nvarchar), marketplace_code(nvarchar), dry_run(bit), status(nvarchar), progress_pct(int), children_total(int), children_done(int), progress_message(nvarchar), result_json(nvarchar), error_message(nvarchar), created_at(datetime2), updated_at(datetime2), finished_at(datetime2)
+
+fba_stock_movement_ledger [13 cols]: id(int), movement_ref(nvarchar), sku(nvarchar), asin(nvarchar), quantity(decimal), movement_date(date), from_country(nvarchar), to_country(nvarchar), movement_type(nvarchar), vat_treatment(nvarchar), matching_pair_status(nvarchar), transport_evidence_status(nvarchar), created_at(datetime2)
+
+filing_readiness_snapshot [10 cols]: id(int), period_type(nvarchar), period_ref(nvarchar), viu_do_ready_pct(decimal), jpk_ready_pct(decimal), local_vat_ready_pct(decimal), evidence_complete_pct(decimal), movement_match_pct(decimal), critical_issues_count(int), created_at(datetime2)
+
+global_family [7 cols]: id(int), de_parent_asin(nvarchar), brand(nvarchar), category(nvarchar), product_type(nvarchar), variation_theme_de(nvarchar), created_at(datetime2)
+
+global_family_child [9 cols]: id(int), global_family_id(int), master_key(nvarchar), key_type(nvarchar), de_child_asin(nvarchar), sku_de(nvarchar), ean_de(nvarchar), attributes_json(nvarchar), created_at(datetime2)
+
+global_family_child_market_link [10 cols]: global_family_id(int), master_key(nvarchar), marketplace(nvarchar), target_child_asin(nvarchar), current_parent_asin(nvarchar), match_type(nvarchar), confidence(int), status(nvarchar), reason_json(nvarchar), updated_at(datetime2)
+
+global_family_market_link [7 cols]: global_family_id(int), marketplace(nvarchar), target_parent_asin(nvarchar), status(nvarchar), confidence_avg(int), notes(nvarchar), updated_at(datetime2)
+
+growth_opportunity [24 cols]: id(int), opportunity_type(varchar), marketplace_id(varchar), sku(varchar), asin(varchar), parent_asin(varchar), family_id(int), title(nvarchar), description(nvarchar), root_cause(varchar), recommendation(nvarchar), priority_score(decimal), confidence_score(decimal), estimated_revenue_uplift(decimal), estimated_profit_uplift(decimal), estimated_margin_uplift(decimal), estimated_units_uplift(int), effort_score(decimal), owner_role(varchar), blocker_json(nvarchar), source_signals_json(nvarchar), status(varchar), created_at(datetime2), updated_at(datetime2)
+
+growth_opportunity_log [6 cols]: id(int), opportunity_id(int), action(varchar), actor(varchar), note(nvarchar), created_at(datetime2)
+
+local_vat_ledger [9 cols]: id(int), country(nvarchar), source_ref(nvarchar), event_type(nvarchar), tax_base(decimal), tax_amount(decimal), currency(nvarchar), event_date(date), status(nvarchar)
+
+marketplace_listing_child [8 cols]: marketplace(nvarchar), asin(nvarchar), sku(nvarchar), ean(nvarchar), current_parent_asin(nvarchar), variation_theme(nvarchar), attributes_json(nvarchar), updated_at(datetime2)
+
+opportunity_execution [12 cols]: id(int), opportunity_id(int), entity_type(varchar), entity_id(varchar), action_type(varchar), executed_by(varchar), executed_at(datetime2), baseline_metrics_json(nvarchar), expected_metrics_json(nvarchar), monitoring_start(datetime2), monitoring_end(datetime2), status(varchar)
+
+opportunity_model_adjustments [7 cols]: id(int), opportunity_type(varchar), impact_weight_adjustment(decimal), confidence_weight_adjustment(decimal), priority_weight_adjustment(decimal), reason(nvarchar), updated_at(datetime2)
+
+opportunity_outcome [10 cols]: id(int), execution_id(int), monitoring_days(int), actual_metrics_json(nvarchar), expected_metrics_json(nvarchar), delta_json(nvarchar), success_score(decimal), impact_score(decimal), confidence_adjustment(decimal), evaluated_at(datetime2)
+
+oss_return_line [8 cols]: id(int), oss_period_id(int), consumption_country(nvarchar), vat_rate(decimal), tax_base_eur(decimal), tax_amount_eur(decimal), correction_flag(bit), source_count(int)
+
+oss_return_period [9 cols]: id(int), year(int), quarter(int), status(nvarchar), total_base_eur(decimal), total_tax_eur(decimal), corrections_count(int), created_at(datetime2), filed_at(datetime2)
+
+seasonality_cluster [6 cols]: id(int), cluster_name(nvarchar), description(nvarchar), rules_json(nvarchar), created_by(nvarchar), created_at(datetime2)
+
+seasonality_cluster_member [6 cols]: id(int), cluster_id(int), sku(nvarchar), asin(nvarchar), product_type(nvarchar), category(nvarchar)
+
+seasonality_index_cache [8 cols]: marketplace(nvarchar), entity_type(nvarchar), entity_id(nvarchar), month(int), demand_index(decimal), sales_index(decimal), profit_index(decimal), updated_at(datetime2)
+
+seasonality_monthly_metrics [23 cols]: id(int), marketplace(nvarchar), entity_type(nvarchar), entity_id(nvarchar), year(int), month(int), sessions(decimal), page_views(decimal), clicks(decimal), impressions(decimal), purchases(decimal), units(decimal), orders(decimal), revenue(decimal), profit_cm1(decimal), profit_cm2(decimal), profit_np(decimal), unit_session_pct(decimal), ad_spend(decimal), refunds(decimal), stockout_days(int), suppression_days(int), created_at(datetime2)
+
+seasonality_opportunity [15 cols]: id(int), marketplace(nvarchar), entity_type(nvarchar), entity_id(nvarchar), opportunity_type(nvarchar), title(nvarchar), description(nvarchar), priority_score(decimal), confidence_score(decimal), estimated_revenue_uplift(decimal), estimated_profit_uplift(decimal), recommended_start_date(date), status(nvarchar), source_signals_json(nvarchar), created_at(datetime2)
+
+seasonality_profile [18 cols]: id(int), marketplace(nvarchar), entity_type(nvarchar), entity_id(nvarchar), seasonality_class(nvarchar), demand_strength_score(decimal), sales_strength_score(decimal), profit_strength_score(decimal), evergreen_score(decimal), volatility_score(decimal), seasonality_confidence_score(decimal), peak_months_json(nvarchar), ramp_months_json(nvarchar), decay_months_json(nvarchar), season_length_months(int), demand_vs_sales_gap(decimal), sales_vs_profit_gap(decimal), updated_at(datetime2)
+
+seasonality_settings [4 cols]: id(int), setting_key(nvarchar), setting_value(nvarchar), updated_at(datetime2)
+
+strategy_experiment [17 cols]: id(int), opportunity_id(int), experiment_type(varchar), marketplace_id(varchar), sku(varchar), asin(varchar), hypothesis(nvarchar), owner(varchar), status(varchar), start_date(date), end_date(date), success_metric(varchar), baseline_value(decimal), result_value(decimal), result_summary(nvarchar), created_at(datetime2), updated_at(datetime2)
+
+transport_evidence_record [15 cols]: id(int), source_ref(nvarchar), order_id(nvarchar), marketplace(nvarchar), carrier(nvarchar), tracking_id(nvarchar), dispatch_date(date), delivery_date(date), proof_transport(bit), proof_delivery(bit), proof_order(bit), proof_payment(bit), evidence_status(nvarchar), evidence_json(nvarchar), created_at(datetime2)
+
+vat_event_ledger [28 cols]: id(int), event_type(nvarchar), source_system(nvarchar), source_ref(nvarchar), order_id(nvarchar), transaction_id(nvarchar), marketplace(nvarchar), sku(nvarchar), asin(nvarchar), quantity(decimal), ship_from_country(nvarchar), ship_to_country(nvarchar), warehouse_country(nvarchar), consumption_country(nvarchar), vat_classification(nvarchar), tax_jurisdiction(nvarchar), tax_rate(decimal), tax_base_amount(decimal), tax_amount(decimal), gross_amount(decimal), currency(nvarchar), amount_eur(decimal), ecb_rate(decimal), event_date(date), evidence_status(nvarchar), confidence_score(decimal), notes(nvarchar), created_at(datetime2)
+
+vat_rate_mapping [9 cols]: id(int), country(nvarchar), product_type(nvarchar), category(nvarchar), rate(decimal), valid_from(date), valid_to(date), source(nvarchar), is_default(bit)
+
+vat_transaction_classification [10 cols]: id(int), source_ref(nvarchar), source_type(nvarchar), classification(nvarchar), reason_json(nvarchar), confidence_score(decimal), reviewed_by(nvarchar), reviewed_at(datetime2), status(nvarchar), created_at(datetime2)
+
+=== DONE ===

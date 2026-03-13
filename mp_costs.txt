@@ -1,0 +1,36 @@
+﻿python : Traceback (most recent call last):
+At line:1 char:1
++ python scripts/_mp_costs.py 2>&1 | Out-File C:\ACC\mp_costs.txt -Enco ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src\\pymssql\\_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execu
+te
+  File "src\\pymssql\\_mssql.pyx", line 1125, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1156, in pymssql._mssql.MSSQLConnection
+.execute_query
+  File "src\\pymssql\\_mssql.pyx", line 1289, in pymssql._mssql.MSSQLConnection
+.format_and_run_query
+  File "src\\pymssql\\_mssql.pyx", line 1855, in pymssql._mssql.check_cancel_an
+d_raise
+  File "src\\pymssql\\_mssql.pyx", line 1901, in pymssql._mssql.raise_MSSQLData
+baseException
+pymssql._mssql.MSSQLDatabaseException: (20047, b'DB-Lib error message 20003, se
+verity 6:\nAdaptive Server connection timed out\nDB-Lib error message 20047, se
+verity 9:\nDBPROCESS is dead or not enabled\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ACC\apps\api\scripts\_mp_costs.py", line 22, in <module>
+    c.execute("SELECT ISNULL(marketplace_id,'NONE'), COUNT(*), SUM(CAST(amount 
+AS FLOAT)) FROM acc_finance_transaction GROUP BY marketplace_id ORDER BY ABS(SU
+M(CAST(amount AS FLOAT))) DESC")
+  File "src\\pymssql\\_pymssql.pyx", line 465, in pymssql._pymssql.Cursor.execu
+te
+pymssql.exceptions.OperationalError: (20047, b'DB-Lib error message 20003, seve
+rity 6:\nAdaptive Server connection timed out\nDB-Lib error message 20047, seve
+rity 9:\nDBPROCESS is dead or not enabled\n')

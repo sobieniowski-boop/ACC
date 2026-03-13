@@ -1,0 +1,38 @@
+﻿2026-03-09 13:36:22 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.venv\Scripts\python.exe : Traceback (most recent call last):
+At line:1 char:12
++ cd c:\ACC; .venv\Scripts\python.exe -c "
++            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "src/pymssql/_pymssql.pyx", line 447, in pymssql._pymssql.Cursor.execute
+  File "src/pymssql/_mssql.pyx", line 1145, in pymssql._mssql.MSSQLConnection.e
+xecute_query
+  File "src/pymssql/_mssql.pyx", line 1176, in pymssql._mssql.MSSQLConnection.e
+xecute_query
+  File "src/pymssql/_mssql.pyx", line 1309, in pymssql._mssql.MSSQLConnection.f
+ormat_and_run_query
+  File "src/pymssql/_mssql.pyx", line 1886, in pymssql._mssql.check_cancel_and_
+raise
+  File "src/pymssql/_mssql.pyx", line 1932, in pymssql._mssql.raise_MSSQLDataba
+seException
+pymssql._mssql.MSSQLDatabaseException: (102, b"Incorrect syntax near 'Shipped'.
+DB-Lib error message 20018, severity 15:\nGeneral SQL Server error: Check messa
+ges from the SQL Server\nDB-Lib error message 20018, severity 15:\nGeneral SQL 
+Server error: Check messages from the SQL Server\nDB-Lib error message 20018, s
+everity 15:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+  File "C:\ACC\apps/api\app\core\pymssql_compat.py", line 91, in execute
+    self._cursor.execute(converted.replace("%%", "%"))
+  File "src/pymssql/_pymssql.pyx", line 462, in pymssql._pymssql.Cursor.execute
+pymssql.exceptions.ProgrammingError: (102, b"Incorrect syntax near 'Shipped'.DB
+-Lib error message 20018, severity 15:\nGeneral SQL Server error: Check message
+s from the SQL Server\nDB-Lib error message 20018, severity 15:\nGeneral SQL Se
+rver error: Check messages from the SQL Server\nDB-Lib error message 20018, sev
+erity 15:\nGeneral SQL Server error: Check messages from the SQL Server\n")

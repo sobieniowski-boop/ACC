@@ -1,0 +1,45 @@
+FBAStorageFee total: 772 rows, sum=-54698.6700
+Distinct synced_at batches: 49
+
+Per group_id:
+  HNjOwcLUm2w5sT5BNcH-VARooxf2iPst5X0C2j1Qupo: 73 rows, sum=-6826.3300
+  ZanLjE49kEhBkGrxT8MPqVJiNsgSeajfgU5Kx6gJKG8: 71 rows, sum=-5630.8000
+  PX0L-iE6VVlCIPdu6Rl-WmApsvyPVyoNzDYZkisMaL8: 69 rows, sum=-10033.3600
+  tuUXHy4mGp-Grd_ydG87QPupclkmZYUxEUh60yZUO-8: 66 rows, sum=-6216.0000
+  lvC3HPytI9fZK_stHvlcbseF3U-xO0oxYxoMB1bgoKQ: 65 rows, sum=-1731.0100
+  PSYgRYjBJJWylsO4zYOlDkiQcHSlvhCtnxVSFpx8OgY: 64 rows, sum=-1798.8900
+  r1QDTxJ-3O8hD7gwLbCR8Pk2fzjSqHQvYeGHqDRJmyY: 64 rows, sum=-11476.2900
+  rRv00mhwn6QDkXHeiukFFvGANfVR3wTsmo0ywYPUnJk: 22 rows, sum=-547.8800
+  QUygkkbuwyzjKK8KoN_-ZFmc-JpKaRVinR2ZLmIGUK8: 17 rows, sum=-358.5600
+  Xtdi7YwKvTcCyRlFf7iDAuuYPbmR6uYwEqDNG3xwlO8: 17 rows, sum=-638.4700
+  Z4O8y0hu-XiA8PjKeh2fq90CvUMUhoZi8ZL04FS14_g: 16 rows, sum=-840.4300
+  Z0JTd-oJKd4LrwKayy6JqB_jZmOiKUY_yYFB_5WfZlk: 15 rows, sum=-561.9200
+  WVUoAafjS1r3bVdnrHiy6WZKStG6nnCE_MjNGHOMZYQ: 15 rows, sum=-998.0300
+  h5fUYpRSaRTBoCe8CGOgQRT7HqYbdNORyY7aV4PjwsM: 15 rows, sum=-929.2900
+  cmBHX-11euzWF7J3cHysy4pRIG1wkVEJYnqRGr0qHVw: 15 rows, sum=-251.7800
+  f92yoaridmJxJhl8HZLV4_LS3mjz_zjZrKSZU74HFR0: 15 rows, sum=-429.6900
+  fsdjF15FyLMLYdXXUmwNF0LIMH2y3Xw7IP7I5ktiE4o: 14 rows, sum=-1369.6200
+  6qe_BTPBGgQfvje4bGUmK9n8FMAk3qjNpAJYk7bqujg: 14 rows, sum=-226.0000
+  GO3OIHUhgFmQFNIh2YzXTj8TFeprE_kKaHg1j82G35M: 13 rows, sum=-254.1000
+  rOjWbN9WEk3puhXsE8gLNrY-LllLo0m-xbZYTGCYn84: 13 rows, sum=-386.8800
+  FbEC12M6rE5u6fYqU3lmYwO0EF3rOD4J-OfNjo_Wk1U: 12 rows, sum=-386.8900
+  dHB2i1uFGbz7I3598PSdgtRiwgp2WH58Cbkq3trRiPQ: 11 rows, sum=-286.9800
+  EtuTQIUYiRgGm_f_TptB4gLoIT07bENK1cuIsC-Kzlc: 11 rows, sum=-617.9500
+  XPpeXJn7zEI4SE-KU2aCgULt7SjYzUymCg2D9ah2neo: 11 rows, sum=-153.4300
+  Sni0aNFg7tUw5IygvipdOq09MwgCG5k1X0hHEBpsOtE: 11 rows, sum=-726.9900
+  OjoleBQV8RPvIqKY94Z-N2U5RaBh4vmvEKg3me6ocvg: 10 rows, sum=-322.7100
+  HUIKErxxmKIfDpv8jCmDeJMULkfs-W3bWHQ_FscZYAo: 10 rows, sum=-504.8800
+  Ybd8qH2Q_J2Zq_h4jcLCDkiLeMc6d-ErobcjbDhLE2M: 9 rows, sum=-173.4600
+  Req_z2_1YASDcBUHeLjxLiwaZeROFU-xjTEF8atmyAc: 3 rows, sum=-0.8600
+  ONFHHlr7Yqgrt07sDP4jxJR8OWvTaIznb48MHfbYxbo: 3 rows, sum=-0.9300
+  9f4sshlYI_1-YXldDsFnXvFDe8S_J0xL3kbcp_NOTq4: 2 rows, sum=-0.2200
+  XZRBGG8PLZTztPYv2YXAlpPw-IURh1-R-Cc_tgd0DHc: 2 rows, sum=-0.3200
+  u0suyQ5kX7BPvtakT0sxR2fRMhR9XRCn_jAlAlGu9E8: 1 rows, sum=-0.1500
+  VRqL6csbDeloLGxBio38wMW3hqn9q4OHdxt2ZeSYsVs: 1 rows, sum=-14.2800
+  GTOw3DaK0ZiZobJnRyzV_WHYQ6p4VXhmBwgkqrsN-Z0: 1 rows, sum=-0.1500
+  MXuCIPYdVifw1BUMTjmXD96mD1P6d5jGJ5cXzv7waK0: 1 rows, sum=-3.1400
+
+Groups with soft-dupes (same sku+amount+date, different synced_at/posted_date precision):
+  Req_z2_1YASDcBUHeLjxLiwaZeROFU-xjTEF8atmyAc: total=3, unique=2, dupes=1
+
+Unique FBAStorageFee combos (group+sku+amount+date): 771, clean sum=-54698.3600

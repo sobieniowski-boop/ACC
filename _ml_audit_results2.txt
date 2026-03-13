@@ -1,0 +1,20 @@
+Orders with duplicate logistics facts: 97
+Of which shipped: 90
+Logistics fact analysis error: (207, b"Invalid column name 'courier'.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+Row multiplication check (orders with dup logistics facts):
+  028-0400778-4486722: JOIN produces 2 rows, actual lines=1, fact rows=2, multiplier=2.0x
+  028-0714541-0484353: JOIN produces 2 rows, actual lines=1, fact rows=2, multiplier=2.0x
+  028-1062459-1280315: JOIN produces 2 rows, actual lines=1, fact rows=2, multiplier=2.0x
+  028-2848321-4040313: JOIN produces 2 rows, actual lines=1, fact rows=2, multiplier=2.0x
+Multi-SKU orders: 5322 orders, rev=1178522.34 PLN, cm=426955.08 PLN
+Order-level vs engine-level revenue comparison (top divergences, 3+ lines):
+  171-8275919-8293123: order_rev=874.69, engine_rev=2242.83, delta=1368.14 PLN, lines=6
+  403-7513550-2456360: order_rev=728.03, engine_rev=1820.10, delta=1092.07 PLN, lines=4
+  171-2059292-5873931: order_rev=514.79, engine_rev=1132.57, delta=617.78 PLN, lines=4
+  305-4821944-1517101: order_rev=453.58, engine_rev=984.20, delta=530.62 PLN, lines=3
+  403-6948343-3482729: order_rev=441.08, engine_rev=970.36, delta=529.28 PLN, lines=4
+Refund amounts: positive=0, negative=25553, zero=120, total=54102
+Refund orders — refund_amount vs line revenue (multi-line):
+  303-8441741-9501922: refund_pln=-8904.7933, type=partial, line_rev_raw=2778.60, lines=2
+  408-4648409-3502757: refund_pln=-896.4385, type=full, line_rev_raw=212.22, lines=2
+  303-2689289-5487558: refund_pln=-621.1981, type=partial, line_rev_raw=408.96, lines=2

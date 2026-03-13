@@ -1,0 +1,103 @@
+﻿
+======================================================================
+FILE: Import Bright LP43A 02.02.26ds (1).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~8, cols ~6)
+    Row 1: [A] 'Lp' | [B] 'SKU' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto' | [F] 'Ostatnia cena'
+    Row 2: [A] 1 | [B] 33969 | [C] 'KADAX ┼╗eliwny dzwonek dekoracyjny br─ůzowy 210051 K10066' | [D] 320 | [E] 9.299999999999999 | [F] 9.85
+    Row 3: [A] 2 | [B] 40033 | [C] 'KADAX Kl─Öcznik ogrodowy zielony K12335' | [D] 840 | [E] 24.2 | [F] 26.2
+    Row 4: [A] 3 | [B] 33960 | [C] 'KADAX Deszczomierz z krasnalem 120603 K10059' | [D] 204 | [E] 13.212 | [F] 13.79
+    Row 5: [A] 4 | [B] 33959 | [C] 'KADAX Deszczomierz z ptakiem 120599 K10058' | [D] 160 | [E] 12.312 | [F] 12.8
+    Row 6: [A] 5 | [B] 33974 | [C] 'KADAX Sk┼éadany w├│zek aluminiowy 131222 K10071' | [D] 864 | [E] 53.016 | [F] 54.8
+    Row 7: [A] 6 | [B] 33962 | [C] 'KADAX ┼üawka ogrodowa 122x53x73 cm 230002 K10060' | [D] 650 | [E] 100.50359999999999 | [F] 106.45
+    Row 8: [A] 7 | [B] 31589 | [C] 'KADAX Zbierak do owoc├│w bez trzonka HLGT1015 260927  K8412' | [D] 816 | [E] 6.98 | [F] 9.84
+
+======================================================================
+FILE: Import kokos, ta┼Ťmy, tunele LP49 18.02.26ds (1).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~19, cols ~6)
+    Row 1: [A] 'Lp' | [B] 'Nr art.' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto ' | [F] 'Ostatnia cena'
+    Row 2: [A] 1 | [B] 37666 | [C] 'KADAX Tyczka do ro┼Ťlin drewno-kokos 45cm P24170 K11332' | [D] 2000 | [E] 2.72 | [F] 3.42
+    Row 3: [A] 2 | [B] 37667 | [C] 'KADAX Tyczka do ro┼Ťlin drewno-kokos 60cm P24171 K11333' | [D] 3000 | [E] 3.1 | [F] 3.89
+    Row 4: [A] 3 | [B] 37668 | [C] 'KADAX Tyczka do ro┼Ťlin drewno-kokos 90cm P24172 K11334' | [D] 4000 | [E] 4.2112 | [F] 4.67
+    Row 5: [A] 4 | [B] 37670 | [C] 'KADAX Tyczka do ro┼Ťlin drewno-kokos 120cm P24173 K11335' | [D] 5000 | [E] 5.4016 | [F] 5.92
+    Row 6: [A] 5 | [B] 46840 | [C] 'KADAX Tyczka do ro┼Ťlin drewno-kokos 150cm P25409 K16000' | [D] 2400 | [E] 6.45 | [F] 'Nowo┼Ť─ç'
+    Row 7: [A] 6 | [B] 46844 | [C] 'KADAX Ta┼Ťma do stabilizacji drzew P25407 25mm x 25m K16004' | [D] 528 | [E] 4.059 | [F] 'Nowo┼Ť─ç'
+    Row 8: [A] 7 | [B] 46845 | [C] 'KADAX Ta┼Ťma do stabilizacji drzew P25407A 30mm x 25m K16005 | [D] 520 | [E] 5.0375000000000005 | [F] 'Nowo┼Ť─ç'
+
+======================================================================
+FILE: Import opaski, klipsy, mix LP46H 12.02.26ds (2).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~20, cols ~6)
+    Row 1: [A] 'Lp' | [B] 'SKU' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto ' | [F] 'Ostatnia'
+    Row 2: [A] 1 | [B] 31584 | [C] 'KADAX Termometr okienny HLTR3012 P24097 K8407' | [D] 1224 | [E] 3.05 | [F] 2.99
+    Row 3: [A] 2 | [B] 37641 | [C] 'KADAX Opaska skr─Öcana TPR 5m P21854 K11310' | [D] 1008 | [E] 1.16 | [F] 1.16
+    Row 4: [A] 3 | [B] 37642 | [C] 'KADAX Opaska skr─Öcana TPR 8m P21854A K11311 ' | [D] 1440 | [E] 1.89 | [F] 1.89
+    Row 5: [A] 4 | [B] 37638 | [C] 'KADAX Opaska skr─Öcana PVC 30m P21622 K11308' | [D] 4320 | [E] 1.06 | [F] 1.06
+    Row 6: [A] 5 | [B] 37639 | [C] 'KADAX Opaska skr─Öcana PVC 50m P21622A K11309' | [D] 1440 | [E] 1.23 | [F] 1.23
+    Row 7: [A] 6 | [B] 37648 | [C] 'KADAX siatka ochronna do rynny 16cmx6m P24151 K11316' | [D] 1440 | [E] 4.61 | [F] 4.61
+    Row 8: [A] 7 | [B] 37645 | [C] 'KADAX Etykiety do ro┼Ťlin op.10szt P24146 K11313' | [D] 1440 | [E] 1.08 | [F] 1.08
+
+======================================================================
+FILE: Import podpory org. LP60 12.02.26ds (1).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~16, cols ~5)
+    Row 1: [A] 'Lp' | [B] 'SU' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto'
+    Row 2: [A] 1 | [B] 47091 | [C] 'KADAX Szpilki stalowe ocynkowane 2,8mm x 2,5cm x 15 cm 50sz | [D] 7000 | [E] 3.0463999999999998
+    Row 3: [A] 2 | [B] 47092 | [C] 'KADAX Szpilki stalowe 2,8mm x 2,5cm x 15 cm 50szt czarne K1 | [D] 3000 | [E] 2.9056
+    Row 4: [A] 3 | [B] 47093 | [C] 'KADAX Podpora ogrodowa stalowa p├│┼éokr─ůg┼éa 40cm RAL6005 K162 | [D] 2000 | [E] 1.4591999999999998
+    Row 5: [A] 4 | [B] 47094 | [C] 'KADAX Podpora ogrodowa stalowa p├│┼éokr─ůg┼éa 50cm RAL6005 K162 | [D] 3080 | [E] 1.5616
+    Row 6: [A] 5 | [B] 47096 | [C] 'KADAX Podpora ogrodowa stalowa p├│┼éokr─ůg┼éa 75cm RAL6005 K162 | [D] 3080 | [E] 2.0224
+    Row 7: [A] 6 | [B] 47097 | [C] 'KADAX Podpora ogrodowa stalowa p├│┼éokr─ůg┼éa 100cm RAL6005 K16 | [D] 3300 | [E] 2.8032
+    Row 8: [A] 7 | [B] 47098 | [C] 'KADAX Podpora ogrodowa stalowa p├│┼éokr─ůg┼éa 115cm RAL6005 K16 | [D] 3300 | [E] 3.1104000000000003
+
+======================================================================
+FILE: Import siewnik 12l. LP46A 03.02.26ds (1).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~2, cols ~6)
+    Row 1: [A] 'Lp' | [B] 'Symbol' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto' | [F] 'Ostatnia cena '
+    Row 2: [A] 1 | [B] 37625 | [C] 'KADAX Siewnik na k├│┼ékach 12L P20111 K11297' | [D] 2158 | [E] 35.54 | [F] 37.1
+
+======================================================================
+FILE: Import stojaki rower, walec LP46C 04.02.26ds (2).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~5, cols ~6)
+    Row 1: [A] 'Lp' | [B] 'Symbol' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto ' | [F] 'Ostatnia'
+    Row 2: [A] 1 | [B] 37606 | [C] 'KADAX Stojak rowerowy 3 pozycyjny 70x32x26cm P50007 K11282' | [D] 300 | [E] 31.9 | [F] 31.9
+    Row 3: [A] 2 | [B] 37607 | [C] 'KADAX Stojak rowerowy 4 pozycyjny 105x32x26cm P50008 K11283 | [D] 300 | [E] 46.05 | [F] 49.03
+    Row 4: [A] 3 | [B] 37604 | [C] 'KADAX Wieszak na opony P50036 K11281' | [D] 180 | [E] 40.6 | [F] 42.21
+    Row 5: [A] 4 | [B] 37612 | [C] 'KADAX Walec do trawnik├│w ogrodowych 31,5x50x110cm P20098 K1 | [D] 806 | [E] 80.88 | [F] 83.15
+
+======================================================================
+FILE: Import tyczki spiralne LP46K 11.02.26ds (2).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~10, cols ~6)
+    Row 1: [A] 'Lp' | [B] 'SKU' | [C] 'Nazwa' | [D] 'Ilo┼Ť─ç' | [E] 'Cena netto' | [F] 'Uwagi'
+    Row 2: [A] 1 | [B] 37654 | [C] 'KADAX Opryskiwacz ogrodowy 5L P20975 K11322' | [D] 1500 | [E] 19 | [F] 'bez zmian'
+    Row 3: [A] 2 | [B] 37655 | [C] 'KADAX Opryskiwacz ogrodowy 8L P20976 K11323' | [D] 504 | [E] 23.18 | [F] 'bez zmian'
+    Row 4: [A] 3 | [B] 46730 | [C] 'KADAX Przed┼éu┼╝ka do lancy opryskiwacza P25363 K15903' | [D] 1000 | [E] 1.068 | [F] 'Nowo┼Ť─ç'
+    Row 5: [A] 4 | [B] 46731 | [C] 'KADAX Tyczka spiralna do ro┼Ťlin stal + PE 120cm P25367 K159 | [D] 12000 | [E] 1.476 | [F] 'Nowo┼Ť─ç'
+    Row 6: [A] 5 | [B] 46732 | [C] 'KADAX Tyczka spiralna do ro┼Ťlin stal + PE 150cm P25368 K159 | [D] 18000 | [E] 1.668 | [F] 'Nowo┼Ť─ç'
+    Row 7: [A] 6 | [B] 46733 | [C] 'KADAX Tyczka spiralna do ro┼Ťlin stal + PE 180cm P25369 K159 | [D] 24000 | [E] 1.9559999999999997 | [F] 'Nowo┼Ť─ç'
+    Row 8: [A] 7 | [B] 37632 | [C] 'KADAX Figurka flaminga 2 cz─Ö┼Ťci P20102 K11304' | [D] 150 | [E] 17.82 | [F] 'bez zmian'
+
+======================================================================
+FILE: Stant GRN 130226 (2).xlsx
+======================================================================
+
+  Sheet: 'Arkusz1'  (rows ~93, cols ~4)
+    Row 1: [A] 'ASIN' | [B] 'SKU' | [C] 'Opis' | [D] 'Stan'
+    Row 2: [B] 46728 | [C] 'KADAX Aerator do trawnika z ┼╝elaznymi kolcami P25176 K15901 | [D] 700
+    Row 3: [A] 'B0F1YDFX6F' | [B] 37619 | [C] 'KADAX Aerator do trawnik├│w 90X30cm P20638 K11292' | [D] 600
+    Row 4: [A] 'B0F1TQW59R' | [B] 37631 | [C] 'KADAX Aerator ogrodowy P20653 K11303' | [D] 1190
+    Row 5: [A] 'B0DZHKHVT1' | [B] 37629 | [C] 'KADAX Dekoracja ogrodowa Je┼╝ P20349 K11301' | [D] 504
+    Row 6: [A] 'B0BN8K1N8S' | [B] 29097 | [C] 'KADAX Deska do prasowania 104x30cm, drewniany blat, 16030J  | [D] 200
+    Row 7: [A] 'B0BN8JSB6G' | [B] 29099 | [C] 'KADAX Deska do prasowania 104x30cm, drewniany blat, 16030J  | [D] 200
+    Row 8: [A] 'B0CLPC14T7' | [B] 33121 | [C] 'KADAX Deska do prasowania 110x30cm JOHNNY 18030L eclipse-10 | [D] 300

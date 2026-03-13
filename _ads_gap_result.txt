@@ -1,0 +1,34 @@
+﻿2026-03-10 23:00:57 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+=== ACC_SKU_PROFITABILITY_ROLLUP columns ===
+  ['id', 'period_date', 'marketplace_id', 'sku', 'asin', 'units_sold', 'orders_count', 'revenue_pln', 'cogs_pln', 'amazon_fees_pln', 'fba_fees_pln', 'logistics_pln', 'ad_spend_pln', 'refund_pln', 'storage_fee_pln', 'other_fees_pln', 'profit_pln', 'margin_pct', 'acos_pct', 'refund_units', 'return_rate_pct', 'computed_at', 'cm1_pln', 'cm2_pln']
+
+=== ROLLUP ADS BY MONTH ===
+  2026-01: ads=     184,020 | rev=   4,792,995 | asins=5491 | ads/rev=3.8%
+  2026-02: ads=     286,000 | rev=   5,392,094 | asins=5957 | ads/rev=5.3%
+  2026-03: ads=     121,246 | rev=   2,671,737 | asins=4375 | ads/rev=4.5%
+
+=== ROLLUP sample row ===
+  {'id': 92462, 'period_date': datetime.date(2026, 3, 7), 'marketplace_id': 'APJ6JRA9NG5V4', 'sku': 'MAG_5906638327418', 'asin': 'B0F9Y85KYL', 'units_sold': 1, 'orders_count': 1, 'revenue_pln': Decimal('122.70'), 'cogs_pln': Decimal('35.88'), 'amazon_fees_pln': Decimal('23.96'), 'fba_fees_pln': Decimal('0.00'), 'logistics_pln': Decimal('0.00'), 'ad_spend_pln': Decimal('9.58'), 'refund_pln': Decimal('0.00'), 'storage_fee_pln': Decimal('1.73'), 'other_fees_pln': Decimal('0.00'), 'profit_pln': Decimal('51.55'), 'margin_pct': Decimal('42.0130'), 'acos_pct': Decimal('7.8100'), 'refund_units': 0, 'return_rate_pct': Decimal('0.0000'), 'computed_at': datetime.datetime(2026, 3, 10, 13, 45, 14, 441133), 'cm1_pln': Decimal('62.86'), 'cm2_pln': Decimal('51.55')}
+  {'id': 92459, 'period_date': datetime.date(2026, 3, 7), 'marketplace_id': 'APJ6JRA9NG5V4', 'sku': 'MAG_5906638319406', 'asin': 'B0DZCN95ZM', 'units_sold': 1, 'orders_count': 1, 'revenue_pln': Decimal('210.23'), 'cogs_pln': Decimal('85.99'), 'amazon_fees_pln': Decimal('47.32'), 'fba_fees_pln': Decimal('0.00'), 'logistics_pln': Decimal('0.00'), 'ad_spend_pln': Decimal('8.47'), 'refund_pln': Decimal('0.00'), 'storage_fee_pln': Decimal('2.96'), 'other_fees_pln': Decimal('0.00'), 'profit_pln': Decimal('65.49'), 'margin_pct': Decimal('31.1516'), 'acos_pct': Decimal('4.0300'), 'refund_units': 0, 'return_rate_pct': Decimal('0.0000'), 'computed_at': datetime.datetime(2026, 3, 10, 13, 45, 14, 441133), 'cm1_pln': Decimal('76.92'), 'cm2_pln': Decimal('65.49')}
+  {'id': 92455, 'period_date': datetime.date(2026, 3, 7), 'marketplace_id': 'APJ6JRA9NG5V4', 'sku': 'MAG_5906638310793', 'asin': 'B0DSG6HJ57', 'units_sold': 1, 'orders_count': 1, 'revenue_pln': Decimal('508.46'), 'cogs_pln': Decimal('293.38'), 'amazon_fees_pln': Decimal('114.44'), 'fba_fees_pln': Decimal('0.00'), 'logistics_pln': Decimal('0.00'), 'ad_spend_pln': Decimal('1.50'), 'refund_pln': Decimal('0.00'), 'storage_fee_pln': Decimal('7.16'), 'other_fees_pln': Decimal('0.00'), 'profit_pln': Decimal('91.98'), 'margin_pct': Decimal('18.0899'), 'acos_pct': Decimal('0.2900'), 'refund_units': 0, 'return_rate_pct': Decimal('0.0000'), 'computed_at': datetime.datetime(2026, 3, 10, 13, 45, 14, 441133), 'cm1_pln': Decimal('100.64'), 'cm2_pln': Decimal('91.98')}
+
+=== JAN 2026 ADS: 3 SOURCES ===
+  campaign_day:       324,868
+  product_day:        336,733
+  rollup:             184,020
+  EDM:                184,020
+  Gap (cd-edm):       140,848
+
+=== ASINS WITH ADS BUT LOW ROLLUP ASSIGNMENT (Jan) ===
+  B0BN8JSB6G (A1PA6795UKMFR9): product_day=   2,823 | rollup=   1,615 | gap=   1,207
+  B0BN8K1N8S (A1PA6795UKMFR9): product_day=   4,153 | rollup=   3,070 | gap=   1,083
+  B0BZQ4KC5K (A1PA6795UKMFR9): product_day=  21,977 | rollup=  21,066 | gap=     912
+  B0DPQX696C (A1PA6795UKMFR9): product_day=   1,119 | rollup=     273 | gap=     846
+  B07XCQRJWQ (A1PA6795UKMFR9): product_day=   1,077 | rollup=     237 | gap=     840
+  B0BSQYXP41 (A1PA6795UKMFR9): product_day=   1,048 | rollup=     227 | gap=     821
+  B0BN6CMF7Y (A1PA6795UKMFR9): product_day=   1,256 | rollup=     452 | gap=     804
+  B0BN6CCGWX (A1PA6795UKMFR9): product_day=   1,115 | rollup=     354 | gap=     761
+  B0BZQ3G44R (A1PA6795UKMFR9): product_day=   5,288 | rollup=   4,585 | gap=     703
+  B0CL4MXD87 (A1PA6795UKMFR9): product_day=   1,266 | rollup=     577 | gap=     689
+
+DONE

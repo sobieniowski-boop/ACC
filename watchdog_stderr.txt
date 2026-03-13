@@ -1,0 +1,2 @@
+C:\ACC\watchdog_reimport.py:5: SyntaxWarning: invalid escape sequence '\.'
+  - Run: C:\.venv\Scripts\python.exe C:\ACC\watchdog_reimport.py

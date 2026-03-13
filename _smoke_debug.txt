@@ -1,0 +1,9 @@
+step 1: import
+step 2: token
+step 3: token ok len=172
+step 4: health check
+step 5: health=200
+step 6: profitability overview
+step 7: kpi keys=['total_revenue_pln', 'total_profit_pln', 'total_margin_pct', 'total_orders', 'total_units', 'total_ad_spend_pln', 'ad_spend_share_pct', 'total_refund_pln', 'return_rate_pct']
+step 8: ad_spend_share_pct=5.3
+DONE - all ok

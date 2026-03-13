@@ -1,0 +1,297 @@
+/*
+ * ACC Layout Framework
+ * ====================
+ * Structural layout primitives for the ACC app shell,
+ * page templates, and dashboard grids.
+ *
+ * Import after design-system.css:
+ *   import "./css/design-system.css";
+ *   import "./css/layout.css";
+ */
+
+@tailwind components;
+
+/* ────────────────────────────────────────────
+   1. APP SHELL
+   ──────────────────────────────────────────── */
+
+@layer components {
+  /* Top-level grid: sidebar | main column */
+  .app-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-rows: var(--topbar-height) 1fr;
+    grid-template-areas:
+      "sidebar topbar"
+      "sidebar content";
+    min-height: 100dvh;
+    transition: grid-template-columns var(--transition-base) var(--ease-default);
+  }
+
+  .app-shell--collapsed {
+    grid-template-columns: var(--sidebar-collapsed-width) 1fr;
+  }
+
+  /* ── Sidebar ───────────────────────────────────── */
+  .app-sidebar {
+    grid-area: sidebar;
+    width: var(--sidebar-width);
+    height: 100dvh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: hsl(var(--card));
+    border-right: 1px solid hsl(var(--border));
+    z-index: 30;
+    transition: width var(--transition-base) var(--ease-default);
+  }
+
+  .app-sidebar--collapsed {
+    width: var(--sidebar-collapsed-width);
+  }
+
+  /* ── Top bar ───────────────────────────────────── */
+  .app-topbar {
+    grid-area: topbar;
+    height: var(--topbar-height);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: 0 var(--space-6);
+    background: hsl(var(--background));
+    border-bottom: 1px solid hsl(var(--border));
+    z-index: 20;
+  }
+
+  /* ── Main content area ─────────────────────────── */
+  .app-content {
+    grid-area: content;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--content-padding);
+    min-width: 0; /* prevent grid blowout */
+  }
+}
+
+/* ────────────────────────────────────────────
+   2. PAGE LAYOUTS
+   ──────────────────────────────────────────── */
+
+@layer components {
+  .page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .page-header__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+  }
+
+  .page-header__subtitle {
+    font-size: var(--text-sm);
+    color: hsl(var(--muted-foreground));
+    margin-top: var(--space-1);
+  }
+
+  .page-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: auto;
+  }
+
+  .page-content {
+    width: 100%;
+    max-width: var(--container-max);
+  }
+
+  /* Breadcrumb bar above page header */
+  .page-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: hsl(var(--muted-foreground));
+    margin-bottom: var(--space-3);
+  }
+
+  .page-breadcrumbs a {
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    transition: color var(--transition-fast) var(--ease-default);
+  }
+
+  .page-breadcrumbs a:hover {
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ────────────────────────────────────────────
+   3. DASHBOARD GRIDS
+   ──────────────────────────────────────────── */
+
+@layer components {
+  /* Auto-responsive dashboard grid */
+  .dashboard-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .dashboard-grid--2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dashboard-grid--4col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* KPI card base */
+  .kpi-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-md);
+    min-height: 110px;
+    transition:
+      border-color var(--transition-fast) var(--ease-default),
+      box-shadow var(--transition-fast) var(--ease-default);
+  }
+
+  .kpi-card:hover {
+    border-color: hsl(var(--border-strong));
+  }
+
+  /* Full-width section card (charts, tables) */
+  .section-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+
+  /* Responsive fallbacks */
+  @media (max-width: 1023px) {
+    .dashboard-grid--4col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .dashboard-grid--3col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .dashboard-grid--2col,
+    .dashboard-grid--3col,
+    .dashboard-grid--4col {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* ────────────────────────────────────────────
+   4. TABLE CONTAINER
+   ──────────────────────────────────────────── */
+
+@layer components {
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius-md);
+    background: hsl(var(--card));
+  }
+
+  .table-container--sticky-header thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: hsl(var(--card));
+    box-shadow: inset 0 -1px 0 hsl(var(--border));
+  }
+}
+
+/* ────────────────────────────────────────────
+   5. MOBILE SIDEBAR OVERLAY
+   ──────────────────────────────────────────── */
+
+@layer components {
+  @media (max-width: 1023px) {
+    .app-shell {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "topbar"
+        "content";
+    }
+
+    .app-sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translateX(-100%);
+      z-index: 40;
+      transition: transform var(--transition-base) var(--ease-default);
+    }
+
+    .app-sidebar--open {
+      transform: translateX(0);
+    }
+
+    /* Backdrop when sidebar is open */
+    .app-sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgb(0 0 0 / 0.5);
+      z-index: 35;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-base) var(--ease-default);
+    }
+
+    .app-sidebar-backdrop--visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+/* ────────────────────────────────────────────
+   6. SPLIT PANES & DETAIL VIEWS
+   ──────────────────────────────────────────── */
+
+@layer components {
+  /* Master-detail split for drill-down pages */
+  .split-pane {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .split-pane--sidebar {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  @media (max-width: 1023px) {
+    .split-pane,
+    .split-pane--sidebar {
+      grid-template-columns: 1fr;
+    }
+  }
+}

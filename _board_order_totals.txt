@@ -1,0 +1,4 @@
+﻿2026-03-10 22:43:16 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-01: rev= 4,807,765 | cogs= 1,436,122 | fees= 1,343,561 | logi=   526,585 | ads=       0 | cm1= 1,501,496 (31.2%) | refund=-267,161 | stored_cm= 1,063,550
+2026-02: rev= 5,378,118 | cogs= 1,610,372 | fees= 1,513,101 | logi=   182,203 | ads=       0 | cm1= 2,072,442 (38.5%) | refund=-208,867 | stored_cm= 1,881,538
+2026-03: rev= 2,786,515 | cogs=   842,214 | fees=   654,636 | logi=         0 | ads=       0 | cm1= 1,289,665 (46.3%) | refund= -21,204 | stored_cm= 1,292,491

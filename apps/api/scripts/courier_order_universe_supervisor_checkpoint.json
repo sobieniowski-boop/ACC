@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "scope": {
+        "month": "2025-11",
+        "carrier": "DHL"
+      },
+      "job": {
+        "id": "D82A1D13-15AC-46D9-BE49-5769DA9335FD",
+        "status": "completed",
+        "progress_pct": 100,
+        "progress_message": "Courier order-universe linking done months=1, carriers=1, orders_with_fact=1608",
+        "error_message": ""
+      },
+      "coverage": {
+        "orders_universe": 9788,
+        "orders_linked_primary": 1641,
+        "orders_with_fact": 1608,
+        "link_coverage_pct": 16.77,
+        "fact_coverage_pct": 16.43
+      }
+    },
+    {
+      "scope": {
+        "month": "2025-11",
+        "carrier": "GLS"
+      },
+      "job": {
+        "id": "E47C6A82-320E-49CC-9792-00241BDBEF51",
+        "status": "completed",
+        "progress_pct": 100,
+        "progress_message": "Courier order-universe linking done months=1, carriers=1, orders_with_fact=3583",
+        "error_message": ""
+      },
+      "coverage": {
+        "orders_universe": 16999,
+        "orders_linked_primary": 3623,
+        "orders_with_fact": 3583,
+        "link_coverage_pct": 21.31,
+        "fact_coverage_pct": 21.08
+      }
+    },
+    {
+      "scope": {
+        "month": "2025-12",
+        "carrier": "DHL"
+      },
+      "job": {
+        "id": "8A34B2E5-E8B9-4691-A790-669C42211FA3",
+        "status": "completed",
+        "progress_pct": 100,
+        "progress_message": "Courier order-universe linking done months=1, carriers=1, orders_with_fact=4936",
+        "error_message": ""
+      },
+      "coverage": {
+        "orders_universe": 5909,
+        "orders_linked_primary": 4938,
+        "orders_with_fact": 4936,
+        "link_coverage_pct": 83.57,
+        "fact_coverage_pct": 83.53
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+# ACC Local Development Stack
+# Usage:  docker compose up -d
+# Dashboard: http://localhost:3010  |  API: http://localhost:8000/docs
+
+services:
+  # ── Redis ──────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 3
+
+  # ── API Backend ────────────────────────────────────────────────────
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    command: >
+      uvicorn app.main:app
+      --host 0.0.0.0 --port 8000
+      --reload --reload-dir /app/app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api/app:/app/app:cached
+    env_file:
+      - ../.env
+    environment:
+      - APP_ENV=development
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # ── Celery Worker ──────────────────────────────────────────────────
+  worker:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    command: >
+      celery -A app.worker:celery_app worker
+      --loglevel=info --concurrency=2
+    volumes:
+      - ./api/app:/app/app:cached
+    env_file:
+      - ../.env
+    environment:
+      - APP_ENV=development
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # ── Web Frontend ───────────────────────────────────────────────────
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3010:3010"
+    depends_on:
+      - api
+
+volumes:
+  redis_data:

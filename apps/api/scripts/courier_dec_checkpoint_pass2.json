@@ -1,0 +1,44 @@
+{
+  "runs": [
+    {
+      "scope": {
+        "month": "2025-12",
+        "carrier": "DHL"
+      },
+      "job": {
+        "id": "897BF11A-EDE1-4AC3-A1F4-BB37FDDF9998",
+        "status": "completed",
+        "progress_pct": 100,
+        "progress_message": "Courier order-universe linking done months=1, carriers=1, orders_with_fact=4932",
+        "error_message": ""
+      },
+      "coverage": {
+        "orders_universe": 5909,
+        "orders_linked_primary": 4938,
+        "orders_with_fact": 4932,
+        "link_coverage_pct": 83.57,
+        "fact_coverage_pct": 83.47
+      }
+    },
+    {
+      "scope": {
+        "month": "2025-12",
+        "carrier": "GLS"
+      },
+      "job": {
+        "id": "FAB6E0E4-B1FA-49B0-BE05-1890D4483908",
+        "status": "failure",
+        "progress_pct": 100,
+        "progress_message": "Failed",
+        "error_message": "Supervisor stale-timeout after 900s without progress change"
+      },
+      "coverage": {
+        "orders_universe": 11080,
+        "orders_linked_primary": 9910,
+        "orders_with_fact": 9881,
+        "link_coverage_pct": 89.44,
+        "fact_coverage_pct": 89.18
+      }
+    }
+  ]
+}

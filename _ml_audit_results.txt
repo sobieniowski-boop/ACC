@@ -1,0 +1,38 @@
+Multi-line orders: 6314, Total shipped orders: 773339, Lines in multi-line: 13929
+Logistics fact duplicates (top 5): [('028-1904177-4936305', 2), ('402-3203031-6456301', 2), ('305-2145903-8133922', 2), ('402-4099090-9719547', 2), ('028-4613840-3037107', 2)]
+Multi-line refund orders: 410
+  Refund order 303-2286354-8817143: refund=0.0000 PLN, type=partial, lines=2, total_price=27.12
+  Refund order 304-5095366-5705909: refund=-0.6330 PLN, type=partial, lines=3, total_price=24.46
+  Refund order 303-0363571-8375532: refund=-1.7316 PLN, type=partial, lines=3, total_price=28.84
+  Refund order 028-6536456-7077113: refund=-3.5380 PLN, type=partial, lines=2, total_price=93.67
+  Refund order 402-3784613-6329943: refund=-5.3139 PLN, type=partial, lines=4, total_price=159.80
+Line count distribution (multi-line only):
+  2 lines: 5391 orders
+  3 lines: 685 orders
+  4 lines: 165 orders
+  5 lines: 43 orders
+  6 lines: 20 orders
+  7 lines: 4 orders
+  8 lines: 2 orders
+  9 lines: 1 orders
+  10 lines: 1 orders
+  15 lines: 1 orders
+  19 lines: 1 orders
+Refund share allocation precision (worst 10 multi-line refunds):
+  028-2840824-1729966: refund=-242.4218, lines=2, sum_price=137.52, sum_shares=1.000000, share_error=0.000000
+  303-2689289-5487558: refund=-621.1981, lines=2, sum_price=487.04, sum_shares=1.000000, share_error=0.000000
+  303-2855442-8617152: refund=-59.9760, lines=2, sum_price=33.17, sum_shares=1.000000, share_error=0.000000
+  028-1620874-4577921: refund=-21.1392, lines=2, sum_price=14.06, sum_shares=1.000000, share_error=0.000000
+  028-4522930-5069930: refund=-109.0506, lines=3, sum_price=30.85, sum_shares=1.000000, share_error=0.000000
+  028-8140360-6517919: refund=-103.9840, lines=2, sum_price=58.42, sum_shares=1.000000, share_error=0.000000
+  028-8834195-9501959: refund=-35.2570, lines=2, sum_price=18.89, sum_shares=1.000000, share_error=0.000000
+  302-5532347-5137144: refund=-22.9127, lines=2, sum_price=19.42, sum_shares=1.000000, share_error=0.000000
+  302-6992754-0773153: refund=-42.2955, lines=3, sum_price=41.85, sum_shares=1.000000, share_error=0.000000
+  302-8471881-5236322: refund=-197.7724, lines=3, sum_price=55.85, sum_shares=1.000000, share_error=0.000000
+Orders with 2+ distinct SKUs (multi-SKU): 5322
+Sample multi-line orders (order CM vs line sums):
+  171-9713696-1721108: order_cm=2013.70, order_rev=5098.19, order_cogs=2192.00, order_fees=815.05 | line_rev_raw=1210.80, line_cogs=2192.0000, line_fees=815.0459, lines=3
+  302-9684105-8321952: order_cm=1319.28, order_rev=1500.87, order_cogs=181.59, order_fees=0.00 | line_rev_raw=236.17, line_cogs=181.5900, line_fees=0.0000, lines=3
+  171-6006907-9957940: order_cm=1121.10, order_rev=2632.22, order_cogs=1090.30, order_fees=420.82 | line_rev_raw=624.00, line_cogs=1090.3000, line_fees=420.8175, lines=6
+  403-7237489-8467546: order_cm=1098.56, order_rev=1627.73, order_cogs=529.17, order_fees=None | line_rev_raw=380.47, line_cogs=529.1700, line_fees=0.0000, lines=7
+  406-4285245-1072334: order_cm=949.36, order_rev=2455.01, order_cogs=1101.50, order_fees=404.15 | line_rev_raw=583.00, line_cogs=1101.5000, line_fees=404.1492, lines=4

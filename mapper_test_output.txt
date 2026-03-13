@@ -1,0 +1,38 @@
+﻿Starting mapper dry_run (limit=2000)...
+2026-03-01 21:37:10 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-01 21:37:10 [info     ] courier_mapper.table_ensured
+2026-03-01 21:37:10 [info     ] courier_mapper.step1_get_orders date_from=None date_to=None limit=2000
+2026-03-01 21:37:10 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-01 21:37:11 [info     ] courier_mapper.orders_to_map   count=2000
+2026-03-01 21:37:11 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-01 21:37:11 [info     ] courier_mapper.step2_bl_lookup count=2000
+2026-03-01 21:37:11 [info     ] courier_mapper.bl_batch        batch=1/4 size=500
+2026-03-01 21:37:12 [info     ] courier_mapper.bl_batch        batch=2/4 size=500
+2026-03-01 21:37:13 [info     ] courier_mapper.bl_batch        batch=3/4 size=500
+2026-03-01 21:37:14 [info     ] courier_mapper.bl_batch        batch=4/4 size=500
+2026-03-01 21:37:14 [info     ] courier_mapper.step3_packages  bl_orders=1863
+2026-03-01 21:37:14 [info     ] courier_mapper.pkg_batch       batch=1/4 size=500
+2026-03-01 21:37:14 [info     ] courier_mapper.pkg_batch       batch=2/4 size=500
+2026-03-01 21:37:14 [info     ] courier_mapper.pkg_batch       batch=3/4 size=500
+2026-03-01 21:37:14 [info     ] courier_mapper.pkg_batch       batch=4/4 size=363
+2026-03-01 21:37:14 [info     ] courier_mapper.step4a_gls      count=588
+2026-03-01 21:37:14 [info     ] courier_mapper.step4b_dhl      count=489
+2026-03-01 21:37:33 [info     ] courier_mapper.step5_write     dry_run=True to_write=0
+2026-03-01 21:37:33 [info     ] courier_mapper.dry_run_skip
+2026-03-01 21:37:33 [info     ] courier_mapper.done            bl_found=1863 elapsed=23.1s match_pct=0.0%% matched=0 orders=2000 written=0
+
+=== RESULT ===
+{
+  "orders_checked": 2000,
+  "bl_found": 1863,
+  "packages_found": 830,
+  "gls_matched": 0,
+  "dhl_matched": 0,
+  "other_matched": 0,
+  "no_bl_order": 137,
+  "no_package": 1033,
+  "no_cost": 1077,
+  "written": 0,
+  "errors": [],
+  "elapsed_seconds": 23.1
+}

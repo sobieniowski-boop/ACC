@@ -1,0 +1,44 @@
+{
+  "runs": [
+    {
+      "scope": {
+        "month": "2025-11",
+        "carrier": "DHL"
+      },
+      "job": {
+        "id": "E90FAA95-A156-4F01-BC66-C68264A6FAFB",
+        "status": "failure",
+        "progress_pct": 100,
+        "progress_message": "Failed",
+        "error_message": "(20047, b'DB-Lib error message 20003, severity 6:\\nAdaptive Server connection timed out\\nDB-Lib error message 20047, severity 9:\\nDBPROCESS is dead or not enabled\\n')"
+      },
+      "coverage": {
+        "orders_universe": 16272,
+        "orders_linked_primary": 16193,
+        "orders_with_fact": 16193,
+        "link_coverage_pct": 99.51,
+        "fact_coverage_pct": 99.51
+      }
+    },
+    {
+      "scope": {
+        "month": "2025-11",
+        "carrier": "GLS"
+      },
+      "job": {
+        "id": "FA9DEF3F-5774-4322-81A3-1BCBC0AC5D60",
+        "status": "failure",
+        "progress_pct": 100,
+        "progress_message": "Failed",
+        "error_message": "(20047, b'DB-Lib error message 20003, severity 6:\\nAdaptive Server connection timed out\\nDB-Lib error message 20047, severity 9:\\nDBPROCESS is dead or not enabled\\n')"
+      },
+      "coverage": {
+        "orders_universe": 28348,
+        "orders_linked_primary": 28176,
+        "orders_with_fact": 28176,
+        "link_coverage_pct": 99.39,
+        "fact_coverage_pct": 99.39
+      }
+    }
+  ]
+}

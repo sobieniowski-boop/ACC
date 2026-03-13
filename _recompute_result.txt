@@ -1,0 +1,7 @@
+﻿Running V2 recalc_profit_orders(2026-01-01 to 2026-03-09)...
+2026-03-09 16:07:47 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-09 16:09:11 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-09 16:09:11 [info     ] fx_service.cache_loaded        currencies=6 total_rates=3030
+2026-03-09 16:09:48 [info     ] recalc_profit.done             date_from=2026-01-01 date_to=2026-03-09 orders=116070
+Orders updated: 116070
+Done.

@@ -1,0 +1,2 @@
+﻿2026-03-03 09:59:16 [debug    ] db.connect_netfox              database=default
+2026-03-03 09:59:16 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net

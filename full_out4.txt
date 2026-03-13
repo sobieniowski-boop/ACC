@@ -1,0 +1,48 @@
+........................................................................ [ 10%]
+........................................................................ [ 20%]
+......2026-03-10 21:31:24 [info     ] ads_api.sd_campaigns.fetched   count=2 profile_id=3175891521293524
+.2026-03-10 21:31:27 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..................2026-03-10 21:31:27 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.........2026-03-10 21:31:28 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 21:31:28 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 21:31:29 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.........2026-03-10 21:31:30 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+........................ [ 30%]
+...........2026-03-10 21:31:41 [info     ] ads_api.sb_campaigns.fetched   count=122 profile_id=2583515575894719
+............................................................. [ 40%]
+........................................................................ [ 50%]
+........................................................................ [ 60%]
+........................................................................ [ 70%]
+........................................................................ [ 80%]
+......................................................2026-03-10 21:33:04 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 21:33:04 [info     ] report.ready                   elapsed=30.0 report_id=4047591020522
+......2026-03-10 21:33:06 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+......... [ 90%]
+..............2026-03-10 21:33:13 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 21:33:14 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 21:33:14 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 21:33:14 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..............................................       [100%]
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_circuit_breaker.py::TestContentOpsIntegration::test_process_queued_short_circuits_when_open
+  C:\ACC\apps\api\app\services\content_ops.py:2300: RuntimeWarning: coroutine '_async_return' was never awaited
+    if _run_async(is_circuit_open()):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+  C:\ACC\apps\api\app\services\profitability_service.py:1461: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+714 passed, 33 warnings in 469.37s (0:07:49)

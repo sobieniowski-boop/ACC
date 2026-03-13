@@ -1,0 +1,79 @@
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90mc:/ACC/apps/web[39m
+
+[90mstderr[2m | src/test/smoke.test.tsx[2m > [22m[2mLoginPage smoke test[2m > [22m[2mrenders input fields
+[22m[39m⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+[90mstderr[2m | src/test/smoke.test.tsx[2m > [22m[2mDashboard smoke test[2m > [22m[2mrenders without crashing
+[22m[39mWarning: The tag <stop> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.
+    at stop
+    at linearGradient
+    at defs
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at div
+    at DashboardPage (C:/ACC/apps/web/src/pages/Dashboard.tsx:348:84)
+    at Router (C:\ACC\apps\web\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at BrowserRouter (C:\ACC\apps\web\node_modules\react-router-dom\dist\umd\react-router-dom.development.js:695:7)
+    at QueryClientProvider (file:///C:/ACC/apps/web/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at AllProviders (C:/ACC/apps/web/src/test/test-utils.tsx:15:25)
+Warning: <linearGradient /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+    at linearGradient
+    at defs
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at div
+    at DashboardPage (C:/ACC/apps/web/src/pages/Dashboard.tsx:348:84)
+    at Router (C:\ACC\apps\web\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at BrowserRouter (C:\ACC\apps\web\node_modules\react-router-dom\dist\umd\react-router-dom.development.js:695:7)
+    at QueryClientProvider (file:///C:/ACC/apps/web/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at AllProviders (C:/ACC/apps/web/src/test/test-utils.tsx:15:25)
+Warning: The tag <linearGradient> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.
+    at linearGradient
+    at defs
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at div
+    at DashboardPage (C:/ACC/apps/web/src/pages/Dashboard.tsx:348:84)
+    at Router (C:\ACC\apps\web\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at BrowserRouter (C:\ACC\apps\web\node_modules\react-router-dom\dist\umd\react-router-dom.development.js:695:7)
+    at QueryClientProvider (file:///C:/ACC/apps/web/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at AllProviders (C:/ACC/apps/web/src/test/test-utils.tsx:15:25)
+Warning: <linearGradient /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.
+    at linearGradient
+    at defs
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at div
+    at DashboardPage (C:/ACC/apps/web/src/pages/Dashboard.tsx:348:84)
+    at Router (C:\ACC\apps\web\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at BrowserRouter (C:\ACC\apps\web\node_modules\react-router-dom\dist\umd\react-router-dom.development.js:695:7)
+    at QueryClientProvider (file:///C:/ACC/apps/web/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at AllProviders (C:/ACC/apps/web/src/test/test-utils.tsx:15:25)
+Warning: The tag <defs> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.
+    at defs
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at Wrapper (C:/ACC/apps/web/src/test/smoke.test.tsx:34:22)
+    at div
+    at div
+    at DashboardPage (C:/ACC/apps/web/src/pages/Dashboard.tsx:348:84)
+    at Router (C:\ACC\apps\web\node_modules\react-router\dist\umd\react-router.development.js:1207:17)
+    at BrowserRouter (C:\ACC\apps\web\node_modules\react-router-dom\dist\umd\react-router-dom.development.js:695:7)
+    at QueryClientProvider (file:///C:/ACC/apps/web/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at AllProviders (C:/ACC/apps/web/src/test/test-utils.tsx:15:25)
+

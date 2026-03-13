@@ -1,0 +1,173 @@
+﻿........................................................................ [ 10%]
+...............................................F2026-03-10 20:41:21 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+FF..................2026-03-10 20:41:57 [info     ] ads_sync.full.start            days_back=5
+.... [ 20%]
+2026-03-10 20:42:12 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:42:15 [info     ] catalog.search_complete        count=20
+2026-03-10 20:42:15 [info     ] catalog.batch_ok               batch=18 count=20
+2026-03-10 20:42:21 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:42:32 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:42:32 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:42:32 [info     ] catalog.search_complete        count=20
+2026-03-10 20:42:33 [info     ] catalog.batch_ok               batch=23 count=20
+.2026-03-10 20:42:53 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:43:08 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:43:15 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:43:15 [info     ] ads_api.sb_campaigns.fetched   count=0 profile_id=4414157435569296
+.2026-03-10 20:43:15 [info     ] ads_api.sd_campaigns.fetched   count=0 profile_id=4414157435569296
+2026-03-10 20:43:15 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:43:15 [info     ] ads_api.sp_campaigns.fetched   count=42 profile_id=4414157435569296
+2026-03-10 20:43:15 [info     ] ads_api.campaigns.total        count=42 profile_id=4414157435569296
+2026-03-10 20:43:15 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:16 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:43:16 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:43:18 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:18 [info     ] catalog.batch_ok               batch=3 count=20
+..2026-03-10 20:43:19 [info     ] ads_sync.campaigns             campaigns=42 country=NL
+2026-03-10 20:43:19 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 20:43:20 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:21 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:21 [info     ] catalog.batch_ok               batch=4 count=20
+2026-03-10 20:43:21 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:43:22 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 20:43:23 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:24 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:24 [info     ] catalog.batch_ok               batch=5 count=20
+.2026-03-10 20:43:24 [info     ] ads_api.sp_campaigns.fetched   count=6 profile_id=1915712109695298
+2026-03-10 20:43:25 [info     ] ads_api.sd_campaigns.fetched   count=0 profile_id=1915712109695298
+2026-03-10 20:43:25 [info     ] ads_api.sb_campaigns.fetched   count=0 profile_id=1915712109695298
+2026-03-10 20:43:25 [info     ] ads_api.campaigns.total        count=6 profile_id=1915712109695298
+2026-03-10 20:43:25 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:43:26 [info     ] ads_sync.campaigns             campaigns=6 country=BE
+2026-03-10 20:43:26 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:27 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:27 [info     ] catalog.batch_ok               batch=6 count=20
+....2026-03-10 20:43:29 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:30 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:30 [info     ] catalog.batch_ok               batch=7 count=20
+....2026-03-10 20:43:31 [info     ] ads_api.sb_campaigns.fetched   count=5 profile_id=3175891521293524
+2026-03-10 20:43:32 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:32 [info     ] ads_api.sd_campaigns.fetched   count=2 profile_id=3175891521293524
+2026-03-10 20:43:33 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:33 [info     ] catalog.batch_ok               batch=8 count=20
+.2026-03-10 20:43:33 [info     ] ads_api.sp_campaigns.fetched   count=161 profile_id=3175891521293524
+2026-03-10 20:43:33 [info     ] ads_api.campaigns.total        count=168 profile_id=3175891521293524
+2026-03-10 20:43:33 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+....2026-03-10 20:43:35 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.......2026-03-10 20:43:39 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 20:43:42 [info     ] ads_sync.campaigns             campaigns=168 country=ES
+.2026-03-10 20:43:43 [info     ] catalog.batch_ok               batch=11 count=20
+...2026-03-10 20:43:46 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:46 [info     ] catalog.batch_ok               batch=12 count=20
+...2026-03-10 20:43:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:43:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:43:49 [info     ] ads_api.sd_campaigns.fetched   count=305 profile_id=2583515575894719
+2026-03-10 20:43:49 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:43:49 [info     ] ai_matcher.calling_gpt         candidate_total=192 model=gpt-5.2 ref_count=8325 unmapped_count=8
+......... [ 30%]
+.................................................F...................... [ 40%]
+........................................................................ [ 50%]
+........................................................................ [ 60%]
+........FF.......................2026-03-10 20:43:59 [info     ] catalog.search_complete        count=20
+2026-03-10 20:43:59 [info     ] catalog.batch_ok               batch=18 count=20
+.F...F.FF.....F.................2026-03-10 20:44:04 [info     ] catalog.search_complete        count=20
+2026-03-10 20:44:04 [info     ] catalog.batch_ok               batch=20 count=20
+F2026-03-10 20:44:05 [info     ] return_tracker.backfill_chunk  chunk=2/3 end=2026-02-08 mkt=DE start=2026-01-09
+.2026-03-10 20:44:07 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:44:07 [info     ] catalog.search_complete        count=20
+2026-03-10 20:44:07 [info     ] catalog.batch_ok               batch=21 count=20
+.2026-03-10 20:44:08 [info     ] report.created                 report_id=4047470020522 type=GET_FBA_FULFILLMENT_CUSTOMER_RETURNS_DATA
+.2026-03-10 20:44:10 [debug    ] report.polling                 elapsed=0.0 report_id=4047470020522 status=IN_QUEUE
+.2026-03-10 20:44:11 [info     ] catalog.search_complete        count=20
+2026-03-10 20:44:11 [info     ] catalog.batch_ok               batch=22 count=20
+.. [ 70%]
+...2026-03-10 20:44:13 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:44:14 [info     ] catalog.search_complete        count=20
+.2026-03-10 20:44:14 [info     ] catalog.batch_ok               batch=23 count=20
+....2026-03-10 20:44:16 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.2026-03-10 20:44:17 [info     ] catalog.search_complete        count=20
+2026-03-10 20:44:17 [info     ] catalog.batch_ok               batch=24 count=20
+....2026-03-10 20:44:19 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:44:20 [info     ] catalog.search_complete        count=20
+2026-03-10 20:44:20 [info     ] catalog.batch_ok               batch=25 count=20
+........................................2026-03-10 20:44:39 [info     ] ads_api.sp_campaigns.fetched   count=3814 profile_id=2583515575894719
+2026-03-10 20:44:39 [info     ] ads_api.campaigns.total        count=4241 profile_id=2583515575894719
+2026-03-10 20:44:39 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.....2026-03-10 20:44:42 [info     ] report.ready                   elapsed=30.0 report_id=4047470020522
+.2026-03-10 20:44:44 [info     ] marketplace_sync.mp_done       items=498 mp=ES
+.2026-03-10 20:44:44 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+......F2026-03-10 20:44:49 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+F. [ 80%]
+2026-03-10 20:44:50 [info     ] catalog.search_complete        count=20
+2026-03-10 20:44:50 [info     ] catalog.batch_ok               batch=2 count=20
+...2026-03-10 20:44:52 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:45:35 [info     ] catalog.search_complete        count=20
+2026-03-10 20:45:35 [info     ] catalog.batch_ok               batch=21 count=20
+.....2026-03-10 20:45:39 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:45:39 [info     ] catalog.search_complete        count=20
+2026-03-10 20:45:39 [info     ] catalog.batch_ok               batch=22 count=20
+....2026-03-10 20:45:42 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:45:42 [info     ] catalog.search_complete        count=20
+2026-03-10 20:45:42 [info     ] catalog.batch_ok               batch=23 count=20
+.2026-03-10 20:45:43 [info     ] return_tracker.backfill_chunk  chunk=3/3 end=2026-03-10 mkt=DE start=2026-02-08
+..2026-03-10 20:45:45 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+..2026-03-10 20:45:45 [info     ] catalog.search_complete        count=20
+2026-03-10 20:45:45 [info     ] catalog.batch_ok               batch=24 count=20
+.2026-03-10 20:45:46 [info     ] report.created                 report_id=4047476020522 type=GET_FBA_FULFILLMENT_CUSTOMER_RETURNS_DATA
+...2026-03-10 20:45:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:45:48 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+2026-03-10 20:45:49 [debug    ] report.polling                 elapsed=0.0 report_id=4047476020522 status=IN_QUEUE
+.F........................................... [ 90%]
+......2026-03-10 20:46:14 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+...2026-03-10 20:46:16 [info     ] catalog.search_complete        count=20
+2026-03-10 20:46:16 [info     ] catalog.batch_ok               batch=1 count=20
+.2026-03-10 20:46:17 [debug    ] db.connect_acc.pymssql         server=acc-sql-kadax.database.windows.net
+.......................................FFFFFFFF.........       [100%]
+============================== warnings summary ===============================
+tests/test_api_content_ops.py: 1 warning
+tests/test_api_families.py: 19 warnings
+tests/test_api_jobified_endpoints.py: 7 warnings
+  C:\Users\msobieniowski\AppData\Local\Programs\Python\Python312\Lib\site-packages\jose\jwt.py:311: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = timegm(datetime.utcnow().utctimetuple())
+
+tests/test_circuit_breaker.py::TestContentOpsIntegration::test_process_queued_short_circuits_when_open
+  C:\ACC\apps\api\app\services\content_ops.py:2300: RuntimeWarning: coroutine '_async_return' was never awaited
+    if _run_async(is_circuit_open()):
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_uses_tgt_for_enriched_columns
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_merge_sql_rebuilds_logistics_from_canonical_source
+tests/test_p1_financial_fixes.py::TestSF05_MergePreservesEnrichedColumns::test_enrichment_empty_warning_logged
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_writes_metadata_keys
+tests/test_phase4_rollup_divergence.py::TestP403_RecomputeWritesMetadata::test_result_includes_recomputed_at
+  C:\ACC\apps\api\app\services\profitability_service.py:1461: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    recomputed_at = datetime.utcnow().isoformat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_api_families.py::TestTriggerRebuildDE::test_ok - AssertionE...
+FAILED tests/test_api_families.py::TestTriggerSyncMP::test_ok - assert 202 ==...
+FAILED tests/test_api_families.py::TestTriggerMatching::test_ok - assert 202 ...
+FAILED tests/test_de_builder.py::TestRebuildDeCanonical::test_smoke_no_parents
+FAILED tests/test_guardrails.py::TestOrderSyncFreshness::test_warning - Asser...
+FAILED tests/test_guardrails.py::TestOrderSyncFreshness::test_critical - Asse...
+FAILED tests/test_guardrails.py::TestProfitMarginAnomalies::test_few_anomalies_warning
+FAILED tests/test_guardrails.py::TestDuplicateFinanceTxns::test_some_dupes - ...
+FAILED tests/test_guardrails.py::TestOrderFinanceDrift::test_high_drift - Ass...
+FAILED tests/test_guardrails.py::TestSchedulerHealth::test_healthy - Assertio...
+FAILED tests/test_guardrails.py::TestOrderFinanceTotals::test_high_drift - As...
+FAILED tests/test_guardrails.py::TestOrchestrator::test_run_all_async_catches_exceptions
+FAILED tests/test_p1_financial_fixes.py::TestSF04_ProfitTierLabels::test_profitability_overview_has_profit_tier
+FAILED tests/test_p1_financial_fixes.py::TestSF04_ProfitTierLabels::test_executive_overview_has_profit_tier
+FAILED tests/test_phase0_revenue_fix.py::TestP0_03_ProfitService_RegressionGuard::test_cm_formula_matches_expected
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_success_first_attempt
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_429_then_success
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_500_then_success
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_all_retryable_statuses
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_exhausted_retries_raises_throttled
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_transient_connect_error_retries
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_transient_read_timeout_retries
+FAILED tests/test_spapi_backoff.py::TestRequestRetries::test_non_retryable_4xx_raises_immediately
+23 failed, 691 passed, 33 warnings in 462.27s (0:07:42)

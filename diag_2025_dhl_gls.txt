@@ -1,0 +1,150 @@
+=== 1. MFN orders per month (2025+) ===
+  2025-01: total=  48,508  MFN=  36,139
+  2025-02: total=  43,543  MFN=  25,421
+  2025-03: total=  74,003  MFN=  47,960
+  2025-04: total=  68,092  MFN=  51,127
+  2025-05: total=  65,118  MFN=  49,540
+  2025-06: total=  58,309  MFN=  45,344
+  2025-07: total=  57,977  MFN=  43,046
+  2025-08: total=  62,266  MFN=  49,810
+  2025-09: total=  57,638  MFN=  46,524
+  2025-10: total=  60,731  MFN=  45,351
+  2025-11: total=  67,217  MFN=  45,942
+  2025-12: total=  57,723  MFN=  35,959
+  2026-01: total=  44,825  MFN=  31,922
+  2026-02: total=  51,078  MFN=  31,633
+  2026-03: total=   6,850  MFN=   5,203
+
+=== 2. DHL shipping cost coverage by order month (2025+) ===
+  2025-01: MFN= 36,139  DHL_matched= 11,310  ( 31.3%)
+  2025-02: MFN= 25,421  DHL_matched=  8,053  ( 31.7%)
+  2025-03: MFN= 47,960  DHL_matched=  8,603  ( 17.9%)
+  2025-04: MFN= 51,127  DHL_matched=  8,481  ( 16.6%)
+  2025-05: MFN= 49,540  DHL_matched=  8,666  ( 17.5%)
+  2025-06: MFN= 45,344  DHL_matched=  8,096  ( 17.9%)
+  2025-07: MFN= 43,046  DHL_matched=      0  (  0.0%)
+  2025-08: MFN= 49,810  DHL_matched=      0  (  0.0%)
+  2025-09: MFN= 46,524  DHL_matched=      0  (  0.0%)
+  2025-10: MFN= 45,351  DHL_matched=      0  (  0.0%)
+  2025-11: MFN= 45,942  DHL_matched=      0  (  0.0%)
+  2025-12: MFN= 35,959  DHL_matched=      0  (  0.0%)
+  2026-01: MFN= 31,922  DHL_matched=      0  (  0.0%)
+  2026-02: MFN= 31,633  DHL_matched=      0  (  0.0%)
+  2026-03: MFN=  5,203  DHL_matched=      0  (  0.0%)
+
+=== 3. GLS shipping cost coverage by order month (2025+) ===
+  2025-01: MFN= 36,139  GLS_matched= 23,568  ( 65.2%)
+  2025-02: MFN= 25,421  GLS_matched= 16,616  ( 65.4%)
+  2025-03: MFN= 47,960  GLS_matched= 31,000  ( 64.6%)
+  2025-04: MFN= 51,127  GLS_matched= 32,607  ( 63.8%)
+  2025-05: MFN= 49,540  GLS_matched= 31,105  ( 62.8%)
+  2025-06: MFN= 45,344  GLS_matched= 29,599  ( 65.3%)
+  2025-07: MFN= 43,046  GLS_matched=      0  (  0.0%)
+  2025-08: MFN= 49,810  GLS_matched=      1  (  0.0%)
+  2025-09: MFN= 46,524  GLS_matched=      0  (  0.0%)
+  2025-10: MFN= 45,351  GLS_matched=      1  (  0.0%)
+  2025-11: MFN= 45,942  GLS_matched=      0  (  0.0%)
+  2025-12: MFN= 35,959  GLS_matched=  5,273  ( 14.7%)
+  2026-01: MFN= 31,922  GLS_matched=  9,829  ( 30.8%)
+  2026-02: MFN= 31,633  GLS_matched=  2,760  (  8.7%)
+  2026-03: MFN=  5,203  GLS_matched=      0  (  0.0%)
+
+=== 4. ANY shipping cost coverage by order month (2025+ MFN) ===
+  2025-01: MFN= 36,139  matched= 34,878  gap=  1,261  ( 96.5%)
+  2025-02: MFN= 25,421  matched= 24,669  gap=    752  ( 97.0%)
+  2025-03: MFN= 47,960  matched= 39,603  gap=  8,357  ( 82.6%)
+  2025-04: MFN= 51,127  matched= 41,088  gap= 10,039  ( 80.4%)
+  2025-05: MFN= 49,540  matched= 39,771  gap=  9,769  ( 80.3%)
+  2025-06: MFN= 45,344  matched= 37,695  gap=  7,649  ( 83.1%)
+  2025-07: MFN= 43,046  matched=      0  gap= 43,046  (  0.0%)
+  2025-08: MFN= 49,810  matched=      1  gap= 49,809  (  0.0%)
+  2025-09: MFN= 46,524  matched=      0  gap= 46,524  (  0.0%)
+  2025-10: MFN= 45,351  matched=      1  gap= 45,350  (  0.0%)
+  2025-11: MFN= 45,942  matched=      0  gap= 45,942  (  0.0%)
+  2025-12: MFN= 35,959  matched=  5,273  gap= 30,686  ( 14.7%)
+  2026-01: MFN= 31,922  matched=  9,829  gap= 22,093  ( 30.8%)
+  2026-02: MFN= 31,633  matched=  2,760  gap= 28,873  (  8.7%)
+  2026-03: MFN=  5,203  matched=      0  gap=  5,203  (  0.0%)
+
+=== 5. acc_shipping_cost by courier (all time) ===
+  gls:    183,432
+  dhl:     53,210
+
+=== 6. GLS in acc_cache_invoices by invoice month ===
+  0000-00:        198
+  2023-09:          2
+  2023-10:      2,175
+  2023-11:     17,316
+  2023-12:     15,879
+  2024-01:     25,004
+  2024-02:     21,552
+  2024-03:     29,494
+  2024-04:     33,956
+  2024-05:     33,048
+  2024-06:     34,333
+  2024-07:     38,484
+  2024-08:     24,361
+  2024-09:     33,046
+  2024-10:     37,606
+  2024-11:     35,536
+  2024-12:     36,817
+  2025-01:     37,247
+  2025-02:     27,682
+  2025-03:     45,377
+  2025-04:     51,202
+  2025-05:     52,343
+  2025-06:     50,185
+  2025-07:     47,325
+  2025-08:     43,178
+  2025-09:     45,718
+  2025-10:     43,440
+  2025-11:     46,971
+  2025-12:     39,199
+  2026-01:     37,320
+  2026-02:     13,379
+
+=== 7. GLS packages (courier_code) - top courier codes ===
+  blconnectpackages   :  1,258,147
+  gls                 :    852,664
+  dhl                 :    280,647
+  allegrokurier       :    189,927
+  dpd                 :    158,912
+  paczkomaty          :    143,511
+  pocztapolska        :     34,331
+  glsde               :     25,989
+  other               :     24,308
+  erlipro             :     22,205
+
+=== 8. DHL funnel for March-April 2025 specifically ===
+
+  --- 2025-03 ---
+    a_total_mfn:   47,960
+    b_has_bl_order:   46,727
+    c_has_jjd_package:   15,726
+    d_has_jjd_map:    8,603
+    e_has_dhl_invoice:    8,602
+    f_has_dhl_cost:    8,603
+
+  --- 2025-04 ---
+    a_total_mfn:   51,127
+    b_has_bl_order:   49,567
+    c_has_jjd_package:   16,953
+    d_has_jjd_map:    8,482
+    e_has_dhl_invoice:    8,481
+    f_has_dhl_cost:    8,481
+
+=== 9. GLS funnel for March-April 2025 ===
+
+  --- 2025-03 ---
+    a_total_mfn:   47,960
+    b_has_bl_order:   46,727
+    c_has_gls_package:   31,192
+    d_has_gls_invoice:   31,011
+    e_has_gls_cost:   31,000
+
+  --- 2025-04 ---
+    a_total_mfn:   51,127
+    b_has_bl_order:   49,567
+    c_has_gls_package:   32,844
+    d_has_gls_invoice:   32,614
+    e_has_gls_cost:   32,607

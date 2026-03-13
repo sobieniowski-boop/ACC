@@ -1,0 +1,6 @@
+============================================================
+[1] ERP Holding price lookup for 285 products with internal_sku...
+  Products with internal_sku needing price: 286
+  ERP Holding articles w/ price: 9072
+  Holding direct matches: 1
+

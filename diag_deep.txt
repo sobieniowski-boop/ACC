@@ -1,0 +1,424 @@
+=== 1. Marzec 2025: MFN orders by ACTUAL courier (from packages) ===
+  gls                      :  31,192 orders  ( 31,872 packages)
+  dhl                      :  15,728 orders  ( 15,996 packages)
+  pocztapolska             :       1 orders  (      1 packages)
+  (bez paczki)             :   1,233 orders
+  (bez BL mappingu)        :   1,233 orders
+
+=== 2. GLS marzec 2025: detailowy funnel ===
+  a_gls_packages:   31,872
+  b_unique_orders:   31,192
+  c_has_invoice:   31,011
+  d_has_cost:   31,000
+
+=== 3. DHL marzec 2025: detailowy funnel ===
+  a_dhl_packages:   15,994
+  b_unique_orders:   15,726
+  c_has_jjd_map:    8,603
+  d_has_invoice:    8,602
+  e_has_cost:    8,603
+
+=== 4. DHL marzec: 7K bez mapy JJD — skąd pochodzą te JJD? ===
+  Missing JJDs: 7,257
+  Example MIN: JJD000030206530000001323659
+  Example MAX: JJD000030214472000000037463
+  Length range: 27 - 27
+  Z tych, znalezione w acc_cache_extras: 0
+
+=== 5. Rozkład kurierów MFN per miesiąc (2025, by orders) ===
+
+  2025-01:
+    GLS                      :  23,672
+    DHL                      :  11,350
+    NO_PKG                   :   1,196
+    BLC_Raben                :       1
+    BLC_pocztapolska         :       1
+
+  2025-02:
+    GLS                      :  16,715
+    DHL                      :   8,114
+    NO_PKG                   :     691
+    BLC_pocztapolska         :       3
+    BLC_dhl                  :       1
+
+  2025-03:
+    GLS                      :  31,192
+    DHL                      :  15,726
+    NO_PKG                   :   1,233
+    BLC_dhl                  :       2
+    BLC_pocztapolska         :       1
+
+  2025-04:
+    GLS                      :  32,844
+    DHL                      :  16,953
+    NO_PKG                   :   1,560
+    BLC_dhl                  :       3
+
+  2025-05:
+    GLS                      :  31,317
+    DHL                      :  16,795
+    NO_PKG                   :   1,588
+    BLC_kex2                 :       2
+    BLC_dhl                  :       2
+
+  2025-06:
+    GLS                      :  29,774
+    DHL                      :  14,320
+    NO_PKG                   :   1,374
+    BLC_kex2                 :       3
+    BLC_pocztapolska         :       1
+
+  2025-07:
+    NO_PKG                   :  26,505
+    GLS                      :  11,421
+    DHL                      :   5,307
+
+  2025-08:
+    NO_PKG                   :  32,466
+    GLS                      :  11,316
+    DHL                      :   6,249
+
+  2025-09:
+    NO_PKG                   :  31,941
+    GLS                      :   9,222
+    DHL                      :   5,562
+
+  2025-10:
+    NO_PKG                   :  20,426
+    GLS                      :  15,552
+    DHL                      :   9,488
+    BLC_poczta               :       4
+    BLC_samedayhu            :       1
+    BLC_sameday              :       1
+    BLC_slovenije            :       1
+
+  2025-11:
+    NO_PKG                   :  19,276
+    GLS                      :  16,999
+    DHL                      :   9,788
+    BLC_poczta               :       6
+    BLC_slovenije            :       5
+    BLC_samedayhu            :       1
+
+  2025-12:
+    NO_PKG                   :  19,051
+    GLS                      :  11,080
+    DHL                      :   5,909
+    BLC_slovenije            :       4
+    BLC_poczta               :       2
+    BLC_samedayhu            :       2
+
+  2026-01:
+    NO_PKG                   :  15,836
+    GLS                      :   9,938
+    DHL                      :   6,263
+    BLC_slovenije            :       6
+    BLC_sameday              :       2
+    BLC_samedaybg            :       1
+
+  2026-02:
+    NO_PKG                   :  20,274
+    GLS                      :   7,644
+    DHL                      :   3,810
+    BLC_slovenije            :       3
+
+  2026-03:
+    NO_PKG                   :   4,891
+    GLS                      :     283
+    DHL                      :     108
+
+=== 6. DHL invoices in acc_cache_invoices by month ===
+  :          8
+  2024-04:      2,175
+  2024-05:      9,488
+  2024-06:     10,218
+  2024-07:     16,892
+  2024-08:     19,896
+  2024-09:     20,255
+  2024-10:     16,408
+  2024-11:     23,068
+  2024-12:     24,765
+  2025-01:     52,966
+  2025-02:     15,803
+  2025-03:     27,033
+  2025-04:     45,021
+  2025-05:     29,964
+  2025-06:     29,161
+  2025-07:     23,374
+  2025-08:     38,255
+  2025-09:     19,961
+  2025-10:     31,035
+  2025-11:     39,566
+  Data fa:          1
+  Dotyczy:          1
+  Ilość p:          1
+  Kod kla:          1
+  Kod zgo:          1
+  Łączna :          1
+  Maksyma:          1
+  Możliwe:          1
+  N = pła:          1
+  Nazwa l:          1
+  Nr SAP:          1
+  Numer l:          1
+  Podana :          1
+  Szczegó:          1
+  Wpis w :          1
+  Wpis wy:          1
+
+=== 7. acc_dhl_jjd_map ship_date by month ===
+  2024-06:        1
+  2024-07:        2
+  2024-08:   14,595
+  2024-09:    9,585
+  2024-10:   12,468
+  2024-11:   12,204
+  2024-12:   12,764
+  2025-01:   12,865
+  2025-02:    8,110
+  2025-03:    7,948
+  2025-04:   11,103
+  2025-05:   10,206
+  2025-06:    8,804
+  2025-07:   10,329
+  2025-08:   10,129
+  2025-09:   11,069
+  2025-10:   11,180
+  2025-11:   13,358
+  2025-12:   10,355
+  2026-01:    6,666
+  2026-02:    3,847
+
+=== 8. GLS: tracking z packages vs parcel_num z invoices — overlap check ===
+  2025-03: packages=  31,872  invoices=  45,377  matched=  29,126
+  2025-07: packages=  11,485  invoices=  47,325  matched=  11,078
+  2025-10: packages=  15,671  invoices=  43,440  matched=  15,494
+
+=== 9. acc_cache_packages: order_id ranges (proxy for freshness) ===
+  min_order_id=7,294,266  max_order_id=316,810,446  total=3,020,299
+  Packages by order_id bucket (millions):
+    7M:     44,257
+    8M:     66,783
+    9M:     53,190
+    10M:     65,140
+    11M:     78,120
+    12M:     75,181
+    13M:     66,548
+    14M:     67,025
+    15M:     61,588
+    16M:     45,225
+    17M:     47,567
+    18M:     46,890
+    19M:     42,726
+    20M:     41,245
+    21M:     38,266
+    22M:     35,900
+    23M:     35,118
+    24M:     35,176
+    25M:     30,686
+    26M:     27,595
+    27M:     24,308
+    28M:     34,945
+    29M:     30,593
+    30M:     28,578
+    31M:     26,750
+    32M:     18,203
+    79M:          4
+    80M:          5
+    81M:         12
+    82M:        151
+    83M:     18,781
+    84M:     29,613
+    85M:     32,666
+    86M:     24,400
+    87M:     17,193
+    88M:     16,122
+    89M:     21,004
+    90M:     25,325
+    91M:     24,829
+    92M:     25,966
+    93M:     26,807
+    94M:     24,518
+    95M:     28,113
+    96M:     24,936
+    97M:     28,966
+    98M:     26,422
+    99M:     27,721
+    100M:     31,784
+    101M:     30,465
+    102M:     30,914
+    103M:     31,239
+    104M:     30,019
+    105M:     27,340
+    106M:     27,911
+    107M:     27,472
+    108M:     28,372
+    109M:     31,515
+    110M:     30,799
+    111M:     28,491
+    112M:     25,778
+    113M:     28,466
+    114M:     28,247
+    115M:     28,672
+    116M:     25,132
+    117M:     33,301
+    118M:     31,719
+    119M:     27,089
+    120M:     30,293
+    121M:     39,314
+    122M:     48,601
+    123M:     47,251
+    124M:     48,301
+    125M:     41,835
+    126M:     47,917
+    127M:     47,789
+    128M:     33,455
+    129M:     22,050
+    130M:     23,285
+    131M:     23,577
+    132M:     20,504
+    133M:     21,662
+    134M:     30,168
+    135M:     24,805
+    136M:     29,538
+    137M:     23,343
+    138M:     19,179
+    139M:     25,776
+    140M:     25,648
+    141M:     21,741
+    142M:     15,168
+    228M:         36
+    229M:        777
+    230M:      1,104
+    231M:      1,011
+    232M:        930
+    233M:        950
+    234M:        941
+    235M:        988
+    236M:        984
+    237M:        899
+    238M:      1,030
+    239M:      1,181
+    240M:      1,283
+    241M:      1,192
+    242M:        937
+    243M:        859
+    244M:      1,251
+    245M:      1,283
+    246M:      1,120
+    247M:      1,333
+    248M:      1,321
+    249M:      1,264
+    250M:      1,315
+    251M:      1,274
+    252M:      1,167
+    253M:      1,590
+    254M:      1,573
+    255M:      1,737
+    256M:      2,072
+    257M:      1,960
+    258M:      2,137
+    259M:      2,494
+    260M:      2,556
+    261M:      2,527
+    262M:      2,259
+    263M:      2,230
+    264M:      2,606
+    265M:      2,923
+    266M:      3,016
+    267M:      2,723
+    268M:      2,786
+    269M:      2,767
+    270M:      2,554
+    271M:      2,556
+    272M:      2,188
+    273M:      2,122
+    274M:      2,416
+    275M:      2,494
+    276M:      1,569
+    277M:        938
+    278M:      1,016
+    279M:      1,205
+    280M:      1,263
+    281M:      1,172
+    282M:      1,079
+    283M:      1,167
+    284M:      1,088
+    285M:      1,042
+    286M:      1,012
+    287M:      1,036
+    288M:      1,052
+    289M:      1,150
+    290M:        981
+    291M:      1,224
+    292M:      1,186
+    293M:      1,852
+    294M:      1,639
+    295M:      1,192
+    296M:      1,317
+    297M:      2,620
+    298M:      1,387
+    299M:      1,406
+    300M:      1,253
+    301M:      1,166
+    302M:      1,270
+    303M:      1,030
+    304M:        986
+    305M:        776
+    306M:      1,210
+    307M:      1,560
+    308M:      1,621
+    309M:      1,463
+    310M:      1,525
+    311M:      1,841
+    312M:      1,398
+    313M:      1,193
+    314M:      1,111
+    315M:      1,207
+    316M:      1,298
+
+=== 10. acc_dhl_jjd_map source_file distribution ===
+  2446860_NET FOX_JJD 03.11.xlsx                              :   12,468
+  2446860_NET FOX_JJD 03.12.xlsx                              :   12,197
+  2446860_NET FOX_JJD 07.01 X2.xlsx                           :        8
+  2446860_NET FOX_JJD 07.01.xlsx                              :   12,762
+  2446860_NET FOX_JJD 07.10.xlsx                              :    9,587
+  2446860_NET FOX_JJD 13.11.xlsx                              :        5
+  2446860_NET FOX_JJD 14.01.xlsx                              :    1,396
+  2446860_NET FOX_JJD 14.02.xlsx                              :    2,295
+  2446860_NET FOX_JJD 20.02.xlsx                              :    9,180
+  2446860_NET FOX_JJD 27.09.xlsx                              :   14,591
+  2446860_NET FOX_JJD_14.02.2025.xlsx                         :    4,857
+  2446860_NET FOX_JJD_16.02.2025 28.02.xlsx                   :      222
+  EX_DHL_2446860_NET FOX_JJD luty.xlsx                        :    3,585
+  EX_DHL_2446860_NET FOX_JJD_01.02.2026 14.02.xlsx            :    3,227
+  EX_DHL_2446860_NET FOX_JJD_01.06.2025 14.06.xlsx            :    3,754
+  EX_DHL_2446860_NET FOX_JJD_02.03.2025 14.03.2025.xlsx       :      162
+  EX_DHL_2446860_NET FOX_JJD_02.11.2025 14.11.xlsx            :    3,468
+  EX_DHL_2446860_NET FOX_JJD_03.08.2025 14.08.xlsx            :    4,448
+  EX_DHL_2446860_NET FOX_JJD_04.01.2026 14.01.xlsx            :    2,677
+  EX_DHL_2446860_NET FOX_JJD_04.05.2025 14.05.xlsx            :    3,853
+  EX_DHL_2446860_NET FOX_JJD_05.10.2025 14.10.xlsx            :    5,137
+  EX_DHL_2446860_NET FOX_JJD_05.10.2025 17.10.xlsx            :        1
+  EX_DHL_2446860_NET FOX_JJD_06.04.2025 14.04.xlsx            :    4,688
+  EX_DHL_2446860_NET FOX_JJD_06.07.2025 14.07.xlsx            :    4,287
+  EX_DHL_2446860_NET FOX_JJD_06.07.2025 17.07.xlsx            :        2
+  EX_DHL_2446860_NET FOX_JJD_07.09.2025 17.09.xlsx            :    4,500
+  EX_DHL_2446860_NET FOX_JJD_07.12.2025 22.12.xlsx            :    4,789
+  EX_DHL_2446860_NET FOX_JJD_08.02.2026 17.02.xlsx            :    3,489
+  EX_DHL_2446860_NET FOX_JJD_08.06.2025 17.06.xlsx            :    4,161
+  EX_DHL_2446860_NET FOX_JJD_09.03.2025 20.03.xlsx            :    3,345
+  EX_DHL_2446860_NET FOX_JJD_09.11.2025 17.11.xlsx            :    4,205
+  EX_DHL_2446860_NET FOX_JJD_16.11.2025 3.12.xlsx             :    4,257
+  EX_DHL_2446860_NET FOX_JJD_17.08.2025 02.09.xlsx            :    3,514
+  EX_DHL_2446860_NET FOX_JJD_18.01.2026 31.01.xlsx            :    3,230
+  EX_DHL_2446860_NET FOX_JJD_18.05.2025 31.05.xlsx            :    5,010
+  EX_DHL_2446860_NET FOX_JJD_19.10.2025 31.10.xlsx            :    4,735
+  EX_DHL_2446860_NET FOX_JJD_20.04.2025 30.04.xlsx            :    4,231
+  EX_DHL_2446860_NET FOX_JJD_20.07.2025 31.07.xlsx            :    3,528
+  EX_DHL_2446860_NET FOX_JJD_21.09.2025 30.09.xlsx            :    4,829
+  EX_DHL_2446860_NET FOX_JJD_21.12.2025 31.12.xlsx            :    3,471
+  EX_DHL_2446860_NET FOX_JJD_22.06.2025 30.06.xlsx            :    3,900
+  EX_DHL_2446860_NET FOX_JJD_23.03.2025 31.03.xlsx            :    3,871
+  EX_DHL_2446860_NET FOX_JJD_30.11.2025 14.12.xlsx            :    4,477
+  EX_DHL_2446860_NET FOX_JJD_31.08.2025 15.09.xlsx            :    5,206
