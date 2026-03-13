@@ -302,9 +302,17 @@ app.add_middleware(SecurityHeadersMiddleware)
 from app.platform.middleware import CorrelationIdMiddleware  # noqa: E402
 app.add_middleware(CorrelationIdMiddleware)
 
+# ── Request Logging (po CorrelationId, żeby mieć correlation_id w logach) ──
+from app.platform.middleware.request_logging import RequestLoggingMiddleware  # noqa: E402
+app.add_middleware(RequestLoggingMiddleware)
+
 # ── Security Hardening ──
 from app.core.security_hardening import setup_security  # noqa: E402
 setup_security(app)
+
+# ── Standardowe wyjątki aplikacyjne ──
+from app.core.exceptions import register_exception_handlers  # noqa: E402
+register_exception_handlers(app)
 
 
 @app.exception_handler(Exception)

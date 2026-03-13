@@ -51,3 +51,23 @@ async def get_db() -> AsyncSession:
             raise
         finally:
             await session.close()
+
+
+def get_pool_status() -> dict:
+    """Zwraca metryki connection pool SQLAlchemy.
+
+    Dostępne pola:
+      - pool_size: ustawiony rozmiar puli
+      - checked_in: połączenia dostępne (idle)
+      - checked_out: połączenia aktualnie używane
+      - overflow: dodatkowe połączenia powyżej pool_size
+      - pool_max_overflow: konfiguracja max_overflow
+    """
+    pool = engine.sync_engine.pool
+    return {
+        "pool_size": pool.size(),
+        "checked_in": pool.checkedin(),
+        "checked_out": pool.checkedout(),
+        "overflow": pool.overflow(),
+        "pool_max_overflow": pool._max_overflow,
+    }
