@@ -12,7 +12,7 @@ resource "azurerm_redis_cache" "acc" {
   capacity            = var.redis_capacity
   family              = var.redis_family
   sku_name            = var.redis_sku
-  enable_non_ssl_port = false
+  non_ssl_port_enabled = false
   minimum_tls_version = "1.2"
 
   redis_configuration {
