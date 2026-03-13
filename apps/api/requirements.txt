@@ -10,7 +10,7 @@ passlib[bcrypt]==1.7.4
 python-multipart==0.0.20
 httpx==0.28.1
 boto3==1.37.1
-redis==5.2.1
+redis==7.3.0
 celery==5.4.0
 kombu==5.4.2
 pyodbc==5.2.0
